@@ -1,7 +1,7 @@
-# Before this repo goes public (maintainer)
+# Publishing checklist (maintainer)
 
-The repo is private. These are the open items before it can be made public, with where each stands. Open
-decisions are in [DECISIONS.md](DECISIONS.md).
+The repo went public on 2026-10-21 (release v0.2.0). This list records what was settled before that and what is
+still open. Open decisions are in [DECISIONS.md](DECISIONS.md).
 
 | # | Item | State |
 |---|---|---|
@@ -15,9 +15,9 @@ decisions are in [DECISIONS.md](DECISIONS.md).
 | 8 | **Generalized contents.** Samples, case work, run logs and the unreviewed cat-rebuild tools are out; `tools/publish_rules.json` keeps them out on every refresh. | done 2026-10-21 |
 | 9 | **Engine name.** The plugin id is still `asset-enhancement-engine`; the pages call it the asset enhancement engine. | done 2026-10-21: published as `asset-enhancement-engine` |
 | 10 | **Sponsor button.** `.github/FUNDING.yml` is in place but commented out until a GitHub Sponsors profile exists. | open |
-| 11 | **Git history.** The commits pushed on 2026-10-18 still hold `log/NOTES_LEDGER.md` (the maintainer's own notes) and the unreviewed cat-rebuild tools, which the current tree no longer has. Before going public, publish from a fresh history or rewrite it. | planned: a new repo from one fresh commit (below) |
+| 11 | **Git history.** The commits pushed on 2026-10-18 still hold `log/NOTES_LEDGER.md` (the maintainer's own notes) and the unreviewed cat-rebuild tools, which the current tree no longer has. Before going public, publish from a fresh history or rewrite it. | done 2026-10-21: this repo starts from one fresh commit; the old one is private as `self-improving-engines-archive` |
 
-## Release steps (fresh history)
+## Release steps (fresh history), done 2026-10-21
 
 Decided 2026-10-21: the public repo starts from one clean commit in a new repository, so the old history (with
 `log/NOTES_LEDGER.md` and the unreviewed cat-rebuild tools) is never public.
