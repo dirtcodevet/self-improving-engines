@@ -14,7 +14,7 @@
 
 <p align="center">
   <img src="docs/images/translator-viewer.png" width="900" alt="The Translator: a hand with its address grid, and seven picked spots ready to paste into chat">
-  <br><sub>The <a href="docs/translator.md">Translator</a>: click the spots you mean on any part of a model, paste them into chat, and your AI works on exactly those spots.</sub>
+  <br><sub>The <a href="docs/translator.md">Translator</a>: quickly identify problems or areas you wish to refine. Select the region, area, or single point, and copy the precise coordinates of what you're looking at into your AI tools. Describe the change, and it sees what you see. The coordinates are the translation between your explanation and the language that your AI understands.</sub>
 </p>
 
 ## What's inside
