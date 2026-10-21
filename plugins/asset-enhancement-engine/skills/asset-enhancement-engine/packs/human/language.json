@@ -1,0 +1,454 @@
+{
+ "what": "HUMAN LANGUAGE PACK (build L2, 2026-10-21): the person's word list for a human body - head, neck, torso (with its chest and back), breasts, arms, hands, fingers, legs, feet, toes - and how engine/tools/language.py finds and names them from the measured shape of any human mesh. Data only, over engine/packs/generic/language.json: the segmentation parameters, the naming rules (tried in order, specific words first), the splits (a part cut in two by a plane at a measured place: the wrist, the ankle, the jaw) and the merges. The torso's frame and addresses are a part_frame definition (engine/packs/human/part_frames.json#torso) the pack binds by word ('definitions').",
+ "vocabulary": {
+  "torso": "the trunk: what the head, the arms and the legs grow from (the core part); its skin charts name the chest (front, above the chest's lower edge), the back (behind) and the rest of the front (front)",
+  "head": "the protrusion at the top, from the crown to the fold under the jaw and over the nape, less its ears, eyes, nose, lips and mouth (L4: what is left of the head and the face)",
+  "neck": "between the head's fold and the flare into the shoulders",
+  "chest": "the front of the torso from the neck to the lower edge of the rib cage (a chart of the torso)",
+  "back": "the back of the torso (a chart of the torso)",
+  "breast": "a mound on the front of the chest, standing above the chest wall (a part of its own, also inside the torso's selection)",
+  "arm": "a limb with a hand, from the shoulder (where its sections merge with the chest's) to the wrist",
+  "hand": "the end of an arm below the wrist (the narrowest section of the arm), less its fingers",
+  "finger": "a digit of a hand; numbered 1 (thumb) to 5 (little finger), the anatomical digit numbers, from the front of the hand back (the thumb lies in front in the anatomical position and in an A- or T-pose)",
+  "leg": "a limb that reaches the ground, from the crotch (where its sections merge with the other leg's) to the ankle",
+  "foot": "the end of a leg below the ankle (the narrowest section of the leg), less its toes",
+  "toe": "a digit of a foot; numbered from the big toe (the most medial) outward",
+  "ear": "(L4) the auricle on each side of the head: the skin standing out from the head's smooth course (the rim, the back of the ear) and the ear's front seen from its side inside that outline (the concha, the antihelix, the tragus); its border with the head runs where the ear leaves the skull's course",
+  "eye": "(L4) the eye opening on each side and its lids: the socket seen through the opening (sunk below the head's course; with a globe in it, the globe too) and the lids round it, out to the crease that bounds them",
+  "nose": "(L4) the nose: the front of the face standing out from the head's course round the nose tip, between the eyes' inner corners and no higher than their openings, with its nostrils and what lies inside them",
+  "lips": "(L4) the lips: the lip line across the mid-line below the nose and the convex skin round it, out to the concave border round the lips, between the mouth's corners",
+  "mouth": "(L4) the inside of the mouth behind the lips, where the model has one (its lining, cut off from the rest of the head by the lips)",
+  "sources": [
+   {
+    "what": "the words are plain English anatomy; the digit numbers follow the anatomical convention (digit 1 = thumb / hallux)",
+    "status": "vocabulary, not measurements"
+   },
+   {
+    "what": "where a limb begins: its sections across its own axis merge with the trunk's (an arm's section through the armpit joins the chest's; a thigh's at the crotch joins the other thigh's); where a hand or a foot begins: the narrowest section of the limb (the wrist, above the malleoli); where the head ends: the concave fold under the jaw and over the nape",
+    "status": "definitions of this pack (geometric), checked on the bodies in cases/human_l2"
+   }
+  ]
+ },
+ "frame": "3-D: up = +z, front = -y (the job's up / front turn the model so); a standing body (feet on the ground: the legs are the limbs that reach it)",
+ "segmentation": {
+  "methods": [
+   "components",
+   "branches"
+  ],
+  "branches": {
+   "function": "centre",
+   "profile": "sections",
+   "tip_persistence": 0.04,
+   "flare_deg": 35,
+   "slope_window": 0.5,
+   "local_scale": {
+    "bin": 0.25,
+    "min_length": 1.0,
+    "span_steps": 40,
+    "span_thick": 6.0
+   },
+   "why": "function centre: the walking distance from the body's centre (the place of least average walking distance) has its maxima at the crown, the fingertips and the toes only - the average walking distance (generic) also peaks at the chin (woman2 13a: a 9 cm 'protrusion' round the mouth). profile sections: plane sections across the limb's own axis (re-laid through the sections' centres) jump where a limb's section merges with the trunk's - the armpit, the crotch - where walking-distance rings only slide (woman2 13a: an arm's rings grew at 0.55 per unit, under the 35 deg flare, so no arm was cut). local_scale: a tip is walked in steps of a quarter of its own thickness and needs a shaft as long as it is thick, so toes 2-3 cm long are found; tip_persistence 0.04 of the core radius (0.57 cm on woman2) keeps the small toes' tips; limb_junction_share 0.25: where two or more grown parts each hold a quarter or more of what would be cut with them (both legs at the pelvis; the arms and the head at the shoulders) the walk has reached the trunk, which is no protrusion (the realistic male: a 'protrusion' of both shoulders, cut at the chest)",
+   "limb_junction_share": 0.25
+  }
+ },
+ "rules": [
+  {
+   "kind": "torso",
+   "when": {
+    "part_kind": [
+     "core"
+    ]
+   },
+   "name": "torso"
+  },
+  {
+   "kind": "leg",
+   "when": {
+    "part_kind": [
+     "protrusion"
+    ],
+    "depth_max": 1,
+    "ground": true
+   },
+   "name": "leg{_side}"
+  },
+  {
+   "kind": "arm",
+   "when": {
+    "part_kind": [
+     "protrusion"
+    ],
+    "depth_max": 1,
+    "ground": false,
+    "dir_up_max": 0.5,
+    "leaves_under_max": 7,
+    "left_abs_min": 0.12
+   },
+   "name": "arm{_side}",
+   "why": "a limb off the trunk that does not reach the ground and does not point up (an arm hangs or reaches out in an A- or T-pose; a head points up); one hand carries at most five digit tips (and perhaps a palm piece): a part holding more is the trunk's walk gone on past the shoulders. Fingers are not required (a coarse mesh's fingers may not part); an arm hangs to one side of the mid-plane (its centroid at least 0.12 of the half-width off it: a small bump under the chin is no arm)"
+  },
+  {
+   "kind": "head",
+   "when": {
+    "part_kind": [
+     "protrusion"
+    ],
+    "depth_max": 1,
+    "up_min": 0.5,
+    "ground": false,
+    "leaves_under_max": 3,
+    "dir_up_min": 0.3
+   },
+   "pick": {
+    "by": "area_cm2",
+    "order": "max",
+    "count": 1
+   },
+   "name": "head",
+   "why": "a head carries at most a few small tips of its own (ears, a nose); a high part holding hands is the trunk's walk gone on past the shoulders"
+  },
+  {
+   "kind": "breast",
+   "when": {
+    "part_kind": [
+     "mound"
+    ],
+    "parent_kind": [
+     "torso"
+    ],
+    "up_min": 0.0
+   },
+   "name": "breast{_side}"
+  },
+  {
+   "kind": "finger",
+   "when": {
+    "part_kind": [
+     "protrusion"
+    ],
+    "is_leaf": true,
+    "ancestor_kind": [
+     "arm"
+    ],
+    "geo_length_rel_max": 0.06
+   },
+   "name": "finger{_side}{_n}",
+   "number_by": {
+    "key": "front",
+    "order": "max"
+   }
+  },
+  {
+   "kind": "toe",
+   "when": {
+    "part_kind": [
+     "protrusion"
+    ],
+    "is_leaf": true,
+    "ancestor_kind": [
+     "leg"
+    ],
+    "geo_length_rel_max": 0.045
+   },
+   "name": "toe{_side}{_n}",
+   "number_by": {
+    "key": "left",
+    "abs": true,
+    "order": "min"
+   }
+  },
+  {
+   "kind": "hand",
+   "when": {
+    "part_kind": [
+     "protrusion"
+    ],
+    "ancestor_kind": [
+     "arm"
+    ]
+   },
+   "name": "hand{_side}"
+  },
+  {
+   "kind": "foot",
+   "when": {
+    "part_kind": [
+     "protrusion"
+    ],
+    "ancestor_kind": [
+     "leg"
+    ]
+   },
+   "name": "foot{_side}"
+  },
+  {
+   "kind": "neck",
+   "when": {
+    "part_kind": [
+     "__none__"
+    ]
+   },
+   "name": "neck"
+  }
+ ],
+ "splits": [
+  {
+   "word": "arm",
+   "at": "narrowest",
+   "window": [
+    0.1,
+    0.5
+   ],
+   "tip_word": "hand",
+   "why": "the wrist: the narrowest section of the arm in the half nearer the hand (the elbow and the upper arm are thicker)"
+  },
+  {
+   "word": "leg",
+   "at": "narrowest",
+   "window": [
+    0.1,
+    0.5
+   ],
+   "tip_word": "foot",
+   "why": "the ankle: the narrowest section of the leg in the half nearer the foot, just above the malleoli (the knee and the thigh are thicker)"
+  },
+  {
+   "word": "head",
+   "at": "fold",
+   "window": [
+    0.05,
+    0.98
+   ],
+   "tip_word": "head",
+   "base_word": "neck",
+   "why": "the head ends at the concave fold where its widest sections narrow into the neck: under the jaw in front, over the nape behind (a tilted plane, not a level one)"
+  }
+ ],
+ "merge": {
+  "same_word_as_parent": true,
+  "unnamed": [
+   "protrusion",
+   "mound"
+  ],
+  "why": "the pieces of one hand or one foot (a palm the fingers' merge cut off, a forefoot cut where its sections met the leg) join the hand or foot the split made; small protrusions the word list has no word for (an ear, a nose tip) join what they grow from; chains: a protrusion with exactly one child that has children of its own takes it in, before naming (a bent elbow cut a forearm-with-hand from its upper arm on the realistic male: one arm again; a forefoot cut where its sections met the leg joins the leg, and the ankle split makes the foot)",
+  "chains": true
+ },
+ "mounds": [
+  {
+   "on_word": "torso",
+   "facing": "front",
+   "facing_min": 0.35,
+   "grid_cm": 1.0,
+   "smooth_cm": 6.0,
+   "low_cm": 0.3,
+   "peak_cm": 1.0,
+   "dome_min": 0.33,
+   "upper_min": 0.55,
+   "_L5": "build L5 (2026-10-21): a breast is a part on every body that has one, whatever its size (the person; 13a4's right breast stood 2.91 cm and the stylized female's 2.69 cm, both under L2's 3.0 cm); a flat or muscled chest gets none. No height decides it (the realistic male's pectorals stand 2.46-2.50 cm, more than the stylized female's breasts): a breast is a DOME - its height over its footprint's radius (sqrt(area / pi)) 0.33 or more (woman2 13a4 0.38 / 0.40, 13a 0.51, the stylized female's breasts higher; the male's pectorals, broad plates, 0.30) - with its top in the upper part of the torso (0.55 or more of the torso's height: woman2's breasts 0.8; the 1.3-1.4 cm mounds over the hips, domes too, 0.37). peak_cm 1.0 only keeps out the skin's own undulations. Measured in cases/translator_l5/checks/mound_probe.json; the male's 0.30 against the 0.33 line is a narrow margin (a muscled chest with a rounder pectoral may read as a breast)",
+   "min_area_cm2": 40.0,
+   "why": "a breast stands on the chest wall, and the wall continues the chest's own surface under it (the closing surface of 3-D breast-volume methods: packs/human/references/breast_cup_size.md R6; woman2's chest_wall.py fits a thin plate to the chest round a known footprint): here the footprint is not known, so the wall is the asymmetric-weight baseline of the front skin (skin above the wall weighs 0.02, below it 0.98), a thin plate 10 cm long - stiffer than a breast is wide (about 15 cm), softer than the chest's own turn. A breast: the skin 0.4 cm or more above the wall, its top 2.5 cm or more above it, 40 cm2 or more (a male chest's pectorals stand about 1 cm: measured in cases/human_l2)",
+   "cover_min": 0.6,
+   "split_at_midplane": true
+  }
+ ],
+ "features":[
+  {
+   "_": "build L4 (2026-10-21): the head's features as parts of their own (engine/tools/part_features.py, run after the splits, mounds and merges). Every number is a share of R0, the head's own size (the median radius of its smooth course), or of an opening's measured width, so no one body's numbers decide. Measured on woman2 13a4, the realistic male and the stylized female (cases/human_l4), and checked once on the stylized male, held out.",
+   "on_word": "head",
+   "below_words": [
+    "neck",
+    "torso"
+   ],
+   "centre_at": 0.45,
+   "course": {
+    "degree": 8,
+    "iters": 6,
+    "why": "the head's smooth course: its skin's distance from the centre fitted by a polynomial of degree 8 in the direction (spherical harmonics to degree 8: features under about a quarter of the head across stand out of it), Tukey re-weighted so the features do not pull it"
+   },
+   "pocket_ball": 0.05,
+   "bulge_ball": 0.02,
+   "midline": 0.12,
+   "seen_tol": 0.02,
+   "tip_below": "eye",
+   "tip_band": 0.6,
+   "order": [
+    "ear",
+    "eye",
+    "nose",
+    "lips"
+   ],
+   "parts": {
+    "ear": {
+     "pair": true,
+     "kind": "protrusion",
+     "where": {
+      "side_min": 0.6
+     },
+     "seed_h": 0.09,
+     "grow_h": 0.02,
+     "grow_side_min": 0.45,
+     "close": 0.06,
+     "footprint": 0.08,
+     "why": "the patch standing out by 0.09 R0 or more on each side (0.88 cm on woman2: the rim), grown over the skin standing out by 0.02 R0 (the border: where the ear leaves the skull's course), with the ear's front seen from its side inside its outline closed by 0.08 R0"
+    },
+    "eye": {
+     "pair": true,
+     "kind": "opening",
+     "where": {
+      "side_min": 0.08,
+      "side_max": 0.7,
+      "front_min": 0.3
+     },
+     "pick": "highest",
+     "pick_share": 0.25,
+     "sink_h": 0.1,
+     "sink_max": 0.3,
+     "join": 0.12,
+     "rim_unit": "R0",
+     "rim_min": 0.09,
+     "rim_max": 0.18,
+     "bulge_min": 2.0,
+     "close": 0.02,
+     "why": "on each side of the front, the highest large patch sunk 0.1-0.3 R0 below the course or out of a ball's reach (the socket: not the inside of the nose or the mouth, which lie lower), the creases within 0.12 R0 of it (the lid margins), and the lids: every skin within 0.09 R0 of the margins along the skin and the convex skin (mean curvature 2/R0 or more) out to 0.18 R0"
+    },
+    "nose": {
+     "kind": "protrusion",
+     "seed": "front_tip",
+     "where": {
+      "front_min": 0.3
+     },
+     "grow_h": 0.03,
+     "cap_at": "eye",
+     "half_width": 1.3,
+     "close": 0.02,
+     "why": "from the nose tip (the mid-line's point standing out most from the course, between the eyes' level and 0.6 R0 below it) over the skin standing out by 0.03 R0, no higher than the eyes' openings and no farther from the mid-line than 1.3 x their inner corners (the nose's width about equals the distance between the eyes: references/head_face.md, al-al/en-en 0.99-1.05)"
+    },
+    "lips": {
+     "kind": "opening",
+     "crosses_midline": true,
+     "pick": "widest",
+     "apart_from": ["nose"],
+     "where": {
+      "below": "front_tip",
+      "below_band": 0.6,
+      "front_min": 0.3
+     },
+     "sink_h": 99.0,
+     "join": 0.12,
+     "rim_min": 0.1,
+     "rim_max": 0.35,
+     "bulge_min": 3.0,
+     "within_width": 0.03,
+     "close": 0.02,
+     "inside_word": "mouth",
+     "why": "the widest crease across the mid-line within 0.6 R0 below the nose tip (the lip line: a mouth is wider than the nostrils, references/head_face.md ch-ch/al-al 1.56-1.60), its convex skin (mean curvature 3/R0 or more) out to 0.35 x its width and every skin within 0.1 x its width, between its corners; what lies behind it, cut off from the rest of the head, is the mouth. A crease that borders the nose is the nose's own (round the nostrils: on the held-out stylized male it was wider than the mouth, 8.0 against 6.8 cm), unless no other crosses the mid-line (the stylized female's lip line runs along her nose's foot)"
+    }
+   }
+  }
+ ],
+ "definitions": {
+  "torso": {
+   "entry": "engine/packs/human/part_frames.json#torso",
+   "inputs": {
+    "torso": {
+     "self": true
+    },
+    "breasts": {
+     "words": [
+      "breast"
+     ]
+    },
+    "neck": {
+     "words": ["neck", "head", "ear", "eye", "nose", "lips", "mouth"],
+     "why": "(L4) the neck and the whole head, its features with it (the torso's top seam is bound to both: L2)"
+    },
+    "arm_L": {
+     "words": [
+      "arm"
+     ],
+     "side": "L"
+    },
+    "arm_R": {
+     "words": [
+      "arm"
+     ],
+     "side": "R"
+    },
+    "leg_L": {
+     "words": [
+      "leg"
+     ],
+     "side": "L"
+    },
+    "leg_R": {
+     "words": [
+      "leg"
+     ],
+     "side": "R"
+    }
+   },
+   "why": "the torso is not a generic body tube: its frame and charts are the human pack's own definition (part_frames.json#torso), its inputs the parts this pack names"
+  },
+  "head": {
+   "entry": "engine/packs/human/part_frames.json#head",
+   "inputs": {
+    "head": {
+     "self": true
+    },
+    "below": {
+     "words": [
+      "neck",
+      "torso"
+     ],
+     "first": true
+    },
+    "whole": {
+     "words": ["head", "ear", "eye", "nose", "lips", "mouth"],
+     "why": "(L4) the head with its features: the frame's base and crown are read on it, so the head's frame stands where it did before the features were parts of their own"
+    }
+   },
+   "why": "a head is no tube: its own definition (face and back discs round its centre)"
+  },
+  "neck": {
+   "entry": "engine/packs/human/part_frames.json#neck",
+   "inputs": {
+    "neck": {
+     "self": true
+    },
+    "above": {
+     "words": ["head", "ear", "eye", "nose", "lips", "mouth"],
+     "why": "(L4) the whole head, its features with it, as before they were parts of their own: the neck's frame reads the head beyond the seam"
+    },
+    "below": {
+     "words": [
+      "torso"
+     ]
+    }
+   },
+   "why": "a neck is a short tube open at both ends: rings between its two seams"
+  }
+ },
+ "spoken": {
+  "_": "build L3 (2026-10-21): the names a person would use for this pack's parts, for the pages and their find boxes only (they never decide a part). A part's file name is read out with its side (L / R: the model's own left / right) and its number; a numbered word takes its name by the anatomical digit numbers (finger 1 = thumb, toe 1 = big toe); 'also' = other words a person may type to find a part of that word",
+  "numbered": {
+   "finger": ["thumb", "index finger", "middle finger", "ring finger", "little finger"],
+   "toe": ["big toe", "second toe", "third toe", "fourth toe", "little toe"]
+  },
+  "also": {
+   "torso": ["trunk", "chest", "back", "belly", "waist", "body"],
+   "breast": ["breasts", "boob", "boobs", "chest"],
+   "head": ["face", "skull"],
+   "arm": ["arms", "shoulder", "elbow", "forearm"],
+   "hand": ["hands", "palm"],
+   "finger": ["fingers", "digit"],
+   "leg": ["legs", "thigh", "knee", "shin", "calf"],
+   "foot": ["feet", "heel", "sole"],
+   "toe": ["toes"],
+   "ear": ["ears", "earlobe", "auricle"],
+   "eye": ["eyes", "eyelid", "eyelids", "lid", "socket"],
+   "nose": ["nostril", "nostrils"],
+   "lips": ["lip", "upper lip", "lower lip"],
+   "mouth": ["inside the mouth", "oral cavity"]
+  }
+ }
+}

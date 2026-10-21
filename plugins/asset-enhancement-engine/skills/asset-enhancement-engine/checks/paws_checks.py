@@ -62,6 +62,13 @@ LEDGE_MAX = 0.25; DOME_MIN = 0.15; RIM_WALL_MAX = 65.0; FURL_GRAD_MAX = 0.80; SE
 PJ = json.load(open(os.path.join(LAYERS, "paws.json")))["paws"]
 
 
+import os as _os_mg, sys as _sys_mg  # noqa: E402  (build A1: the engine's one closest point, normals, cotangent Laplacian)
+_MG_DIR = _os_mg.path.normpath(_os_mg.path.join(_os_mg.path.dirname(_os_mg.path.abspath(__file__)), '../tools'))
+if _MG_DIR not in _sys_mg.path:
+    _sys_mg.path.append(_MG_DIR)
+import mesh_geom as _MG  # noqa: E402
+
+
 def _adiff(a, b):
     return (a - b + np.pi) % (2 * np.pi) - np.pi
 
@@ -123,9 +130,7 @@ def mesh_region(k, vox=0.10, fn=None, zmax=None, coarse=0.5, band=1.2, slab_laye
 
 
 def vnormals(V, F):
-    fn = np.cross(V[F[:, 1]] - V[F[:, 0]], V[F[:, 2]] - V[F[:, 0]]); N = np.zeros_like(V)
-    for c in range(3): np.add.at(N, F[:, c], fn)
-    return N / np.maximum(np.linalg.norm(N, axis=1), 1e-30)[:, None]
+    return _MG.vertex_normals(V, F, eps=1e-30)
 
 
 # =====================================================================  P-SEP toe separation

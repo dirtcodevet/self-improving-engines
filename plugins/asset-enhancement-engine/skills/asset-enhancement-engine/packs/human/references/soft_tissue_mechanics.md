@@ -107,6 +107,7 @@ Confidence: strong = 2+ independent studies agree or one large cohort; single = 
 | Breast surface change upright -> supine | significant, tracks BMI and cup size (no mm in abstract) | 5 subjects, tilt table + 3-D imaging | R18 | weak |
 | Anterior mid-thigh "muscle thickness", standing vs supine | M 3.7 +/- 1.0 vs 3.1 +/- 0.8 cm; F 2.5 +/- 0.7 vs 2.1 +/- 0.7 cm | 283 inpatients, 10 MHz US (fluid shift and contraction confound) | R51 | weak |
 | Upper-arm tissue sag by gravity | no biomechanical source found | - | - | gap |
+| Breast tissue density (added by build 13c, 2026-10-21) | adipose 0.93, glandular 1.04 g/cm3; whole breast 0.951 g/cm3 at the mean 19.3 % fibroglandular by volume (skin counted with it; group means 13.7-25.6 % -> 0.945-0.958; 95 % of women under 45 % -> 0.93-0.98) | densities: Hammerstein GR et al., Radiology 1979;130:485-91, read via later dosimetry papers (arXiv 2006.06508; PMC3155575); share: Yaffe MJ et al., Med Phys 2009;36:5437-43 (2,831 women, breast CT + mammograms) | R56, R57 | single each; the mix is derived (my arithmetic) |
 
 ## 5. Typical contact pressures
 | Situation | Value | n, method | Ref | Conf |
@@ -155,3 +156,4 @@ R48 Dimitriadis EK, et al. Biophys J 2002;82:2798-810. PMID 11964265. || R49 Lin
 R50 Bei Y, Fregly BJ. Med Eng Phys 2004;26:777-89. PMID 15564115. || R51 Yasuda T, et al. Arch Rehabil Res Clin Transl 2020;2:100063. PMID 33543089.
 R52 Van Nguyen C, Saraf RF. ACS Appl Mater Interfaces 2014;6:16368-74. PMID 25148477. || R53 Hsu JL, Lee CH, Hsieh CH. PeerJ 2020;8:e10511. PMID 33362971.
 R54 Fischer AA. Pain 1987;30:115-26. PMID 3614975. || R55 Joodaki H, Panzer MB. Proc Inst Mech Eng H 2018;232:323-43. PMID 29506427.
+R56 Hammerstein GR, Miller DW, White DR, Masterson ME, Woodard HQ, Laughlin JS. Absorbed radiation dose in mammography. Radiology 1979;130:485-91 (values read in arXiv 2006.06508 and PMC3155575). || R57 Yaffe MJ, Boone JM, Packard N, et al. The myth of the 50-50 breast. Med Phys 2009;36:5437-43. PMC2787062.

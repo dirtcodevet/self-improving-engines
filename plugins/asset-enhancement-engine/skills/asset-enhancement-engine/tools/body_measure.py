@@ -46,6 +46,32 @@ Usage:
       rig.json with joints.L/R acromion, gh, elbow, wrist (and optionally 'bones', reported as joint positions).
   python body_measure.py --prove --defs DEFS.json     (known-answer shapes, see prove())
 """
+# ---- FUNCTION INDEX (engine/tools/func_index.py; grep 'def <name>' to jump) ----
+#   read_ply(path)  - Binary little-endian PLY with float x,y,z (+ optional uchar colour) and triangle faces.
+#   load_mesh(path)
+#   mesh_sha1(v, f)
+#   D(defs, *keys)  - A definition by named key (G14): a missing key stops the run, never a fallback literal.
+#   face_normals(v, f, unit)
+#   vertex_normals(v, f)
+#   closed_volume(v, f)
+#   plane_basis(n)  - (e1, e2) with e1 x e2 = n: horizontal planes give (x, y), sagittal planes (y, z).
+#   plane_loops(v, f, p0, n, min_perimeter)  - Closed loops where the plane (p0, n) cuts the closed triangle mesh.  E...
+#   poly_area(Q)
+#   poly_perimeter(Q)
+#   hull_perimeter(Q)  - A tape's girth: the perimeter of the convex hull (the tape bridges every concavity).
+#   point_in_poly(pt, Q)
+#   resample(Q, step)  - A closed 2-D polyline resampled at a uniform arc step (keeps its orientation).
+#   chord_depth(R, k)  - Depth of each point of a counter-clockwise closed curve behind the chord between its neighbo...
+#   edge_list(f)
+#   face_components(f, mask)  - Connected components (sharing an edge) of the faces in mask: labels (-1 outside).
+#   patch_volume(v, f, fmask)  - Volume of a surface patch closed over each of its openings by a fan to that opening'...
+#   membrane_fill(v, f, region_faces)  - The membrane (uniform harmonic) surface spanning the rim of a face region, i...
+#   class Body [point_class, horizontal, part_metrics, level_metrics, sagittal, front_dent, arm_faces, breast_volume,...
+#   measurements(body, log)  - Every measurement of the body (see the module docstring).  Positions in mm in the notc...
+#   prove(defs)  - Known answers (A10, once): (1) a tape girth bridges a planted concavity (the loop perimeter does n...
+#   main(argv)
+#   (+ 2 private helpers: grep '^def _')
+# ---- END FUNCTION INDEX ----
 import argparse
 import hashlib
 import json
@@ -61,6 +87,13 @@ from scipy.spatial import ConvexHull
 MM = 1000.0  # unit conversion: metres -> millimetres
 SIDES = ('L', 'R')
 SIDE_SIGN = {'L': 1.0, 'R': -1.0}  # x = subject LEFT
+
+
+import os as _os_mg, sys as _sys_mg  # noqa: E402  (build A1: the engine's one closest point, normals, cotangent Laplacian)
+_MG_DIR = _os_mg.path.normpath(_os_mg.path.join(_os_mg.path.dirname(_os_mg.path.abspath(__file__)), '.'))
+if _MG_DIR not in _sys_mg.path:
+    _sys_mg.path.append(_MG_DIR)
+import mesh_geom as _MG  # noqa: E402
 
 
 # ------------------------------------------------------------------------------------------------------- io, defs
@@ -122,10 +155,7 @@ def face_normals(v, f, unit=True):
 
 
 def vertex_normals(v, f):
-    fn = face_normals(v, f, unit=False)
-    n = np.zeros_like(v)
-    for k in range(3):
-        np.add.at(n, f[:, k], fn)
+    n = _MG.vertex_normal_sums(v, f)
     return n / (np.linalg.norm(n, axis=1, keepdims=True) + 1e-30)
 
 

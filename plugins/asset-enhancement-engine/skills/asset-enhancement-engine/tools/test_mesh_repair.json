@@ -1,0 +1,81 @@
+{
+ "winding": {
+  "inside_one_both_other_outside": [
+   1.0,
+   2.0,
+   1.0,
+   -0.0
+  ]
+ },
+ "separate": {
+  "before": {
+   "folds": 0,
+   "over_150": 0,
+   "worst_deg": 3.75,
+   "inverted_faces": 0,
+   "crossing_pairs": 206,
+   "crossing_area_mm2": 36.6355
+  },
+  "after": {
+   "folds": 0,
+   "over_150": 0,
+   "worst_deg": 19.1,
+   "inverted_faces": 0,
+   "crossing_pairs": 0,
+   "crossing_area_mm2": 0.0
+  },
+  "smallest_gap_mm": 0.041,
+  "far_side_max_move_mm": 0.0,
+  "iters": [
+   {
+    "pairs": 206,
+    "inside": 272,
+    "pushed": 272,
+    "eased": 794,
+    "push_mm_max": 0.9555
+   }
+  ]
+ },
+ "refill": {
+  "before": {
+   "folds": 93,
+   "over_150": 20,
+   "worst_deg": 178.77,
+   "inverted_faces": 28,
+   "crossing_pairs": 154,
+   "crossing_area_mm2": 10.5455
+  },
+  "after": {
+   "folds": 0,
+   "over_150": 0,
+   "worst_deg": 5.47,
+   "inverted_faces": 0,
+   "crossing_pairs": 0,
+   "crossing_area_mm2": 0.0
+  },
+  "outside_free_max_move": 0.0,
+  "free": 1053,
+  "displacement_inside_mm_max": 0.20305178370237456,
+  "sculpt_round_mm_max": 0.23312877503655147
+ },
+ "unfold": {
+  "before": {
+   "folds": 380,
+   "over_150": 141,
+   "worst_deg": 179.91,
+   "inverted_faces": 282,
+   "crossing_pairs": 3725,
+   "crossing_area_mm2": 191.3054
+  },
+  "after": {
+   "folds": 0,
+   "over_150": 0,
+   "worst_deg": 0.0,
+   "inverted_faces": 0,
+   "crossing_pairs": 0,
+   "crossing_area_mm2": 0.0
+  },
+  "outside_free_max_move": 0.0
+ },
+ "pass": true
+}

@@ -1,0 +1,50 @@
+{
+ "1_closest_on_mesh": {
+  "points": 500,
+  "worse_than_brute_force": 0,
+  "max_excess": 0.0,
+  "pass": true
+ },
+ "2_scalar_fill": {
+  "free": 1245,
+  "max_error_inside": 1.7165088794790506e-15,
+  "value_scale": 0.01306,
+  "changed_outside": 0.0,
+  "pass": true
+ },
+ "3_match_fill": {
+  "mound_mm": 4.0,
+  "error_vs_target_plus_offset_mm_p50_max": [
+   0.0030030765280630867,
+   0.13302437018768848
+  ],
+  "mound_left_mm_max": 0.13302437018768848,
+  "relief_corr_with_target_where_landed": 0.3593507534209748,
+  "relief_p75_ratio": 2.1035159105481616,
+  "moved_outside_free_mm": 0.0,
+  "report": {
+   "iters": [
+    {
+     "move_mm_max": 3.897618340797283,
+     "gap_to_target_mm_p99": 6.75175155878475
+    },
+    {
+     "move_mm_max": 0.19581768724676432,
+     "gap_to_target_mm_p99": 4.374791386713156
+    },
+    {
+     "move_mm_max": 0.014964715551754257,
+     "gap_to_target_mm_p99": 4.374791386713156
+    }
+   ],
+   "move_mm": {
+    "max": 3.8995430107308944,
+    "rms_free": 0.9269771356761338
+   }
+  },
+  "no_mound_relief_corr_where_landed": 0.9009386658529623,
+  "relief_excess_over_target_um": 0.5262687839065064,
+  "pass": true
+ },
+ "all_pass": true
+}

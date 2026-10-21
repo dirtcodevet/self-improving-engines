@@ -1097,6 +1097,678 @@
      "what": "the middle fingertip's Z: > 0 = the fingers curl toward the palm (a check on the palm side)"
     }
    }
+  },
+  "torso": {
+   "what": "the trunk: the skin between the neck, the arms and the legs, with the breasts (a breast is also part of the torso); its frame stands at the jugular notch, Y up the trunk's axis, X to the subject's left, Z anterior. Build L2 (2026-10-21): written for the Translator's human word list (engine/packs/human/language.json binds its inputs to the parts it names), and bindable by any job that has these masks",
+   "inputs": {
+    "torso": "mask: the trunk's own skin",
+    "breasts": "mask: the breasts (empty where the body has none)",
+    "neck": "mask of what grows from the trunk's top: the neck and the head (the head's faces count only where no neck lies between: a neck cut as a sliver that does not ring the trunk left the seam empty on the stylized male)",
+    "arm_L": "mask of the left arm (its skin from the shoulder seam)",
+    "arm_R": "mask of the right arm",
+    "leg_L": "mask of the left leg (its skin from the crotch seam)",
+    "leg_R": "mask of the right leg"
+   },
+   "select": [
+    {
+     "any": [
+      {
+       "mask": "torso"
+      },
+      {
+       "mask": "breasts"
+      }
+     ]
+    }
+   ],
+   "landmarks": {
+    "neck_base": {
+     "seam": [
+      {
+       "mask": "torso"
+      },
+      {
+       "mask": "neck"
+      }
+     ],
+     "source": "centroid of the trunk's seam with the neck (the neck's base)"
+    },
+    "jugular_notch": {
+     "extreme": {
+      "dir": {
+       "vector": [
+        0,
+        -1,
+        0
+       ]
+      },
+      "among": [
+       {
+        "mask": "torso"
+       },
+       {
+        "mask": "neck"
+       }
+      ]
+     },
+     "source": "the jugular notch (ANSUR II suprasternale) approximated by the most anterior point of the trunk's seam with the neck: the notch is the front of the neck's base; the seam is the neck's cut where its sections flare into the shoulders, so it can lie above the notch (measured on woman2 13a against its pack's notch: engine/packs/human/findings.md, build L2)"
+    },
+    "shoulder_L": {
+     "seam": [
+      {
+       "mask": "torso"
+      },
+      {
+       "mask": "arm_L"
+      }
+     ],
+     "source": "centroid of the trunk's seam with the left arm (round the shoulder, through the armpit)"
+    },
+    "shoulder_R": {
+     "seam": [
+      {
+       "mask": "torso"
+      },
+      {
+       "mask": "arm_R"
+      }
+     ],
+     "source": "centroid of the trunk's seam with the right arm"
+    },
+    "hip_L": {
+     "seam": [
+      {
+       "mask": "torso"
+      },
+      {
+       "mask": "leg_L"
+      }
+     ],
+     "source": "centroid of the trunk's seam with the left leg (round the thigh's top, through the crotch)"
+    },
+    "hip_R": {
+     "seam": [
+      {
+       "mask": "torso"
+      },
+      {
+       "mask": "leg_R"
+      }
+     ],
+     "source": "centroid of the trunk's seam with the right leg"
+    },
+    "hips_mid": {
+     "lerp": [
+      "hip_L",
+      "hip_R",
+      0.5
+     ],
+     "source": "midway between the legs' seams: the trunk's lower end on its axis"
+    },
+    "shoulders_mid": {
+     "lerp": [
+      "shoulder_L",
+      "shoulder_R",
+      0.5
+     ],
+     "source": "midway between the arms' seams: the coronal plane through it divides the trunk's front from its back"
+    },
+    "chest_floor": {
+     "lerp": [
+      "jugular_notch",
+      "hips_mid",
+      0.4
+     ],
+     "source": "the chest's lower edge, 40 % of the way from the jugular notch to the hips' midpoint (estimate, not measured: the lower end of the sternum, where the rib cage's front ends; woman2's carried rib cage is a smoothed shell whose midline does not show the xiphoid, so it could not check it)"
+    }
+   },
+   "frame": {
+    "origin": "jugular_notch",
+    "axes": [
+     [
+      "y",
+      {
+       "from": "hips_mid",
+       "to": "neck_base"
+      }
+     ],
+     [
+      "x",
+      {
+       "from": "shoulder_R",
+       "to": "shoulder_L"
+      }
+     ]
+    ],
+    "check": {
+     "z": {
+      "vector": [
+       0,
+       -1,
+       0
+      ]
+     }
+    },
+    "why": "origin at the jugular notch, as the woman2 pack's frame (measurements.json: frame origin near the notch) and ISB's thorax (Wu et al. 2005, J Biomech 38:981: origin at the incisura jugularis); Y = the trunk's long axis, from the legs' seams' midpoint to the neck's seam centroid (ISB's thorax Y runs from the T8 / xiphoid midpoint to the C7 / notch midpoint: the same direction over the chest; here the trunk's whole length); X = the line between the arms' seams, toward the subject's left, made perpendicular to Y; Z = anterior by handedness. Check: Z points to the body's front"
+   },
+   "address": {
+    "kind": "tube",
+    "through": [
+     "hips_mid",
+     "neck_base"
+    ],
+    "before_cm": 12.0,
+    "after_cm": 6.0,
+    "blend_cm": 4.0,
+    "step_cm": 2.0,
+    "angle_deg": 10
+   },
+   "skin": {
+    "why": "Build L2. The trunk read the way people point at it: on the chest, the front and the back by the frame's own x and y (disc charts on the frame's Z axis through the jugular notch: x = cm to the subject's left of the midline, y = cm up from the notch - negative downward - where the skin turns less than 30 deg from the frame's plane, growing with the skin past that, over a breast and into its fold); what the discs cannot reach (the sides past the coronal plane, the shoulders' tops, the crotch) by rings round the trunk's axis (s = cm up the axis, c = cm round from the front midline, + toward the subject's left). The breasts lie inside the torso's selection, so its charts cross them without a hole; their own frames are the breast parts'",
+    "charts": [
+     {
+      "name": "chest",
+      "kind": "disc",
+      "axis": "z",
+      "through": "jugular_notch",
+      "from": "+",
+      "turn_deg": 30,
+      "region": [
+       {
+        "plane": {
+         "through": "shoulders_mid",
+         "normal": {
+          "frame_axis": "z"
+         },
+         "keep": "+"
+        }
+       },
+       {
+        "plane": {
+         "through": "chest_floor",
+         "normal": {
+          "frame_axis": "y"
+         },
+         "keep": "+"
+        }
+       }
+      ],
+      "grid": [
+       {
+        "step_cm": 2.0
+       }
+      ]
+     },
+     {
+      "name": "front",
+      "kind": "disc",
+      "axis": "z",
+      "through": "jugular_notch",
+      "from": "+",
+      "turn_deg": 30,
+      "region": [
+       {
+        "plane": {
+         "through": "shoulders_mid",
+         "normal": {
+          "frame_axis": "z"
+         },
+         "keep": "+"
+        }
+       }
+      ],
+      "role": "the rest of the front (below the chest's lower edge), in the chest's own numbers; drawn only where it addresses the skin",
+      "grid": [
+       {
+        "step_cm": 2.0
+       }
+      ]
+     },
+     {
+      "name": "back",
+      "kind": "disc",
+      "axis": "z",
+      "through": "jugular_notch",
+      "from": "-",
+      "turn_deg": 30,
+      "region": [
+       {
+        "plane": {
+         "through": "shoulders_mid",
+         "normal": {
+          "frame_axis": "z"
+         },
+         "keep": "-"
+        }
+       }
+      ],
+      "grid": [
+       {
+        "step_cm": 2.0
+       }
+      ]
+     },
+     {
+      "name": "skin",
+      "kind": "tube",
+      "through": [
+       "hips_mid",
+       "neck_base"
+      ],
+      "before_cm": 12.0,
+      "after_cm": 6.0,
+      "blend_cm": 4.0,
+      "ref": {
+       "fraction": 0.5
+      },
+      "c_from_deg": 0,
+      "turn_deg": 30,
+      "role": "fallback: rings round the trunk where the discs do not reach; drawn only where it addresses the skin",
+      "grid": [
+       {
+        "step_cm": 2.0
+       }
+      ]
+     }
+    ]
+   },
+   "overlays": {
+    "axis": {
+     "polyline": [
+      "hips_mid",
+      "neck_base"
+     ]
+    }
+   },
+   "measures": {
+    "trunk_length_cm": {
+     "distance": [
+      "hips_mid",
+      "neck_base"
+     ],
+     "what": "the legs' seams' midpoint to the neck's seam centroid"
+    },
+    "notch_to_hips_cm": {
+     "distance": [
+      "jugular_notch",
+      "hips_mid"
+     ]
+    },
+    "shoulder_seams_breadth_cm": {
+     "distance": [
+      "shoulder_L",
+      "shoulder_R"
+     ],
+     "what": "between the arms' seam centroids"
+    },
+    "hip_seams_breadth_cm": {
+     "distance": [
+      "hip_L",
+      "hip_R"
+     ],
+     "what": "between the legs' seam centroids"
+    },
+    "sections": {
+     "tube_sections": {
+      "step_cm": 1.0,
+      "rays": 180,
+      "named": {
+       "waist_min": {
+        "between": [
+         "hips_mid",
+         "chest_floor"
+        ],
+        "kind": "min",
+        "inset_cm": 3.0
+       },
+       "at_chest_floor": {
+        "at": "chest_floor"
+       }
+      }
+     },
+     "what": "girth (tape: convex hull), perimeter and area of the section across the trunk's axis every 1 cm (s from the hips' midpoint, up +); the waist (the narrowest between the hips and the chest's lower edge)",
+     "source": "ISO 8559-1 waist girth: the narrowest horizontal girth between the lowest rib and the iliac crest (approximated across the trunk's axis)"
+    }
+   }
+  },
+  "head": {
+   "what": "the head from the fold under the jaw and over the nape to the crown; its frame stands at the centre of its base (the seam with the neck), Y up to the crown, Z to the face, X to the subject's left. Build L2 (2026-10-21): for the Translator's human word list (a head is no tube: the generic tube chart's rings over a head's cap ran away, 339k-404k grid points, and its build-09 rings addressed 46-56 % of the vertices); bindable by any job with these masks",
+   "inputs": {
+    "head": "mask: the head's skin",
+    "below": "mask: what the head sits on (the neck; the torso when no neck was cut)",
+    "whole": "mask: the whole head, its features with it (build L4: the ears, eyes, nose, lips and mouth are parts of their own; the frame is still the whole head's, so it stands where it did)"
+   },
+   "select": [
+    {
+     "mask": "head"
+    }
+   ],
+   "landmarks": {
+    "base": {
+     "seam": [
+      {
+       "mask": "whole"
+      },
+      {
+       "mask": "below"
+      }
+     ],
+     "source": "centroid of the head's seam with the neck (the head's base)"
+    },
+    "crown": {
+     "farthest": {
+      "from": "base",
+      "among": [
+       {
+        "mask": "whole"
+       }
+      ]
+     },
+     "source": "the head's point farthest from its base (the vertex, top of the skull, in an upright head)"
+    },
+    "centre": {
+     "lerp": [
+      "base",
+      "crown",
+      0.45
+     ],
+     "source": "45 % of the way from the base to the crown: about the level of the eyes and the ears' middle (estimate: the eyes lie near the middle of the head height)"
+    }
+   },
+   "frame": {
+    "origin": "base",
+    "axes": [
+     [
+      "y",
+      {
+       "from": "base",
+       "to": "crown"
+      }
+     ],
+     [
+      "z",
+      {
+       "vector": [
+        0,
+        -1,
+        0
+       ]
+      }
+     ]
+    ],
+    "check": {
+     "x": {
+      "vector": [
+       1,
+       0,
+       0
+      ]
+     }
+    },
+    "why": "Y from the base's centre to the crown (the head's own long axis; it leans with the head), Z = the body's front made perpendicular to it (the face), X = the subject's left by handedness"
+   },
+   "address": {
+    "kind": "tube",
+    "through": [
+     "base",
+     "crown"
+    ],
+    "before_cm": 2.0,
+    "after_cm": 3.0,
+    "blend_cm": 2.0,
+    "step_cm": 2.0,
+    "angle_deg": 15
+   },
+   "skin": {
+    "on": [
+     {
+      "mask": "whole"
+     }
+    ],
+    "on_why": "build L5 (2026-10-21): the charts are walked on the whole head, its features with it, and read on the head's own skin (L4: with the ears, eyes, nose and lips cut out the face disc's walks stopped at their borders, 74-90 % of the head addressed against 92.5-98.4 % before); the head's addresses mean what they meant before L4",
+    "why": "Build L2. The face and the back of the head by the frame's own x and y round the head's centre (disc charts on the frame's Z axis through 'centre': x = cm to the subject's left, y = cm up from the centre's level, where the skin turns less than 30 deg from the frame's plane, growing with the skin past that - over the nose, round the jaw, over the crown); rings round the head's axis where the discs do not reach",
+    "charts": [
+     {
+      "name": "face",
+      "kind": "disc",
+      "axis": "z",
+      "through": "centre",
+      "from": "+",
+      "turn_deg": 30,
+      "region": [
+       {
+        "plane": {
+         "through": "centre",
+         "normal": {
+          "frame_axis": "z"
+         },
+         "keep": "+"
+        }
+       }
+      ],
+      "grid": [
+       {
+        "step_cm": 1.0
+       }
+      ]
+     },
+     {
+      "name": "back",
+      "kind": "disc",
+      "axis": "z",
+      "through": "centre",
+      "from": "-",
+      "turn_deg": 30,
+      "region": [
+       {
+        "plane": {
+         "through": "centre",
+         "normal": {
+          "frame_axis": "z"
+         },
+         "keep": "-"
+        }
+       }
+      ],
+      "grid": [
+       {
+        "step_cm": 1.0
+       }
+      ]
+     },
+     {
+      "name": "skin",
+      "kind": "tube",
+      "through": [
+       "base",
+       "crown"
+      ],
+      "before_cm": 2.0,
+      "after_cm": 3.0,
+      "blend_cm": 2.0,
+      "ref": {
+       "fraction": 0.5
+      },
+      "c_from_deg": 0,
+      "turn_deg": 30,
+      "role": "fallback: rings round the head's axis where the discs do not reach; drawn only where it addresses the skin",
+      "grid": [
+       {
+        "step_cm": 2.0
+       }
+      ]
+     }
+    ]
+   },
+   "overlays": {
+    "axis": {
+     "polyline": [
+      "base",
+      "crown"
+     ]
+    }
+   },
+   "measures": {
+    "head_height_cm": {
+     "distance": [
+      "base",
+      "crown"
+     ],
+     "what": "the base's centre to the crown"
+    },
+    "extent": {
+     "extent": {
+      "among": [
+       {
+        "mask": "head"
+       }
+      ]
+     },
+     "what": "the head's extent along its frame's axes (breadth X, height Y, length Z)"
+    }
+   }
+  },
+  "neck": {
+   "what": "the neck between its seam with the head (the fold under the jaw and over the nape) and its seam with the torso; its frame stands at the centre of its base, Y up to the head's seam, Z anterior, X to the subject's left. Build L2 (2026-10-21): a neck is a short tube open at both ends - the generic tube template (from its base to its farthest point) addressed 56 % of woman2 13a's neck and fell back on the other bodies",
+   "inputs": {
+    "neck": "mask: the neck's skin",
+    "above": "mask: the head",
+    "below": "mask: the torso"
+   },
+   "select": [
+    {
+     "mask": "neck"
+    }
+   ],
+   "landmarks": {
+    "base": {
+     "seam": [
+      {
+       "mask": "neck"
+      },
+      {
+       "mask": "below"
+      }
+     ],
+     "source": "centroid of the neck's seam with the torso (the neck's base)"
+    },
+    "top": {
+     "seam": [
+      {
+       "mask": "neck"
+      },
+      {
+       "mask": "above"
+      }
+     ],
+     "source": "centroid of the neck's seam with the head"
+    }
+   },
+   "frame": {
+    "origin": "base",
+    "axes": [
+     [
+      "y",
+      {
+       "from": "base",
+       "to": "top"
+      }
+     ],
+     [
+      "z",
+      {
+       "vector": [
+        0,
+        -1,
+        0
+       ]
+      }
+     ]
+    ],
+    "check": {
+     "x": {
+      "vector": [
+       1,
+       0,
+       0
+      ]
+     }
+    },
+    "why": "Y along the neck from its base's centre to its top's centre (it leans with the neck), Z = the body's front made perpendicular, X = the subject's left by handedness"
+   },
+   "address": {
+    "kind": "tube",
+    "through": [
+     "base",
+     "top"
+    ],
+    "before_cm": 4.0,
+    "after_cm": 4.0,
+    "blend_cm": 2.0,
+    "step_cm": 1.0,
+    "angle_deg": 15
+   },
+   "skin": {
+    "why": "Build L2. Rings round the neck's own axis: s = cm up the neck from its base's centre (read along the skin past a 30 deg turn, so the seams' slants get rings of their own), c = cm round from the front midline (the throat), + toward the subject's left; 4 cm past each seam's centre for the slant of the seams (a neck's base runs lower at the throat than at the nape)",
+    "charts": [
+     {
+      "name": "skin",
+      "kind": "tube",
+      "through": [
+       "base",
+       "top"
+      ],
+      "before_cm": 4.0,
+      "after_cm": 4.0,
+      "blend_cm": 2.0,
+      "ref": {
+       "fraction": 0.5
+      },
+      "c_from_deg": 0,
+      "turn_deg": 30,
+      "grid": [
+       {
+        "step_cm": 1.0
+       }
+      ]
+     }
+    ]
+   },
+   "overlays": {
+    "axis": {
+     "polyline": [
+      "base",
+      "top"
+     ]
+    }
+   },
+   "measures": {
+    "neck_length_cm": {
+     "distance": [
+      "base",
+      "top"
+     ],
+     "what": "between the centres of the neck's two seams"
+    },
+    "sections": {
+     "tube_sections": {
+      "step_cm": 0.5,
+      "rays": 180,
+      "named": {
+       "neck_min": {
+        "between": [
+         "base",
+         "top"
+        ],
+        "kind": "min",
+        "inset_cm": 0.5
+       }
+      }
+     },
+     "what": "girth (tape: convex hull), perimeter and area of the section across the neck's axis every 0.5 cm; the narrowest",
+     "source": "ISO 8559-1 neck girth is taken just below the larynx; the narrowest section across the neck's own axis approximates it"
+    }
+   }
   }
  }
 }

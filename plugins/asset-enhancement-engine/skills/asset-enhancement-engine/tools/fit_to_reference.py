@@ -41,6 +41,40 @@ CLI:  python fit_to_reference.py prove      (synthetic proof: sphere -> ellipsoi
                                              adopt the bump inside, without a crease at the zone's rim)
 Case values (masks, schedules, which reference where) live in the case's own script, never here (G14).
 """
+# ---- FUNCTION INDEX (engine/tools/func_index.py; grep 'def <name>' to jump) ----
+#   read_ply(path)  - Binary little-endian PLY with float x,y,z (+ optional uchar red,green,blue) and triangle faces.
+#   write_ply(path, v, f, col, comment)
+#   face_normals(v, f, unit)
+#   vertex_normals(v, f)
+#   adjacency(nv, f)
+#   laplacian(nv, f)  - Row-normalised graph Laplacian L = I - D^-1 A (L v = v - mean of neighbours).
+#   smooth_field(x, L, iters, alpha)  - Plain Laplacian smoothing of a per-vertex field (used for normals and masks, ...
+#   weld(v, f, tol)
+#   boundary_vertices(nv, f)
+#   smoothstep(t)
+#   soft_ball(p, centre, r0, r1)  - 1 inside radius r0, 0 beyond r1, smooth between.
+#   soft_box(p, lo, hi, ramp)  - 1 inside the axis box [lo, hi], falling smoothly to 0 over `ramp` (per axis) outside...
+#   class RefSurface [mask_faces, step]  - A reference mesh as face samples (centroid + unit normal) in direction-bin...
+#   facing_contact(v, f, gap, cos_opp, k)  - Faces of a mesh that face another part of the same mesh within `gap` (op...
+#   solve_increment(Lop, n, w, d, lam, eps, pin, pin_axis, kappa,...)  - argmin_u sum w (n.u - d)^2 + lam |L u|^2 + t...
+#   clusters(v, f, cell)  - Coarse graph for the stiff levels: the connected pieces of the mesh inside each cubic cel...
+#   fit(v, f, refs, ref_weights, keep, schedule, pin,...)  - Fit vertices v (faces f) to the references.
+#   fair(v, f, weight, iters, lam, mu, pin)  - Taubin smoothing (no shrinkage), applied per vertex with strength `wei...
+#   harmonic_fill(v, f, region)  - Replace the vertices in `region` by the harmonic (membrane) interpolation of their...
+#   split_caps(v, f, axis, tol)  - Flat caps at the extremes of `axis`: returns (side faces, cap faces, cap-interior ...
+#   heightfield_fill(v, f, centre, axis, r_fit, r_fill, r_blend, d...)
+#   retriangulate_caps(v, side_faces, axis, tol)  - Close the open rims of a side mesh that lie in planes at the extr...
+#   biharmonic_fill(v, f, region)  - Replace the vertices in `region` (bool) by the solution of L^2 x = 0 with everyt...
+#   refine_local(v, f, sel_fn, levels, col, extra)  - Conforming refinement: at each level, every edge with an endpoi...
+#   surface_samples(v, f, per_face, rng)  - Points on the surface (face centroids, plus random barycentric points if ...
+#   point_to_surface(p, v, f, tree, k)  - Approximate distance from points p to a triangle mesh: nearest of the k nea...
+#   twosided(v, f, rv, rf, src_keep, ref_side, per_face)  - Two-sided distances between a mesh (v, f) and a reference...
+#   ridge_metric(v, f, z0, z1, step, band, nang, keep)  - Slice banding (J1): horizontal sections every `step`; per a...
+#   prove()  - Sphere r = 100 mm (with 0.4 mm horizontal ridges planted, J1) fitted to an ellipsoid 130 x 90 x 110 mm...
+#   blend_fit(v0, v_fit, alpha)  - A region fit laid into a body that stays: v0 + alpha (v_fit - v0), alpha a smooth ...
+#   prove_frozen()  - FROZEN mode + blend (pin_axis=None, blend_fit; woman2 build 07: arms, shoulders and side walls ...
+#   (+ 9 private helpers: grep '^def _')
+# ---- END FUNCTION INDEX ----
 import os
 import sys
 import time
@@ -56,6 +90,13 @@ try:  # cuSPARSE is not installed with the engine's CuPy (no nvJitLink), so spar
 except Exception:  # pragma: no cover
     cp = None
     _HAS_CUPY = False
+
+
+import os as _os_mg, sys as _sys_mg  # noqa: E402  (build A1: the engine's one closest point, normals, cotangent Laplacian)
+_MG_DIR = _os_mg.path.normpath(_os_mg.path.join(_os_mg.path.dirname(_os_mg.path.abspath(__file__)), '.'))
+if _MG_DIR not in _sys_mg.path:
+    _sys_mg.path.append(_MG_DIR)
+import mesh_geom as _MG  # noqa: E402
 
 
 # ----------------------------------------------------------------------------------------------- PLY in / out
@@ -121,10 +162,7 @@ def face_normals(v, f, unit=True):
 
 
 def vertex_normals(v, f):
-    fn = face_normals(v, f, unit=False)  # area weighted
-    n = np.zeros_like(v)
-    for k in range(3):
-        np.add.at(n, f[:, k], fn)
+    n = _MG.vertex_normal_sums(v, f)  # area weighted
     return n / (np.linalg.norm(n, axis=1, keepdims=True) + 1e-30)
 
 

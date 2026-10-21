@@ -1,0 +1,99 @@
+{
+ "pole_move": {
+  "target_err_mm": 0.0,
+  "flips": 0,
+  "param_flips": 0,
+  "outside": 0,
+  "radius_err_mm_max": 0.00389,
+  "chord_mm": 0.00389,
+  "moved_outside_free_mm": 0.0,
+  "quality_before": {
+   "quads": 2118,
+   "min_corner_deg_p1_p50": [
+    90.0,
+    90.0
+   ],
+   "min_corner_deg_min": 90.0,
+   "max_corner_deg_p50_p99": [
+    90.0,
+    90.0
+   ],
+   "max_corner_deg_max": 90.0,
+   "edge_ratio_p50_p99_max": [
+    2.01,
+    2.01,
+    2.01
+   ]
+  },
+  "quality_after": {
+   "quads": 2118,
+   "min_corner_deg_p1_p50": [
+    56.83,
+    75.24
+   ],
+   "min_corner_deg_min": 56.5,
+   "max_corner_deg_p50_p99": [
+    104.75,
+    123.16
+   ],
+   "max_corner_deg_max": 123.48,
+   "edge_ratio_p50_p99_max": [
+    2.11,
+    5.35,
+    5.55
+   ]
+  }
+ },
+ "pole_move_surface_walk": {
+  "target_err_mm": 0.0,
+  "flips": 0,
+  "radius_err_mm_max": 0.00389,
+  "moved_outside_free_mm": 0.0,
+  "quality_after": {
+   "quads": 2118,
+   "min_corner_deg_p1_p50": [
+    56.72,
+    77.19
+   ],
+   "min_corner_deg_min": 56.35,
+   "max_corner_deg_p50_p99": [
+    102.8,
+    123.26
+   ],
+   "max_corner_deg_max": 123.63,
+   "edge_ratio_p50_p99_max": [
+    2.1,
+    5.62,
+    5.95
+   ]
+  }
+ },
+ "chain_on_curve": {
+  "max_mm_to_arc_samples": 0.0908,
+  "target_err_mm": 0.0,
+  "flips": 0,
+  "quality_after": {
+   "quads": 2665,
+   "min_corner_deg_p1_p50": [
+    61.24,
+    87.38
+   ],
+   "min_corner_deg_min": 58.54,
+   "max_corner_deg_p50_p99": [
+    92.62,
+    118.76
+   ],
+   "max_corner_deg_max": 121.46,
+   "edge_ratio_p50_p99_max": [
+    2.0,
+    2.6,
+    2.68
+   ]
+  }
+ },
+ "attributes": {
+  "linear_err_over_range": 4.890353313470852e-08,
+  "uv_err": 2.4859260394638483e-07
+ },
+ "PASS": true
+}

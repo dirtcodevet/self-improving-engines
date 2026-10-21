@@ -76,6 +76,13 @@ V3_PARAMS = {
 Q_ = {k: v[0] for k, v in V3_PARAMS.items()}
 
 
+import os as _os_mg, sys as _sys_mg  # noqa: E402  (build A1: the engine's one closest point, normals, cotangent Laplacian)
+_MG_DIR = _os_mg.path.normpath(_os_mg.path.join(_os_mg.path.dirname(_os_mg.path.abspath(__file__)), '../../../tools'))
+if _MG_DIR not in _sys_mg.path:
+    _sys_mg.path.append(_MG_DIR)
+import mesh_geom as _MG  # noqa: E402
+
+
 def _unit(x):
     x = np.asarray(x, float); return x / np.linalg.norm(x)
 
@@ -536,10 +543,7 @@ def probe_sealed(parts, side, nrays=2000, n_target=2000, cone_deg=30.0, seed=7):
 
 # ------------------------------------------------------------------ skin probes
 def mesh_normals(V, F):
-    fn = np.cross(V[F[:, 1]] - V[F[:, 0]], V[F[:, 2]] - V[F[:, 0]]); N = np.zeros_like(V)
-    for k in range(3):
-        np.add.at(N, F[:, k], fn)
-    return N / np.maximum(np.linalg.norm(N, axis=1), 1e-30)[:, None]
+    return _MG.vertex_normals(V, F, eps=1e-30)
 
 
 def probe_F1(Vh, Nh, side, inset_fn, ref_rows=None, step_mark=0.5, ref_tol=0.3):

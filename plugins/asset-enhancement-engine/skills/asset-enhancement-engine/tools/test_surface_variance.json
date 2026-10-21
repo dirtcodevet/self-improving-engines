@@ -1,0 +1,1893 @@
+{
+ "what": "the Translator's variance view, planted proof (build L5)",
+ "code": "engine/tools/part_frame_view.html (variance block) via engine/tools/variance_node.js",
+ "sizes_cm": [
+  0.1,
+  0.2,
+  0.3,
+  0.5,
+  0.8,
+  1.2,
+  2.0,
+  3.0,
+  4.0
+ ],
+ "noise_um": 20.0,
+ "A": {
+  "clean": {
+   "sphere_20.0_noise_free": [
+    {
+     "size_cm": 0.1,
+     "max_um": 0.242,
+     "nan": 0
+    },
+    {
+     "size_cm": 0.2,
+     "max_um": 0.219,
+     "nan": 0
+    },
+    {
+     "size_cm": 0.3,
+     "max_um": 0.219,
+     "nan": 0
+    },
+    {
+     "size_cm": 0.5,
+     "max_um": 0.197,
+     "nan": 0
+    },
+    {
+     "size_cm": 0.8,
+     "max_um": 0.222,
+     "nan": 0
+    },
+    {
+     "size_cm": 1.2,
+     "max_um": 0.13,
+     "nan": 0
+    },
+    {
+     "size_cm": 2.0,
+     "max_um": 0.123,
+     "nan": 0
+    },
+    {
+     "size_cm": 3.0,
+     "max_um": 0.21,
+     "nan": 0
+    },
+    {
+     "size_cm": 4.0,
+     "max_um": 0.464,
+     "nan": 0
+    }
+   ],
+   "sphere_8.0_noise_free": [
+    {
+     "size_cm": 0.1,
+     "max_um": 0.209,
+     "nan": 0
+    },
+    {
+     "size_cm": 0.2,
+     "max_um": 0.212,
+     "nan": 0
+    },
+    {
+     "size_cm": 0.3,
+     "max_um": 0.137,
+     "nan": 0
+    },
+    {
+     "size_cm": 0.5,
+     "max_um": 0.114,
+     "nan": 0
+    },
+    {
+     "size_cm": 0.8,
+     "max_um": 0.103,
+     "nan": 0
+    },
+    {
+     "size_cm": 1.2,
+     "max_um": 0.137,
+     "nan": 0
+    },
+    {
+     "size_cm": 2.0,
+     "max_um": 0.406,
+     "nan": 0
+    },
+    {
+     "size_cm": 3.0,
+     "max_um": 2.277,
+     "nan": 0
+    },
+    {
+     "size_cm": 4.0,
+     "max_um": 3.756,
+     "nan": 0
+    }
+   ],
+   "cylinder_4.5_noise_free": [
+    {
+     "size_cm": 0.1,
+     "max_um": 0.827,
+     "nan": 0
+    },
+    {
+     "size_cm": 0.2,
+     "max_um": 0.825,
+     "nan": 0
+    },
+    {
+     "size_cm": 0.3,
+     "max_um": 0.773,
+     "nan": 0
+    },
+    {
+     "size_cm": 0.5,
+     "max_um": 0.68,
+     "nan": 0
+    },
+    {
+     "size_cm": 0.8,
+     "max_um": 0.498,
+     "nan": 0
+    },
+    {
+     "size_cm": 1.2,
+     "max_um": 0.542,
+     "nan": 0
+    },
+    {
+     "size_cm": 2.0,
+     "max_um": 1.123,
+     "nan": 0
+    },
+    {
+     "size_cm": 3.0,
+     "max_um": 2.973,
+     "nan": 0
+    },
+    {
+     "size_cm": 4.0,
+     "max_um": 60.773,
+     "nan": 0
+    }
+   ],
+   "saddle_20.0_noise_free": [
+    {
+     "size_cm": 0.1,
+     "max_um": 0.229,
+     "nan": 111
+    },
+    {
+     "size_cm": 0.2,
+     "max_um": 0.203,
+     "nan": 0
+    },
+    {
+     "size_cm": 0.3,
+     "max_um": 0.236,
+     "nan": 0
+    },
+    {
+     "size_cm": 0.5,
+     "max_um": 0.291,
+     "nan": 0
+    },
+    {
+     "size_cm": 0.8,
+     "max_um": 0.906,
+     "nan": 0
+    },
+    {
+     "size_cm": 1.2,
+     "max_um": 4.556,
+     "nan": 0
+    },
+    {
+     "size_cm": 2.0,
+     "max_um": 0.398,
+     "nan": 0
+    },
+    {
+     "size_cm": 3.0,
+     "max_um": 2.67,
+     "nan": 0
+    },
+    {
+     "size_cm": 4.0,
+     "max_um": 8.317,
+     "nan": 0
+    }
+   ],
+   "sphere_20.0_noise_20um": [
+    {
+     "size_cm": 0.1,
+     "noise_um": 19.62,
+     "auto_um": 117.7,
+     "max_um": 95.52,
+     "share_shown_at_auto": 0.0,
+     "vertices_shown_at_auto": 0,
+     "seconds": 2.28
+    },
+    {
+     "size_cm": 0.2,
+     "noise_um": 20.35,
+     "auto_um": 122.08,
+     "max_um": 87.57,
+     "share_shown_at_auto": 0.0,
+     "vertices_shown_at_auto": 0,
+     "seconds": 1.988
+    },
+    {
+     "size_cm": 0.3,
+     "noise_um": 20.1,
+     "auto_um": 120.58,
+     "max_um": 89.24,
+     "share_shown_at_auto": 0.0,
+     "vertices_shown_at_auto": 0,
+     "seconds": 0.737
+    },
+    {
+     "size_cm": 0.5,
+     "noise_um": 20.02,
+     "auto_um": 120.13,
+     "max_um": 86.43,
+     "share_shown_at_auto": 0.0,
+     "vertices_shown_at_auto": 0,
+     "seconds": 0.306
+    },
+    {
+     "size_cm": 0.8,
+     "noise_um": 7.49,
+     "auto_um": 44.97,
+     "max_um": 35.07,
+     "share_shown_at_auto": 0.0,
+     "vertices_shown_at_auto": 0,
+     "seconds": 0.241
+    },
+    {
+     "size_cm": 1.2,
+     "noise_um": 5.07,
+     "auto_um": 30.44,
+     "max_um": 22.38,
+     "share_shown_at_auto": 0.0,
+     "vertices_shown_at_auto": 0,
+     "seconds": 0.275
+    },
+    {
+     "size_cm": 2.0,
+     "noise_um": 3.37,
+     "auto_um": 20.19,
+     "max_um": 13.46,
+     "share_shown_at_auto": 0.0,
+     "vertices_shown_at_auto": 0,
+     "seconds": 0.218
+    },
+    {
+     "size_cm": 3.0,
+     "noise_um": 2.65,
+     "auto_um": 15.9,
+     "max_um": 12.49,
+     "share_shown_at_auto": 0.0,
+     "vertices_shown_at_auto": 0,
+     "seconds": 0.168
+    },
+    {
+     "size_cm": 4.0,
+     "noise_um": 2.94,
+     "auto_um": 17.62,
+     "max_um": 18.38,
+     "share_shown_at_auto": 2.5514760288827087e-05,
+     "vertices_shown_at_auto": 2,
+     "seconds": 0.166
+    }
+   ]
+  },
+  "features": {
+   "bump_2mm": [
+    {
+     "size_cm": 0.1,
+     "reads": 0.389,
+     "reads_at_1mm": 0.426,
+     "smallest_shown_mm": 0.3023
+    },
+    {
+     "size_cm": 0.2,
+     "reads": 0.88,
+     "reads_at_1mm": 0.899,
+     "smallest_shown_mm": 0.1387
+    },
+    {
+     "size_cm": 0.3,
+     "reads": 0.973,
+     "reads_at_1mm": 0.965,
+     "smallest_shown_mm": 0.1239
+    },
+    {
+     "size_cm": 0.5,
+     "reads": 0.985,
+     "reads_at_1mm": 0.993,
+     "smallest_shown_mm": 0.122
+    },
+    {
+     "size_cm": 0.8,
+     "reads": 0.68,
+     "reads_at_1mm": 0.706,
+     "smallest_shown_mm": 0.0661
+    },
+    {
+     "size_cm": 1.2,
+     "reads": 0.475,
+     "reads_at_1mm": 0.49,
+     "smallest_shown_mm": 0.0641
+    },
+    {
+     "size_cm": 2.0,
+     "reads": 0.232,
+     "reads_at_1mm": 0.235,
+     "smallest_shown_mm": 0.087
+    },
+    {
+     "size_cm": 3.0,
+     "reads": 0.123,
+     "reads_at_1mm": 0.117,
+     "smallest_shown_mm": 0.1294
+    },
+    {
+     "size_cm": 4.0,
+     "reads": 0.076,
+     "reads_at_1mm": 0.069,
+     "smallest_shown_mm": 0.2321
+    }
+   ],
+   "bump_5mm": [
+    {
+     "size_cm": 0.1,
+     "reads": 0.046,
+     "reads_at_1mm": 0.031,
+     "smallest_shown_mm": null
+    },
+    {
+     "size_cm": 0.2,
+     "reads": 0.281,
+     "reads_at_1mm": 0.244,
+     "smallest_shown_mm": 0.4351
+    },
+    {
+     "size_cm": 0.3,
+     "reads": 0.636,
+     "reads_at_1mm": 0.597,
+     "smallest_shown_mm": 0.1896
+    },
+    {
+     "size_cm": 0.5,
+     "reads": 0.965,
+     "reads_at_1mm": 0.943,
+     "smallest_shown_mm": 0.1245
+    },
+    {
+     "size_cm": 0.8,
+     "reads": 0.949,
+     "reads_at_1mm": 0.945,
+     "smallest_shown_mm": 0.0474
+    },
+    {
+     "size_cm": 1.2,
+     "reads": 0.86,
+     "reads_at_1mm": 0.861,
+     "smallest_shown_mm": 0.0354
+    },
+    {
+     "size_cm": 2.0,
+     "reads": 0.688,
+     "reads_at_1mm": 0.704,
+     "smallest_shown_mm": 0.0293
+    },
+    {
+     "size_cm": 3.0,
+     "reads": 0.487,
+     "reads_at_1mm": 0.478,
+     "smallest_shown_mm": 0.0327
+    },
+    {
+     "size_cm": 4.0,
+     "reads": 0.334,
+     "reads_at_1mm": 0.325,
+     "smallest_shown_mm": 0.0527
+    }
+   ],
+   "bump_10mm": [
+    {
+     "size_cm": 0.1,
+     "reads": 0.012,
+     "reads_at_1mm": 0.006,
+     "smallest_shown_mm": null
+    },
+    {
+     "size_cm": 0.2,
+     "reads": 0.053,
+     "reads_at_1mm": 0.036,
+     "smallest_shown_mm": 2.3143
+    },
+    {
+     "size_cm": 0.3,
+     "reads": 0.159,
+     "reads_at_1mm": 0.114,
+     "smallest_shown_mm": 0.7578
+    },
+    {
+     "size_cm": 0.5,
+     "reads": 0.491,
+     "reads_at_1mm": 0.445,
+     "smallest_shown_mm": 0.2447
+    },
+    {
+     "size_cm": 0.8,
+     "reads": 0.846,
+     "reads_at_1mm": 0.826,
+     "smallest_shown_mm": 0.0532
+    },
+    {
+     "size_cm": 1.2,
+     "reads": 0.947,
+     "reads_at_1mm": 0.938,
+     "smallest_shown_mm": 0.0321
+    },
+    {
+     "size_cm": 2.0,
+     "reads": 0.893,
+     "reads_at_1mm": 0.884,
+     "smallest_shown_mm": 0.0226
+    },
+    {
+     "size_cm": 3.0,
+     "reads": 0.798,
+     "reads_at_1mm": 0.783,
+     "smallest_shown_mm": 0.0199
+    },
+    {
+     "size_cm": 4.0,
+     "reads": 0.67,
+     "reads_at_1mm": 0.656,
+     "smallest_shown_mm": 0.0263
+    }
+   ],
+   "bump_20mm": [
+    {
+     "size_cm": 0.1,
+     "reads": 0.004,
+     "reads_at_1mm": 0.001,
+     "smallest_shown_mm": null
+    },
+    {
+     "size_cm": 0.2,
+     "reads": 0.01,
+     "reads_at_1mm": 0.004,
+     "smallest_shown_mm": null
+    },
+    {
+     "size_cm": 0.3,
+     "reads": 0.027,
+     "reads_at_1mm": 0.012,
+     "smallest_shown_mm": null
+    },
+    {
+     "size_cm": 0.5,
+     "reads": 0.072,
+     "reads_at_1mm": 0.066,
+     "smallest_shown_mm": 1.6755
+    },
+    {
+     "size_cm": 0.8,
+     "reads": 0.246,
+     "reads_at_1mm": 0.24,
+     "smallest_shown_mm": 0.1827
+    },
+    {
+     "size_cm": 1.2,
+     "reads": 0.581,
+     "reads_at_1mm": 0.58,
+     "smallest_shown_mm": 0.0524
+    },
+    {
+     "size_cm": 2.0,
+     "reads": 0.757,
+     "reads_at_1mm": 0.757,
+     "smallest_shown_mm": 0.0267
+    },
+    {
+     "size_cm": 3.0,
+     "reads": 0.897,
+     "reads_at_1mm": 0.894,
+     "smallest_shown_mm": 0.0177
+    },
+    {
+     "size_cm": 4.0,
+     "reads": 0.876,
+     "reads_at_1mm": 0.877,
+     "smallest_shown_mm": 0.0201
+    }
+   ],
+   "dent_2mm": [
+    {
+     "size_cm": 0.1,
+     "reads": 0.501,
+     "reads_at_1mm": 0.435,
+     "smallest_shown_mm": 0.2348
+    },
+    {
+     "size_cm": 0.2,
+     "reads": 0.966,
+     "reads_at_1mm": 0.921,
+     "smallest_shown_mm": 0.1264
+    },
+    {
+     "size_cm": 0.3,
+     "reads": 1.003,
+     "reads_at_1mm": 0.969,
+     "smallest_shown_mm": 0.1202
+    },
+    {
+     "size_cm": 0.5,
+     "reads": 1.013,
+     "reads_at_1mm": 1.002,
+     "smallest_shown_mm": 0.1186
+    },
+    {
+     "size_cm": 0.8,
+     "reads": 0.593,
+     "reads_at_1mm": 0.689,
+     "smallest_shown_mm": 0.0758
+    },
+    {
+     "size_cm": 1.2,
+     "reads": 0.407,
+     "reads_at_1mm": 0.472,
+     "smallest_shown_mm": 0.0748
+    },
+    {
+     "size_cm": 2.0,
+     "reads": 0.186,
+     "reads_at_1mm": 0.224,
+     "smallest_shown_mm": 0.1085
+    },
+    {
+     "size_cm": 3.0,
+     "reads": 0.079,
+     "reads_at_1mm": 0.105,
+     "smallest_shown_mm": 0.2014
+    },
+    {
+     "size_cm": 4.0,
+     "reads": 0.042,
+     "reads_at_1mm": 0.061,
+     "smallest_shown_mm": null
+    }
+   ],
+   "dent_5mm": [
+    {
+     "size_cm": 0.1,
+     "reads": 0.01,
+     "reads_at_1mm": 0.028,
+     "smallest_shown_mm": null
+    },
+    {
+     "size_cm": 0.2,
+     "reads": 0.246,
+     "reads_at_1mm": 0.304,
+     "smallest_shown_mm": 0.4972
+    },
+    {
+     "size_cm": 0.3,
+     "reads": 0.568,
+     "reads_at_1mm": 0.603,
+     "smallest_shown_mm": 0.2122
+    },
+    {
+     "size_cm": 0.5,
+     "reads": 0.891,
+     "reads_at_1mm": 0.931,
+     "smallest_shown_mm": 0.1349
+    },
+    {
+     "size_cm": 0.8,
+     "reads": 0.903,
+     "reads_at_1mm": 0.938,
+     "smallest_shown_mm": 0.0498
+    },
+    {
+     "size_cm": 1.2,
+     "reads": 0.831,
+     "reads_at_1mm": 0.871,
+     "smallest_shown_mm": 0.0366
+    },
+    {
+     "size_cm": 2.0,
+     "reads": 0.662,
+     "reads_at_1mm": 0.699,
+     "smallest_shown_mm": 0.0305
+    },
+    {
+     "size_cm": 3.0,
+     "reads": 0.447,
+     "reads_at_1mm": 0.467,
+     "smallest_shown_mm": 0.0355
+    },
+    {
+     "size_cm": 4.0,
+     "reads": 0.302,
+     "reads_at_1mm": 0.319,
+     "smallest_shown_mm": 0.0584
+    }
+   ],
+   "dent_10mm": [
+    {
+     "size_cm": 0.1,
+     "reads": -0.007,
+     "reads_at_1mm": 0.001,
+     "smallest_shown_mm": null
+    },
+    {
+     "size_cm": 0.2,
+     "reads": 0.027,
+     "reads_at_1mm": 0.039,
+     "smallest_shown_mm": null
+    },
+    {
+     "size_cm": 0.3,
+     "reads": 0.115,
+     "reads_at_1mm": 0.119,
+     "smallest_shown_mm": 1.045
+    },
+    {
+     "size_cm": 0.5,
+     "reads": 0.448,
+     "reads_at_1mm": 0.454,
+     "smallest_shown_mm": 0.2683
+    },
+    {
+     "size_cm": 0.8,
+     "reads": 0.82,
+     "reads_at_1mm": 0.841,
+     "smallest_shown_mm": 0.0549
+    },
+    {
+     "size_cm": 1.2,
+     "reads": 0.924,
+     "reads_at_1mm": 0.935,
+     "smallest_shown_mm": 0.0329
+    },
+    {
+     "size_cm": 2.0,
+     "reads": 0.86,
+     "reads_at_1mm": 0.88,
+     "smallest_shown_mm": 0.0235
+    },
+    {
+     "size_cm": 3.0,
+     "reads": 0.756,
+     "reads_at_1mm": 0.774,
+     "smallest_shown_mm": 0.021
+    },
+    {
+     "size_cm": 4.0,
+     "reads": 0.632,
+     "reads_at_1mm": 0.653,
+     "smallest_shown_mm": 0.0279
+    }
+   ],
+   "dent_20mm": [
+    {
+     "size_cm": 0.1,
+     "reads": -0.004,
+     "reads_at_1mm": -0.001,
+     "smallest_shown_mm": null
+    },
+    {
+     "size_cm": 0.2,
+     "reads": -0.005,
+     "reads_at_1mm": 0.001,
+     "smallest_shown_mm": null
+    },
+    {
+     "size_cm": 0.3,
+     "reads": 0.003,
+     "reads_at_1mm": 0.009,
+     "smallest_shown_mm": null
+    },
+    {
+     "size_cm": 0.5,
+     "reads": 0.057,
+     "reads_at_1mm": 0.068,
+     "smallest_shown_mm": 2.1087
+    },
+    {
+     "size_cm": 0.8,
+     "reads": 0.24,
+     "reads_at_1mm": 0.241,
+     "smallest_shown_mm": 0.1876
+    },
+    {
+     "size_cm": 1.2,
+     "reads": 0.58,
+     "reads_at_1mm": 0.587,
+     "smallest_shown_mm": 0.0524
+    },
+    {
+     "size_cm": 2.0,
+     "reads": 0.743,
+     "reads_at_1mm": 0.753,
+     "smallest_shown_mm": 0.0272
+    },
+    {
+     "size_cm": 3.0,
+     "reads": 0.872,
+     "reads_at_1mm": 0.889,
+     "smallest_shown_mm": 0.0182
+    },
+    {
+     "size_cm": 4.0,
+     "reads": 0.855,
+     "reads_at_1mm": 0.882,
+     "smallest_shown_mm": 0.0206
+    }
+   ],
+   "ridge_2mm": [
+    {
+     "size_cm": 0.1,
+     "reads": 0.154,
+     "reads_at_1mm": 0.11,
+     "smallest_shown_mm": 0.7653
+    },
+    {
+     "size_cm": 0.2,
+     "reads": 0.485,
+     "reads_at_1mm": 0.474,
+     "smallest_shown_mm": 0.2515
+    },
+    {
+     "size_cm": 0.3,
+     "reads": 0.733,
+     "reads_at_1mm": 0.746,
+     "smallest_shown_mm": 0.1646
+    },
+    {
+     "size_cm": 0.5,
+     "reads": 0.907,
+     "reads_at_1mm": 0.906,
+     "smallest_shown_mm": 0.1325
+    },
+    {
+     "size_cm": 0.8,
+     "reads": 0.816,
+     "reads_at_1mm": 0.876,
+     "smallest_shown_mm": 0.0551
+    },
+    {
+     "size_cm": 1.2,
+     "reads": 0.76,
+     "reads_at_1mm": 0.809,
+     "smallest_shown_mm": 0.0401
+    },
+    {
+     "size_cm": 2.0,
+     "reads": 0.528,
+     "reads_at_1mm": 0.561,
+     "smallest_shown_mm": 0.0383
+    },
+    {
+     "size_cm": 3.0,
+     "reads": 0.387,
+     "reads_at_1mm": 0.425,
+     "smallest_shown_mm": 0.0411
+    },
+    {
+     "size_cm": 4.0,
+     "reads": 0.313,
+     "reads_at_1mm": 0.331,
+     "smallest_shown_mm": 0.0563
+    }
+   ],
+   "ridge_5mm": [
+    {
+     "size_cm": 0.1,
+     "reads": 0.017,
+     "reads_at_1mm": 0.012,
+     "smallest_shown_mm": null
+    },
+    {
+     "size_cm": 0.2,
+     "reads": 0.108,
+     "reads_at_1mm": 0.109,
+     "smallest_shown_mm": 1.13
+    },
+    {
+     "size_cm": 0.3,
+     "reads": 0.266,
+     "reads_at_1mm": 0.286,
+     "smallest_shown_mm": 0.4536
+    },
+    {
+     "size_cm": 0.5,
+     "reads": 0.585,
+     "reads_at_1mm": 0.585,
+     "smallest_shown_mm": 0.2053
+    },
+    {
+     "size_cm": 0.8,
+     "reads": 0.7,
+     "reads_at_1mm": 0.72,
+     "smallest_shown_mm": 0.0642
+    },
+    {
+     "size_cm": 1.2,
+     "reads": 0.764,
+     "reads_at_1mm": 0.769,
+     "smallest_shown_mm": 0.0398
+    },
+    {
+     "size_cm": 2.0,
+     "reads": 0.744,
+     "reads_at_1mm": 0.774,
+     "smallest_shown_mm": 0.0271
+    },
+    {
+     "size_cm": 3.0,
+     "reads": 0.654,
+     "reads_at_1mm": 0.657,
+     "smallest_shown_mm": 0.0243
+    },
+    {
+     "size_cm": 4.0,
+     "reads": 0.537,
+     "reads_at_1mm": 0.54,
+     "smallest_shown_mm": 0.0328
+    }
+   ],
+   "ridge_10mm": [
+    {
+     "size_cm": 0.1,
+     "reads": 0.007,
+     "reads_at_1mm": 0.003,
+     "smallest_shown_mm": null
+    },
+    {
+     "size_cm": 0.2,
+     "reads": 0.023,
+     "reads_at_1mm": 0.011,
+     "smallest_shown_mm": null
+    },
+    {
+     "size_cm": 0.3,
+     "reads": 0.052,
+     "reads_at_1mm": 0.038,
+     "smallest_shown_mm": 2.3009
+    },
+    {
+     "size_cm": 0.5,
+     "reads": 0.195,
+     "reads_at_1mm": 0.189,
+     "smallest_shown_mm": 0.6167
+    },
+    {
+     "size_cm": 0.8,
+     "reads": 0.429,
+     "reads_at_1mm": 0.387,
+     "smallest_shown_mm": 0.1049
+    },
+    {
+     "size_cm": 1.2,
+     "reads": 0.583,
+     "reads_at_1mm": 0.579,
+     "smallest_shown_mm": 0.0522
+    },
+    {
+     "size_cm": 2.0,
+     "reads": 0.777,
+     "reads_at_1mm": 0.836,
+     "smallest_shown_mm": 0.026
+    },
+    {
+     "size_cm": 3.0,
+     "reads": 0.878,
+     "reads_at_1mm": 0.872,
+     "smallest_shown_mm": 0.0181
+    },
+    {
+     "size_cm": 4.0,
+     "reads": 0.805,
+     "reads_at_1mm": 0.793,
+     "smallest_shown_mm": 0.0219
+    }
+   ],
+   "ridge_20mm": [
+    {
+     "size_cm": 0.1,
+     "reads": 0.003,
+     "reads_at_1mm": 0.001,
+     "smallest_shown_mm": null
+    },
+    {
+     "size_cm": 0.2,
+     "reads": 0.006,
+     "reads_at_1mm": 0.002,
+     "smallest_shown_mm": null
+    },
+    {
+     "size_cm": 0.3,
+     "reads": 0.01,
+     "reads_at_1mm": 0.004,
+     "smallest_shown_mm": null
+    },
+    {
+     "size_cm": 0.5,
+     "reads": 0.028,
+     "reads_at_1mm": 0.019,
+     "smallest_shown_mm": null
+    },
+    {
+     "size_cm": 0.8,
+     "reads": 0.102,
+     "reads_at_1mm": 0.094,
+     "smallest_shown_mm": 0.4429
+    },
+    {
+     "size_cm": 1.2,
+     "reads": 0.25,
+     "reads_at_1mm": 0.241,
+     "smallest_shown_mm": 0.1216
+    },
+    {
+     "size_cm": 2.0,
+     "reads": 0.455,
+     "reads_at_1mm": 0.53,
+     "smallest_shown_mm": 0.0443
+    },
+    {
+     "size_cm": 3.0,
+     "reads": 0.821,
+     "reads_at_1mm": 0.823,
+     "smallest_shown_mm": 0.0194
+    },
+    {
+     "size_cm": 4.0,
+     "reads": 0.841,
+     "reads_at_1mm": 0.836,
+     "smallest_shown_mm": 0.0209
+    }
+   ],
+   "groove_2mm": [
+    {
+     "size_cm": 0.1,
+     "reads": 0.15,
+     "reads_at_1mm": 0.128,
+     "smallest_shown_mm": 0.7857
+    },
+    {
+     "size_cm": 0.2,
+     "reads": 0.534,
+     "reads_at_1mm": 0.484,
+     "smallest_shown_mm": 0.2288
+    },
+    {
+     "size_cm": 0.3,
+     "reads": 0.761,
+     "reads_at_1mm": 0.722,
+     "smallest_shown_mm": 0.1584
+    },
+    {
+     "size_cm": 0.5,
+     "reads": 0.932,
+     "reads_at_1mm": 0.921,
+     "smallest_shown_mm": 0.1289
+    },
+    {
+     "size_cm": 0.8,
+     "reads": 0.803,
+     "reads_at_1mm": 0.909,
+     "smallest_shown_mm": 0.056
+    },
+    {
+     "size_cm": 1.2,
+     "reads": 0.761,
+     "reads_at_1mm": 0.808,
+     "smallest_shown_mm": 0.04
+    },
+    {
+     "size_cm": 2.0,
+     "reads": 0.514,
+     "reads_at_1mm": 0.541,
+     "smallest_shown_mm": 0.0393
+    },
+    {
+     "size_cm": 3.0,
+     "reads": 0.373,
+     "reads_at_1mm": 0.413,
+     "smallest_shown_mm": 0.0426
+    },
+    {
+     "size_cm": 4.0,
+     "reads": 0.278,
+     "reads_at_1mm": 0.325,
+     "smallest_shown_mm": 0.0633
+    }
+   ],
+   "groove_5mm": [
+    {
+     "size_cm": 0.1,
+     "reads": 0.007,
+     "reads_at_1mm": 0.011,
+     "smallest_shown_mm": null
+    },
+    {
+     "size_cm": 0.2,
+     "reads": 0.104,
+     "reads_at_1mm": 0.122,
+     "smallest_shown_mm": 1.1777
+    },
+    {
+     "size_cm": 0.3,
+     "reads": 0.291,
+     "reads_at_1mm": 0.31,
+     "smallest_shown_mm": 0.4148
+    },
+    {
+     "size_cm": 0.5,
+     "reads": 0.615,
+     "reads_at_1mm": 0.61,
+     "smallest_shown_mm": 0.1954
+    },
+    {
+     "size_cm": 0.8,
+     "reads": 0.715,
+     "reads_at_1mm": 0.766,
+     "smallest_shown_mm": 0.0629
+    },
+    {
+     "size_cm": 1.2,
+     "reads": 0.772,
+     "reads_at_1mm": 0.773,
+     "smallest_shown_mm": 0.0394
+    },
+    {
+     "size_cm": 2.0,
+     "reads": 0.724,
+     "reads_at_1mm": 0.696,
+     "smallest_shown_mm": 0.0279
+    },
+    {
+     "size_cm": 3.0,
+     "reads": 0.633,
+     "reads_at_1mm": 0.649,
+     "smallest_shown_mm": 0.0251
+    },
+    {
+     "size_cm": 4.0,
+     "reads": 0.515,
+     "reads_at_1mm": 0.537,
+     "smallest_shown_mm": 0.0342
+    }
+   ],
+   "groove_10mm": [
+    {
+     "size_cm": 0.1,
+     "reads": -0.006,
+     "reads_at_1mm": -0.0,
+     "smallest_shown_mm": null
+    },
+    {
+     "size_cm": 0.2,
+     "reads": -0.003,
+     "reads_at_1mm": 0.008,
+     "smallest_shown_mm": null
+    },
+    {
+     "size_cm": 0.3,
+     "reads": 0.031,
+     "reads_at_1mm": 0.039,
+     "smallest_shown_mm": null
+    },
+    {
+     "size_cm": 0.5,
+     "reads": 0.172,
+     "reads_at_1mm": 0.188,
+     "smallest_shown_mm": 0.6987
+    },
+    {
+     "size_cm": 0.8,
+     "reads": 0.402,
+     "reads_at_1mm": 0.463,
+     "smallest_shown_mm": 0.1119
+    },
+    {
+     "size_cm": 1.2,
+     "reads": 0.571,
+     "reads_at_1mm": 0.579,
+     "smallest_shown_mm": 0.0533
+    },
+    {
+     "size_cm": 2.0,
+     "reads": 0.729,
+     "reads_at_1mm": 0.686,
+     "smallest_shown_mm": 0.0277
+    },
+    {
+     "size_cm": 3.0,
+     "reads": 0.854,
+     "reads_at_1mm": 0.866,
+     "smallest_shown_mm": 0.0186
+    },
+    {
+     "size_cm": 4.0,
+     "reads": 0.786,
+     "reads_at_1mm": 0.794,
+     "smallest_shown_mm": 0.0224
+    }
+   ],
+   "groove_20mm": [
+    {
+     "size_cm": 0.1,
+     "reads": -0.003,
+     "reads_at_1mm": -0.001,
+     "smallest_shown_mm": null
+    },
+    {
+     "size_cm": 0.2,
+     "reads": -0.003,
+     "reads_at_1mm": -0.0,
+     "smallest_shown_mm": null
+    },
+    {
+     "size_cm": 0.3,
+     "reads": -0.003,
+     "reads_at_1mm": 0.002,
+     "smallest_shown_mm": null
+    },
+    {
+     "size_cm": 0.5,
+     "reads": 0.014,
+     "reads_at_1mm": 0.017,
+     "smallest_shown_mm": null
+    },
+    {
+     "size_cm": 0.8,
+     "reads": 0.081,
+     "reads_at_1mm": 0.091,
+     "smallest_shown_mm": 0.5521
+    },
+    {
+     "size_cm": 1.2,
+     "reads": 0.234,
+     "reads_at_1mm": 0.241,
+     "smallest_shown_mm": 0.1303
+    },
+    {
+     "size_cm": 2.0,
+     "reads": 0.403,
+     "reads_at_1mm": 0.349,
+     "smallest_shown_mm": 0.0501
+    },
+    {
+     "size_cm": 3.0,
+     "reads": 0.8,
+     "reads_at_1mm": 0.787,
+     "smallest_shown_mm": 0.0199
+    },
+    {
+     "size_cm": 4.0,
+     "reads": 0.818,
+     "reads_at_1mm": 0.83,
+     "smallest_shown_mm": 0.0215
+    }
+   ]
+  },
+  "kinks": {
+   "5deg": [
+    {
+     "size_cm": 0.1,
+     "reads_mm": -0.0155,
+     "smallest_angle_shown_deg": 37.87
+    },
+    {
+     "size_cm": 0.2,
+     "reads_mm": -0.0394,
+     "smallest_angle_shown_deg": 15.49
+    },
+    {
+     "size_cm": 0.3,
+     "reads_mm": -0.064,
+     "smallest_angle_shown_deg": 9.42
+    },
+    {
+     "size_cm": 0.5,
+     "reads_mm": -0.1149,
+     "smallest_angle_shown_deg": 5.23
+    },
+    {
+     "size_cm": 0.8,
+     "reads_mm": -0.1616,
+     "smallest_angle_shown_deg": 1.39
+    },
+    {
+     "size_cm": 1.2,
+     "reads_mm": -0.2404,
+     "smallest_angle_shown_deg": 0.63
+    },
+    {
+     "size_cm": 2.0,
+     "reads_mm": -0.2382,
+     "smallest_angle_shown_deg": 0.42
+    },
+    {
+     "size_cm": 3.0,
+     "reads_mm": -0.1663,
+     "smallest_angle_shown_deg": 0.48
+    },
+    {
+     "size_cm": 4.0,
+     "reads_mm": 0.1823,
+     "smallest_angle_shown_deg": 0.48
+    }
+   ]
+  },
+  "vertices": 103041
+ },
+ "B": {
+  "place": "woman2 13a3, the left breast's upper-inner slope (build 13a3's proof place), a 3 cm disc",
+  "sizes_cm": [
+   0.1,
+   0.2,
+   0.3
+  ],
+  "reading": "p75 |variance| in the disc's core (>= 3 mm in) / p75 in the ring 5-12 mm out",
+  "skins": {
+   "real": [
+    1.678,
+    1.396,
+    1.145
+   ],
+   "plate": [
+    0.115,
+    0.055,
+    0.122
+   ],
+   "tripled": [
+    4.627,
+    4.144,
+    3.3
+   ]
+  }
+ },
+ "C": {
+  "sizes_cm": [
+   0.5,
+   0.8
+  ],
+  "feature": {
+   "width_cm": 0.5,
+   "height_cm": 0.02,
+   "noise_cm": 0.002
+  },
+  "cases": {
+   "open_patch/own": {
+    "frame": "own",
+    "faces": "as made",
+    "hollow": false,
+    "counted": true,
+    "engine_outward": {
+     "frame": 1,
+     "pieces": 1,
+     "closed": 0,
+     "by_volume_turned": 0,
+     "vertices_turned": 0
+    },
+    "reads": [
+     {
+      "size_cm": 0.5,
+      "bump_reads": 0.959,
+      "dent_reads": 0.902
+     },
+     {
+      "size_cm": 0.8,
+      "bump_reads": 0.916,
+      "dent_reads": 0.86
+     }
+    ],
+    "right_way": true,
+    "same_as_own_frame": true
+   },
+   "open_patch/mirrored_part": {
+    "frame": "mirrored_part",
+    "faces": "as made",
+    "hollow": false,
+    "counted": true,
+    "engine_outward": {
+     "frame": -1,
+     "pieces": 1,
+     "closed": 0,
+     "by_volume_turned": 0,
+     "vertices_turned": 25921
+    },
+    "reads": [
+     {
+      "size_cm": 0.5,
+      "bump_reads": 0.962,
+      "dent_reads": 0.887
+     },
+     {
+      "size_cm": 0.8,
+      "bump_reads": 0.919,
+      "dent_reads": 0.864
+     }
+    ],
+    "right_way": true,
+    "same_as_own_frame": true
+   },
+   "open_patch/mirrored_turned": {
+    "frame": "mirrored_turned",
+    "faces": "as made",
+    "hollow": false,
+    "counted": true,
+    "engine_outward": {
+     "frame": -1,
+     "pieces": 1,
+     "closed": 0,
+     "by_volume_turned": 0,
+     "vertices_turned": 25921
+    },
+    "reads": [
+     {
+      "size_cm": 0.5,
+      "bump_reads": 0.925,
+      "dent_reads": 0.861
+     },
+     {
+      "size_cm": 0.8,
+      "bump_reads": 0.939,
+      "dent_reads": 0.85
+     }
+    ],
+    "right_way": true,
+    "same_as_own_frame": true
+   },
+   "open_patch/mirrored_by_name_only": {
+    "frame": "mirrored_by_name_only",
+    "faces": "as made",
+    "hollow": false,
+    "counted": true,
+    "engine_outward": {
+     "frame": -1,
+     "pieces": 1,
+     "closed": 0,
+     "by_volume_turned": 0,
+     "vertices_turned": 25921
+    },
+    "reads": [
+     {
+      "size_cm": 0.5,
+      "bump_reads": 0.962,
+      "dent_reads": 0.887
+     },
+     {
+      "size_cm": 0.8,
+      "bump_reads": 0.919,
+      "dent_reads": 0.864
+     }
+    ],
+    "right_way": true,
+    "same_as_own_frame": true
+   },
+   "open_patch/whole_object": {
+    "frame": "whole_object",
+    "faces": "as made",
+    "hollow": false,
+    "counted": true,
+    "engine_outward": {
+     "frame": -1,
+     "pieces": 1,
+     "closed": 0,
+     "by_volume_turned": 0,
+     "vertices_turned": 25921
+    },
+    "reads": [
+     {
+      "size_cm": 0.5,
+      "bump_reads": 0.948,
+      "dent_reads": 0.865
+     },
+     {
+      "size_cm": 0.8,
+      "bump_reads": 0.932,
+      "dent_reads": 0.857
+     }
+    ],
+    "right_way": true,
+    "same_as_own_frame": true
+   },
+   "open_patch/wound_the_other_way": {
+    "frame": "own",
+    "faces": "wound the other way",
+    "hollow": false,
+    "counted": false,
+    "engine_outward": {
+     "frame": 1,
+     "pieces": 1,
+     "closed": 0,
+     "by_volume_turned": 0,
+     "vertices_turned": 0
+    },
+    "reads": [
+     {
+      "size_cm": 0.5,
+      "bump_reads": -0.959,
+      "dent_reads": -0.902
+     },
+     {
+      "size_cm": 0.8,
+      "bump_reads": -0.916,
+      "dent_reads": -0.86
+     }
+    ],
+    "right_way": false,
+    "same_as_own_frame": false
+   },
+   "open_patch/mirrored_and_wound_the_other_way": {
+    "frame": "mirrored_part",
+    "faces": "wound the other way",
+    "hollow": false,
+    "counted": false,
+    "engine_outward": {
+     "frame": -1,
+     "pieces": 1,
+     "closed": 0,
+     "by_volume_turned": 0,
+     "vertices_turned": 25921
+    },
+    "reads": [
+     {
+      "size_cm": 0.5,
+      "bump_reads": -0.962,
+      "dent_reads": -0.887
+     },
+     {
+      "size_cm": 0.8,
+      "bump_reads": -0.919,
+      "dent_reads": -0.864
+     }
+    ],
+    "right_way": false,
+    "same_as_own_frame": false
+   },
+   "closed_sphere/own": {
+    "frame": "own",
+    "faces": "as made",
+    "hollow": false,
+    "counted": true,
+    "engine_outward": {
+     "frame": 1,
+     "pieces": 1,
+     "closed": 1,
+     "by_volume_turned": 0,
+     "vertices_turned": 0
+    },
+    "reads": [
+     {
+      "size_cm": 0.5,
+      "bump_reads": 0.889,
+      "dent_reads": 0.909
+     },
+     {
+      "size_cm": 0.8,
+      "bump_reads": 0.889,
+      "dent_reads": 0.917
+     }
+    ],
+    "right_way": true,
+    "same_as_own_frame": true
+   },
+   "closed_sphere/mirrored_part": {
+    "frame": "mirrored_part",
+    "faces": "as made",
+    "hollow": false,
+    "counted": true,
+    "engine_outward": {
+     "frame": -1,
+     "pieces": 1,
+     "closed": 1,
+     "by_volume_turned": 0,
+     "vertices_turned": 40962
+    },
+    "reads": [
+     {
+      "size_cm": 0.5,
+      "bump_reads": 0.883,
+      "dent_reads": 0.91
+     },
+     {
+      "size_cm": 0.8,
+      "bump_reads": 0.888,
+      "dent_reads": 0.915
+     }
+    ],
+    "right_way": true,
+    "same_as_own_frame": true
+   },
+   "closed_sphere/mirrored_turned": {
+    "frame": "mirrored_turned",
+    "faces": "as made",
+    "hollow": false,
+    "counted": true,
+    "engine_outward": {
+     "frame": -1,
+     "pieces": 1,
+     "closed": 1,
+     "by_volume_turned": 0,
+     "vertices_turned": 40962
+    },
+    "reads": [
+     {
+      "size_cm": 0.5,
+      "bump_reads": 0.882,
+      "dent_reads": 0.907
+     },
+     {
+      "size_cm": 0.8,
+      "bump_reads": 0.897,
+      "dent_reads": 0.903
+     }
+    ],
+    "right_way": true,
+    "same_as_own_frame": true
+   },
+   "closed_sphere/mirrored_by_name_only": {
+    "frame": "mirrored_by_name_only",
+    "faces": "as made",
+    "hollow": false,
+    "counted": true,
+    "engine_outward": {
+     "frame": -1,
+     "pieces": 1,
+     "closed": 1,
+     "by_volume_turned": 0,
+     "vertices_turned": 40962
+    },
+    "reads": [
+     {
+      "size_cm": 0.5,
+      "bump_reads": 0.883,
+      "dent_reads": 0.91
+     },
+     {
+      "size_cm": 0.8,
+      "bump_reads": 0.888,
+      "dent_reads": 0.915
+     }
+    ],
+    "right_way": true,
+    "same_as_own_frame": true
+   },
+   "closed_sphere/whole_object": {
+    "frame": "whole_object",
+    "faces": "as made",
+    "hollow": false,
+    "counted": true,
+    "engine_outward": {
+     "frame": -1,
+     "pieces": 1,
+     "closed": 1,
+     "by_volume_turned": 0,
+     "vertices_turned": 40962
+    },
+    "reads": [
+     {
+      "size_cm": 0.5,
+      "bump_reads": 0.858,
+      "dent_reads": 0.919
+     },
+     {
+      "size_cm": 0.8,
+      "bump_reads": 0.896,
+      "dent_reads": 0.922
+     }
+    ],
+    "right_way": true,
+    "same_as_own_frame": true
+   },
+   "closed_sphere/wound_the_other_way": {
+    "frame": "own",
+    "faces": "wound the other way",
+    "hollow": false,
+    "counted": true,
+    "engine_outward": {
+     "frame": 1,
+     "pieces": 1,
+     "closed": 1,
+     "by_volume_turned": 1,
+     "vertices_turned": 40962
+    },
+    "reads": [
+     {
+      "size_cm": 0.5,
+      "bump_reads": 0.889,
+      "dent_reads": 0.909
+     },
+     {
+      "size_cm": 0.8,
+      "bump_reads": 0.889,
+      "dent_reads": 0.917
+     }
+    ],
+    "right_way": true,
+    "same_as_own_frame": true
+   },
+   "closed_sphere/mirrored_and_wound_the_other_way": {
+    "frame": "mirrored_part",
+    "faces": "wound the other way",
+    "hollow": false,
+    "counted": true,
+    "engine_outward": {
+     "frame": -1,
+     "pieces": 1,
+     "closed": 1,
+     "by_volume_turned": 1,
+     "vertices_turned": 0
+    },
+    "reads": [
+     {
+      "size_cm": 0.5,
+      "bump_reads": 0.883,
+      "dent_reads": 0.91
+     },
+     {
+      "size_cm": 0.8,
+      "bump_reads": 0.888,
+      "dent_reads": 0.915
+     }
+    ],
+    "right_way": true,
+    "same_as_own_frame": true
+   },
+   "open_patch/hollow": {
+    "frame": "own",
+    "faces": "wound the other way",
+    "hollow": true,
+    "counted": true,
+    "engine_outward": {
+     "frame": 1,
+     "pieces": 1,
+     "closed": 0,
+     "by_volume_turned": 0,
+     "vertices_turned": 0
+    },
+    "reads": [
+     {
+      "size_cm": 0.5,
+      "bump_reads": 0.951,
+      "dent_reads": 1.017
+     },
+     {
+      "size_cm": 0.8,
+      "bump_reads": 0.916,
+      "dent_reads": 0.965
+     }
+    ],
+    "right_way": true,
+    "same_as_own_frame": true
+   },
+   "open_patch/hollow_mirrored": {
+    "frame": "mirrored_part",
+    "faces": "wound the other way",
+    "hollow": true,
+    "counted": true,
+    "engine_outward": {
+     "frame": -1,
+     "pieces": 1,
+     "closed": 0,
+     "by_volume_turned": 0,
+     "vertices_turned": 25921
+    },
+    "reads": [
+     {
+      "size_cm": 0.5,
+      "bump_reads": 0.926,
+      "dent_reads": 1.022
+     },
+     {
+      "size_cm": 0.8,
+      "bump_reads": 0.918,
+      "dent_reads": 0.962
+     }
+    ],
+    "right_way": true,
+    "same_as_own_frame": true
+   },
+   "2d_model/own": {
+    "frame": "2-D picture plane",
+    "faces": "toward the viewer",
+    "hollow": false,
+    "counted": true,
+    "engine_outward": {
+     "frame": 1,
+     "pieces": 1,
+     "closed": 0,
+     "by_volume_turned": 0,
+     "vertices_turned": 0
+    },
+    "reads": [
+     {
+      "size_cm": 0.5,
+      "bump_reads": 0.908
+     },
+     {
+      "size_cm": 0.8,
+      "bump_reads": 0.899
+     }
+    ],
+    "right_way": true,
+    "same_as_own_frame": true
+   }
+  }
+ },
+ "checks": {
+  "clean_shows_nothing_at_auto": true,
+  "features_show_at_their_size": true,
+  "catch": [
+   [
+    "bump_2mm",
+    0.973
+   ],
+   [
+    "bump_5mm",
+    0.965
+   ],
+   [
+    "bump_10mm",
+    0.947
+   ],
+   [
+    "bump_20mm",
+    0.897
+   ],
+   [
+    "dent_2mm",
+    1.003
+   ],
+   [
+    "dent_5mm",
+    0.903
+   ],
+   [
+    "dent_10mm",
+    0.924
+   ],
+   [
+    "dent_20mm",
+    0.872
+   ],
+   [
+    "ridge_2mm",
+    0.733
+   ],
+   [
+    "ridge_5mm",
+    0.7
+   ],
+   [
+    "ridge_10mm",
+    0.777
+   ],
+   [
+    "ridge_20mm",
+    0.841
+   ],
+   [
+    "groove_2mm",
+    0.761
+   ],
+   [
+    "groove_5mm",
+    0.715
+   ],
+   [
+    "groove_10mm",
+    0.729
+   ],
+   [
+    "groove_20mm",
+    0.818
+   ]
+  ],
+  "features_absent_at_finer_sizes": true,
+  "finer": [
+   [
+    "bump_2mm",
+    null
+   ],
+   [
+    "bump_5mm",
+    0.046
+   ],
+   [
+    "bump_10mm",
+    0.053
+   ],
+   [
+    "bump_20mm",
+    0.072
+   ],
+   [
+    "dent_2mm",
+    null
+   ],
+   [
+    "dent_5mm",
+    0.01
+   ],
+   [
+    "dent_10mm",
+    0.027
+   ],
+   [
+    "dent_20mm",
+    0.057
+   ],
+   [
+    "ridge_2mm",
+    null
+   ],
+   [
+    "ridge_5mm",
+    0.017
+   ],
+   [
+    "ridge_10mm",
+    0.023
+   ],
+   [
+    "ridge_20mm",
+    0.028
+   ],
+   [
+    "groove_2mm",
+    null
+   ],
+   [
+    "groove_5mm",
+    0.007
+   ],
+   [
+    "groove_10mm",
+    -0.003
+   ],
+   [
+    "groove_20mm",
+    0.014
+   ]
+  ],
+  "signs_right": true,
+  "plate_test_13a3": true,
+  "sign_right_in_every_frame": true,
+  "sign_failures": [],
+  "limits": {
+   "curvature_never_reads": false,
+   "linear_in_height": false,
+   "curvature_max_um_by_surface": {
+    "sphere_20.0_noise_free": 0.464,
+    "sphere_8.0_noise_free": 3.756,
+    "cylinder_4.5_noise_free": 60.773,
+    "saddle_20.0_noise_free": 8.317
+   },
+   "linearity_worst": [
+    0.16483516483516486,
+    "ridge_20mm",
+    2.0
+   ]
+  }
+ },
+ "PASS": true,
+ "seconds": 217.0
+}

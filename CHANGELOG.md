@@ -2,6 +2,28 @@
 
 Versions are per plugin (`plugins/*/.claude-plugin/plugin.json`). Lessons on trial are listed with their flag.
 
+## 0.3.0 (2026-10-21): asset enhancement engine
+
+- **The Translator.**
+  - `/translator` on its own opens a home page that lists every model you've mapped; a name opens that one.
+  - Every page links home, to the whole body and to the parts list, and has a **Go to a part** box.
+  - The whole-object view no longer shows the model mirrored.
+  - A word list for people (`--pack human`): 37 named parts on a whole body, the head split into ears, eyes, nose,
+    lips and mouth.
+  - A **Variance** view that colours small bumps, ridges and dents against the surface's own smooth shape.
+  - `language.py regress` checks that every address picked before still lands in the same place.
+- **A build log.** Every build writes one entry when it finishes (what it tried, what worked, what it cost), and the
+  next build searches it before starting: `tools/build_log.py`.
+- **Shared tools.** One closest-point, normals and smoothing module (`tools/mesh_geom.py`) in place of copies, plus
+  tools moved in from case work, each with its own proof:
+  - mesh fault checks: folds, inside-out faces, skin passing through itself;
+  - mesh repair;
+  - limb flatness and surface quality checks;
+  - quad loops and their re-layout;
+  - side-by-side clay shots;
+  - carrying a model's data across a change.
+- **Builder primer.** A "Measured findings" section, a "Machine and harness" box, and the stale lines corrected.
+
 ## 0.2.0 (2026-10-21): first public release
 
 - **License.** Apache-2.0 (`LICENSE`); third-party pieces keep their own terms (`NOTICE`).

@@ -55,6 +55,13 @@ INVENTORY = {
 }
 
 
+import os as _os_mg, sys as _sys_mg  # noqa: E402  (build A1: the engine's one closest point, normals, cotangent Laplacian)
+_MG_DIR = _os_mg.path.normpath(_os_mg.path.join(_os_mg.path.dirname(_os_mg.path.abspath(__file__)), '../tools'))
+if _MG_DIR not in _sys_mg.path:
+    _sys_mg.path.append(_MG_DIR)
+import mesh_geom as _MG  # noqa: E402
+
+
 def inventory_entries(path=INV_PATH):
     """every L3_features entry of the pack, matched to INVENTORY (an unmatched entry is itself a FAIL)"""
     inv = json.load(open(path)); out = []
@@ -121,10 +128,7 @@ def face_normals(v, f):
 
 
 def vertex_normals(v, f):
-    n = np.cross(v[f[:, 1]] - v[f[:, 0]], v[f[:, 2]] - v[f[:, 0]]); VN = np.zeros_like(v)
-    for k in range(3):
-        np.add.at(VN, f[:, k], n)
-    return VN / np.maximum(np.linalg.norm(VN, axis=1), 1e-15)[:, None]
+    return _MG.vertex_normals(v, f, eps=1e-15)
 
 
 def area_samples(v, f, per_mm2, seed=0):

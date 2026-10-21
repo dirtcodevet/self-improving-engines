@@ -81,6 +81,13 @@ CARVE_K = 0.2           # smooth-max radius (mm) where the carved inner face mee
 EXT_ARC = 1.0           # the back chain stops this far (mm of arc) past the loop's medial / lateral extreme (rim tip)
 
 
+import os as _os_mg, sys as _sys_mg  # noqa: E402  (build A1: the engine's one closest point, normals, cotangent Laplacian)
+_MG_DIR = _os_mg.path.normpath(_os_mg.path.join(_os_mg.path.dirname(_os_mg.path.abspath(__file__)), '../../../tools'))
+if _MG_DIR not in _sys_mg.path:
+    _sys_mg.path.append(_MG_DIR)
+import mesh_geom as _MG  # noqa: E402
+
+
 def _smax(a, b, k):
     return -V2._smin(-np.asarray(a, float), -np.asarray(b, float), k)
 
@@ -300,10 +307,7 @@ EARS = V2.EARS
 
 # ------------------------------------------------------------------ probes (mesh vertices head mm, faces)
 def _vnormals(P, f):
-    fn = np.cross(P[f[:, 1]] - P[f[:, 0]], P[f[:, 2]] - P[f[:, 0]]); N = np.zeros_like(P)
-    for k in range(3):
-        np.add.at(N, f[:, k], fn)
-    return N / np.maximum(np.linalg.norm(N, axis=1, keepdims=True), 1e-12)
+    return _MG.vertex_normals(P, f, eps=1e-12)
 
 
 def shell_probe(Lmm, f, inp, sd):

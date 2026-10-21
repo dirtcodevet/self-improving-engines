@@ -81,6 +81,13 @@ MARKS = {"leather_max_mm": 0.2, "tail_cut_min_mm": 0.15, "tail_cut_max_mm": 0.7,
                     "axial_mm": 19.75, "axial_tol": 0.5, "steeper_by_mm": 0.3}}
 
 
+import os as _os_mg, sys as _sys_mg  # noqa: E402  (build A1: the engine's one closest point, normals, cotangent Laplacian)
+_MG_DIR = _os_mg.path.normpath(_os_mg.path.join(_os_mg.path.dirname(_os_mg.path.abspath(__file__)), '../tools'))
+if _MG_DIR not in _sys_mg.path:
+    _sys_mg.path.append(_MG_DIR)
+import mesh_geom as _MG  # noqa: E402
+
+
 def _unit(x):
     x = np.asarray(x, float); return x / np.maximum(np.linalg.norm(x, axis=-1, keepdims=True), 1e-12)
 
@@ -122,10 +129,7 @@ def file_sha1(path, block=1 << 22):
 
 
 def vertex_normals(P, f):
-    fn = np.cross(P[f[:, 1]] - P[f[:, 0]], P[f[:, 2]] - P[f[:, 0]]); N = np.zeros_like(P)
-    for k in range(3):
-        np.add.at(N, f[:, k], fn)
-    return _unit(N)
+    return _unit(_MG.vertex_normal_sums(P, f))
 
 
 def vertex_area(P, f):

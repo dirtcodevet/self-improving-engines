@@ -79,11 +79,46 @@ Generic operations (the entry's vocabulary; units: cm in the entry, the source's
              before_cm, after_cm, blend_cm, ref {mid | at | fraction | cm}, c_from_deg); each: region, turn_deg,
              bridge_cm, ruler_cm, grid [{step_cm, near (a selection), margin_cm}] (a finer level over its zone)
 
+PAGES (build L3, 2026-10-21): the viewer pages, the list (index.html) and the Translator's home are written through
+engine/tools/translator_pages.py: every page links home, to the model's whole view and its list, and a left-handed
+frame (a right-side part's) is drawn as the body is, not as its mirror image. The frames and addresses are unchanged.
+
 Usage:
   python part_frame.py build JOB.json [NAME ...]     writes NAME.json/.npz/.html/.png per part in the job's out_dir
   python part_frame.py resolve PART.npz ADDRESS ...   points of addresses (an address may be a pasted line)
   python part_frame.py prove                          the proof on analytic shapes (see prove(), prove_skin())
 """
+# ---- FUNCTION INDEX (engine/tools/func_index.py; grep 'def <name>' to jump) ----
+#   class Caster [cast]  - first hit of rays on a triangle mesh (uniform grid + 3-D DDA, both faces count)
+#   closest_points(V, F, P, k)  - exact nearest surface point of each P (among the triangles round its k nearest vert...
+#   class HeightGrid [uvh, sample, world]  - two height maps (top, base) over a plane frame (rows of R: e1, e2, norma...
+#   pack_current(pack_dir)  - the version folder a pack's pack.json names current (build L1: a job may follow it)
+#   mesh_path(m)  - a source's mesh file: its npz, or (build L1) the file in the version its followed pack names current
+#   class Source [vertex_normals, vertex_area, get_input]
+#   class Part [select, landmark_or_point, direction, landmark, build_frame, to_frame, to_source]
+#   class Address [tube_station, tube_rays, params_of, resolve, sides, text, vertex_addresses, grid]
+#   skin_lengths(V, F, P, fP, segs)  - the skin length of each segment (i, j) between surface points P (faces fP) of ...
+#   class SkinChart [text]  - common to the chart kinds: region, grid levels, text, conditioning
+#   class DiscChart [setup, params_of_vertices, resolve, lattice]  - meridians = planes through the axis (a landmark,...
+#   class TubeChart [setup, ring_starts, params_of_vertices, resolve, ring_lengths, lattice]
+#   class SkinAtlas [vertex_addresses, grid, resolve]  - a part's skin charts, in order: each vertex is addressed by ...
+#   parse_address(text)
+#   build_part(entry, src, side, name, defs_meta, log)
+#   grid_spacing(V, F, gP, gface, lines, levels, gchart, glev)  - the skin length of every grid segment (normal-secti...
+#   write_outputs(out_dir, P, A, info, data, overlays)
+#   write_html(path, info, data, overlays)
+#   render_png(path, info, data, overlays, px_cm)  - four views for agents: three orthographic along the frame's axes...
+#   write_index(out_dir, infos)  - a job's list of parts (L3: engine/tools/translator_pages.write_list: names a perso...
+#   job_items(job)  - (item, side, name) for every part a job builds: name = the item's "name", else part + _side (bu...
+#   part_files(job, item, side)  - the files a part is read from: its source's mesh (a followed pack's pack.json too)...
+#   fingerprint(job, item, side)  - what a part is made from (build L1): the sha1 of its definition entry and of its ...
+#   build(job_path, only, log)
+#   load_part(npz_path)  - a built part: its info, the npz, build 09's address system and the skin atlas (None for a ...
+#   resolve(npz_path, addresses, current)  - each address -> (frame point cm, source point, nearest vertex of this bu...
+#   prove(log)  - Analytic shapes with known answers (A28: once, at the tool's making):
+#   prove_skin(log)  - Skin charts (build 10) on analytic shapes with known answers (A28: once, at the tool's making):
+#   (+ 45 private helpers: grep '^def _')
+# ---- END FUNCTION INDEX ----
 import base64
 import datetime
 import hashlib
@@ -104,6 +139,13 @@ ROOT = os.path.abspath(os.path.join(HERE, "..", ".."))
 VIEW_TEMPLATE = os.path.join(HERE, "part_frame_view.html")
 TOL_CM = 0.05            # an address round-trips when it resolves within this of the vertex it came from
 AXES = {"x": 0, "y": 1, "z": 2}
+
+
+import os as _os_mg, sys as _sys_mg  # noqa: E402  (build A1: the engine's one closest point, normals, cotangent Laplacian)
+_MG_DIR = _os_mg.path.normpath(_os_mg.path.join(_os_mg.path.dirname(_os_mg.path.abspath(__file__)), '.'))
+if _MG_DIR not in _sys_mg.path:
+    _sys_mg.path.append(_MG_DIR)
+import mesh_geom as _MG  # noqa: E402
 
 
 def _unit(a):
@@ -257,25 +299,8 @@ def closest_points(V, F, P, k=12):
 
 
 def _closest_on_tris(p, T):
-    """closest point on each triangle T (m x 3 x 3) to p (Ericson, Real-Time Collision Detection 5.1.5)"""
-    a, b, c = T[:, 0], T[:, 1], T[:, 2]
-    ab, ac, ap = b - a, c - a, p - a
-    d1, d2 = (ab * ap).sum(1), (ac * ap).sum(1)
-    bp = p - b; d3, d4 = (ab * bp).sum(1), (ac * bp).sum(1)
-    cp = p - c; d5, d6 = (ab * cp).sum(1), (ac * cp).sum(1)
-    va = d3 * d6 - d5 * d4; vb = d5 * d2 - d1 * d6; vc = d1 * d4 - d3 * d2
-    den = va + vb + vc; den = np.where(np.abs(den) < 1e-30, 1e-30, den)
-    v = vb / den; w = vc / den
-    Q = a + ab * v[:, None] + ac * w[:, None]                                     # inside the face
-    with np.errstate(divide="ignore", invalid="ignore"):
-        e_ab = (vc <= 0) & (d1 >= 0) & (d3 <= 0); t = d1 / (d1 - d3); Q = np.where(e_ab[:, None], a + ab * t[:, None], Q)
-        e_ac = (vb <= 0) & (d2 >= 0) & (d6 <= 0); t = d2 / (d2 - d6); Q = np.where(e_ac[:, None], a + ac * t[:, None], Q)
-        e_bc = (va <= 0) & ((d4 - d3) >= 0) & ((d5 - d6) >= 0); t = (d4 - d3) / ((d4 - d3) + (d5 - d6))
-        Q = np.where(e_bc[:, None], b + (c - b) * t[:, None], Q)
-    Q = np.where(((d1 <= 0) & (d2 <= 0))[:, None], a, Q)
-    Q = np.where(((d3 >= 0) & (d4 <= d3))[:, None], b, Q)
-    Q = np.where(((d6 >= 0) & (d5 <= d6))[:, None], c, Q)
-    return Q
+    """closest point on each triangle T (m x 3 x 3) to p (Ericson; mesh_geom.closest_on_triangles)"""
+    return _MG.closest_on_triangles(p, T[:, 0], T[:, 1], T[:, 2])
 
 
 # --------------------------------------------------------------------------------------------------------- sources
@@ -385,10 +410,7 @@ class Source:
 
     def vertex_normals(self):
         if "_vn" not in self._cache:
-            fn = np.cross(self.V[self.F[:, 1]] - self.V[self.F[:, 0]], self.V[self.F[:, 2]] - self.V[self.F[:, 0]]); vn = np.zeros_like(self.V)
-            for j in range(3):
-                np.add.at(vn, self.F[:, j], fn)
-            self._cache["_vn"] = vn / np.maximum(np.linalg.norm(vn, axis=1, keepdims=True), 1e-30)
+            self._cache["_vn"] = _MG.vertex_normals(self.V, self.F, eps=1e-30)
         return self._cache["_vn"]
 
     def vertex_area(self):
@@ -1529,24 +1551,66 @@ def build_part(entry, src, side, name, defs_meta, log=print):
     A = Address(entry["address"], name, Vf, Ff, lmf)                 # build 09's address system: still resolves
     skin = entry.get("skin"); extra = {}
     if skin:                                                          # build 10: the skin charts name places and draw the grid
+        # build L5: skin "on" (a selection): the charts are laid and walked on that skin with the part's own (its largest
+        # piece holding the part): a head whose ears, eyes, nose and lips are parts of their own (L4) is charted as the
+        # whole head, so its walks cross where the features are instead of stopping at their borders (L4: 74-90 %
+        # addressed, 92.5-98.4 % before). The part's own vertices take their addresses from those charts; the grid keeps
+        # the points on the part's own faces; the walked skin is stored (walk_V, walk_F) so `resolve` walks it too.
+        wsel = None
+        if skin.get("on"):
+            wsel = _largest_component(src.F, P.select(skin["on"]) | P.part)
+            if not (wsel & ~P.part).any():
+                wsel = None                                           # nothing beyond the part: the part's own skin, as before
+        if wsel is not None:
+            wfm = wsel[src.F].all(1) | fmask; wvid = np.unique(src.F[wfm]); wre = -np.ones(len(src.V), np.int64); wre[wvid] = np.arange(len(wvid))
+            Vw = P.to_frame(src.V[wvid]).astype(np.float32).astype(np.float64); Fw = wre[src.F[wfm]]; pos = wre[vid]
+            fpart = -np.ones(len(src.F), np.int64); fpart[np.nonzero(fmask)[0]] = np.arange(int(fmask.sum())); wface_part = fpart[np.nonzero(wfm)[0]]
+            sv = wvid
+        else:
+            Vw, Fw, pos, sv = Vf, Ff, None, vid
         regions, zones = {}, {}
         for sp in skin["charts"]:
-            regions[sp["name"]] = P.select(sp["region"])[vid] if "region" in sp else np.ones(len(vid), bool)
+            regions[sp["name"]] = P.select(sp["region"])[sv] if "region" in sp else np.ones(len(sv), bool)
             for li, lv in enumerate(sp.get("grid", [])):
                 if "near" in lv:
-                    zones[(sp["name"], li)] = P.select(lv["near"])[vid]
-        SA = SkinAtlas(skin["charts"], name, Vf, Ff, lmf, regions)
+                    zones[(sp["name"], li)] = P.select(lv["near"])[sv]
+        SA = SkinAtlas(skin["charts"], name, Vw, Fw, lmf, regions)
         aside, prm, aerr, cstats = SA.vertex_addresses()
+        if pos is not None:
+            aside_w, prm_w = aside, prm; aside, prm, aerr = aside[pos].copy(), prm[pos].copy(), aerr[pos].copy()
+            for k, c in enumerate(SA.charts):
+                cstats[c.name]["addressed_here_on_the_part"] = int((aside == k).sum())
         legacy_used = 0
         if (aside < 0).any():                                    # left over (a rim beyond a notch): build 09's kind if it round-trips
             lp, ls, le = A.vertex_addresses(); take = (aside < 0) & (ls >= 0)
             aside[take] = len(SA.charts) + ls[take]; prm[take] = lp[take]; aerr[take] = le[take]; legacy_used = int(take.sum())
-        gP, gnames, gprm, gside, glev, gface, gfa, glines = SA.grid(prm, aside, zones)
+        if pos is None:
+            gP, gnames, gprm, gside, glev, gface, gfa, glines = SA.grid(prm, aside, zones)
+        else:                                                    # the walked skin's grid, kept on the part's own faces
+            gP, gnames, gprm, gside, glev, gface, gfa, glines = SA.grid(prm_w, aside_w, zones)
+            pf = wface_part[gface] if len(gface) else np.zeros(0, np.int64); keepg = pf >= 0
+            newi = -np.ones(len(gP), np.int64); newi[keepg] = np.arange(int(keepg.sum()))
+            gP, gprm, gside, glev, gfa = gP[keepg], gprm[keepg], np.asarray(gside)[keepg], glev[keepg], gfa[keepg]
+            gnames = [g for g, k_ in zip(gnames, keepg) if k_]; gface = pf[keepg]; lines2 = []
+            for ln in glines:
+                run = []
+                for v in ln:
+                    if newi[v] >= 0:
+                        run.append(int(newi[v]))
+                    else:
+                        if len(run) > 1:
+                            lines2.append(run)
+                        run = []
+                if len(run) > 1:
+                    lines2.append(run)
+            glines = lines2
         spacing = grid_spacing(Vf, Ff, gP, gface, glines, [c.spec.get("grid", [{"step_cm": 1.0}]) for c in SA.charts], gside, glev)
         for c in SA.charts:
             extra["chart_region_" + c.name] = regions[c.name].astype(np.uint8)
             if c.kind == "tube":
-                u = np.full(len(vid), np.nan); u[c.sub.vidx] = c.uf; extra["chart_u_" + c.name] = u
+                u = np.full(len(sv), np.nan); u[c.sub.vidx] = c.uf; extra["chart_u_" + c.name] = u
+        if pos is not None:
+            extra.update(walk_V=Vw.astype(np.float32), walk_F=Fw.astype(np.int32), walk_vid=sv.astype(np.int64))
         extra.update(grid_level=glev.astype(np.int8), grid_face=gface.astype(np.int32))
     else:
         SA = None; prm, aside, aerr = A.vertex_addresses()
@@ -1592,7 +1656,10 @@ def build_part(entry, src, side, name, defs_meta, log=print):
             "syntax": _skin_syntax(SA), "why": skin.get("why", ""), "round_trip_tol_cm": TOL_CM,
             "vertices_with_address": int((aside >= 0).sum()), "vertices": int(len(Vf)), "grid_points": int(len(gP)),
             "vertices_with_a_skin_address": int(((aside >= 0) & (aside < len(SA.charts))).sum()),
-            "vertices_with_a_build09_address_only": legacy_used, "grid_spacing": spacing},
+            "vertices_with_a_build09_address_only": legacy_used, "grid_spacing": spacing,
+            **({"walked_on": {"selection": skin["on"], "vertices": int(len(sv)), "why": "build L5: the charts are walked on this skin "
+                              "(the part's with what it was cut from), so a walk crosses where a cut-out part is; stored as walk_V / walk_F"}}
+               if pos is not None else {})},
         "address_systems": _address_systems(SA, A),
         "measures": meas,
         "counts": {"vertices": int(len(Vf)), "triangles": int(len(Ff))},
@@ -1825,9 +1892,9 @@ def write_html(path, info, data, overlays):
          "glev": _b64(data.get("grid_level", np.zeros(len(data["grid_P"]), np.int8)), "i1"), "systems": info.get("address_systems"),
          "gnames": [str(x) for x in data["grid_names"]], "glines": _b64(data["grid_lines"], "<i4"),
          "fields": {k[6:]: _b64(v, "<f4") for k, v in data.items() if k.startswith("field_")}, "overlays": overlays}
-    html = open(VIEW_TEMPLATE, encoding="utf-8").read()
-    html = html.replace("__TITLE__", f"{info['part']} - part frame").replace("/*__DATA__*/null", json.dumps(d).replace("</", "<" + chr(92) + "/"))
-    open(path, "w", encoding="utf-8").write(html)
+    sys.path.insert(0, HERE)
+    import translator_pages as TP                                     # (L3) the template filled in one place, with its way around
+    TP._write(path, TP.fill_viewer(f"{info['part']} - Translator", json.dumps(d).replace("</", "<" + chr(92) + "/"), path))
 
 
 def render_png(path, info, data, overlays, px_cm=0.04):
@@ -1902,18 +1969,23 @@ def _measure_lines(info):
 
 
 def write_index(out_dir, infos):
-    rows = []
+    """a job's list of parts (L3: engine/tools/translator_pages.write_list: names a person would use, a find box, the
+    way to the model's whole body and home)"""
+    sys.path.insert(0, HERE)
+    import translator_pages as TP
+    rows = []; srcs = sorted({i["source"] for i in infos})
     for i in infos:
-        ms = "<br>".join(_measure_lines(i)[:8])
-        rows.append(f"<tr><td><a href='{i['part']}.html'>{i['part']}</a></td><td>{i['source']}</td><td>{i['counts']['vertices']}</td>"
-                    f"<td>{i['address']['kind']}</td><td>{ms}</td><td><a href='{i['part']}.png'>views</a> · <a href='{i['part']}.json'>json</a></td></tr>")
-    html = ("<!doctype html><meta charset='utf-8'><meta name='viewport' content='width=device-width,initial-scale=1'><title>Part frames</title>"
-            "<style>body{font:14px system-ui,sans-serif;margin:16px;background:#fafafa;color:#222}table{border-collapse:collapse}"
-            "td,th{border-bottom:1px solid #ddd;padding:6px 10px;text-align:left;vertical-align:top}</style>"
-            "<h2>Part frames</h2><p>Each part in its own frame: X lateral, Y superior, Z anterior/outward, cm. Right-side parts are "
-            "mirrored so lateral is +X on both sides. Open a part, click dots, copy the picks into chat.</p>"
-            "<table><tr><th>part</th><th>source</th><th>vertices</th><th>address</th><th>measures</th><th></th></tr>" + "".join(rows) + "</table>")
-    open(os.path.join(out_dir, "index.html"), "w", encoding="utf-8").write(html)
+        dom = (re.search(r"packs/([^/]+)/", i.get("definitions_file", "")) or [None, None])[1]
+        ms = "<br>".join(TP._E(x) for x in _measure_lines(i)[:8])
+        rows.append({"name": i["part"], "page": i["part"] + ".html", "spoken": TP.spoken(i["part"], dom),
+                     "find": " ".join([i.get("definition") or ""] + TP.also(i.get("definition"), dom)),
+                     "cells": [TP._E(re.split(r"[:(]", i["source"])[0].strip(" ,")), str(i["counts"]["vertices"]), TP._E(i["address"]["kind"]), ms,
+                               f"<a href='{i['part']}.png'>views</a> · <a href='{i['part']}.json'>json</a>"]})
+    title = re.split(r"[:(]", srcs[0])[0].strip(" ,") if len(srcs) == 1 else TP._link(os.path.abspath(out_dir), TP.home_dir()).replace("/", " ")
+    sub = ("Each part in its own frame: X lateral, Y superior, Z anterior/outward, cm. Right-side parts are mirrored so "
+           "lateral is +X on both sides (each is still drawn as the body is). " + TP._E("; ".join(srcs)) + ".")
+    TP.write_list(out_dir, title, sub, ["source", "vertices", "address", "measures", ""], rows,
+                  "Open a part, click dots, copy the picks into chat.")
 
 
 TOOL_VERSION = "10.L1"      # what a build writes; a change that alters it marks every built part stale (fingerprint)
@@ -1979,6 +2051,13 @@ def build(job_path, only=None, log=print):
         write_outputs(out_dir, P, A, info, data, ov); infos.append(info)
     if not only and not job.get("index_by"):                         # (L1) a language job writes its own index
         write_index(out_dir, infos)
+    if not job.get("index_by"):                                       # (L3) the Translator's home lists every view
+        try:
+            sys.path.insert(0, HERE)
+            import translator_pages as TP
+            TP.touch(out_dir)
+        except Exception as ex:
+            print(f"(translator home not written: {ex})", file=sys.stderr)
     return infos
 
 
@@ -1990,14 +2069,16 @@ def load_part(npz_path):
     A = Address(info["address"], info["part"], V, F, lm); SA = None
     if info.get("skin"):
         specs = [{k: v for k, v in c.items() if k not in ("region_vertices", "addressed_here", "round_trip_failed", "no_walk",
-                                                           "grid_points", "reference_station_cm", "ring_field_walked", "ring_field_filled")}
+                                                           "grid_points", "reference_station_cm", "ring_field_walked", "ring_field_filled",
+                                                           "addressed_here_on_the_part")}
                  for c in info["skin"]["charts"]]
         regions = {sp["name"]: z["chart_region_" + sp["name"]].astype(bool) for sp in specs}
+        Vw, Fw = (z["walk_V"].astype(float), z["walk_F"].astype(np.int64)) if "walk_V" in z else (V, F)   # (L5) the skin the charts walk
         fields = {}
         for sp in specs:
             if "chart_u_" + sp["name"] in z:
-                fu = z["chart_u_" + sp["name"]]; sub = _Sub(V, F, regions[sp["name"]]); fields[sp["name"]] = fu[sub.vidx]
-        SA = SkinAtlas(specs, info["part"], V, F, lm, regions, fields)
+                fu = z["chart_u_" + sp["name"]]; sub = _Sub(Vw, Fw, regions[sp["name"]]); fields[sp["name"]] = fu[sub.vidx]
+        SA = SkinAtlas(specs, info["part"], Vw, Fw, lm, regions, fields)
     A.atlas = SA
     return info, z, A
 

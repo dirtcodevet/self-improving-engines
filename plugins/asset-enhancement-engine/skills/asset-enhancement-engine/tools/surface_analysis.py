@@ -21,25 +21,19 @@ import numpy as np
 from scipy import sparse
 
 
+import os as _os_mg, sys as _sys_mg  # noqa: E402  (build A1: the engine's one closest point, normals, cotangent Laplacian)
+_MG_DIR = _os_mg.path.normpath(_os_mg.path.join(_os_mg.path.dirname(_os_mg.path.abspath(__file__)), '.'))
+if _MG_DIR not in _sys_mg.path:
+    _sys_mg.path.append(_MG_DIR)
+import mesh_geom as _MG  # noqa: E402
+
+
 def cot_laplacian(V, F):
-    n = len(V)
-    I, J, W = [], [], []
-    for a, b, c in ((0, 1, 2), (1, 2, 0), (2, 0, 1)):
-        u, v = V[F[:, b]] - V[F[:, a]], V[F[:, c]] - V[F[:, a]]
-        cot = np.einsum("ij,ij->i", u, v) / np.maximum(np.linalg.norm(np.cross(u, v), axis=1), 1e-20)
-        I += [F[:, b], F[:, c]]; J += [F[:, c], F[:, b]]; W += [cot / 2, cot / 2]
-    L = sparse.coo_matrix((np.concatenate(W), (np.concatenate(I), np.concatenate(J))), shape=(n, n)).tocsr()
-    L = L - sparse.diags(np.asarray(L.sum(1)).ravel())
-    area = np.zeros(n); fa = np.linalg.norm(np.cross(V[F[:, 1]] - V[F[:, 0]], V[F[:, 2]] - V[F[:, 0]]), axis=1) / 2
-    for k in range(3): np.add.at(area, F[:, k], fa / 3)
-    return L, area
+    return _MG.cot_laplacian(V, F, clamp=False)
 
 
 def vertex_normals(V, F):
-    fn = np.cross(V[F[:, 1]] - V[F[:, 0]], V[F[:, 2]] - V[F[:, 0]])
-    vn = np.zeros_like(V)
-    for k in range(3): np.add.at(vn, F[:, k], fn)
-    return vn / np.maximum(np.linalg.norm(vn, axis=1, keepdims=True), 1e-20)
+    return _MG.vertex_normals(V, F, eps=1e-20)
 
 
 def umbrella(V, F):

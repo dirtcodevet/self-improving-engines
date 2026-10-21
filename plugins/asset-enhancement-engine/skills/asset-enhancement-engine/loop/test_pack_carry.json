@@ -1,0 +1,36 @@
+{
+ "copied_bytes_same": true,
+ "not_copied_left_out": true,
+ "arrays_same": true,
+ "v_new_float32": true,
+ "note": "the base. Moved 50 vertices.",
+ "diff_inside_only": {
+  "declared_region_vertices": 385,
+  "moved_vertices": 50,
+  "moved_outside_declared": 0,
+  "outside_declared_max_mm": 0.0,
+  "breast_max_mm": 1.0000047967636267,
+  "inside_p50_p99_max_mm": [
+   0.0,
+   1.0,
+   1.0
+  ]
+ },
+ "diff_one_outside": {
+  "declared_region_vertices": 385,
+  "moved_vertices": 51,
+  "moved_outside_declared": 1,
+  "outside_declared_max_mm": 2.0000000000000018,
+  "inside_p50_p99_max_mm": [
+   0.0,
+   1.0,
+   1.0
+  ]
+ },
+ "depth_mm": [
+  4.997,
+  -5.0,
+  4.996
+ ],
+ "PASS": true
+}

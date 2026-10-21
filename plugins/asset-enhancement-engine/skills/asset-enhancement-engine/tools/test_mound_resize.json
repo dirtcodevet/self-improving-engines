@@ -1,0 +1,48 @@
+{
+ "1_mound": {
+  "c": 0.75,
+  "volume_ml_before": 198.49208795560207,
+  "volume_ml_after": 149.39521590904673,
+  "ratio": 0.7526507350885586,
+  "fine_relief_corr": 0.9955978733153565,
+  "fine_relief_amplitude_ratio": 0.9533552167779734,
+  "cap_height_mm_before_after": [
+   4.973719753814214,
+   4.668457964701427
+  ],
+  "cap_height_change_mm": -0.3052617891127867,
+  "dome_sag_change_under_cap_mm": 0.3529204575341543,
+  "max_move_outside_footprint_and_band_mm": 0.0,
+  "faces_turned_over": 0,
+  "pass": true
+ },
+ "2_overhang": {
+  "column_pairs_tested": 249,
+  "order_changed": 0,
+  "faces_turned_over": 0,
+  "lip_front_move_mm": -11.95676755104113,
+  "pass": true
+ },
+ "3_rim_concavity": {
+  "kink": {
+   "peak_per_m_median": 57.15064035732283,
+   "peak_per_m_max": 84.84173238347205,
+   "at_mm_median": 67.0
+  },
+  "tangential": {
+   "peak_per_m_median": 15.622403937689846,
+   "peak_per_m_max": 25.410071215972163,
+   "at_mm_median": 64.75
+  },
+  "threshold_per_m": 40.0,
+  "pass": true
+ },
+ "4_band_fill": {
+  "volume_ratio_over_footprint": 0.7506549989787779,
+  "max_move_past_band_mm": 0.0,
+  "max_outward_move_mm": 0.15814953799218184,
+  "faces_turned_over": 0,
+  "pass": true
+ },
+ "all_pass": true
+}

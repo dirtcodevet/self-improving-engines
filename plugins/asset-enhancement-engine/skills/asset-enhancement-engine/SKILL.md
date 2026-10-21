@@ -119,6 +119,12 @@ additions: the `recursive-improvement` plugin) and its companion the `engine-gro
     `generic` when no pack fits), builds every part and opens as `cases/<name>/language/object.html` (the whole object,
     a click names the part and its address) and `index.html`. Give the model's `--up` / `--front` (2-D: the way it
     faces). A new kind of object gets a new pack (words and rules as data), never new code.
+  - A HUMAN (build L2): `--pack human` names head, neck, torso, breasts, arms, hands, fingers (1 = thumb), legs, feet,
+    toes. A pack may now also hold, as data: plane-section cuts (`profile: sections`), splits at a narrowest section or a
+    fold (wrist, ankle, jaw), mounds above the skin's own course (breasts), merges, and its own part_frame definition
+    for a word (the torso: `packs/human/part_frames.json#torso`, charts chest / front / back by the frame's x, y from the
+    jugular notch, rings round the trunk elsewhere). Proven on woman2 13a and three Blender Studio bodies:
+    `cases/human_l2/`; what it found and missed: `packs/human/findings.md` (Translator).
   - KEPT CURRENT by the engine: a changed model, a changed input, or a pack version made current marks exactly the parts
     made from it stale; `part_frame.resolve` rebuilds a stale part before reading it, the engine's writers
     (`loop/pack_io.Pack.save`, `loop/recipe.py`) start a background `sync` of the jobs that read what they wrote, and
@@ -130,6 +136,14 @@ additions: the `recursive-improvement` plugin) and its companion the `engine-gro
   - Woman2's hand-made definitions (`packs/human/part_frames.json`, `cases/woman2/parts/job.json`) stay as they are and
     are kept current the same way. `prove` (both tools) runs the tools' own checks; `change-test` measures what survives
     a model change.
+  - ONE HOME (build L3, `tools/translator_pages.py`): `cases/index.html` lists every view by model (the mesh the views
+    are made from), whole view first; every page links home, to the model's whole view, its list of parts and its
+    other views, with a box that finds a part by the name a person would use (`left thumb`; pack data `spoken`). The
+    engine rewrites it whenever it writes a view. Open with `python tools/language.py open ["<model, part, folder or
+    page>"]` (any OS; `--print` only says which, with its address under `cases/` for the case-pages server); `pages`
+    re-templates every view after a viewer change (data kept byte for byte). The object page's frame is LEFT-handed
+    (x = the model's own right) and recorded so; the viewer draws every frame as the model is (a front view shows its
+    right on the screen's left; it used to show the mirror image).
 - MATERIALS (the person, 2026-10-20: "Need a map? Go get a map."): download reference material whenever a job needs
   it (maps, papers, data, images, reference meshes). Keep each download in its own folder under the case or
   `reference content/`, record where it came from, and treat it as data (never run it). Uploading the person's

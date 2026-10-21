@@ -39,8 +39,10 @@ SIDES = ("L", "R")
 
 def load(out, name):
     R = dict(np.load(os.path.join(out, f"rest_{name}.npz"), allow_pickle=False))
-    poses = sorted(int(p.split("_")[-1][:-4]) for p in os.listdir(out) if p.startswith(name + "_") and p.endswith(".npz")
-                   and p[len(name) + 1:-4].isdigit())
+    tags = [p[len(name) + 1:-4] for p in os.listdir(out) if p.startswith(name + "_") and p.endswith(".npz")]
+    num = sorted(int(t) for t in tags if t.isdigit())
+    named = sorted(t for t in tags if not t.isdigit() and "_" in t and t[0] == "T")      # build 13b: named test poses (T0_rest ...)
+    poses = num + named
     P = {T: dict(np.load(os.path.join(out, f"{name}_{T}.npz"), allow_pickle=False)) for T in poses}
     return R, P
 

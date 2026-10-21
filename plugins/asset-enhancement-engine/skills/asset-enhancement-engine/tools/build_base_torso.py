@@ -238,6 +238,8 @@ def build(location=(0.0, 0.0, 0.0), version=None, prefix=None, replace=False, ro
     V = os.path.abspath(pack) if pack else pack_dir(root, version)[0]   # pack: any pack folder (e.g. a case's build)
     scene_spec = json.load(open(os.path.join(V, 'scene.json')))
     fmt = scene_spec.get('format', 1)
+    if fmt == 3:
+        return _build_v3(V, scene_spec, location, prefix, replace, log, t0)
     if fmt == 2:
         return _build_v2(V, scene_spec, location, prefix, replace, log, t0)
     if fmt == 1:
@@ -558,6 +560,333 @@ def _build_v1(V, scene_spec, location, prefix, replace, log, t0):
 
 
 # --------------------------------------------------------------------------------------------- entry points
+# --------------------------------------------------------------------------------------------- format 3 (build 13b)
+def rig3(spec, coll, name, pack_dir=None, glide=None, log=print):
+    """THE FORMAT-3 RIG (woman2 build 13b): every bone of the body from rig.json's "bones" (head, tail, the bone's Z axis
+    as a vector, parent, connect, deform, rotation mode), the custom properties on control bones, the scapular glide
+    surface (a hidden mesh carried by its bone), the constraints and the drivers (simple expressions only, so they run
+    without Python auto-execution). Returns (rig, glide_object). `glide` = (v, f) arrays, else read from pack_dir."""
+    import bpy
+    import mathutils
+    A = spec['armature']
+    arm = bpy.data.armatures.new(A['data'] if name is None else name)
+    rig = bpy.data.objects.new(A['object'] if name is None else name, arm)
+    coll.objects.link(rig)
+    rig.show_in_front = A.get('show_in_front', True)
+    arm.display_type = A.get('display_type', 'OCTAHEDRAL')
+    vl = bpy.context.view_layer
+    for o in bpy.context.selected_objects:
+        o.select_set(False)
+    vl.objects.active = rig
+    rig.select_set(True)
+    bpy.ops.object.mode_set(mode='EDIT')
+    B = spec['bones']
+    eb = {}
+    for b in A['bone_order']:
+        d = B[b]
+        e = arm.edit_bones.new(b)
+        e.head, e.tail = d['head'], d['tail']
+        e.align_roll(mathutils.Vector(d['z_axis']))
+        e.use_deform = bool(d['deform'])
+        eb[b] = e
+    for b in A['bone_order']:
+        d = B[b]
+        if d['parent']:
+            eb[b].parent = eb[d['parent']]
+            eb[b].use_connect = bool(d['connect'])
+    bpy.ops.object.mode_set(mode='OBJECT')
+    for pb in rig.pose.bones:
+        pb.rotation_mode = B[pb.name].get('rotation_mode', 'XYZ')
+    # custom properties (control values and the driven helpers)
+    for bn, props in spec.get('properties', {}).items():
+        pb = rig.pose.bones[bn]
+        for k, v in props.items():
+            if k.startswith('_'):
+                pb[k] = v
+                continue
+            pb[k] = float(v[0])
+            try:
+                pb.id_properties_ui(k).update(min=float(v[1]), max=float(v[2]), soft_min=float(v[1]), soft_max=float(v[2]))
+            except Exception:  # noqa
+                pass
+    # the glide surface, carried by its bone
+    go = None
+    if spec.get('glide'):
+        gs = spec['glide']
+        if glide is None:
+            G = np.load(os.path.join(pack_dir, gs['file']))
+            glide = (G['v'], G['f'])
+        gme = _make_mesh(rig.name + '_ScapulaGlide', np.asarray(glide[0], np.float32), np.asarray(glide[1], np.int32))
+        go = bpy.data.objects.new(rig.name + '_ScapulaGlide', gme)
+        coll.objects.link(go)
+        go.parent = rig
+        go.parent_type = 'BONE'
+        go.parent_bone = gs['parent_bone']
+        vl.update()
+        go.matrix_world = rig.matrix_world.copy()
+        go.hide_set(True)
+        go.hide_render = True
+        go['status'] = "the scapular glide surface (build 13b): the scapula's inferior angle and spine root are held on it"
+    # constraints
+    for c in spec.get('constraints', []):
+        pb = rig.pose.bones[c['bone']]
+        k = pb.constraints.new(c['type'])
+        if c['type'] == 'SHRINKWRAP':
+            k.target = go
+            k.shrinkwrap_type = c.get('shrinkwrap_type', 'NEAREST_SURFACE')
+            k.distance = float(c.get('distance', 0.0))
+        else:
+            k.target = rig
+            k.subtarget = c['subtarget']
+            if c['type'] == 'DAMPED_TRACK':
+                k.track_axis = c['track_axis']
+            elif c['type'] == 'LOCKED_TRACK':
+                k.track_axis = c['track_axis']; k.lock_axis = c['lock_axis']
+            elif c['type'] in ('COPY_ROTATION', 'COPY_TRANSFORMS'):
+                k.owner_space = c.get('owner_space', 'WORLD'); k.target_space = c.get('target_space', 'WORLD')
+        if 'influence' in c:
+            k.influence = float(c['influence'])
+    # drivers
+    nd = 0
+    for d in spec.get('drivers', []):
+        if d.get('expression') is None:
+            continue
+        if d['kind'] == 'property':
+            fc = rig.driver_add('pose.bones["%s"]["%s"]' % (d['bone'], d['prop']))
+        else:
+            fc = rig.driver_add('pose.bones["%s"].rotation_euler' % d['bone'], d['index'])
+        drv = fc.driver
+        drv.type = 'SCRIPTED'
+        for vn, tg in d['variables'].items():
+            var = drv.variables.new()
+            var.name = vn
+            var.type = 'SINGLE_PROP'
+            var.targets[0].id_type = 'OBJECT'
+            var.targets[0].id = rig
+            if len(tg) == 3:
+                var.targets[0].data_path = 'pose.bones["%s"].%s[%d]' % (tg[0], tg[1], tg[2])
+            else:
+                var.targets[0].data_path = 'pose.bones["%s"]["%s"]' % (tg[0], tg[1])
+        drv.expression = d['expression']
+        nd += 1
+    rig.select_set(False)
+    log('rig3: %d bones, %d constraints, %d drivers' % (len(A['bone_order']), len(spec.get('constraints', [])), nd))
+    return rig, go
+
+
+def _sparse_groups(ob, idx, w, names, only=None):
+    """vertex groups from sparse weights (idx (n, k) into names, -1 empty; w (n, k))"""
+    idx = np.asarray(idx); w = np.asarray(w, np.float32)
+    for j, nm in enumerate(names):
+        if only is not None and nm not in only:
+            continue
+        m = idx == j
+        rows = np.nonzero(m.any(1))[0]
+        vals = np.zeros(len(idx), np.float32)
+        vals[rows] = (w * m)[rows].sum(1)
+        mem = np.zeros(len(idx), bool)
+        mem[rows] = True
+        _add_group(ob, nm, vals, mem)
+
+
+def _build_v3(V, sc, location, prefix, replace, log, t0):
+    """FORMAT 3 (woman2 build 13b): the whole body with its rig - the skin (its own quads and UV map, zones, colour, gloss,
+    translucency), the rig (rig3: every bone, the girdle's drivers and controls, the scapular glide surface), the skin's
+    weights (sparse) with linear and dual-quaternion skinning mixed by the vertex group dq_mix (a second Armature
+    modifier with Multi Modifier on: the result is linear x (1 - dq_mix) + dual quaternion x dq_mix), the eyes on their
+    bones, the rib cage on the chest, the chest wall deformed by the rig with its own smoothed weights, the materials.
+    Build 13c: scene.json "shape_keys" {"file", "spec"} adds corrective shape keys (sparse rest-space offsets) whose values
+    are drivers (simple expressions) of the rig's control properties and bone rotations; every key is 0 at rest."""
+    import bpy
+    ver = os.path.basename(V)
+    rigd = json.load(open(os.path.join(V, sc['rig']['file'])))
+    mats = json.load(open(os.path.join(V, 'materials.json')))
+    S = np.load(os.path.join(V, sc['skin']['file']))
+    SH = np.load(os.path.join(V, 'shading.npz'))
+    Wd = np.load(os.path.join(V, sc['weights']['file']))
+    P0 = sc['prefix']
+    P = prefix or P0
+    pre = lambda n: P + n[len(P0):] if n.startswith(P0) else n
+    O = {}
+    for k, v in sc['objects'].items():
+        O[k] = pre(v) if isinstance(v, str) else {kk: pre(vv) for kk, vv in v.items()}
+    names_all = [O['body'], O['rig'], O['ribcage'], O.get('chest_wall'), O['rig'] + '_ScapulaGlide'] + list(O.get('eyes', {}).values())
+    taken = [n for n in names_all if n and n in bpy.data.objects]
+    if taken and not replace:
+        raise RuntimeError('build_base_torso: objects already exist: %s (pass replace=True / --replace, or another prefix)' % taken)
+    for n in taken:
+        bpy.data.objects.remove(bpy.data.objects[n], do_unlink=True)
+    coll = bpy.data.collections.get(P) or bpy.data.collections.new(P)
+    if coll.name not in bpy.context.scene.collection.children:
+        bpy.context.scene.collection.children.link(coll)
+    vl = bpy.context.view_layer
+    prev_active = vl.objects.active
+    status = 'woman2 %s, built by build_base_torso.py (format 3)' % ver
+    rig, glide = rig3(rigd, coll, O['rig'], pack_dir=V, log=log)
+    rig['status'] = status
+    # ---- the skin
+    v32 = S['v'].astype(np.float32)
+    me = _make_mesh(O['body'], v32, S['poly_verts'], S['poly_sizes'])
+    _add_uv(me, S['uv_corner'], sc['skin'].get('uv_map', 'UVMap'))
+    ob = bpy.data.objects.new(O['body'], me)
+    coll.objects.link(ob)
+    names = [str(x) for x in Wd['bones']]
+    _sparse_groups(ob, Wd['idx'], Wd['w'], names)
+    for z in sc.get('zones', []):
+        a = S[z].astype(np.float32)
+        _add_group(ob, 'zone_' + z, a, a > 0)
+        at = me.attributes.new('zone_' + z, 'FLOAT', 'POINT')
+        at.data.foreach_set('value', a)
+    if 'pores_strength' in S.files:
+        _add_group(ob, 'pores_strength', S['pores_strength'].astype(np.float32), S['pores_strength'] > 0)
+    # corrective shape keys (build 13c): rest-space offsets (sparse) driven by simple expressions of the rig's controls
+    nsk = 0; not_simple = []
+    if sc.get('shape_keys'):
+        ks = sc['shape_keys']
+        KZ = np.load(os.path.join(V, ks['file']))
+        kspec = json.load(open(os.path.join(V, ks['spec'])))
+        ob.shape_key_add(name='Basis', from_mix=False)
+        for k in kspec['keys']:
+            kb = ob.shape_key_add(name=k['name'], from_mix=False)
+            co = v32.copy()
+            co[KZ['idx_' + k['name']]] += KZ['d_' + k['name']]
+            kb.data.foreach_set('co', co.ravel())
+            kb.slider_min, kb.slider_max = float(k['slider'][0]), float(k['slider'][1])
+            kb.value = 0.0
+            drv = kb.driver_add('value').driver
+            drv.type = 'SCRIPTED'
+            for vn, tg in k['variables'].items():
+                var = drv.variables.new()
+                var.name = vn
+                var.type = 'SINGLE_PROP'
+                var.targets[0].id_type = 'OBJECT'
+                var.targets[0].id = rig
+                var.targets[0].data_path = ('pose.bones["%s"].%s[%d]' % tuple(tg)) if len(tg) == 3 else ('pose.bones["%s"]["%s"]' % tuple(tg))
+            drv.expression = k['expression']
+            if not getattr(drv, 'is_simple_expression', True):
+                not_simple.append(k['name'])
+            nsk += 1
+        log('shape keys: %d corrective keys with drivers (%d not simple expressions)' % (nsk, len(not_simple)))
+    dq = Wd['dq_mix'].astype(np.float32)
+    _add_group(ob, sc['skinning']['dq_group'], dq, dq > 0)
+    for nm in ('skin_roughness', 'skin_sss_scale'):
+        at = me.attributes.new(nm, 'FLOAT', 'POINT')
+        at.data.foreach_set('value', SH[nm].astype(np.float32))
+    ca = me.color_attributes.new('skin_colour', 'FLOAT_COLOR', 'POINT')
+    ca.data.foreach_set('color', SH['skin_colour'].astype(np.float32).ravel())
+    al = me.attributes.new('arm_limb', 'BOOLEAN', 'POINT')
+    al.data.foreach_set('value', S['arm_limb'].astype(bool))
+    # modifiers: the micro-detail layer, then linear skinning, then dual quaternion mixed in by dq_mix
+    micro = json.load(open(os.path.join(V, 'micro_detail.json')))
+    shown = []
+    for m in micro['modifiers']:
+        if m['type'] == 'ARMATURE':
+            continue
+        md = ob.modifiers.new(m['name'], m['type'])
+        if m['type'] == 'DISPLACE':
+            t = m['texture']
+            tex = bpy.data.textures.get(pre(t['name'])) or bpy.data.textures.new(pre(t['name']), t['settings']['type'])
+            for k, val in t['settings'].items():
+                if k != 'type':
+                    setattr(tex, k, val)
+            md.texture = tex
+        for k, val in m['settings'].items():
+            setattr(md, k, val)
+        for k in ('show_viewport', 'show_render', 'show_in_editmode', 'show_on_cage'):
+            setattr(md, k, m[k])
+        shown.append(m['show_viewport'])
+    a1 = ob.modifiers.new('Armature', 'ARMATURE')
+    a1.object = rig
+    a1.use_deform_preserve_volume = False
+    a2 = ob.modifiers.new('Armature_DQ', 'ARMATURE')
+    a2.object = rig
+    a2.use_deform_preserve_volume = True
+    a2.use_multi_modifier = True
+    a2.vertex_group = sc['skinning']['dq_group']
+    shown += [True, True]
+    ob.parent = rig
+    ob.matrix_parent_inverse = rig.matrix_world.inverted()
+    mat = _graph_material(pre(mats['skin']['name']), mats['skin'], pack_dir=V)
+    me.materials.append(mat)
+    ob['status'] = status
+    # ---- eyes on their bones
+    if 'eyes' in sc:
+        E = np.load(os.path.join(V, sc['eyes']['file']))
+        parts = [str(x) for x in E['part_names']]
+        emats = [_graph_material(pre(mats['eye_' + p_]['name']), mats['eye_' + p_], pack_dir=V) for p_ in parts]
+        for side in ('L', 'R'):
+            em = _make_mesh(O['eyes'][side], E[side + '_v'].astype(np.float32), E[side + '_poly_verts'], E[side + '_poly_sizes'])
+            _add_uv(em, E[side + '_uv_corner'])
+            for mm in emats:
+                em.materials.append(mm)
+            em.polygons.foreach_set('material_index', E[side + '_material'].astype(np.int32))
+            eo = bpy.data.objects.new(O['eyes'][side], em)
+            coll.objects.link(eo)
+            eo.parent = rig
+            eo.parent_type = 'BONE'
+            eo.parent_bone = sc['eyes']['bones'][side]
+            vl.update()
+            eo.matrix_world = rig.matrix_world.copy()
+            eo['status'] = status + ': the eye, carried by its bone'
+    # ---- rib cage (chest bone) and chest wall (deformed with its own weights)
+    RC = np.load(os.path.join(V, 'ribcage.npz'))
+    rme = _make_mesh(O['ribcage'], RC['v'], RC['f'])
+    rc = bpy.data.objects.new(O['ribcage'], rme)
+    coll.objects.link(rc)
+    rme.materials.append(_graph_material(pre(mats['ribcage']['name']), mats['ribcage']))
+    rc.parent = rig
+    rc.parent_type = 'BONE'
+    rc.parent_bone = 'chest'
+    vl.update()
+    rc.matrix_world = rig.matrix_world.copy()
+    rc.hide_set(True)
+    rc.hide_render = True
+    if O.get('chest_wall'):
+        cs = sc['chest_wall']
+        CW = np.load(os.path.join(V, cs['file']))
+        cme = _make_mesh(O['chest_wall'], CW[cs['vertices']].astype(np.float32), CW['mesh_f'].astype(np.int32))
+        cw = bpy.data.objects.new(O['chest_wall'], cme)
+        coll.objects.link(cw)
+        cme.materials.append(_graph_material(pre(mats['chest_wall']['name']), mats['chest_wall']))
+        _sparse_groups(cw, Wd['cw_idx'], Wd['cw_w'], names)
+        cm = cw.modifiers.new('Armature', 'ARMATURE')
+        cm.object = rig
+        cw.parent = rig
+        cw.matrix_parent_inverse = rig.matrix_world.inverted()
+        cw.hide_set(True)
+        cw.hide_render = True
+        cw['status'] = status + ': the chest wall under the breasts, deformed by the rig with its own smoothed weights (firm, not locked)'
+    # ---- rest: every pose transform at identity; the skin must come back exactly
+    for pb in rig.pose.bones:
+        pb.location = (0, 0, 0)
+        pb.scale = (1, 1, 1)
+        pb.rotation_euler = (0, 0, 0)
+        pb.rotation_quaternion = (1, 0, 0, 0)
+    rig.location = tuple(float(x) for x in location)
+    for m in ob.modifiers:
+        if m.type != 'ARMATURE':
+            m.show_viewport = False
+    vl.update()
+    vl.update()
+    dg = bpy.context.evaluated_depsgraph_get()
+    ev = ob.evaluated_get(dg).to_mesh()
+    Pe = np.zeros(len(ev.vertices) * 3, np.float32)
+    ev.vertices.foreach_get('co', Pe)
+    ob.evaluated_get(dg).to_mesh_clear()
+    for m, sv in zip(ob.modifiers, shown):
+        m.show_viewport = sv
+    rest_dev = float(np.abs(Pe.reshape(-1, 3) + np.array(rig.location, np.float32) - (v32 + np.array(location, np.float32))).max())
+    info = dict(version=ver, format=3, objects=[o.name for o in coll.objects], verts=len(me.vertices), faces=len(me.polygons),
+                vertex_groups=len(ob.vertex_groups), bones=len(rig.data.bones),
+                drivers=len(rig.animation_data.drivers) if rig.animation_data else 0,
+                modifiers=[m.name for m in ob.modifiers], rest_pose_max_dev_mm=round(rest_dev * 1e3, 5), seconds=round(time.time() - t0, 1),
+                shape_keys=nsk, shape_key_drivers_not_simple=not_simple)
+    vl.objects.active = prev_active if prev_active is not None and prev_active.name in vl.objects else ob
+    rig.hide_set(sc.get('rig_hidden', False))
+    log('build_base_torso: ' + json.dumps(info))
+    return info
+
+
 def _parse(argv):
     import argparse
     ap = argparse.ArgumentParser(prog='build_base_torso.py')
@@ -567,6 +896,7 @@ def _parse(argv):
     ap.add_argument('--prefix')
     ap.add_argument('--replace', action='store_true')
     ap.add_argument('--save', help='save the .blend here afterwards (inside Blender)')
+    ap.add_argument('--compress', action='store_true', help='save it compressed (build 13c: 64 shape keys of 686k vertices)')
     ap.add_argument('--port', type=int, help='outside Blender: send to the Blender MCP socket on this port')
     ap.add_argument('--instance', help='outside Blender: assert bpy.app.driver_namespace["bmcp_instance"] first')
     return ap.parse_args(argv)
@@ -585,7 +915,7 @@ def _blender_main(args):
     info = build(location=args.get('location', (0, 0, 0)), version=args.get('version'), prefix=args.get('prefix'),
                  replace=args.get('replace', False), root=_root(args), pack=args.get('pack'))
     if args.get('save'):
-        bpy.ops.wm.save_as_mainfile(filepath=os.path.abspath(args['save']))
+        bpy.ops.wm.save_as_mainfile(filepath=os.path.abspath(args['save']), compress=bool(args.get('compress')))
         print('saved', args['save'])
     return info
 
@@ -618,7 +948,7 @@ def _auto():
             argv = sys.argv[sys.argv.index('--') + 1:] if '--' in sys.argv else []
             a = _parse(argv)
             return _blender_main(dict(location=a.location, version=a.version, prefix=a.prefix, replace=a.replace,
-                                      save=a.save, pack=a.pack))
+                                      save=a.save, pack=a.pack, compress=a.compress))
     elif __name__ == '__main__':
         a = _parse(sys.argv[1:])
         if a.port is None:

@@ -47,6 +47,13 @@ OUT_JSON = os.path.join(L, "feat_nose_v3b_checks.json")
 PROOF_JSON = os.path.join(L, "feat_nose_v3b_proofs.json")
 
 
+import os as _os_mg, sys as _sys_mg  # noqa: E402  (build A1: the engine's one closest point, normals, cotangent Laplacian)
+_MG_DIR = _os_mg.path.normpath(_os_mg.path.join(_os_mg.path.dirname(_os_mg.path.abspath(__file__)), '../tools'))
+if _MG_DIR not in _sys_mg.path:
+    _sys_mg.path.append(_MG_DIR)
+import mesh_geom as _MG  # noqa: E402
+
+
 def jdump(o, fn):
     json.dump(o, open(fn, "w"), indent=1, default=lambda x: x.tolist() if hasattr(x, "tolist") else (float(x) if isinstance(x, np.floating) else str(x)))
 
@@ -114,10 +121,7 @@ def mesh_crop(field_fn, open_fn, lo, hi, grid, band=BAND, open_band=OPEN):
 
 
 def vnormals(P, f):
-    fn = np.cross(P[f[:, 1]] - P[f[:, 0]], P[f[:, 2]] - P[f[:, 0]]); N = np.zeros_like(P)
-    for k in range(3):
-        np.add.at(N, f[:, k], fn)
-    return N / np.maximum(np.linalg.norm(N, axis=1, keepdims=True), 1e-12)
+    return _MG.vertex_normals(P, f, eps=1e-12)
 
 
 def crop_box():

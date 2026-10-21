@@ -4,8 +4,12 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>__TITLE__</title>
-<!-- engine/tools/part_frame_view.html: the part-frame viewer template; part_frame.py fills the data block. One file, no
-     network: WebGL2, orbit / pan / zoom, click or box-pick dots, copy picks as addresses that survive a remesh. -->
+<meta name="translator-template" content="__TEMPLATE__">
+<!-- engine/tools/part_frame_view.html: the Translator's viewer template; engine/tools/translator_pages.py fills it (its
+     title, the page's way around, its data block). One file, no network: WebGL2, orbit / pan / zoom, click or box-pick
+     dots, copy picks as addresses that survive a remesh. Build L3 (2026-10-21): links to the Translator's home and to
+     the model's other views; a left-handed frame (the object page's, a right-side part's) is drawn as the model is,
+     not as its mirror image. -->
 <style>
 :root{--bg:#f4f2ee;--panel:#ffffff;--ink:#1d1d1f;--mute:#6b6b70;--line:#e2dfd8;--accent:#c75b12;--sel:#ff7a1a;--btn:#efece6;--btnh:#e3dfd6}
 @media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#18181b;--panel:#222226;--ink:#ececef;--mute:#9a9aa2;--line:#34343a;--accent:#ff9a4d;--sel:#ffb15c;--btn:#2d2d33;--btnh:#3a3a42}}
@@ -43,6 +47,10 @@ table.m td:last-child{text-align:right;font-variant-numeric:tabular-nums}
 .help{color:var(--mute);font-size:12px}.help b{color:var(--ink);font-weight:600}
 .prow{display:flex;gap:6px;align-items:center;padding:2px 0;cursor:pointer}.prow:hover{color:var(--ink)}.prow .sw{width:10px;height:10px;border-radius:2px;flex:none}.prow a{margin-left:auto;color:var(--accent)}
 #msg{color:var(--accent);font-size:12px;min-height:1.2em}
+.tnav{display:flex;flex-wrap:wrap;gap:2px 10px;align-items:center;font-size:12px;padding:0 0 8px;margin-bottom:8px;border-bottom:1px solid var(--line)}
+.tnav a{color:var(--accent);text-decoration:none}.tnav a:hover{text-decoration:underline}.tnav .here{font-weight:700;color:var(--ink)}.tnav .home{font-weight:700}
+.find{width:100%;font:inherit;padding:4px 7px;border:1px solid var(--line);border-radius:6px;background:var(--bg);color:var(--ink)}
+.fn{color:var(--mute);font-size:11px;margin-left:5px}
 @media (max-width:700px){#app{flex-direction:column}aside{width:100%;max-height:46vh;border-left:0;border-top:1px solid var(--line);padding:10px 16px}#stage{min-height:54vh}}
 </style>
 </head>
@@ -50,6 +58,8 @@ table.m td:last-child{text-align:right;font-variant-numeric:tabular-nums}
 <div id="app">
  <div id="stage"><canvas id="gl"></canvas><div id="labels"></div><div id="box"></div><div id="tip"></div><div id="legend"></div></div>
  <aside>
+  <nav class="tnav" id="tnav"></nav>
+  <div class="row"><input class="find" id="jump" list="jumplist" placeholder="Go to a part: left hand, thumb, breast ..." autocomplete="off"><datalist id="jumplist"></datalist></div>
   <h1 id="title"></h1><div class="sub" id="subtitle"></div>
   <h2>View</h2>
   <div class="row" id="views"></div>
@@ -57,6 +67,12 @@ table.m td:last-child{text-align:right;font-variant-numeric:tabular-nums}
   <h2>Show</h2>
   <div class="row" id="layers"></div>
   <div class="row"><label>Colour <select id="colour"></select></label><label>Dots <input type="range" id="dot" min="1" max="10" step="0.5" value="3"></label></div>
+  <div class="row"><button id="var" title="Colour the skin by its height against its own smooth form: ridges, grooves, bumps, dents and kinks stand out (key V)">Variance</button><span id="varmsg" class="sub"></span></div>
+  <div id="varbox" style="display:none">
+   <div class="row"><label title="How wide a variance to look for: about this wide or narrower shows; broader shapes count as the form">Size <input type="range" id="vsize" min="0" max="1000" step="1"></label><span id="vsizet" class="sub"></span></div>
+   <div class="row"><label title="How high or deep a variance must be to show (Auto: 6 x this view's own noise)">Show from <input type="range" id="vthr" min="0" max="1000" step="1"></label><span id="vthrt" class="sub"></span><button id="vauto" title="back to 6 x this view's own noise">Auto</button></div>
+   <div class="row"><label title="Sizes down to the mesh's own spacing: pores and mesh noise show"><input type="checkbox" id="vfine"> Finer, down to the mesh</label></div>
+  </div>
   <h2>Picked <span id="count" class="sub"></span></h2>
   <ul id="sel"></ul>
   <div class="row"><button class="primary" id="copy">Copy for chat</button><button id="run" title="fill the grid points between the last two picked grid points on one grid line">Run between last two</button><button id="undo">Undo</button><button id="clear">Clear</button><button id="boxmode" title="drag a box to pick every visible dot inside">Box</button></div>
@@ -71,14 +87,17 @@ table.m td:last-child{text-align:right;font-variant-numeric:tabular-nums}
    vertices. A grid dot's name is its address. A vertex is written in the part's address system when that address lands back on
    it, otherwise as xyz (nearest surface point). Addresses re-resolve on a later or remeshed build of this part; vertex numbers
    are listed for this build only. Addresses pasted from the earlier grid (h+, h-, tube) still resolve.</div>
-  <div id="partsbox" style="display:none"><h2>Parts <span id="pcount" class="sub"></span></h2><div id="parts" class="help"></div></div>
+  <div id="partsbox" style="display:none"><h2>Parts <span id="pcount" class="sub"></span></h2><input class="find" id="pfind" placeholder="Find a part in this model" autocomplete="off"><div id="parts" class="help"></div></div>
   <h2>Frame</h2><div id="frame" class="help"></div>
   <h2>Measures</h2><div id="measures"></div>
  </aside>
 </div>
+<script id="nav-data" type="application/json">/*__NAV__*/null</script>
 <script id="data" type="application/json">/*__DATA__*/null</script>
 <script>
 "use strict";
+/*__NAVJS__*/
+const NAV = JSON.parse(document.getElementById("nav-data").textContent);
 const D = JSON.parse(document.getElementById("data").textContent);
 const I = D.info, PART = I.part, AK = I.address.kind;
 function dec(s, T){ const b = atob(s), u = new Uint8Array(b.length); for (let i = 0; i < b.length; i++) u[i] = b.charCodeAt(i); return new T(u.buffer); }
@@ -92,6 +111,12 @@ const FIELDS = {}; for (const k in D.fields) FIELDS[k] = dec(D.fields[k], Float3
 const LMN = Object.keys(I.landmarks_cm), LMP = LMN.map(k => I.landmarks_cm[k]);
 const SIDES = I.address.sides || ["+"];
 const AXN = I.axes;
+// build L3: a left-handed frame (the object page's x = the model's right; a right-side part's mirrored frame) drawn by a
+// right-handed camera shows the mirror image; the view mirrors it back (its x row negated), so every view shows the
+// model as it is: in a front view the model's right is on the screen's left. Read from the frame's recorded handedness.
+const LEFT = /left-handed/.test(I.handedness || ""), HS = LEFT ? -1 : 1;
+const SIDEW = {L: "the model's left", R: "the model's right"};
+const axLabel = a => AXN[a] + (a === "x" && I.side && SIDEW[I.side] && /lateral/.test(AXN[a]) ? ` (${SIDEW[I.side]})` : "");
 // build L1: the whole-object page (engine/tools/language.py) carries D.object: per vertex its part and its address in
 // that part's own system; part pages do not, and everything below behaves as before for them
 const OBJ = D.object || null;
@@ -207,6 +232,287 @@ function setColour(mode){ const c = new Float32Array(3*nV), fn = MODES[mode]; co
       : mode === "address system" ? `<span class="bar" style="background:linear-gradient(90deg,${stops})"></span> ${SYS.map(s => s.name).join(" &middot; ")}`
       : `${mode} ${a.toFixed(2)}<span class="bar" style="background:linear-gradient(90deg,${stops})"></span>${b.toFixed(2)}`; leg.style.display = "block"; }
   gl.bindBuffer(gl.ARRAY_BUFFER, bC); gl.bufferData(gl.ARRAY_BUFFER, c, gl.STATIC_DRAW); draw(); }
+/*VARIANCE-BEGIN*/
+// THE VARIANCE VIEW (build L5, 2026-10-21): the skin's height against its own smooth form, at a size the person sets.
+// The person (2026-10-21), on the breast pages' height colouring: "the ability to toggle this view selectively ... it
+// should pick up variations in height, even small ridges or curves or grooves. Not pore level unless you can make it so
+// you can tune the sensitivity ... this view could make it very easy for someone to detect variances in surfaces."
+// THE FORM round a place, at size s: the implicit quadric (a x^2 + b y^2 + c z^2 + d xy + e yz + f xz + g x + h y + i z
+// + j = 0) that best passes through the skin AROUND the place (from 0.35 R to R = 3 s; weights (1 - d^2/R^2)^2 x area;
+// skin facing the same way only, so a second sheet - an arm by the side - never counts), its gradient along the skin's
+// normals there (in direction, weight MU) and exactly the place's normal at the place; Tukey re-weighted twice, so the variance looked
+// for is a minority and does not pull the form. A quadric holds a plane, a sphere, a cylinder and a saddle exactly at any
+// size, so smooth curved skin reads ~0 (build 13a3: a smoothed copy reads curvature, not relief).
+// HEIGHT: each vertex's signed distance from the forms round it (f / |grad f|, + = raised, blended over the places within
+// 0.375 R). VARIANCE(s) = that height averaged over s/4 (pores and mesh noise left out; not at all when s/4 is under 1.2
+// mesh edges): ridges, grooves, bumps, dents and kinks up to about s wide read at most of their height (build L5's planted
+// proof: engine/tools/test_surface_variance.json), about 3 s wide at a fifth to two fifths, broader ones are the form.
+// The skin is read as points one per cell of R/4 and normal direction (the cell's mean, lifted back onto the skin by the
+// sag its own normals measure), so a 686k-vertex body takes seconds. The mesh's open edges never count as data (their
+// normals lean). One copy: the page runs it, engine/tools/variance_node.js runs the same text for the proofs.
+// OUT OF THE BODY (build L5b, 2026-10-21): + is out of the body on every page, whatever its frame or its faces' winding.
+// A face's winding gives its normal only in the handedness the mesh was made in; a mirrored page frame (a right-side
+// part's, the whole object's since build L3) turns every normal into the body, and the view read woman2 13a3's right
+// nipple 1.3 mm sunk. So each piece of the mesh (faces joined through their vertices) takes its outward side from its
+// own enclosed volume when it is closed (every edge in exactly two faces: out is the side the volume is positive on),
+// else from its winding turned by the page frame's handedness (frameSign: the frame's determinant, or the handedness it
+// records). An open piece's own shape cannot say which side is out: the inside of a mouth (skin facing the hollow it
+// lines) and a dome wound inward are the same mesh, and on 74 of the 650 pages in cases/ (mouths, eyes, a brick's frog,
+// dragon feet) an open part's capped volume points the other way from its outward side.
+function frameSign(info){                                          // +1: the page keeps the model's handedness; -1: it mirrors it
+  const fr = info && info.frame, R = fr && fr.R_rows_source; let d = fr && typeof fr.det === "number" ? fr.det : NaN;
+  if (!(Math.abs(d) > 0.5) && R && R.length === 3)
+    d = R[0][0]*(R[1][1]*R[2][2]-R[1][2]*R[2][1]) - R[0][1]*(R[1][0]*R[2][2]-R[1][2]*R[2][0]) + R[0][2]*(R[1][0]*R[2][1]-R[1][1]*R[2][0]);
+  if (Math.abs(d) > 0.5) return d > 0 ? 1 : -1;
+  return /left-handed/.test((info && info.handedness) || "") ? -1 : 1;
+}
+function varianceEngine(V, F, prm){
+  prm = Object.assign({outer: 3, hole: 0.35, inner: 0.25, mu: 0.1, robust: 2, mag: "size", info: null}, prm || {});
+  const n = V.length / 3, nf = F.length / 3, MU2 = prm.mu * prm.mu; let MAG = 1;
+  const VN = new Float64Array(3 * n), VA = new Float64Array(n);
+  for (let t = 0; t < nf; t++){
+    const a = 3 * F[3*t], b = 3 * F[3*t+1], c = 3 * F[3*t+2];
+    const ux = V[b]-V[a], uy = V[b+1]-V[a+1], uz = V[b+2]-V[a+2], wx = V[c]-V[a], wy = V[c+1]-V[a+1], wz = V[c+2]-V[a+2];
+    const nx = uy*wz-uz*wy, ny = uz*wx-ux*wz, nz = ux*wy-uy*wx, ar = Math.sqrt(nx*nx + ny*ny + nz*nz) / 6;
+    VN[a] += nx; VN[a+1] += ny; VN[a+2] += nz; VN[b] += nx; VN[b+1] += ny; VN[b+2] += nz; VN[c] += nx; VN[c+1] += ny; VN[c+2] += nz;
+    VA[a/3] += ar; VA[b/3] += ar; VA[c/3] += ar;
+  }
+  const lo = [Infinity, Infinity, Infinity], hi = [-Infinity, -Infinity, -Infinity];
+  for (let i = 0; i < n; i++){ const l = Math.hypot(VN[3*i], VN[3*i+1], VN[3*i+2]);
+    if (!(l > 0) || !(VA[i] > 0)){ VA[i] = 0; continue; }
+    VN[3*i] /= l; VN[3*i+1] /= l; VN[3*i+2] /= l;
+    for (let a = 0; a < 3; a++){ const v = V[3*i+a]; if (v < lo[a]) lo[a] = v; if (v > hi[a]) hi[a] = v; } }
+  const el = [], est = Math.max(1, Math.floor(nf / 100000));
+  for (let t = 0; t < nf; t += est){ const a = 3 * F[3*t], b = 3 * F[3*t+1]; el.push(Math.hypot(V[a]-V[b], V[a+1]-V[b+1], V[a+2]-V[b+2])); }
+  el.sort((x, y) => x - y); const edge = el.length ? el[el.length >> 1] : 1;
+  // the mesh's open edges (an edge of one face): their vertices' normals lean, so they are never data
+  const EK = new Float64Array(3 * nf);
+  for (let t = 0; t < nf; t++) for (let e = 0; e < 3; e++){ const p = F[3*t+e], q = F[3*t+(e+1)%3]; EK[3*t+e] = p < q ? p * n + q : q * n + p; }
+  const UF = new Int32Array(n); for (let i = 0; i < n; i++) UF[i] = i;          // the pieces (build L5b): union-find over faces
+  const root = i => { while (UF[i] !== i){ UF[i] = UF[UF[i]]; i = UF[i]; } return i; };
+  for (let t = 0; t < nf; t++){ const a = root(F[3*t]); for (let e = 1; e < 3; e++){ const b = root(F[3*t+e]); if (a !== b) UF[b] = a; } }
+  EK.sort(); const EDGEV = new Uint8Array(n), OPEN = new Uint8Array(n);
+  for (let j = 0; j < EK.length; ){ let k = j + 1; while (k < EK.length && EK[k] === EK[j]) k++;
+    if (k - j !== 2){ const q = EK[j] % n, p = (EK[j] - q) / n; OPEN[root(p)] = 1; if (k - j === 1){ EDGEV[p] = 1; EDGEV[q] = 1; } } j = k; }
+  // ---- each piece's outward side (build L5b; see OUT OF THE BODY above): a closed piece by the sign of its volume (6 x,
+  // summed from its first vertex), decisive past 1e-4 x its area^1.5 (a sphere's is 0.094); any other by the frame
+  const FS = frameSign(prm.info), VOL = new Float64Array(n), PA = new Float64Array(n), SG = new Int8Array(n);
+  for (let t = 0; t < nf; t++){ const r = root(F[3*t]), o = 3 * r, a = 3 * F[3*t], b = 3 * F[3*t+1], c = 3 * F[3*t+2];
+    const ax = V[a]-V[o], ay = V[a+1]-V[o+1], az = V[a+2]-V[o+2], bx = V[b]-V[o], by = V[b+1]-V[o+1], bz = V[b+2]-V[o+2], cx = V[c]-V[o], cy = V[c+1]-V[o+1], cz = V[c+2]-V[o+2];
+    VOL[r] += ax*(by*cz - bz*cy) + ay*(bz*cx - bx*cz) + az*(bx*cy - by*cx); }
+  for (let i = 0; i < n; i++) PA[root(i)] += VA[i];
+  const OUTW = {frame: FS, pieces: 0, closed: 0, by_volume_turned: 0, vertices_turned: 0};
+  for (let r = 0; r < n; r++){ if (UF[r] !== r || !(PA[r] > 0)) continue; OUTW.pieces++;
+    const byVol = !OPEN[r] && Math.abs(VOL[r] / 6) > 1e-4 * Math.pow(PA[r], 1.5); if (byVol) OUTW.closed++;
+    SG[r] = byVol ? (VOL[r] > 0 ? 1 : -1) : FS; if (byVol && SG[r] !== FS) OUTW.by_volume_turned++; }
+  for (let i = 0; i < n; i++) if (VA[i] > 0 && SG[root(i)] < 0){ VN[3*i] = -VN[3*i]; VN[3*i+1] = -VN[3*i+1]; VN[3*i+2] = -VN[3*i+2]; OUTW.vertices_turned++; }
+  const ag = d => d <= 0 ? 0 : d >= 0.4 ? 1 : d / 0.4;            // facing the same way: full weight within 66 deg, none past 90
+  // ---- the skin as points: one per cell of size h and normal direction (every vertex its own when h <= 0.75 edge): the
+  // cell's area-weighted mean position moved along its mean normal by the sag its normals measure (for skin of shape
+  // operator S round the mean, mean(n_i . (p_i - mean p)) = -mean(u S u) = -2 x the mean's depth under the skin)
+  function* pointSet(h){
+    const own = new Int32Array(n).fill(-1); let m = 0;
+    if (!(h > 0.75 * edge)){ for (let i = 0; i < n; i++) if (VA[i] > 0 && !EDGEV[i]) own[i] = m++; }
+    else {
+      const gx = Math.floor((hi[0] - lo[0]) / h) + 2, gy = Math.floor((hi[1] - lo[1]) / h) + 2, map = new Map();
+      for (let i = 0; i < n; i++){
+        if (!(VA[i] > 0) || EDGEV[i]) continue;
+        const ix = Math.floor((V[3*i] - lo[0]) / h), iy = Math.floor((V[3*i+1] - lo[1]) / h), iz = Math.floor((V[3*i+2] - lo[2]) / h);
+        const x = VN[3*i], y = VN[3*i+1], z = VN[3*i+2], X = Math.abs(x), Y = Math.abs(y), Z = Math.abs(z);
+        const bk = X >= Y && X >= Z ? (x > 0 ? 0 : 1) : Y >= Z ? (y > 0 ? 2 : 3) : (z > 0 ? 4 : 5);
+        const key = ((iz * gy + iy) * gx + ix) * 6 + bk; let k = map.get(key);
+        if (k === undefined){ k = m++; map.set(key, k); } own[i] = k;
+        if ((i & 65535) === 0) yield 0;
+      }
+    }
+    const P = new Float64Array(3 * m), PN = new Float64Array(3 * m), W = new Float64Array(m), S = new Float64Array(m);
+    for (let i = 0; i < n; i++){ const k = own[i]; if (k < 0) continue; const w = VA[i]; W[k] += w;
+      S[k] += w * (VN[3*i] * V[3*i] + VN[3*i+1] * V[3*i+1] + VN[3*i+2] * V[3*i+2]);
+      for (let a = 0; a < 3; a++){ P[3*k+a] += w * V[3*i+a]; PN[3*k+a] += w * VN[3*i+a]; } }
+    for (let k = 0; k < m; k++){ const w = W[k];
+      for (let a = 0; a < 3; a++){ P[3*k+a] /= w; PN[3*k+a] /= w; }
+      const sag = 0.5 * (S[k] / w - (PN[3*k] * P[3*k] + PN[3*k+1] * P[3*k+1] + PN[3*k+2] * P[3*k+2]));
+      const l = Math.hypot(PN[3*k], PN[3*k+1], PN[3*k+2]) || 1;
+      for (let a = 0; a < 3; a++){ PN[3*k+a] /= l; P[3*k+a] += PN[3*k+a] * sag; } }
+    return {m, P, N: PN, W, own};
+  }
+  // ---- a uniform grid over points (cell g): the points in the 27 cells round a cell, gathered once per cell
+  function grid(P, m, g){
+    const gx = Math.floor((hi[0] - lo[0]) / g) + 3, gy = Math.floor((hi[1] - lo[1]) / g) + 3, map = new Map(), cell = new Int32Array(m), cnt = [], xyz = [];
+    for (let k = 0; k < m; k++){ const ix = Math.floor((P[3*k] - lo[0]) / g) + 1, iy = Math.floor((P[3*k+1] - lo[1]) / g) + 1, iz = Math.floor((P[3*k+2] - lo[2]) / g) + 1;
+      const key = (iz * gy + iy) * gx + ix; let c = map.get(key); if (c === undefined){ c = cnt.length; map.set(key, c); cnt.push(0); xyz.push(ix, iy, iz); } cell[k] = c; cnt[c]++; }
+    const nc = cnt.length, start = new Int32Array(nc + 1); for (let c = 0; c < nc; c++) start[c+1] = start[c] + cnt[c];
+    const fillp = start.slice(0, nc), order = new Int32Array(m); for (let k = 0; k < m; k++) order[fillp[cell[k]]++] = k;
+    return {g, gx, gy, map, start, order, nc, xyz};
+  }
+  let buf = new Int32Array(4096);
+  function gather(G, ix, iy, iz){
+    let k = 0;
+    for (let dz = -1; dz <= 1; dz++) for (let dy = -1; dy <= 1; dy++) for (let dx = -1; dx <= 1; dx++){
+      const c = G.map.get(((iz + dz) * G.gy + (iy + dy)) * G.gx + (ix + dx)); if (c === undefined) continue;
+      const s0 = G.start[c], s1 = G.start[c+1];
+      if (k + s1 - s0 > buf.length){ const b2 = new Int32Array(Math.max(2 * buf.length, k + s1 - s0)); b2.set(buf.subarray(0, k)); buf = b2; }
+      for (let j = s0; j < s1; j++) buf[k++] = G.order[j];
+    }
+    return k;
+  }
+  function groups(G){                                              // the vertices grouped by the grid cell they fall in
+    const by = new Map();
+    for (let i = 0; i < n; i++){ if (!(VA[i] > 0)) continue;
+      const ix = Math.floor((V[3*i] - lo[0]) / G.g) + 1, iy = Math.floor((V[3*i+1] - lo[1]) / G.g) + 1, iz = Math.floor((V[3*i+2] - lo[2]) / G.g) + 1;
+      const key = (iz * G.gy + iy) * G.gx + ix; let a = by.get(key); if (!a){ a = [ix, iy, iz]; by.set(key, a); } a.push(i); }
+    return by;
+  }
+  // ---- one quadric: least squares on M (upper triangle) and B, its gradient at the place exactly the place's normal in
+  // that direction (grad . n = 1: no flat or turned-over solution), the system scaled to a unit diagonal first (one-sided
+  // data at an open edge leaves it badly conditioned). False when it fails or its gradient there turns past ~37 deg.
+  const M = new Float64Array(100), B = new Float64Array(10), r = new Float64Array(10), X = new Float64Array(10), Y = new Float64Array(10), D = new Float64Array(10);
+  function back(rhs, out){
+    for (let i = 0; i < 10; i++){ let s = rhs[i]; for (let k = 0; k < i; k++) s -= M[10*i+k] * out[k]; out[i] = s / M[11*i]; }
+    for (let i = 9; i >= 0; i--){ let s = out[i]; for (let k = i + 1; k < 10; k++) s -= M[10*k+i] * out[k]; out[i] = s / M[11*i]; }
+  }
+  function fit(cx, cy, cz){
+    let mx = 0; for (let i = 0; i < 10; i++){ for (let l = 0; l < i; l++) M[10*i+l] = M[10*l+i]; mx = Math.max(mx, M[11*i]); }
+    if (!(mx > 0)) return false;
+    for (let i = 0; i < 10; i++) D[i] = 1 / Math.sqrt(M[11*i] + 1e-12 * mx);
+    for (let i = 0; i < 10; i++){ for (let l = 0; l < 10; l++) M[10*i+l] *= D[i] * D[l]; M[11*i] += 1e-10; B[i] *= D[i]; }
+    for (let i = 0; i < 10; i++) for (let j = 0; j <= i; j++){ let s = M[10*i+j]; for (let k = 0; k < j; k++) s -= M[10*i+k] * M[10*j+k];
+      if (i === j){ if (!(s > 1e-13)) return false; M[11*i] = Math.sqrt(s); } else M[10*i+j] = s / M[11*j]; }
+    back(B, X); r.fill(0); r[1] = cx * D[1]; r[2] = cy * D[2]; r[3] = cz * D[3]; back(r, Y);
+    let g1 = 0, g2 = 0; for (let i = 1; i < 4; i++){ g1 += r[i] * X[i]; g2 += r[i] * Y[i]; }
+    if (!(Math.abs(g2) > 1e-300)) return false;
+    const lam = (1 - g1) / g2; for (let i = 0; i < 10; i++) X[i] = (X[i] + lam * Y[i]) * D[i];
+    const gl = Math.hypot(X[1], X[2], X[3]); return gl > 0 && 1 / gl > 0.8;
+  }
+  const GN = new Float64Array(10);
+  function gr(w, i0, i1, i2, i3, c1, c2, c3){                    // one gradient row's square: 1 at i0, c1 at i1, c2 at i2, c3 at i3 (i0 < i1 < i2 < i3)
+    const w1 = w * c1, w2 = w * c2, w3 = w * c3;
+    M[11*i0] += w; M[10*i0+i1] += w1; M[10*i0+i2] += w2; M[10*i0+i3] += w3;
+    M[11*i1] += w1 * c1; M[10*i1+i2] += w1 * c2; M[10*i1+i3] += w1 * c3;
+    M[11*i2] += w2 * c2; M[10*i2+i3] += w2 * c3; M[11*i3] += w3 * c3;
+  }
+  let LX, LY, LZ, LW, LN, RW, RE, TMP;                            // one neighbourhood at a time
+  function grow(k){ LX = new Float64Array(k); LY = new Float64Array(k); LZ = new Float64Array(k); LW = new Float64Array(k); LN = new Float64Array(3 * k);
+    RW = new Float64Array(k); RE = new Float64Array(k); TMP = new Float64Array(k); }
+  grow(1024);
+  function median(m){                                              // the median of RE[0..m) (quickselect on a copy)
+    for (let i = 0; i < m; i++) TMP[i] = RE[i];
+    let l = 0, h = m - 1; const k = m >> 1;
+    while (l < h){ const pv = TMP[(l + h) >> 1]; let i = l, j = h;
+      while (i <= j){ while (TMP[i] < pv) i++; while (TMP[j] > pv) j--; if (i <= j){ const t = TMP[i]; TMP[i] = TMP[j]; TMP[j] = t; i++; j--; } }
+      if (k <= j) h = j; else if (k >= i) l = i; else break; }
+    return TMP[k];
+  }
+  // ---- the height at fit radius R: Float32Array n (cm, + = raised; NaN where no form could be laid)
+  function* height(R){
+    const PS = yield* pointSet(R / 4), m = PS.m, P = PS.P, PN = PS.N, W = PS.W;
+    const G = grid(P, m, R), Q = new Float64Array(10 * m), ok = new Uint8Array(m), R2 = R * R, H2 = (prm.hole * R) ** 2;
+    for (let c = 0; c < G.nc; c++){
+      const nk = gather(G, G.xyz[3*c], G.xyz[3*c+1], G.xyz[3*c+2]); if (nk > LX.length) grow(2 * nk);
+      for (let j = G.start[c]; j < G.start[c+1]; j++){
+        const k = G.order[j], ox = P[3*k], oy = P[3*k+1], oz = P[3*k+2], cx = PN[3*k], cy = PN[3*k+1], cz = PN[3*k+2];
+        let np_ = 0;                                               // the skin round the place, in units of R
+        for (let q = 0; q < nk; q++){
+          const p = buf[q], dx = P[3*p] - ox, dy = P[3*p+1] - oy, dz = P[3*p+2] - oz, d2 = dx*dx + dy*dy + dz*dz;
+          if (d2 >= R2 || d2 < H2) continue;
+          const a = ag(PN[3*p]*cx + PN[3*p+1]*cy + PN[3*p+2]*cz); if (a <= 0) continue;
+          const t = 1 - d2 / R2; LX[np_] = dx / R; LY[np_] = dy / R; LZ[np_] = dz / R; LW[np_] = t * t * a * W[p];
+          LN[3*np_] = PN[3*p]; LN[3*np_+1] = PN[3*p+1]; LN[3*np_+2] = PN[3*p+2]; RW[np_] = 1; np_++;
+        }
+        if (np_ < 12) continue;
+        let good = false;
+        for (let it = 0; it <= prm.robust; it++){
+          M.fill(0); B.fill(0);
+          for (let q = 0; q < np_; q++){
+            const w = LW[q] * RW[q]; if (!(w > 0)) continue; const x = LX[q], y = LY[q], z = LZ[q];
+            r[0] = 1; r[1] = x; r[2] = y; r[3] = z; r[4] = x*x; r[5] = y*y; r[6] = z*z; r[7] = x*y; r[8] = y*z; r[9] = x*z;
+            for (let i = 0; i < 10; i++){ const wi = w * r[i]; for (let l = i; l < 10; l++) M[10*i+l] += wi * r[l]; }
+            // the gradient along the point's normal: |(I - n n^T) grad f|^2 = |G c|^2 - (n . G c)^2 with G's rows
+            // d/dx [0 1 0 0 2x 0 0 y 0 z], d/dy [0 0 1 0 0 2y 0 x z 0], d/dz [0 0 0 1 0 0 2z 0 y x]: its direction only
+            // (a saddle's or an ellipsoid's gradient is not of unit length, so its length is left to the place's condition)
+            const wg = w * MU2, nx = LN[3*q], ny = LN[3*q+1], nz = LN[3*q+2];
+            gr(wg, 1, 4, 7, 9, 2*x, y, z); gr(wg, 2, 5, 7, 8, 2*y, x, z); gr(wg, 3, 6, 8, 9, 2*z, y, x);
+            GN[0] = 0; GN[1] = nx; GN[2] = ny; GN[3] = nz; GN[4] = 2*x*nx; GN[5] = 2*y*ny; GN[6] = 2*z*nz; GN[7] = y*nx + x*ny; GN[8] = z*ny + y*nz; GN[9] = z*nx + x*nz;
+            for (let i = 1; i < 10; i++){ const gi = wg * GN[i]; B[i] += MAG * gi; for (let l = i; l < 10; l++) M[10*i+l] -= (1 - MAG) * gi * GN[l]; }
+          }
+          good = fit(cx, cy, cz); if (!good || it === prm.robust) break;
+          // Tukey's biweight on each point's distance from this fit, at 4.685 x 1.4826 x the median distance
+          for (let q = 0; q < np_; q++){ const x = LX[q], y = LY[q], z = LZ[q];
+            const f = X[0] + X[1]*x + X[2]*y + X[3]*z + X[4]*x*x + X[5]*y*y + X[6]*z*z + X[7]*x*y + X[8]*y*z + X[9]*x*z;
+            const gx = X[1] + 2*X[4]*x + X[7]*y + X[9]*z, gy = X[2] + 2*X[5]*y + X[7]*x + X[8]*z, gz = X[3] + 2*X[6]*z + X[8]*y + X[9]*x;
+            RE[q] = Math.abs(f) / (Math.sqrt(gx*gx + gy*gy + gz*gz) || 1); }
+          const cut = 4.685 * Math.max(1.4826 * median(np_), 1e-6);
+          for (let q = 0; q < np_; q++){ const u = RE[q] / cut; RW[q] = u < 1 ? (1 - u*u) * (1 - u*u) : 0; }
+        }
+        if (good){ Q.set(X, 10 * k); ok[k] = 1; }
+      }
+      if ((c & 127) === 0) yield 0.1 + 0.65 * c / G.nc;
+    }
+    // each vertex: its distance from the quadrics of the places within rho, weighted (1 - d^2/rho^2)^2, facing alike
+    const rho = Math.max(1.5 * R / 4, 1.5 * edge), G2 = grid(P, m, rho), rho2 = rho * rho, out = new Float32Array(n).fill(NaN);
+    let done = 0;
+    for (const [, a] of groups(G2)){
+      const nk = gather(G2, a[0], a[1], a[2]);
+      for (let t = 3; t < a.length; t++){
+        const i = a[t], vx = V[3*i], vy = V[3*i+1], vz = V[3*i+2], ux = VN[3*i], uy = VN[3*i+1], uz = VN[3*i+2]; let sw = 0, sd = 0;
+        for (let q = 0; q < nk; q++){ const k = buf[q]; if (!ok[k]) continue;
+          const ex = vx - P[3*k], ey = vy - P[3*k+1], ez = vz - P[3*k+2], d2 = ex*ex + ey*ey + ez*ez; if (d2 >= rho2) continue;
+          const ga = ag(ux*PN[3*k] + uy*PN[3*k+1] + uz*PN[3*k+2]); if (ga <= 0) continue;
+          const x = ex / R, y = ey / R, z = ez / R, c = 10 * k;
+          const f = Q[c] + Q[c+1]*x + Q[c+2]*y + Q[c+3]*z + Q[c+4]*x*x + Q[c+5]*y*y + Q[c+6]*z*z + Q[c+7]*x*y + Q[c+8]*y*z + Q[c+9]*x*z;
+          const gx = Q[c+1] + 2*Q[c+4]*x + Q[c+7]*y + Q[c+9]*z, gy = Q[c+2] + 2*Q[c+5]*y + Q[c+7]*x + Q[c+8]*z, gz = Q[c+3] + 2*Q[c+6]*z + Q[c+8]*y + Q[c+9]*x;
+          const gl = Math.sqrt(gx*gx + gy*gy + gz*gz); if (!(gl > 1e-9)) continue;
+          const tt = 1 - d2 / rho2, w = tt * tt * ga; sw += w; sd += w * R * f / gl; }
+        if (sw > 0) out[i] = sd / sw;
+      }
+      done += a.length - 3; if ((done & 8191) < a.length - 3) yield 0.75 + 0.2 * done / n;
+    }
+    return out;
+  }
+  // ---- a per-vertex value averaged over the skin within r (area weights, facing alike); NaN stays out
+  function* smooth(val, r){
+    const PS = yield* pointSet(r / 4), m = PS.m, P = PS.P, PN = PS.N, pv = new Float64Array(m), pw = new Float64Array(m);
+    for (let i = 0; i < n; i++){ const k = PS.own[i]; if (k < 0 || val[i] !== val[i]) continue; pv[k] += VA[i] * val[i]; pw[k] += VA[i]; }
+    const G = grid(P, m, r), r2 = r * r, out = new Float32Array(n).fill(NaN);
+    let done = 0;
+    for (const [, a] of groups(G)){
+      const nk = gather(G, a[0], a[1], a[2]);
+      for (let t = 3; t < a.length; t++){
+        const i = a[t], vx = V[3*i], vy = V[3*i+1], vz = V[3*i+2], ux = VN[3*i], uy = VN[3*i+1], uz = VN[3*i+2]; let sw = 0, sv = 0;
+        for (let q = 0; q < nk; q++){ const k = buf[q]; if (!(pw[k] > 0)) continue;
+          const d2 = (vx - P[3*k])**2 + (vy - P[3*k+1])**2 + (vz - P[3*k+2])**2; if (d2 >= r2) continue;
+          const ga = ag(ux*PN[3*k] + uy*PN[3*k+1] + uz*PN[3*k+2]); if (ga <= 0) continue;
+          const tt = 1 - d2 / r2, w = tt * tt * ga; sw += w * pw[k]; sv += w * pv[k]; }
+        if (sw > 0) out[i] = sv / sw;
+        else if (val[i] === val[i]) out[i] = val[i];
+      }
+      done += a.length - 3; if ((done & 8191) < a.length - 3) yield 0.95 + 0.05 * done / n;
+    }
+    return out;
+  }
+  const cache = new Map(), key = s => s.toPrecision(4);
+  function* steps(s){                                              // the variance at size s (cm): Float32Array n, cm; cached
+    const k = key(s); if (cache.has(k)) return cache.get(k);
+    // the normals' length condition (|grad f| = 1) steadies the small fits on noisy vertex normals but bends a saddle's or a
+    // tight cylinder's fit at large sizes, where the points are smooth cell means: in full up to 1 cm, in direction only
+    // from 2 cm, linear between (build L5's planted proof: saddles 0.35 mm at 4 cm in full, 8 um in direction only)
+    MAG = typeof prm.mag === "number" ? prm.mag : Math.min(1, Math.max(0, 2 - s));
+    let f = yield* height(prm.outer * s); const ri = prm.inner * s;
+    if (ri >= 1.2 * edge) f = yield* smooth(f, ri);
+    cache.set(k, f); return f;
+  }
+  function run(s){ const it = steps(s); let x; while (!(x = it.next()).done); return x.value; }
+  // the field's own noise: 1.4826 x the area-weighted median |value| (a robust sigma: the variances themselves are few,
+  // and a finely meshed hand or face does not outvote the skin by its vertex count)
+  function noise(f){ const st = Math.max(1, Math.floor(n / 200000)), ix = [];
+    for (let i = 0; i < n; i += st) if (f[i] === f[i] && VA[i] > 0) ix.push(i);
+    if (!ix.length) return 0; ix.sort((p, q) => Math.abs(f[p]) - Math.abs(f[q]));
+    let tot = 0; for (const i of ix) tot += VA[i]; let c = 0;
+    for (const i of ix){ c += VA[i]; if (c >= tot / 2) return 1.4826 * Math.abs(f[i]); } return 0; }
+  const AUTO_K = 6;                                                // the default "show from": 6 x that noise (build L5's planted proof)
+  return {n, edge, lo, hi, prm, area: VA, outward: OUTW, steps, run, noise, auto: f => AUTO_K * noise(f), AUTO_K, cached: s => cache.get(key(s)) || null};
+}
+/*VARIANCE-END*/
 // ---------------------------------------------------------------------------------------------- camera
 const cam = {t: CEN.slice(), d: DIAG*1.5, yaw: OBJ && OBJ.dim === 2 ? 0 : 0.6, pitch: OBJ && OBJ.dim === 2 ? 0 : 0.35, ortho: false, fov: 30*Math.PI/180};
 const fitD = () => (DIAG/2) / Math.tan(cam.fov/2) * 1.05 / Math.min(1, (cv.clientWidth || 1) / (cv.clientHeight || 1));   // the whole part in view
@@ -214,7 +520,7 @@ const sub = (a,b) => [a[0]-b[0],a[1]-b[1],a[2]-b[2]], cross = (a,b) => [a[1]*b[2
 const nrm = a => { const l = Math.hypot(...a) || 1; return a.map(x => x/l); };
 function mul(a,b){ const o = new Float32Array(16); for (let i = 0; i < 4; i++) for (let j = 0; j < 4; j++){ let s = 0; for (let k = 0; k < 4; k++) s += a[k*4+i]*b[j*4+k]; o[j*4+i] = s; } return o; }
 function eye(){ const c = Math.cos(cam.pitch); return [cam.t[0] + cam.d*c*Math.sin(cam.yaw), cam.t[1] + cam.d*Math.sin(cam.pitch), cam.t[2] + cam.d*c*Math.cos(cam.yaw)]; }
-function viewM(){ const e = eye(), z = nrm(sub(e, cam.t)), x = nrm(cross([0,1,0], z)), y = cross(z, x);
+function viewM(){ const e = eye(), z = nrm(sub(e, cam.t)), x0 = nrm(cross([0,1,0], z)), y = cross(z, x0), x = x0.map(v => v*HS);
   return new Float32Array([x[0],y[0],z[0],0, x[1],y[1],z[1],0, x[2],y[2],z[2],0, -dot(x,e),-dot(y,e),-dot(z,e),1]); }
 function projM(){ const asp = cv.width / cv.height, n = Math.max(cam.d - DIAG*2, cam.d*0.02), f = cam.d + DIAG*2;
   if (cam.ortho){ const h = cam.d*Math.tan(cam.fov/2), w = h*asp; return new Float32Array([1/w,0,0,0, 0,1/h,0,0, 0,0,-2/(f-n),0, 0,0,-(f+n)/(f-n),1]); }
@@ -272,8 +578,11 @@ function pickAt(x, y){ const r = 7, R = readIds(x-r, y-r, x+r, y+r), seen = new 
   return best; }
 // labels
 const LABS = document.getElementById("labels");
-function labels(){ LABS.innerHTML = ""; if (!show.labels) return; const add = (p, txt, cls, col) => { const s = toScreen(p); if (!s) return; const d = document.createElement("div"); d.className = "lab " + cls; d.textContent = txt; d.style.left = s[0] + "px"; d.style.top = s[1] + "px"; if (col) d.style.color = col; LABS.appendChild(d); };
-  if (show.axes){ ["x","y","z"].forEach((a, i) => { const e = [0,0,0]; e[i] = AXL*1.04; add(e, `${a.toUpperCase()} ${AXN[a]}`, "ax", ["#c0392b","#27ae60","#2471a3"][i]); });
+function labels(){ LABS.innerHTML = ""; if (!show.labels) return; const c0 = toScreen(CEN);
+  const add = (p, txt, cls, col) => { const s = toScreen(p); if (!s) return; const d = document.createElement("div"); d.className = "lab " + cls; d.textContent = txt; d.style.left = s[0] + "px"; d.style.top = s[1] + "px"; if (col) d.style.color = col;
+    if (cls === "ax" && c0 && s[0] < c0[0]) d.style.transform = "translate(calc(-100% - 4px),-50%)";   // an axis end on the left: its name to its left
+    LABS.appendChild(d); };
+  if (show.axes){ ["x","y","z"].forEach((a, i) => { const e = [0,0,0]; e[i] = AXL*1.04; add(e, `${a.toUpperCase()} ${axLabel(a)}`, "ax", ["#c0392b","#27ae60","#2471a3"][i]); });
     for (const [p, t] of TICKS) add(p, t, "tk"); }
   if (show.landmarks) LMN.forEach((n, i) => add(LMP[i], n, "lm")); }
 // ---------------------------------------------------------------------------------------------- selection
@@ -313,7 +622,7 @@ cv.addEventListener("pointermove", e => { if (!drag){ hover(e); return; } const 
     if (drag.pinch){ cam.d *= drag.pinch.d / dd; panBy(mx - drag.pinch.mx, my - drag.pinch.my); } drag.pinch = {d: dd, mx, my}; drag.moved = 99; draw(); return; }
   const dx = e.offsetX - drag.x, dy = e.offsetY - drag.y; drag.x = e.offsetX; drag.y = e.offsetY; drag.moved += Math.abs(dx) + Math.abs(dy);
   if (drag.mode === "box"){ Object.assign(boxEl.style, {display: "block", left: Math.min(drag.x0, drag.x) + "px", top: Math.min(drag.y0, drag.y) + "px", width: Math.abs(drag.x - drag.x0) + "px", height: Math.abs(drag.y - drag.y0) + "px"}); return; }
-  if (drag.mode === "orbit" && !(drag.shift && drag.moved > 3)){ cam.yaw -= dx*0.008; cam.pitch = Math.max(-1.55, Math.min(1.55, cam.pitch + dy*0.008)); }
+  if (drag.mode === "orbit" && !(drag.shift && drag.moved > 3)){ cam.yaw -= HS*dx*0.008; cam.pitch = Math.max(-1.55, Math.min(1.55, cam.pitch + dy*0.008)); }
   else panBy(dx, dy); draw(); });
 function panBy(dx, dy){ const k = 2*cam.d*Math.tan(cam.fov/2)/cv.clientHeight, x = [VW[0],VW[4],VW[8]], y = [VW[1],VW[5],VW[9]]; for (let a = 0; a < 3; a++) cam.t[a] += (-dx*x[a] + dy*y[a])*k; }
 cv.addEventListener("pointerup", e => { ptrs.delete(e.pointerId); if (!drag) return; const d = drag; if (ptrs.size) return; drag = null;
@@ -325,13 +634,16 @@ cv.addEventListener("pointerup", e => { ptrs.delete(e.pointerId); if (!drag) ret
 cv.addEventListener("pointercancel", e => { ptrs.delete(e.pointerId); drag = null; boxEl.style.display = "none"; });
 cv.addEventListener("wheel", e => { e.preventDefault(); cam.d *= Math.exp(e.deltaY*0.0012); draw(); }, {passive: false});
 let hoverT = 0; function hover(e){ if (e.pointerType === "touch") return; cancelAnimationFrame(hoverT); hoverT = requestAnimationFrame(() => { const it = pickAt(e.offsetX, e.offsetY);
-  if (!it){ tipEl.style.display = "none"; return; } const f = itemInfo(it); tipEl.textContent = `${f.addr}  (${f.xyz.map(v => v.toFixed(2)).join(", ")})`;
+  if (!it){ tipEl.style.display = "none"; return; } const f = itemInfo(it); tipEl.textContent = `${f.addr}  (${f.xyz.map(v => v.toFixed(2)).join(", ")})` + (varOn && varField && it.k === "v" ? `  variance ${mmText(10 * varField[it.i])} mm` : "");
   tipEl.style.left = Math.min(e.offsetX + 14, cv.clientWidth - tipEl.offsetWidth - 6) + "px"; tipEl.style.top = (e.offsetY + 14) + "px"; tipEl.style.display = "block"; }); }
 cv.addEventListener("pointerleave", () => tipEl.style.display = "none");
 // ---------------------------------------------------------------------------------------------- panel
 document.getElementById("title").textContent = PART;
 document.getElementById("subtitle").textContent = `${I.source} · ${I.counts.vertices.toLocaleString()} vertices · ${nG} grid points (${I.skin ? "skin: " + I.skin.charts.map(c => c.name).join(", ") : AK + " address"})`;
-const VIEWS = {"Front (+Z)": [0, 0], "Lateral (+X)": [Math.PI/2, 0], "Top (+Y)": [0, 1.55], "Back (-Z)": [Math.PI, 0], "Medial (-X)": [-Math.PI/2, 0], "Bottom (-Y)": [0, -1.55], "Oblique": [0.6, 0.35]};
+const OBJ3 = !!(OBJ && OBJ.dim === 3);              // the whole object: +X is the model's own right
+const VIEWS = OBJ3 ? {"Front (+Z)": [0, 0], "Its right (+X)": [Math.PI/2, 0], "Top (+Y)": [0, 1.55], "Back (-Z)": [Math.PI, 0], "Its left (-X)": [-Math.PI/2, 0], "Bottom (-Y)": [0, -1.55], "Oblique": [0.6, 0.35]}
+  : {"Front (+Z)": [0, 0], "Lateral (+X)": [Math.PI/2, 0], "Top (+Y)": [0, 1.55], "Back (-Z)": [Math.PI, 0], "Medial (-X)": [-Math.PI/2, 0], "Bottom (-Y)": [0, -1.55], "Oblique": [0.6, 0.35]};
+const VSIDE = OBJ3 ? "Its right (+X)" : "Lateral (+X)";
 for (const k in VIEWS){ const b = document.createElement("button"); b.textContent = k; b.onclick = () => { [cam.yaw, cam.pitch] = VIEWS[k]; draw(); }; document.getElementById("views").appendChild(b); }
 document.getElementById("ortho").onclick = e => { cam.ortho = !cam.ortho; e.target.classList.toggle("on", cam.ortho); draw(); };
 document.getElementById("reset").onclick = () => { Object.assign(cam, {t: CEN.slice(), d: fitD(), yaw: 0.6, pitch: 0.35}); draw(); };
@@ -340,17 +652,18 @@ const LAYN = {mesh: "Mesh", vertices: "Vertex dots", grid: "Grid dots", lines: "
 for (const k in LAYN){ if ((k === "grid" || k === "lines") && !nG) continue; if (k === "overlays" && !nOv) continue;
   const l = document.createElement("label"); l.innerHTML = `<input type="checkbox" ${show[k] ? "checked" : ""}> ${LAYN[k]}`; l.querySelector("input").onchange = e => { show[k] = e.target.checked; draw(); }; document.getElementById("layers").appendChild(l); }
 const csel = document.getElementById("colour"); for (const k in MODES){ const o = document.createElement("option"); o.textContent = k; csel.appendChild(o); }
-csel.onchange = () => setColour(csel.value); document.getElementById("dot").oninput = e => { dotPx = +e.target.value; draw(); };
+csel.onchange = () => { if (varOn) varToggle(false); setColour(csel.value); }; document.getElementById("dot").oninput = e => { dotPx = +e.target.value; draw(); };
 document.getElementById("copy").onclick = copy; document.getElementById("clear").onclick = () => commit([]); document.getElementById("run").onclick = run;
 document.getElementById("undo").onclick = () => { if (history.length) setSel(history.pop()); };
 document.getElementById("boxmode").onclick = e => { boxMode = !boxMode; e.target.classList.toggle("on", boxMode); msg(boxMode ? "Box mode: drag to pick every visible dot inside." : ""); };
-window.addEventListener("keydown", e => { if (e.target.tagName === "TEXTAREA" || e.ctrlKey || e.metaKey) return; const k = e.key.toLowerCase();
-  if (k === "f") { [cam.yaw, cam.pitch] = VIEWS["Front (+Z)"]; draw(); } else if (k === "l") { [cam.yaw, cam.pitch] = VIEWS["Lateral (+X)"]; draw(); }
+window.addEventListener("keydown", e => { if (e.target.tagName === "TEXTAREA" || e.target.tagName === "INPUT" || e.ctrlKey || e.metaKey) return; const k = e.key.toLowerCase();
+  if (k === "f") { [cam.yaw, cam.pitch] = VIEWS["Front (+Z)"]; draw(); } else if (k === "l") { [cam.yaw, cam.pitch] = VIEWS[VSIDE]; draw(); }
   else if (k === "t") { [cam.yaw, cam.pitch] = VIEWS["Top (+Y)"]; draw(); } else if (k === "o") document.getElementById("ortho").click(); else if (k === "r") run(); else if (k === "c") copy();
+  else if (k === "v") varToggle(!varOn);
   else if (k === "escape") commit([]); });
 // frame + measures
 const fr = I.frame; document.getElementById("frame").innerHTML =
-  `Origin: <b>${I.frame && I.landmark_definitions ? Object.keys(I.landmarks_cm).find(n => I.landmarks_cm[n].every(v => Math.abs(v) < 1e-6)) || "" : ""}</b> &middot; ${I.handedness}<br>` +
+  `Origin: <b>${I.frame && I.landmark_definitions ? Object.keys(I.landmarks_cm).find(n => I.landmarks_cm[n].every(v => Math.abs(v) < 1e-6)) || "" : ""}</b> &middot; ${I.handedness}<br>` + `<b>Drawn as the model is</b> (never its mirror image): in the front view the model's own right is on the screen's left.${LEFT ? " This frame is left-handed, so the view turns it back." : ""}<br>` +
   (I.skin ? `Addresses: ${Object.entries(I.skin.syntax).map(([k, v]) => `<code>${v}</code>`).join("<br>")}<br>` +
      `${I.skin.vertices_with_address.toLocaleString()} of ${I.skin.vertices.toLocaleString()} vertices have an address (round trip within ${I.skin.round_trip_tol_cm} cm)` +
      (I.skin.grid_spacing && I.skin.grid_spacing.ratio ? `; grid segments on the skin ${I.skin.grid_spacing.ratio.min}-${I.skin.grid_spacing.ratio.max} x their step (median ${I.skin.grid_spacing.ratio.p50})` : "") + `<br>`
@@ -367,12 +680,82 @@ document.getElementById("measures").innerHTML = `<table class="m">${Object.entri
 let fitted = false; new ResizeObserver(() => { if (!fitted && cv.clientHeight > 0){ cam.d = fitD(); fitted = true; } draw(); }).observe(cv);
 const COL0 = OBJ ? "parts" : (FIELDS.above_wall_cm ? "above_wall_cm" : "clay"); setColour(COL0); csel.value = COL0;
 if (OBJ){ const box = document.getElementById("parts"); document.getElementById("partsbox").style.display = "block"; document.getElementById("pcount").textContent = `(${OBJ.parts.length})`;
-  OBJ.parts.forEach((pp, k) => { const d = document.createElement("div"); d.className = "prow";
-    d.innerHTML = `<span class="sw" style="background:rgb(${pp.colour.map(v => Math.round(v*255)).join(",")})"></span><span>${pp.name}</span>${pp.page ? `<a href="${pp.page}" target="_blank" rel="noopener">open</a>` : ""}`;
+  OBJ.parts.forEach((pp, k) => { const d = document.createElement("div"); d.className = "prow"; d.dataset.name = pp.name;
+    d.innerHTML = `<span class="sw" style="background:rgb(${pp.colour.map(v => Math.round(v*255)).join(",")})"></span><span class="pn">${pp.name}</span>${pp.page ? `<a href="${pp.page}">open</a>` : ""}`;
     d.onclick = e => { if (e.target.tagName === "A") return; const vs = []; for (let i = 0; i < nV; i++) if (OBJ.VP[i] === k) vs.push(i);
       let c = [0,0,0]; for (const i of vs){ c[0] += V[3*i]; c[1] += V[3*i+1]; c[2] += V[3*i+2]; } if (vs.length){ cam.t = c.map(v => v / vs.length); draw(); } msg(`${pp.name}: ${pp.word || pp.kind}${pp.addressed !== undefined ? ", " + pp.addressed + " % of its vertices addressed" : ""}`); };
     box.appendChild(d); }); }
 setSel([]);
+// build L5: the VARIANCE VIEW (varianceEngine above): on and off (button or V), how wide a variance to look for (Size),
+// how high or deep it must be to show (Show from; Auto = 6 x the view's own noise), finer sizes only when asked. Worked
+// out in the page from its own mesh, a size at a time, in slices so the page stays live; kept per size.
+let VE = null, varOn = false, varField = null, varSize = 0.5, varThr = 0, varAuto = true, varJob = 0;
+const vEl = id => document.getElementById(id);
+const mmText = v => !(v === v) ? "-" : Math.abs(v) >= 10 ? v.toFixed(1) : Math.abs(v) >= 1 ? v.toFixed(2) : Math.abs(v) >= 0.1 ? v.toFixed(3) : v.toFixed(4);
+const sizeText = s => s >= 1 ? `${s.toFixed(1)} cm` : `${(10 * s).toFixed(1)} mm`;
+const VS_MAX = Math.max(0.5, Math.min(4, DIAG / 6));                 // the broadest size: a sixth of the view's extent, at most 4 cm
+const vsMin = () => vEl("vfine").checked ? Math.max(0.02, VE ? VE.edge : 0.05) : Math.min(0.2, VS_MAX / 2);
+const VT_LO = 0.0005, VT_HI = 50;                                   // Show from, mm (log slider)
+function vSizeFromSlider(){ const a = vsMin(), b = VS_MAX; return a * Math.pow(b / a, +vEl("vsize").value / 1000); }
+function vSliderFromSize(s){ const a = vsMin(), b = VS_MAX; vEl("vsize").value = Math.round(1000 * Math.log(Math.min(b, Math.max(a, s)) / a) / Math.log(b / a)); }
+function vThrSlider(t_mm){ vEl("vthr").value = Math.round(1000 * Math.log(Math.min(VT_HI, Math.max(VT_LO, t_mm)) / VT_LO) / Math.log(VT_HI / VT_LO)); }
+function varLabels(){ vEl("vsizet").textContent = `${sizeText(varSize)} wide or narrower`;
+  vEl("vthrt").textContent = `${mmText(10 * varThr)} mm${varAuto ? " (auto)" : ""}`; }
+function varToggle(on){ varOn = on; vEl("var").classList.toggle("on", on); vEl("varbox").style.display = on ? "block" : "none";
+  if (!on){ varJob++; vEl("varmsg").textContent = ""; setColour(csel.value); return; }
+  if (!VE){ vEl("varmsg").textContent = "reading the mesh ..."; VE = varianceEngine(V, F, {info: I}); vSliderFromSize(varSize); }   // L5b: + out of the body in this page's frame
+  varLabels(); varCompute(); }
+// slices hand back to the page through a message, not a timer: a timer chain in a page the browser counts as hidden is
+// held to one step a second, which stretched 7 s of work past two minutes in a headless check
+const VMC = new MessageChannel(); let vNext = null; VMC.port1.onmessage = () => { const f = vNext; vNext = null; if (f) f(); };
+const vLater = f => { vNext = f; VMC.port2.postMessage(0); };
+function varCompute(){
+  const s = varSize, job = ++varJob, done = VE.cached(s);
+  if (done){ varReady(done, s, 0); return; }
+  const it = VE.steps(s), t0 = performance.now();
+  const tick = () => { if (job !== varJob) return; const ts = performance.now(); let r;
+    while (!(r = it.next()).done){ if (performance.now() - ts > 40){ vEl("varmsg").textContent = `working out ${sizeText(s)} ... ${Math.round(100 * (r.value || 0))} %`; vLater(tick); return; } }
+    varReady(r.value, s, (performance.now() - t0) / 1000); };
+  vEl("varmsg").textContent = `working out ${sizeText(s)} ...`; setTimeout(tick, 0); }   // the first after a paint
+function varReady(f, s, sec){ if (!varOn) return; varField = f;
+  if (varAuto) varThr = VE.auto(f) || 1e-4;
+  vThrSlider(10 * varThr); varLabels(); vEl("varmsg").textContent = sec ? `${sizeText(s)}: ${sec.toFixed(1)} s` : ""; varPaint(); }
+function varPaint(){ if (!varOn || !varField) return;
+  const c = new Float32Array(3*nV), t = varThr, CL = [0.86,0.79,0.72], UP = [0.80,0.13,0.10], DN = [0.10,0.34,0.86], AR = VE.area; let shown = 0, raised = 0, all = 0;
+  for (let i = 0; i < nV; i++){ const v = varField[i], a = Math.abs(v); all += AR[i];          // shares by skin area, not vertex count
+    if (!(a >= t)){ c[3*i] = CL[0]; c[3*i+1] = CL[1]; c[3*i+2] = CL[2]; continue; }
+    shown += AR[i]; if (v > 0) raised += AR[i]; const k = Math.min(1, 0.35 + 0.65 * (a - t) / (2 * t)), C = v > 0 ? UP : DN;
+    c[3*i] = CL[0] + (C[0] - CL[0]) * k; c[3*i+1] = CL[1] + (C[1] - CL[1]) * k; c[3*i+2] = CL[2] + (C[2] - CL[2]) * k; }
+  gl.bindBuffer(gl.ARRAY_BUFFER, bC); gl.bufferData(gl.ARRAY_BUFFER, c, gl.STATIC_DRAW);
+  const g = `linear-gradient(90deg,rgb(26,87,219),rgb(${CL.map(x => Math.round(x*255)).join(",")}) 50%,rgb(204,33,26))`;
+  const leg = document.getElementById("legend");
+  leg.innerHTML = `variance at ${sizeText(varSize)}: sunk <span class="bar" style="background:${g}"></span> raised &middot; shown from &plusmn;${mmText(10 * t)} mm, full colour from &plusmn;${mmText(30 * t)} mm &middot; ${(100 * shown / (all || 1)).toFixed(1)} % of the skin's area (${shown ? Math.round(100 * raised / shown) : 0} % of it raised)`;
+  leg.style.display = "block"; draw(); }
+vEl("var").onclick = () => varToggle(!varOn);
+vEl("vsize").oninput = () => { varSize = vSizeFromSlider(); varLabels(); };
+vEl("vsize").onchange = () => { varSize = vSizeFromSlider(); varLabels(); if (varOn) varCompute(); };
+vEl("vthr").oninput = () => { varAuto = false; varThr = VT_LO * Math.pow(VT_HI / VT_LO, +vEl("vthr").value / 1000) / 10; varLabels(); varPaint(); };
+vEl("vauto").onclick = () => { varAuto = true; if (varField){ varThr = VE.auto(varField) || 1e-4; vThrSlider(10 * varThr); } varLabels(); varPaint(); };
+vEl("vfine").onchange = () => { if (!VE) return; const s0 = varSize; vSliderFromSize(s0); varSize = vSizeFromSlider(); varLabels(); if (varOn && Math.abs(varSize - s0) > 1e-9) varCompute(); };
+// build L3: the way around (Translator home, the model's whole view, its list of parts, its other views), a box that
+// goes to any part of the model by the name a person would use, and the object page's parts list made findable
+let NT = null; const copiedAt = {n: -1};
+function navReady(){ if (!NAV) return; NT = tnav(NAV, document.getElementById("tnav"));
+  const parts = NT ? NT.parts : (OBJ ? OBJ.parts.filter(p => p.page).map(p => ({n: p.name, s: p.name.replace(/_/g, " "), w: p.word || "", a: [], href: p.page})) : []);
+  const seen = {}; for (const p of parts) seen[p.s] = (seen[p.s] || 0) + 1;
+  const val = p => seen[p.s] > 1 && p.view ? `${p.s} · ${p.view}` : p.s, byVal = new Map(parts.map(p => [val(p).toLowerCase(), p]));
+  const dl = document.getElementById("jumplist"); dl.innerHTML = parts.map(p => `<option value="${val(p)}">${p.n}</option>`).join("");
+  const jump = document.getElementById("jump"), go = () => { const q = jump.value.trim(); if (!q) return; const f = byVal.get(q.toLowerCase()) || parts.find(p => p.n.toLowerCase() === q.toLowerCase()) || tfind(q, parts)[0];
+    if (f) location.href = f.href; else msg(`No part called "${q}" in this model.`); };
+  jump.onchange = go; jump.onkeydown = e => { if (e.key === "Enter") go(); };
+  if (parts.length) jump.placeholder = "Go to a part: " + [...new Set(parts.map(p => p.s))].sort((a, b) => a.length - b.length).slice(0, 3).join(", ") + " ...";
+  if (OBJ){ const sp = {}; if (NT && NT.view) for (const p of NT.view.parts) sp[p.n] = p;
+    for (const d of document.querySelectorAll("#parts .prow")){ const p = sp[d.dataset.name]; if (p) d.querySelector(".pn").innerHTML = `${p.s}<span class="fn">${p.n}</span>`; }
+    const pf = document.getElementById("pfind"); pf.oninput = () => { const own = OBJ.parts.map(pp => sp[pp.name] || {n: pp.name, s: pp.name.replace(/_/g, " "), w: pp.word || "", a: []});
+      const keep = new Set(tfind(pf.value, own).map(p => p.n)); for (const d of document.querySelectorAll("#parts .prow")) d.style.display = keep.has(d.dataset.name) ? "" : "none"; }; } }
+if (NAV){ const s = document.createElement("script"); s.src = NAV.views; s.onload = navReady; s.onerror = navReady; document.head.appendChild(s); }
+document.getElementById("copy").addEventListener("click", () => { copiedAt.n = history.length; });
+window.addEventListener("beforeunload", e => { if (sel.length && copiedAt.n !== history.length){ e.preventDefault(); e.returnValue = ""; } });   // picks not copied yet
 // self-test (open with #selftest): picks through the real id buffer, a run, the copy text; results in <pre id="selftest">
 if (location.hash === "#selftest") setTimeout(() => { const out = []; frame(); cam.yaw = 0; cam.pitch = 0; frame();
   const r = {}; try {
@@ -390,6 +773,17 @@ if (location.hash === "#selftest") setTimeout(() => { const out = []; frame(); c
     const ln = LINES.find(l => l.length >= 5 && l[0] !== l[l.length-1]); setSel([{k:"g", i: ln[0]}, {k:"g", i: ln[4]}]); run();
     r.run = {n: sel.length, want: 5, ok: sel.length === 5 && sel.every((t, k) => t.i === ln[k])};
     r.copy_text = copyText(); r.webgl = gl.getParameter(gl.VERSION);
+    { const t0 = performance.now(), E = varianceEngine(V, F, {info: I}), f = E.run(0.5); let fin = 0; for (let i = 0; i < f.length; i++) fin += f[i] === f[i] ? 1 : 0;   // build L5
+      r.variance = {size_cm: 0.5, vertices: nV, finite: fin, auto_mm: +(10 * E.auto(f)).toFixed(4), seconds: +((performance.now() - t0) / 1000).toFixed(2), outward: E.outward}; }
+    // build L3: the image is the model as it is (not its mirror): the camera's screen axes (right, up, toward you) read
+    // in the frame, times the frame's handedness, must keep orientation (det > 0); on the object page, the model's right
+    // (+X) lands left of its centre in the front view
+    cam.yaw = 0; cam.pitch = 0; frame(); const Rw = [[VW[0],VW[4],VW[8]],[VW[1],VW[5],VW[9]],[VW[2],VW[6],VW[10]]];
+    const det3 = m => m[0][0]*(m[1][1]*m[2][2]-m[1][2]*m[2][1]) - m[0][1]*(m[1][0]*m[2][2]-m[1][2]*m[2][0]) + m[0][2]*(m[1][0]*m[2][1]-m[1][1]*m[2][0]);
+    const sx = toScreen([CEN[0]+AXL,CEN[1],CEN[2]])[0], sc = toScreen(CEN)[0];
+    r.true_image = {frame_left_handed: LEFT, det_view: +det3(Rw).toFixed(6), ok: det3(Rw) * HS > 0, front_view_plus_x_on_screen: sx < sc ? "left" : "right",
+      model_right_on_screen_left: OBJ3 ? sx < sc : null};
+    r.nav = {links: [...document.querySelectorAll("#tnav a")].map(a => a.textContent + " -> " + a.getAttribute("href")), parts: document.getElementById("jumplist").children.length};
     const wide = [...document.querySelectorAll("aside *")].filter(e => e.getBoundingClientRect().right > window.innerWidth + 1).map(e => e.tagName + "." + (e.id || e.className) + ":" + Math.round(e.getBoundingClientRect().right));
     r.layout = {inner: window.innerWidth, scroll: document.documentElement.scrollWidth, aside: document.querySelector("aside").getBoundingClientRect().width, wide: wide.slice(0, 8)};
   } catch (e) { r.error = String(e.stack || e); }

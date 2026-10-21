@@ -1,0 +1,55 @@
+{
+ "grid_coords": {
+  "conflicts": 0,
+  "recovers_ij": true,
+  "all_reached": true
+ },
+ "rect": {
+  "quads": 100,
+  "boundary_vertices": 40,
+  "convex_corners": 4,
+  "concave": 0
+ },
+ "inset": {
+  "new_quads": 80,
+  "rings": [
+   40,
+   40,
+   40
+  ],
+  "euler_before_after": [
+   1,
+   1
+  ],
+  "quads_with_4_distinct": true
+ },
+ "layouts_max_err_m": {
+  "harmonic": 9.71445146547012e-17,
+  "mean_value": 1.5265566588595902e-16,
+  "lscm_two_pins": 3.405609128037668e-14
+ },
+ "uv_charts_with_one_seam": 2,
+ "mirror_map": {
+  "matches_planted": true,
+  "faces_matched": 400,
+  "faces": 400,
+  "vertices_unmatched": 0,
+  "conflicts": 0,
+  "involution": true,
+  "mirror_distance_mm_p50_p99_max": [
+   0.0,
+   0.0,
+   0.0
+  ]
+ },
+ "mirror_map_shape_asymmetric": {
+  "matches_planted": true,
+  "max_mm": 2.0
+ },
+ "grid_line": {
+  "vertices": 18,
+  "closed": false,
+  "all_on_row_j5": true
+ },
+ "PASS": true
+}

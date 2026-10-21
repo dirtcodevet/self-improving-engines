@@ -1,0 +1,61 @@
+{
+ "fold": {
+  "planted": 30,
+  "found": 30,
+  "on_hinge": 30,
+  "deg": [
+   120.0,
+   120.0
+  ],
+  "sense": [
+   1
+  ],
+  "others_max_deg": 1e-06
+ },
+ "crossing": {
+  "analytic": 36,
+  "found": 36,
+  "missed": 0,
+  "extra": 0
+ },
+ "inverted": {
+  "clean": 0,
+  "planted_tri": 77,
+  "found": [
+   77
+  ]
+ },
+ "clusters": {
+  "n": 2,
+  "each": [
+   [
+    0,
+    78
+   ],
+   [
+    30,
+    0
+   ]
+  ]
+ },
+ "skin": {
+  "pack": "cases/woman2/build13/pack_b13a3",
+  "got": {
+   "folds_over_deg": 787,
+   "folds_over_150": 209,
+   "crossing_pairs": 3439,
+   "crossing_area_cm2": 3.6946,
+   "inverted_faces": 159,
+   "clusters": 27
+  },
+  "want": {
+   "folds_over_deg": 787,
+   "folds_over_150": 209,
+   "crossing_pairs": 3439,
+   "crossing_area_cm2": 3.695,
+   "inverted_faces": 159,
+   "clusters": 27
+  }
+ },
+ "pass": true
+}

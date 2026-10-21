@@ -1,0 +1,92 @@
+{
+ "clean": {
+  "edge_turn": {
+   "max_deg": 0.35,
+   "p99_deg": 0.35,
+   "edges_over_20deg": 0,
+   "edges": 3610
+  },
+  "roughness": {
+   "rms": 0.0,
+   "p99_abs": 0.0,
+   "max_abs": 0.0,
+   "vertices": 1249
+  }
+ },
+ "ridge": {
+  "edge_turn": {
+   "max_deg": 77.53,
+   "p99_deg": 77.18,
+   "edges_over_20deg": 115,
+   "edges": 3610
+  },
+  "roughness": {
+   "rms": 82.49,
+   "p99_abs": 325.16,
+   "max_abs": 325.2,
+   "vertices": 1249
+  }
+ },
+ "dent": {
+  "edge_turn": {
+   "max_deg": 1.52,
+   "p99_deg": 1.34,
+   "edges_over_20deg": 0,
+   "edges": 3610
+  },
+  "roughness": {
+   "rms": 2.19,
+   "p99_abs": 11.58,
+   "max_abs": 16.1,
+   "vertices": 1249
+  }
+ },
+ "fold": {
+  "edges_over_90deg": {
+   "fold": 2,
+   "clean": 0
+  },
+  "edge_turn_max_deg": {
+   "fold": 176.27,
+   "clean": 0.34
+  },
+  "triangles_turned_over_vs_clean": 2,
+  "quads": {
+   "fold": {
+    "quads": 4,
+    "min_angle_p1_p5_deg": [
+     20.6,
+     20.6
+    ],
+    "min_angle_min_deg": 20.56,
+    "aspect_p99": 3.67,
+    "aspect_max": 3.7,
+    "edge_mm_p5_p50_p95": [
+     1.5,
+     2.0,
+     5.5
+    ]
+   },
+   "clean": {
+    "quads": 4,
+    "min_angle_p1_p5_deg": [
+     90.0,
+     90.0
+    ],
+    "min_angle_min_deg": 89.97,
+    "aspect_p99": 1.0,
+    "aspect_max": 1.0,
+    "edge_mm_p5_p50_p95": [
+     1.5,
+     1.5,
+     1.5
+    ]
+   }
+  }
+ },
+ "crossings": {
+  "pierced": 14,
+  "clean_centre": 0
+ },
+ "PASS": true
+}

@@ -18,11 +18,15 @@ import numpy as np
 from scipy.spatial import cKDTree
 
 
+import os as _os_mg, sys as _sys_mg  # noqa: E402  (build A1: the engine's one closest point, normals, cotangent Laplacian)
+_MG_DIR = _os_mg.path.normpath(_os_mg.path.join(_os_mg.path.dirname(_os_mg.path.abspath(__file__)), '.'))
+if _MG_DIR not in _sys_mg.path:
+    _sys_mg.path.append(_MG_DIR)
+import mesh_geom as _MG  # noqa: E402
+
+
 def _normals(V, F):
-    fn = np.cross(V[F[:, 1]] - V[F[:, 0]], V[F[:, 2]] - V[F[:, 0]])
-    vn = np.zeros_like(V)
-    for k in range(3): np.add.at(vn, F[:, k], fn)
-    return vn / np.maximum(np.linalg.norm(vn, axis=1, keepdims=True), 1e-20)
+    return _MG.vertex_normals(V, F, eps=1e-20)
 
 
 def contact_bands(V, F, partA, partB, touch, width, keep_inside, facing=-0.3):

@@ -1,0 +1,35 @@
+{
+ "closest_point": {
+  "triangles": 300,
+  "max_excess_over_brute_force": 4.440892098500626e-16,
+  "bary_reproduces_point_max": 4.440892098500626e-16,
+  "most_negative_bary": -0.0,
+  "regions_hit": 7
+ },
+ "sphere": {
+  "normals_max_deg_from_radial": 0.6273001789680711,
+  "H_median_x_R": 1.0004452614372397,
+  "H_p5_p95_x_R": [
+   0.9996508938009061,
+   1.0012273727486738
+  ],
+  "area_sum_vs_4piR2": 0.9991078177394228,
+  "laplacian_on_constant_max": 4.98212582300539e-15,
+  "clamped_negative_weights": 0,
+  "closest_on_mesh_vs_brute_max_m": 0.0,
+  "meshproj_vs_brute_max_m": 0.0
+ },
+ "fold": {
+  "hinge_deg": [
+   36.99999999999999,
+   37.0
+  ],
+  "elsewhere_max_deg": 8.537736462515939e-07
+ },
+ "poly_dist": [
+  0.5,
+  1.0,
+  3.0413812651491097
+ ],
+ "PASS": true
+}

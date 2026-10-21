@@ -507,3 +507,27 @@ To roll back an item, set its flag false and log why here.
 - round 2 stops after the show stage;
 - the person's look is the review;
 - one lean fix agent follows.
+
+## Candidate lessons from build A1's audit of tonight's builders (2026-10-21; NOT adopted: the person approves lessons)
+
+Measured from the builders' transcripts (two read-only audits; the mining scripts and data in that session's scratchpad
+`audit/`) and the files. Each is a judgment about how to work, not a fact or a tool, so it is written here as a
+candidate with its evidence; the tools that make it cheap are in the engine either way (build A1's TOOLMAKING rows).
+
+- **C1 · Iterate on one part or one side, and cache the steps upstream of it.** Evidence: 13a's third builder rebuilt
+  both breasts 33 times (s4b_loops.py, 43.6 tool-min) when each try changed one step; L2 ran 31 whole-body segmentation
+  tries (50.6 tool-min) though its own per-part probe answered in 0.5-7 s. What kind of change: a working method for
+  builders (when to cut a job down to the piece being tuned, and confirm once on the whole). Tools that support it now:
+  `language.py auto --only` with its segmentation cache; build 13's stage scripts read cached upstream files.
+- **C2 · Tune on a lighter copy, confirm once at full size.** Evidence: L2's own proposal (QUEUE row L2; unproven): 40+
+  full-size re-splits of 2-4 bodies while tuning cuts. What kind of change: a working method; it needs a measured case
+  where the lighter copy's answer carried over before it is more than a candidate.
+- **C3 · Run the final proofs in the background while writing the records.** Evidence: full proof suites ran 8 times per
+  builder and were waited on in the foreground (L1 10.0 min, L2 11.6 min). What kind of change: a working method (order
+  of the last steps); `prove --only` makes the in-between runs short.
+- **C4 · A brief names the build-log entries and files it builds on.** Evidence: where a brief named the predecessor's
+  files, orientation took 2.8-3.4 min; otherwise 11-16.5 min, reading 266k-375k characters. What kind of change: a
+  practice for whoever writes briefs (the orchestrator); `engine/tools/build_log.py <words>` finds the entries.
+- **C5 · Read the measured findings for the part of the body you touch before building.** Evidence: builders first
+  opened `engine/packs/human/findings.md` at write-up time (minute 95-139); 13a2's measured picks miss sat in a report
+  only. What kind of change: a working method; the primer now lists the findings by section.

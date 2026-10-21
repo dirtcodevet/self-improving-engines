@@ -23,6 +23,13 @@ PRIORS = json.load(open(os.path.join(HERE, "proportion_priors.json")))
 CORNEA_APEX = 1.03 * 1.10   # cornea shell = 1.03 r with a front dome bulge of ~0.10 r (materials.py)
 
 
+import os as _os_mg, sys as _sys_mg  # noqa: E402  (build A1: the engine's one closest point, normals, cotangent Laplacian)
+_MG_DIR = _os_mg.path.normpath(_os_mg.path.join(_os_mg.path.dirname(_os_mg.path.abspath(__file__)), '../tools'))
+if _MG_DIR not in _sys_mg.path:
+    _sys_mg.path.append(_MG_DIR)
+import mesh_geom as _MG  # noqa: E402
+
+
 # ------------------------------------------------------------------ io
 def read_ply(path):
     with open(path, "rb") as f:
@@ -75,11 +82,7 @@ def laplacian_smooth(v, f, iters=12):
 
 
 def vertex_normals(v, f):
-    fn = np.cross(v[f[:, 1]] - v[f[:, 0]], v[f[:, 2]] - v[f[:, 0]])
-    vn = np.zeros_like(v)
-    for k in range(3):
-        np.add.at(vn, f[:, k], fn)
-    return vn / np.maximum(np.linalg.norm(vn, axis=1, keepdims=True), 1e-12)
+    return _MG.vertex_normals(v, f, eps=1e-12)
 
 
 # ------------------------------------------------------------------ checks

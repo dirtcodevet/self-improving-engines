@@ -1,0 +1,55 @@
+{
+ "all_PASS": true,
+ "checks": {
+  "to_rest_inverts": {
+   "PASS": true
+  },
+  "arap_rigid_exact": {
+   "PASS": true,
+   "max_mm": 4.17e-06
+  },
+  "arap_bent_tube_restores": {
+   "PASS": true,
+   "edge_err_mean_before": 0.07360218,
+   "edge_err_mean_after": 0.04742299,
+   "edge_err_max_before": 0.98470189,
+   "edge_err_max_after": 0.50697866,
+   "radius_mm_rest": 31.76822095,
+   "radius_mm_skinned": 25.39744739,
+   "radius_mm_after": 26.65168341
+  },
+  "breast_no_stretch_no_move": {
+   "PASS": true,
+   "u_max": 0.0
+  },
+  "breast_stretch_keeps_volume_presses_top": {
+   "PASS": true,
+   "volume_rest_ml": 514.1,
+   "volume_stretched_ml": 555.9,
+   "volume_after_ml": 514.1,
+   "top_u_mm": -5.03572102
+  },
+  "contact_found_half_push": {
+   "PASS": true,
+   "normals_A_B": [
+    [
+     0.0,
+     0.0,
+     1.0
+    ],
+    [
+     0.0,
+     0.0,
+     -1.0
+    ]
+   ],
+   "found": 288,
+   "planted": 288,
+   "depth_mm": 4.0
+  },
+  "hat_expr_equals_hat": {
+   "PASS": true,
+   "max_diff": 0.0
+  }
+ }
+}

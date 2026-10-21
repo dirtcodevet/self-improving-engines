@@ -17,9 +17,9 @@ you want done, and the AI works on exactly those spots.
 
 ## Open it
 
-**The quickest:** type `/translator` in Claude Code. It opens the model you mapped most recently, and
-`/translator brick` opens one by name. Give it a file, as in `/translator C:\models\brick.glb`, and it maps that
-model first.
+**The quickest:** type `/translator` in Claude Code. On its own it opens the Translator's home page, which lists
+every model you've mapped. `/translator brick` or `/translator left hand` opens that one by name. Give it a file, as
+in `/translator C:\models\brick.glb`, and it maps that model first.
 
 **Or just ask your AI**, for example *"Open the Translator on C:\models\brick.glb"*. It can run the command below
 for you and open the page.
@@ -33,17 +33,19 @@ python tools/language.py auto C:/models/brick.glb --case C:/models/brick --pack 
 - **The model:** an `.obj`, `.ply` or `.stl` file, or a `.png` or `.jpg` picture. `.glb`, `.gltf`, `.fbx`, `.blend`
   and `.dae` files are read through Blender, so Blender must be installed.
 - **`--case`:** the folder where its pages are saved. Give a full path.
-- **`--pack`:** the word list it names parts from: `generic` (anything), `creature` or `masonry`. Leave it out for
-  `generic`.
+- **`--pack`:** the word list it names parts from: `generic` (anything), `human` (a person), `creature` or
+  `masonry`. Leave it out for `generic`.
 - **`--open`:** opens the list of parts in your browser when it's done (on Windows; elsewhere, open the file
   yourself).
 
-**Coming back later.** Everything stays in the case folder. Double-click `language/index.html` in it; no server or
-install needed.
+**Coming back later.** Run `python tools/language.py open` for the home page, or `python tools/language.py open
+"left hand"` to go straight to a part. Or double-click the files: everything stays in the case folder, and no server
+or install is needed.
 
-| File in `<case>/language/` | What it opens |
+| File | What it opens |
 |---|---|
-| `index.html` | the list of parts, with **Open the whole object** at the top |
+| `index.html` in your Translator folder | the home page: every model you've mapped, each with its whole view and its parts |
+| `<case>/language/index.html` | the list of parts, with **Open the whole object** at the top |
 | `object.html` | the whole model, coloured by part, with the same list in its side panel |
 | `<part name>.html` | one part on its own, with its own ruler |
 
@@ -62,12 +64,14 @@ and zoom in until single points separate.
 | Turn the model | drag |
 | Slide it sideways | right-drag, or Shift-drag |
 | Zoom | mouse wheel, or pinch |
-| Look straight at one side | the view buttons: **Front**, **Back**, **Lateral**, **Medial**, **Top**, **Bottom**, **Oblique** |
+| Look straight at one side | the view buttons: **Front**, **Back**, **Top**, **Bottom**, **Oblique**, and **Lateral** / **Medial** on a part (**Its right** / **Its left** on the whole object) |
+| Jump to another part | type its name in **Go to a part**, or use the links at the top: home, whole body, parts list |
 | Flat view, for exact picking | **Orthographic** |
 | Start over | **Reset** |
 | Show or hide things | the **Show** boxes: mesh, vertex dots, grid dots, grid lines, axes, landmarks, labels |
 | Bigger or smaller dots | the **Dots** slider |
 | Light or dark page | **Theme** |
+| See bumps, ridges and dents | **Variance**, or press V ([more below](#seeing-small-changes-in-the-surface)) |
 
 | Picking spots and sending them | |
 |---|---|
@@ -221,7 +225,9 @@ $ python tools/part_frame.py resolve hand_L.npz "hand_L back x=0.00 y=0.50"
 | `python tools/part_frame.py prove` | runs the tool's own checks |
 | `tools/bl_export_mesh.py` | exports a mesh from Blender for `build` |
 | `python tools/language.py auto <model or image> --case <folder> --pack <kind> --open` | breaks any 3-D model or 2-D image into named parts, builds all of its views and opens them ([Open it](#open-it)) |
+| `python tools/language.py open [name]` | opens the home page, or a model or part by name, e.g. `open "brick"`, `open "left hand"` |
 | `python tools/language.py rename`, `cut`, `merge` | your own corrections to the parts, kept across rebuilds |
+| `python tools/language.py regress` | checks that every part you've picked from before still lands in the same place |
 
 Each part's view is a single HTML file, with an index page that lists them all. It runs in any current browser.
 
@@ -250,7 +256,7 @@ The words live in a data file per kind of object, so a new kind of object needs 
 | A scanned dragon (3-D) | 17, 16 named | horns, claws, feet and tongue found; the head, neck, legs and coiled tail are still one big body part. You can split a part yourself by picking points along the cut |
 | A brick | 47, all named | every face and edge named in mason's words (header, stretcher, bed and so on), every point addressed |
 | A street lantern | 29 | the pole and its pieces, with plain names from the general list |
-| A whole body (3-D) | 14 | the nose and mouth, all ten fingers and both big toes found; the torso, arms and legs are still one body part ([below](#blender-human-model-auto-mapped-and-labelled)) |
+| A whole body (3-D) | 37, all named | with the word list for people: head, ears, eyes, nose, lips, neck, torso, breasts, arms, hands, every finger, legs, feet and toes ([below](#blender-human-model-auto-mapped-and-labelled)) |
 
 **It stays up to date by itself.** Every part remembers what it was made from. When the model changes, only the parts
 that went out of date are rebuilt, without anyone asking, and they keep their names and any renames you made. Remeshing
@@ -269,22 +275,43 @@ by up to 9.5 mm, which isn't explained yet.
 - The brick was generated by the engine, at a standard brick's size.
 </details>
 
+## Seeing small changes in the surface
+
+Every page has a **Variance** button (or press V). It colours the skin by how far each spot sits above or below the
+smooth shape around it: red where it rises, blue where it sinks, plain where nothing stands out. **Size** sets how wide
+a feature to look for, from a 2 mm ridge to a 4 cm swell; anything broader counts as the body's own shape. **Show
+from** sets how high or deep a feature must be before it's coloured, and **Auto** puts it just above the mesh's own
+noise. Tick **Finer** to go down to pore level. Curved skin on its own stays plain, so what lights up is a real change
+in the surface.
+
+<p align="center">
+  <img src="images/translator-variance.jpg" width="900" alt="The variance view on the chest: the nipples show red, where the skin rises, and the fold beneath each breast shows blue, where it sinks; the smooth curve of the breasts stays plain">
+  <br><sub>The chest at a 1.2 cm size, with Show from on Auto: the nipples rise and the folds beneath the breasts sink against the shape around them, while the curve of the breasts themselves stays plain.</sub>
+</p>
+
+It was checked on made-up surfaces first: bumps, dents, ridges and grooves of known sizes show at the size that should
+catch them and stay plain at one that shouldn't, and a clean surface stays plain. At the finest sizes it picks up
+features about a tenth of a millimetre high. We also checked that it reads the same way round on every page: on
+made-up surfaces shown mirrored, as the right side's pages are, and on a closed shape stored inside out, a bump still
+shows red and a dent blue.
+
 ## Blender human model, auto-mapped and labelled
 
 We gave the Translator a whole human body, built on Blender Studio's free base model (CC0) as the new base for our
-torso test. It had no word list for people, only the general one, and still mapped the whole body on its own: 14
-labelled parts over 686,418 vertices, each with its own ruler and address grid. It found the nose and mouth, all ten
-fingers and both big toes. For now it calls those "protrusions" and keeps the torso, arms and legs together as one
-body part. The word list for people will name them properly. The body is unclothed for the same reason an anatomy
-reference is: the Translator maps the skin itself.
+torso test. With its word list for people it maps the whole body on its own: 37 named parts over 686,418 vertices,
+each with its own ruler and address grid. The head comes apart into each ear, each eye, the nose, the lips and the
+mouth; below it come the neck, the torso, both breasts, the arms, hands and every finger, the legs, feet and toes.
+The same list was tried on three other bodies, one of them held back until the end, and found the same parts on
+each. Type a part's name in **Go to a part**, or `/translator left ear`, and it opens on its own. The body is
+unclothed for the same reason an anatomy reference is: the Translator maps the skin itself.
 
 <p align="center">
-  <img src="images/translator-whole-body.jpg" width="900" alt="A whole female body in the Translator: the chest coloured by part, an address shown on hover on the forehead, the nose and mouth with their own grid, the torso as vertex dots with the address grid, and the back with each finger picked out as its own part">
+  <img src="images/translator-whole-body.jpg" width="900" alt="A whole female body in the Translator, coloured by part from the front and the back; the face with each ear, eye, the nose and the lips as parts of their own; an address shown on hover over her right ear; and the variance view on the chest, red where the skin rises and blue where it sinks">
 </p>
 
 ## What's next
 
-- **A word list for people,** so a body comes out as head, neck, chest, breasts, back, arms, hands, fingers, legs,
-  feet and toes, with a proper torso part. Being built now.
+- **Soft creases in the variance view.** A dent stands out clearly; a soft crease where a breast meets the chest
+  still reads no louder than the skin right next to it.
 - **Smarter splitting on scanned creatures,** so a head, legs and a coiled tail come out as their own parts.
 - **More word lists** for more kinds of objects, each learned the same way.

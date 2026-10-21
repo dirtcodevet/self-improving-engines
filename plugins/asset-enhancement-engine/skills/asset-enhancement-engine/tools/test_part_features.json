@@ -1,0 +1,63 @@
+{
+ "mesh": {
+  "vertices": 57110,
+  "faces": 114236
+ },
+ "R0_cm": 9.214,
+ "features": {
+  "ear_L": {
+   "iou": 0.606,
+   "centroid_off_cm": 0.307,
+   "area_found_cm2": 26.91,
+   "area_true_cm2": 44.39,
+   "most_of_another": 0.0,
+   "PASS": true
+  },
+  "ear_R": {
+   "iou": 0.605,
+   "centroid_off_cm": 0.311,
+   "area_found_cm2": 26.84,
+   "area_true_cm2": 44.35,
+   "most_of_another": 0.0,
+   "PASS": true
+  },
+  "nose": {
+   "iou": 0.563,
+   "centroid_off_cm": 0.528,
+   "area_found_cm2": 18.14,
+   "area_true_cm2": 32.22,
+   "most_of_another": 0.0,
+   "PASS": true
+  },
+  "lips": {
+   "iou": 0.606,
+   "centroid_off_cm": 0.546,
+   "area_found_cm2": 48.46,
+   "area_true_cm2": 38.43,
+   "most_of_another": 0.001,
+   "PASS": true
+  },
+  "eye_L": {
+   "iou": 0.886,
+   "centroid_off_cm": 0.098,
+   "area_found_cm2": 35.6,
+   "area_true_cm2": 34.67,
+   "most_of_another": 0.0,
+   "PASS": true
+  },
+  "eye_R": {
+   "iou": 0.878,
+   "centroid_off_cm": 0.115,
+   "area_found_cm2": 35.88,
+   "area_true_cm2": 34.7,
+   "most_of_another": 0.0,
+   "PASS": true
+  }
+ },
+ "checks": {
+  "no_extra_features": true,
+  "frame_axes": true
+ },
+ "seconds": 4.2,
+ "PASS": true
+}

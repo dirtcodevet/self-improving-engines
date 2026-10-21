@@ -14,7 +14,9 @@ Reads the SPEC's blend (a copy; never saved), appends only the objects it names,
   (clearance to another part of the body, m); NaN where no hit within 0.4 m or outside the SPEC's ray zone.
 SPEC:
   {"blend": path, "out": dir, "append": [names],
-   "variants": [{"name", "mesh", "rig", "mode": "ours" | "rigify" | "quick" (root, head, clavicle SC -> shoulder joint,
+   "build_pack": a format-3 pack folder (build 13b: built here instead of appending "blend"), "poses_file": named poses,
+   "variants": [{"name", "mesh", "rig", "mode": "ours" | "rigify" | "quick" | "controls" (13b: named poses from poses_file:
+                 bone rotations and control properties; "skinning": "mix" (as built) | "linear" | "dq") | (root, head, clavicle SC -> shoulder joint,
                  upper arm, forearm: cases/woman2/build12/bl_quick_rig.py), "rhythm": bool (rigify / quick: the shoulder control turned
                  by our rig's clavicle elevation for the same total), "dqs": bool, "keys": bool (shape keys on),
                  "mute_mods": [modifier names], "multires": level,
@@ -39,12 +41,19 @@ REST = {"L": 5.93, "R": 5.95}                      # rig.json joints rest_abduct
 KCLAV = {"L": 0.66014, "R": 0.67554}               # rig.json clavicle drivers
 vl = bpy.context.view_layer
 
-with bpy.data.libraries.load(SPEC["blend"], link=False) as (src, dst):
-    dst.objects = [n for n in SPEC["append"] if n in src.objects]
-    missing = [n for n in SPEC["append"] if n not in src.objects]
-assert not missing, missing
-for ob in dst.objects:
-    bpy.context.scene.collection.objects.link(ob)
+if SPEC.get("build_pack"):
+    # build 13b: build a format-3 pack (the body with its rig) in this empty scene instead of appending from a blend
+    import os as _os
+    sys.path.insert(0, _os.path.dirname(_os.path.abspath(__file__)))
+    import build_base_torso as _BBT
+    _BBT.build(pack=SPEC["build_pack"], root=SPEC.get("root"))
+else:
+    with bpy.data.libraries.load(SPEC["blend"], link=False) as (src, dst):
+        dst.objects = [n for n in SPEC["append"] if n in src.objects]
+        missing = [n for n in SPEC["append"] if n not in src.objects]
+    assert not missing, missing
+    for ob in dst.objects:
+        bpy.context.scene.collection.objects.link(ob)
 vl.update()
 
 
@@ -73,6 +82,27 @@ def reset(rig):
     for pb in rig.pose.bones:
         pb.rotation_mode = pb.rotation_mode
         pb.rotation_quaternion = (1, 0, 0, 0); pb.rotation_euler = (0, 0, 0); pb.location = (0, 0, 0)
+        for k in ("shrug", "pinch", "round", "tilt", "roll_amount", "roll_phase"):
+            if k in pb.keys():
+                pb[k] = 0.0
+
+
+def pose_controls(rig, P):
+    """build 13b (format-3 rig): a named pose = bone rotations (radians, rotation_euler) and control properties"""
+    for bn, rot in P.get("rot", {}).items():
+        rig.pose.bones[bn].rotation_euler = rot
+    for bn, props in P.get("props", {}).items():
+        for k, v in props.items():
+            rig.pose.bones[bn][k] = float(v)
+    vl.update(); vl.update()
+    gird = {}
+    for s in "LR":
+        sb = rig.pose.bones.get("shoulder." + s)
+        if sb is not None:
+            gird[s] = {k: round(float(sb[k]), 3) for k in ("e", "p", "a") if k in sb.keys()}
+            for bn in ("clavicle." + s, "scapula_drive." + s):
+                gird[s][bn] = [round(math.degrees(x), 3) for x in rig.pose.bones[bn].rotation_euler]
+    return gird
 
 
 def pose_ours(rig, total):
@@ -192,6 +222,7 @@ def bone_ends(rig, names):
 
 
 log = {}
+POSES = json.load(open(SPEC["poses_file"])) if SPEC.get("poses_file") else {}
 for var in SPEC["variants"]:
     name = var["name"]; rig = bpy.data.objects[var["rig"]]; ob = bpy.data.objects[var["mesh"]]
     if var.get("weights_from"):
@@ -219,7 +250,15 @@ for var in SPEC["variants"]:
         if m.type == "MULTIRES" and var.get("multires") is not None:
             m.levels = var["multires"]
         if m.type == "ARMATURE":
-            m.use_deform_preserve_volume = bool(var.get("dqs", False))
+            if var.get("skinning") is None:
+                m.use_deform_preserve_volume = bool(var.get("dqs", False))
+            elif var["skinning"] == "linear":          # build 13b: one Armature, linear; the mixed DQ modifier off
+                m.use_deform_preserve_volume = False
+                m.show_viewport = not m.use_multi_modifier
+            elif var["skinning"] == "dq":              # every vertex dual quaternion
+                m.use_deform_preserve_volume = True
+                m.show_viewport = not m.use_multi_modifier
+            # "mix": as built (linear, then dual quaternion mixed in by its vertex group)
     if ob.data.shape_keys:
         for k in ob.data.shape_keys.key_blocks[1:]:
             k.mute = not var.get("keys", True)
@@ -242,7 +281,9 @@ for var in SPEC["variants"]:
                  "unweighted": int((W.sum(1) <= 1e-6).sum()), "poses": {}}
     for T in var["poses"]:
         reset(rig); vl.update()
-        if var["mode"] == "ours":
+        if var["mode"] == "controls":
+            gird = pose_controls(rig, POSES[T])
+        elif var["mode"] == "ours":
             gird = pose_ours(rig, T)
         else:
             gird = pose_rigify(rig, T, var.get("rhythm", False), ikfk, QUICK if var["mode"] == "quick" else RIGIFY)
@@ -251,7 +292,7 @@ for var in SPEC["variants"]:
         pairs, thick, clear = rays(v, nn, f, var.get("ray_zone"))
         h, t = bone_ends(rig, defs)
         keys = {k.name: round(k.value, 4) for k in ob.data.shape_keys.key_blocks[1:]} if ob.data.shape_keys else {}
-        np.savez_compressed(f"{OUT}/{name}_{int(T)}.npz", v=v.astype(np.float32), n=nn.astype(np.float32), thick=thick,
+        np.savez_compressed(f"{OUT}/{name}_{T if isinstance(T, str) else int(T)}.npz", v=v.astype(np.float32), n=nn.astype(np.float32), thick=thick,
                             clear=clear, pairs=pairs, heads=h, tails=t, bones=np.array(defs),
                             arm=np.array(ang), girdle=json.dumps(gird), keys=json.dumps(keys))
         log[name]["poses"][str(T)] = {"arm_deg": [round(a, 2) for a in ang], "pairs": len(pairs), "girdle": gird,

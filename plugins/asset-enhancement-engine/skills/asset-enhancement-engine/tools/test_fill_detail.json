@@ -1,0 +1,97 @@
+{
+ "surface": {
+  "vertices": 14641,
+  "edge_mm": 2.5,
+  "cylinder_radius_mm": 120.0,
+  "free_vertices": 2109,
+  "core_vertices": 1771,
+  "around_vertices": 1784,
+  "around_sector_spread": [
+   0.924,
+   1.07
+  ],
+  "clean_core_edge_turn_max_deg": 2.101
+ },
+ "dent": {
+  "inside_over_around": 0.936,
+  "smooth_fill_inside_over_around": 0.008,
+  "relief_p75_mm": {
+   "around": 0.00462,
+   "inside_input": 0.00448,
+   "inside_smooth_fill": 4e-05,
+   "inside_out": 0.00433
+  },
+  "gate": {
+   "around_local_rms_median_mm": 0.015847962485424374,
+   "gate_level_mm": 0.03419077891445048,
+   "outlier_share_of_free": 0.012802275960170697,
+   "gated_share_of_free": 0.07302038880986249
+  },
+  "shape_vs_clean_mm_max_abs": {
+   "input": 4.0,
+   "smooth_fill": 0.326,
+   "out": 0.328
+  },
+  "core_edge_turn_max_deg": {
+   "input": 3.32,
+   "smooth_fill": 1.51,
+   "out": 1.94
+  },
+  "pass": true
+ },
+ "crease": {
+  "inside_over_around": 0.725,
+  "smooth_fill_inside_over_around": 0.008,
+  "relief_p75_mm": {
+   "around": 0.00462,
+   "inside_input": 0.00558,
+   "inside_smooth_fill": 4e-05,
+   "inside_out": 0.00335
+  },
+  "gate": {
+   "around_local_rms_median_mm": 0.015847962485424374,
+   "gate_level_mm": 0.03419077891445048,
+   "outlier_share_of_free": 0.16642958748221906,
+   "gated_share_of_free": 0.3328591749644381
+  },
+  "shape_vs_clean_mm_max_abs": {
+   "input": 5.0,
+   "smooth_fill": 0.324,
+   "out": 0.324
+  },
+  "core_edge_turn_max_deg": {
+   "input": 43.24,
+   "smooth_fill": 1.51,
+   "out": 1.94
+  },
+  "pass": true
+ },
+ "rough": {
+  "inside_over_around": 0.027,
+  "smooth_fill_inside_over_around": 0.008,
+  "relief_p75_mm": {
+   "around": 0.00462,
+   "inside_input": 0.00448,
+   "inside_smooth_fill": 4e-05,
+   "inside_out": 0.00012
+  },
+  "gate": {
+   "around_local_rms_median_mm": 0.015847962485424374,
+   "gate_level_mm": 0.03419077891445048,
+   "outlier_share_of_free": 0.6984352773826458,
+   "gated_share_of_free": 1.0
+  },
+  "shape_vs_clean_mm_max_abs": {
+   "input": 4.0,
+   "smooth_fill": 0.326,
+   "out": 0.326
+  },
+  "core_edge_turn_max_deg": {
+   "input": 3.32,
+   "smooth_fill": 1.51,
+   "out": 1.77
+  },
+  "pass": true
+ },
+ "all_pass": true
+}

@@ -1,0 +1,20 @@
+{
+ "box_px": [
+  221.0,
+  179.0,
+  263.0,
+  221.0
+ ],
+ "bump_centre_px": [
+  242.0,
+  200.0
+ ],
+ "mean_abs_diff_inside": 3.018,
+ "mean_abs_diff_outside": 0.0034,
+ "ratio": 885.8,
+ "pair_size": [
+  812,
+  444
+ ],
+ "PASS": true
+}

@@ -35,6 +35,13 @@ INNER_BAND = 25     # px: the bake test is also reported away from the outline, 
 DEPTH_TOL = 0.0015  # m: a vertex is visible when within 1.5 mm of the z-buffer front at its pixel
 
 
+import os as _os_mg, sys as _sys_mg  # noqa: E402  (build A1: the engine's one closest point, normals, cotangent Laplacian)
+_MG_DIR = _os_mg.path.normpath(_os_mg.path.join(_os_mg.path.dirname(_os_mg.path.abspath(__file__)), '.'))
+if _MG_DIR not in _sys_mg.path:
+    _sys_mg.path.append(_MG_DIR)
+import mesh_geom as _MG  # noqa: E402
+
+
 def srgb_to_lin(c):
     c = np.asarray(c, float); return np.where(c <= 0.04045, c / 12.92, ((c + 0.055) / 1.055) ** 2.4)
 
@@ -44,11 +51,7 @@ def lin_to_srgb(c):
 
 
 def vertex_normals(v, f):
-    fn = np.cross(v[f[:, 1]] - v[f[:, 0]], v[f[:, 2]] - v[f[:, 0]])
-    vn = np.zeros_like(v)
-    for k in range(3):
-        np.add.at(vn, f[:, k], fn)
-    return vn / np.maximum(np.linalg.norm(vn, axis=1, keepdims=True), 1e-12)
+    return _MG.vertex_normals(v, f, eps=1e-12)
 
 
 def pixel_normals(v, f, cam, rast, vn):
