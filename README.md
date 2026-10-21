@@ -51,7 +51,10 @@ remeshed. It works on any object too: tested on a whole body, a dragon, a brick 
   come: the eyes, the nose, refining and colouring the fur, and a few other touch-ups.
 - **A human torso.** An anatomical adult torso refined over twelve measured versions, then rig and pose tests (shoulder rhythm and the scapula seen from the back), now moving to a full base body.
 
-Next on the ladder: a head with real eyes and skin, then a full body, then clothes that go on and come off properly.
+**Next on the ladder:** a head with real eyes and skin, then a full body, then clothes that move with the body, have
+real fabric texture and react to what's around them.
+
+**Also in the pipeline, just for fun:** 3-D structures, a qilin and a few other objects.
 
 ## Install
 

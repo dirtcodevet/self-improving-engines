@@ -49,7 +49,9 @@ The cat is unfinished. Still to come: the eyes (the sockets are empty in the clo
 and a few other touch-ups.
 </details>
 
-Next on the ladder: a head (eyes, skin, hair), a full body, then clothes.
+Next on the ladder: a head (eyes, skin, hair), a full body, then clothes that move with the body, have real fabric
+texture and react to what's around them. Also in the pipeline, just for fun: 3-D structures, a qilin and a few other
+objects.
 
 ## What you need
 
