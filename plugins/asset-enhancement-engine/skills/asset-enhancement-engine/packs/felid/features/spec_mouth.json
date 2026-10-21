@@ -1,0 +1,644 @@
+{
+ "_what": "SPEC (Phase 2, Stage 3, criteria C5 + C6) for the closed MOUTH of case cat1, built as SKIN STRUCTURE (layer L3, E5: no painted line). Inventory parts covered: philtrum meets the lip, upper lip lobes overhanging the lower lip, MOUTH CREASE (closed), mouth-corner (commissure) creases, lower lip and chin. Written by the 'mouth' builder agent; no geometry built here.",
+ "status": "spec v1, 2026-10-18; NOT reviewed (A15: needs one narrow review)",
+ "frame": "head frame of tripo_rebuild/partition.head_local, mm (world*1000): x = cat's LEFT, y = back (face at -y), z = up. Arc s = mm along the lip line from the midline junction.",
+ "evidence_ranking": "G3: photo where it sees > constraints > Tripo reference (Phase 1 numbers with their uncertainty) > cited anatomy > estimate (flagged). Every value carries source + confidence (G2). Tripo artefacts (an open V groove with no lips, no undercut and no slit - REVIEW_mouth s1/s6) are NOT copied as anatomy; Tripo gives only WHERE the line runs.",
+ "confidence_scale": {
+  "high": "measured twice independently, agreeing within tolerance",
+  "medium": "one measurement or a measured reference with stated uncertainty",
+  "low": "read from a figure, or an inference from anatomy without a number",
+  "estimate": "no source for the number; a stated choice, range given",
+  "construction": "a build constraint, not anatomy"
+ },
+ "sources": {
+  "P1_mouth": {
+   "what": "tripo_rebuild/layers/mouth.json (mouth.py v4, LOG_mouth M8/M9; status checked)",
+   "says": "one continuous groove; start (0,-66.29,-22.85) depth 0.80 mm; L corner arc 25.61 at (18.84,-54.05,-27.47) +-0.6 mm (12 non-breaking variants); R has NO break - its line runs on up the pad's rear border; R 'turn' at arc 23.04 (-16.86,-55.11,-28.43) untested; lower-lip side folds L 6.0 mm / R 8.1 mm long, up to 0.71 mm deep."
+  },
+  "P1_review": {
+   "what": "tripo_rebuild/REVIEW_mouth.md",
+   "says": "Tripo's mouth is one open V, no undercut, no slit anywhere; opening angle 75 deg at the midline widening to 150-165 deg at |x| 8-16; commissures about R (-18.4,-53.8,-27.4) and L (+19.1,-54.0,-27.2) +-2 mm along the line, symmetric within 0.7 mm; muzzle mirror plane x = +0.25 mm; central V asymmetric by ~1.5 mm (R deeper); texture dark band 0.5-1.9 mm ABOVE the groove apex on the upper-lip side; whisker-root false cleft on R near (-17.3,-57.5,-27.5)."
+  },
+  "P1_sections_fig": {
+   "what": "tripo_rebuild/layers/mouth_sections.png (sagittal sections x = 0, +-4, +-8, -12 of the Tripo FUR ENVELOPE); front profile read by this agent (scratch secfig2.py, 32 px/mm from the 4 mm ticks, reading +-0.15 mm)",
+   "says": "x=0: apex 0.60 mm behind the lower lip's front; the upper-lip surface 1 mm above the apex is 1.0 mm in front of the lower lip's front; the upper-lip bulge is 2.75 mm in front of it. x=-4 / +4: the upper-lip surface 1 mm above the apex is 1.5 / 1.75 mm in front of the lower lip's front. The upper-lip face recedes ~32 deg from vertical toward the apex (x=0)."
+  },
+  "P1_nose": {
+   "what": "tripo_rebuild/layers/nose.json",
+   "says": "leather bottom z -16.3 mm (0-level outline; -16.6 at the -1 level); max leather width 16.1 mm at z -8 (17.23 at the -1 level)."
+  },
+  "P1_eyes": {
+   "what": "tripo_rebuild/layers/eyes.json",
+   "says": "iris centres L (19.83,-37.35,6.83), R (-22.84,-36.44,6.25): 42.7 mm apart in x."
+  },
+  "coat": {
+   "what": "engine/packs/felid/coat.json (C1)",
+   "says": "muzzle (y<-48, z<0) coat depth 0.8 / 1.2 / 2.0 mm (min/typical/max, ESTIMATE); chin (y<-30, z<-24) 1.0 / 1.5 / 2.5 mm; the furless list has NO lip-margin entry."
+  },
+  "photo": {
+   "what": "cases/cat1/ref.jpg (1728x1152); crops and luminance profiles by this agent (scratch photo_prof.py, photo_band.py)",
+   "says": "see photo_evidence"
+  },
+  "reighard1901": {
+   "cite": "Reighard J. & Jennings H.S. (1901) Anatomy of the Cat. Henry Holt, New York. Alimentary canal, 1. The Mouth, p. 221",
+   "url": "https://gutenberg.org/cache/epub/58394/pg58394-images.html",
+   "says": "lips are 'thick folds of skin bounding the entrance to the mouth cavity'; outer surface hairy, inner surface mucous membrane; the upper lip has a 'deep external groove' in the midline running up toward the nasal septum (philtrum) and a thick median frenulum with large papillae beside it inside; the lower lip has a median frenulum and is attached to the jaw just behind the canine (between canine and first premolar); the lips meet at the commissura labiorum, where they join the cheek."
+  },
+  "wikivet_lips": {
+   "cite": "WikiVet, 'Lips' (Anatomy & Physiology)",
+   "url": "https://en.wikivet.net/Special:MobileDiff/15607...208195",
+   "says": "'Feline's lips are smaller in size and have decreased motility'; 'Skin and mucosa meet at the lip margins.'"
+  },
+  "occlusion": {
+   "cite": "dvm360 proceedings 'Normal occlusion or malocclusion question' (search-result summary; page not opened by this agent, so confidence low)",
+   "url": "https://www.dvm360.com/view/normal-occlusion-or-malocclusion-question-proceedings",
+   "says": "normal feline occlusion = scissor bite; the mandibular canine crown sits in the diastema between maxillary I3 and the maxillary canine; canines contacting the outer lip surface is a sign of malocclusion (so in normal occlusion the lips drape over the canines)."
+  },
+  "engine_anatomy": {
+   "what": "engine/references/cat-anatomy.md 'Mouth (closed)'",
+   "says": "upper lip clearly larger than the lower (carnivores), split by the philtrum into two lobes -> overhang; lip margins pigmented (lentigo sites); commissure position: not found."
+  },
+  "engine_hair": {
+   "what": "engine/references/cat-hair-streams.md, [A] Mivart 1881 ch. II s.1",
+   "says": "'The nose tip, the lips and the paw pads are naked' (read together with Reighard 1901, which says the outer lip face is hairy: 'naked' = the labial margin)."
+  },
+  "engine_layered": {
+   "what": "engine/references/layered-build.md (E5)",
+   "says": "the closed mouth shows as the shadow under the overhanging lips, not a drawn line; mouth crease where the upper lips overlap the lower lip; corner creases; checked in clay close-ups."
+  },
+  "searched_not_found": [
+   "the cat's commissure position relative to the teeth (premolar / carnassial level): two text searches on 2026-10-18 found no source (agrees with cat-anatomy.md 'not found')",
+   "any measured overlap of the upper lip over the lower lip in cats: two text searches found no source"
+  ]
+ },
+ "photo_evidence": {
+  "scale": {
+   "value_mm_per_px": 0.38,
+   "uncertainty": 0.03,
+   "how": "two independent ratios on the near-frontal face: nose leather max width 42 +-4 px (R-G threshold 30; 46/39 px at 22/38) against Tripo 16.1 mm -> 0.383; iris centres 112 px (ref_points eye.R/eye.L) against Tripo 42.7 mm -> 0.381",
+   "confidence": "medium",
+   "note": "image-plane only. The face is near-frontal, so x is reliable; vertical distances are foreshortened by the head's pitch (estimated ~18 deg from eye -> leather top; ESTIMATE). The frozen camera (cases/cat1/camera_frozen.json, rms 3.9 px) was fitted to the v-series model; the nose builder's 2D-shift registration ties it to the head frame (registered_projection below; 2.79-2.88 px/mm = 0.35-0.36 mm/px at the mouth, agreeing with this scale within its uncertainty)."
+  },
+  "junction": {
+   "px": [
+    706,
+    401
+   ],
+   "what": "the darkest point on the midline below the leather (luminance 81-93 at y 400-402): where the two upper-lip lobes part",
+   "on_midline": "leather centre at x 706.5 (thresholds 22 and 30): the junction is on the muzzle midline within 1 px (0.4 mm)",
+   "confidence": "high (the photo sees it)"
+  },
+  "philtrum_photo": {
+   "value_px": "9 +-2 (leather tip ~y 391-393 to the junction at y 401)",
+   "value_mm_image": "3.4 +-0.8",
+   "conflict": "Tripo's midline apex would sit 4.9 +-0.8 mm below the leather tip in the image plane, not 3.4. Resolved by the registered projection (below, O2): the photo's notch is the Y where the lobes part; Tripo's apex is the lower lip's contact 3.55 mm lower in z, hidden in the shadow."
+  },
+  "shadow_crescent": {
+   "what": "the closed mouth in the photo: a dark crescent (contrast 24-71 luminance levels against the pad above and the chin below) under the upper-lip lobes. There is no drawn line anywhere; the photo confirms E5.",
+   "x_extent_px": [
+    677,
+    735
+   ],
+   "half_width_px": "R 29, L 29 (symmetric about x 706)",
+   "half_width_mm": "11.0 +-1.1",
+   "drop_px": "centre y 401 at the midline -> y 412-414 at its ends (an arch, apex up)",
+   "near_midline_slope": "~35 deg below horizontal over the first 7 px (2.7 mm), then ~15 deg",
+   "agrees_with_tripo": "Tripo's line reaches |x| 11.0 at arc 12.8-12.9 on both sides, where its 1 mm crease reading falls from 0.24 to 0.15 (arc 12 -> 14). So the photo sees the line out to arc ~12.8 +-1.2 per side and no further; the rest runs back under the pad fur.",
+   "confidence": "medium"
+  },
+  "lower_lip": "never visible in the photo: under the crescent is the shadow and then the chin mound. Consistent with an upper lip that hides the lower lip (inventory check 'small chin under the overhang').",
+  "chin_mound": {
+   "what": "lighter rounded mound below the crescent with a faint lower border",
+   "y_px": [
+    415,
+    439
+   ],
+   "width_px": "36 +-4 (x ~688-724)",
+   "width_mm": "13.7 +-1.8",
+   "lower_border_below_junction_mm_image": "14.4 +-1.5 (38 +-3 px)",
+   "confidence": "low-medium (white fur on white; soft edges)"
+  },
+  "commissures": "NOT visible: hidden under the whisker-pad fur (the crescent fades at |x| ~11 mm; Tripo's corners are at |x| 18.3-18.8). By J2 the photo cannot place the corners; constraints + Tripo do.",
+  "registered_projection": {
+   "how": "the nose builder's registration (spec_nose.json photo_registration): camera_frozen.json + cat_fit14.json head C,R + a 2D shift (+158.8, +11.8) px; re-checked here: iris L/R land 3.5 / 5.9 px from ref_points; 2.88 px/mm in x and 2.79 px/mm in z at the mouth (scratch project.py, offs.py)",
+   "tripo_apex_line_px": "the symmetric Gamma_env projects at y 409.4 on the midline and y 416-417 at x 680/735 - i.e. INSIDE the lower half of the photo's shadow crescent",
+   "offset_core_above_apex_mm_z": {
+    "arc_2.7": [
+     2.27,
+     1.62
+    ],
+    "arc_3.9": [
+     2.24,
+     1.59
+    ],
+    "arc_5.0": [
+     2.16,
+     1.15
+    ],
+    "arc_6.1": [
+     2.08,
+     1.43
+    ],
+    "arc_7.4": [
+     2.0,
+     1.35
+    ],
+    "arc_8.6": [
+     1.86,
+     1.21
+    ],
+    "arc_9.9": [
+     1.71,
+     1.06
+    ],
+    "arc_11.3": [
+     1.61,
+     null
+    ],
+    "_cols": "[R, L]: how far the photo crescent's dark core lies ABOVE Tripo's geometric apex, converted at 2.79 px/mm"
+   },
+   "midline": "the photo notch (Y, darkest pixel 706,401) is 8.4 px = 3.0 mm (image) above the projected apex; spec_nose lifts it to (-0.5,-68.2,-19.3), 3.55 mm above the apex in z",
+   "reading": "Tripo's geometric V apex is NOT the visible lip edge: it is where Tripo's no-undercut surface (the filled overhang) meets the lower lip, i.e. the lower lip's contact line, hidden in the shadow. The visible upper-lip margin lies 1.1-2.3 mm (mean 1.7) higher. Agrees with REVIEW_mouth s3 (Tripo's own texture: dark band 0.5-1.9 mm above the apex on the upper-lip side) - not independent, Tripo's texture comes from this photo.",
+   "uncertainty": "registration ~1 mm (translation-only fit, medium); R-L spread 0.6 mm (registration roll or lighting)",
+   "confidence": "medium-low"
+  }
+ },
+ "parts": {
+  "junction_philtrum_meets_lip": {
+   "Y_junction_env_mm": [
+    -0.5,
+    -68.2,
+    -19.3
+   ],
+   "Y_source": "spec_nose.json parts.philtrum.end_Y_junction (PHOTO notch at px 706.5,400.5 lifted via the registered camera; tol x 0.4, y 0.8, z 0.8; medium-low). Owned by the nose spec; adopted here so the two specs meet. Its x (-0.5) and this spec's mirror plane (+0.25) differ by 0.75 mm, inside the registration's ~1 mm: the builder takes ONE midline (suggest +0.25, the measured muzzle mirror plane) for both.",
+   "midline_contact_env_mm": [
+    0.25,
+    -66.29,
+    -22.85
+   ],
+   "contact_source": "P1_mouth start (deepest concavity of the x=0 section below the leather; next candidate 0.02 mm), moved onto the muzzle mirror plane x=+0.25 (P1_review s4). It is the lower lip's contact with the overhang at the midline (photo_evidence.registered_projection), 3.55 mm below the Y in z.",
+   "uncertainty_mm": "Y: per spec_nose; contact: x +-0.25, y/z +-0.5 (Tripo)",
+   "confidence": "medium-low (Y, photo through a ~1 mm registration) / medium (contact, Tripo)",
+   "anatomy": "the philtrum (reighard1901 'deep external groove') runs from the leather's lower point down the upper lip to the Y; there the two upper-lip lobes part, leaving a small inverted-V NOTCH (the photo's darkest mouth pixel) through which the shadowed lower lip and the slot show. The philtrum groove itself belongs to the nose spec (inventory L3[4]); this spec builds the notch below the Y.",
+   "shape": "the notch: the two lobes' medial margins run from the Y down and out to the margin line Gamma_U at s ~1.5-2.5 (photo: 30-40 deg below horizontal for the first ~2.5 mm, then the line's ~15-21 deg). Notch height Y -> contact 3.55 +-0.9 mm in z. The hidden overlap v is smallest here (see profiles): the lower lip is nearly exposed in the notch."
+  },
+  "mouth_crease_line": {
+   "what": "the closed mouth = TWO lines: the upper-lip MARGIN Gamma_U (the lower edge of the lobes, the visible mouth edge) and, 1-2 mm below and behind it in the shadow, the CONTACT line Gamma_env where the lower lip meets the overhang. Built as a real overhanging fold over a hidden slot: never a cut slit, never a painted or engraved line (inventory L3[6], layered-build E5).",
+   "gamma_U_margin": {
+    "what": "the upper-lip margin on the envelope: in the envelope's section through Gamma_env(s) perpendicular to the line, the point on the upper-lip side whose z is Gamma_env.z + u_m(s)",
+    "u_m_mm_by_arc": {
+     "0": 3.55,
+     "1.5": 2.2,
+     "3": 1.9,
+     "5": 1.7,
+     "7.5": 1.7,
+     "9": 1.5,
+     "11.3": 1.35,
+     "12.8": 1.3,
+     "21.45": 1.0,
+     "25.45": 0.0
+    },
+    "interp": "linear between knots; s = 0 is the Y (the notch top), s 1.5-12.8 from the photo (registered_projection, mean of R and L), s > 12.8 not seen by the photo: linear to 1.0 at s_c-4 then cosine to 0 at the corner (ESTIMATE)",
+    "tolerance_mm": "+-0.5 (spread) +-1.0 (registration)",
+    "source": "PHOTO (J2: the photo sees the crescent) through the registered camera; supported by REVIEW_mouth s3 (Tripo texture band 0.5-1.9 mm above the apex)",
+    "confidence": "medium-low"
+   },
+   "gamma_env": {
+    "what": "the CONTACT line on the FUR ENVELOPE (Tripo's geometric apex), symmetrized. Left side below; right side = mirror about x=+0.25 (x_R = 0.5 - x_L). Built from mouth.json as 0.5*(L(s) + mirror(R(s))), except over arc 20.5-24.5 where R is contaminated by whisker-root spikes (L only there), then smoothed by a Gaussian of sigma 0.5 mm along s.",
+    "arc_mm": [
+     0.0,
+     1.0,
+     2.0,
+     3.0,
+     4.0,
+     5.0,
+     6.0,
+     7.0,
+     8.0,
+     9.0,
+     10.0,
+     11.0,
+     12.0,
+     13.0,
+     14.0,
+     15.0,
+     16.0,
+     17.0,
+     18.0,
+     19.0,
+     20.0,
+     21.0,
+     22.0,
+     23.0,
+     24.0,
+     25.0
+    ],
+    "L_side_mm": [
+     [
+      0.25,
+      -66.29,
+      -22.85
+     ],
+     [
+      1.23,
+      -66.44,
+      -23.01
+     ],
+     [
+      2.16,
+      -66.61,
+      -23.26
+     ],
+     [
+      3.09,
+      -66.63,
+      -23.57
+     ],
+     [
+      4.02,
+      -66.51,
+      -23.89
+     ],
+     [
+      4.95,
+      -66.3,
+      -24.18
+     ],
+     [
+      5.85,
+      -66.01,
+      -24.49
+     ],
+     [
+      6.68,
+      -65.59,
+      -24.83
+     ],
+     [
+      7.51,
+      -65.14,
+      -25.15
+     ],
+     [
+      8.38,
+      -64.76,
+      -25.4
+     ],
+     [
+      9.22,
+      -64.33,
+      -25.68
+     ],
+     [
+      10.01,
+      -63.86,
+      -25.97
+     ],
+     [
+      10.71,
+      -63.29,
+      -26.34
+     ],
+     [
+      11.4,
+      -62.7,
+      -26.71
+     ],
+     [
+      12.0,
+      -62.05,
+      -27.12
+     ],
+     [
+      12.69,
+      -61.41,
+      -27.42
+     ],
+     [
+      13.29,
+      -60.69,
+      -27.7
+     ],
+     [
+      13.85,
+      -59.92,
+      -27.94
+     ],
+     [
+      14.48,
+      -59.18,
+      -28.08
+     ],
+     [
+      15.13,
+      -58.44,
+      -28.15
+     ],
+     [
+      15.73,
+      -57.76,
+      -28.2
+     ],
+     [
+      16.47,
+      -57.47,
+      -27.91
+     ],
+     [
+      17.25,
+      -57.06,
+      -27.55
+     ],
+     [
+      17.85,
+      -56.36,
+      -27.38
+     ],
+     [
+      18.3,
+      -55.49,
+      -27.39
+     ],
+     [
+      18.64,
+      -54.61,
+      -27.38
+     ]
+    ],
+    "fit": "max distance to the sound L line 0.38 mm; to the R line p90 1.04, max 1.68 mm at arc 23 (the whisker-root wiggle plus a ~0.5 mm y offset of R's central V, the Tripo asymmetry of REVIEW_mouth s4, which the photo does not show: the photo crescent is symmetric to 1 px)",
+    "confidence": "medium (Tripo +-0.5; the symmetric build is justified by the photo crescent's 29/29 px halves)"
+   },
+   "gamma_skin": "Gamma_C_skin(s) (contact) = closest point on the skin S to [Gamma_env(s) - d(s)*n_env(s)], and Gamma_U_skin(s) (margin) the same from Gamma_U_env(s); d = the C1 coat depth at that point (muzzle typical 1.2 mm, chin 1.5), n_env = the Tripo envelope's outward normal there. Log the closest-point moves: more than 0.5 mm means the skin and the depth map disagree there (a C3 finding, not a mouth fix).",
+   "why_structure_not_inset": "the Tripo groove is 0.8 mm deep at the midline and 0.1-0.4 mm laterally (P1_mouth 2 mm readings). That is SMALLER than the muzzle coat inset (1.2 mm) that C3b then smooths, so the skin build will erase it. The mouth therefore has to be built by the recipe below, not inherited from the inset.",
+   "photo_visible_arc_mm": [
+    0,
+    12.8
+   ],
+   "why_two_lines": "Tripo has no undercut, so it FILLS the overhang: its surface runs from the lobe's front down a receding face (~32 deg from vertical at x=0) to the V apex where the lower lip starts. The photo's shadow crescent lies on that receding face, 1.1-2.3 mm above the apex. In the build the fill between Gamma_U and the lower lip's face becomes air (the cavity under the overhang that casts the photo's crescent)."
+  },
+  "upper_lip_lobes_overhang": {
+   "what": "each upper-lip lobe is a thick skin fold (reighard1901) whose free lower margin hangs IN FRONT of and BELOW the top of the lower lip, hiding it. Evidence: the photo never shows the lower lip; engine_anatomy (upper lip larger -> overhang); occlusion (the lips drape over the canines in normal occlusion).",
+   "s_c_mm": 25.45,
+   "profiles_along_arc": {
+    "sigma_step_mm": {
+     "what": "visible step: the upper lip's outer skin at its margin Gamma_U_skin stands sigma in front (along the skin normal) of the lower-lip face plane (recipe step 2); sigma = margin thickness t_m + gap g. It is an OUTPUT of the geometry (margin from the photo, lower-lip face from Tripo); the profile here is the EXPECTED value and the build fails P2 if it comes out outside the range.",
+     "s0": 0.9,
+     "s_ge_3": 1.5,
+     "ramp": "linear 0.9 -> 1.5 over s 0-3",
+     "taper": "cosine from 1.5 at s_c-5 to 0.5 at the corner s_c",
+     "source": "P1_sections_fig: envelope step 1.0 (x=0) and 1.5/1.75 (x=-4/+4) mm, 1 mm above the apex; skin step = envelope step +-0.3 (muzzle 1.2 vs chin 1.5 coat depths). Taper: the Tripo depth falls to 0.17 mm at the corner (P1_mouth).",
+     "confidence": "low (Tripo envelope, figure read)",
+     "range_mm": [
+      0.6,
+      2.2
+     ]
+    },
+    "v_overlap_mm": {
+     "what": "HIDDEN overlap: how far the upper-lip margin hangs below the top margin of the lower lip, measured along the slot behind the flap",
+     "s0": 0.5,
+     "s_ge_3": 2.5,
+     "ramp": "linear 0.5 -> 2.5 over s 0-3",
+     "taper": "cosine from 2.5 at s_c-4 to 0 at the corner",
+     "source": "ESTIMATE from anatomy without a number: upper lip larger than the lower (engine_anatomy); lips cover the canines in normal occlusion (occlusion); the photo never shows the lower lip along the visible arc (photo_evidence.lower_lip), so v > 0 everywhere on 0 < s < s_c, smallest at the midline notch where the lobes part",
+     "confidence": "estimate",
+     "range_mm": [
+      1.5,
+      4.0
+     ]
+    },
+    "g_gap_mm": {
+     "value": 0.15,
+     "range": [
+      0.1,
+      0.3
+     ],
+     "what": "hidden gap between the upper lip's inner (mucosal) face and the lower lip's outer face",
+     "source": "CONSTRUCTION value, not anatomy (in life the lips touch). It keeps the two lips separate solids so the slot is real (C6) and the jaw can open; it must be >= 2 voxels of the SDF grid.",
+     "confidence": "construction"
+    },
+    "t_m_margin_mm": "t_m = sigma - g (0.75 at the midline, 1.35 laterally): the flap thickness at its free edge",
+    "r_m_edge_radius_mm": {
+     "value": 0.4,
+     "range": [
+      0.25,
+      0.6
+     ],
+     "source": "ESTIMATE (a rounded margin, ~ t_m/2 at the midline)"
+    },
+    "D_in_mm": {
+     "value": 1.5,
+     "what": "slot run inward (-n) above the lower lip's top margin before its rounded end (the start of the vestibule)",
+     "source": "ESTIMATE. If an oral-cavity / teeth solid exists (the engine's opening mouth), join the slot to it instead."
+    }
+   }
+  },
+  "commissures": {
+   "L_mm": [
+    18.77,
+    -54.31,
+    -27.35
+   ],
+   "R_mm": [
+    -18.27,
+    -54.31,
+    -27.35
+   ],
+   "arc_mm": 25.45,
+   "L_basis": "P1_mouth L corner (18.84,-54.05,-27.47) +-0.6 (sound), after the symmetric smoothing (a 0.27 mm move). These are envelope points; the skin points are Gamma_skin(s_c).",
+   "R_settled": {
+    "decision": "R corner = the mirror of the sound L corner about the muzzle mirror plane, NOT the 'turn' at (-16.86,-55.11,-28.43)",
+    "how": [
+     "the mirror of the L corner about x=+0.25 is (-18.34,-54.05,-27.47). It lies 0.24 mm from the traced R line, at R arc 25.30 (L corner arc 25.61: the arcs agree within 0.31 mm)",
+     "independent: REVIEW_mouth's perpendicular tracer put the R commissure at (-18.35,-53.75,-27.35) by depth minimum + direction change, 0.32 mm from the mirror point",
+     "independent: the point where the line starts its sustained climb onto the pad's rear border (z-slope over the next 2 mm of arc > 0.4 and staying there) is L arc 25.61 (= the L corner) and R arc 25.0-25.5",
+     "the 'turn' candidate is 2.06 mm from the mirror point. Its 39.5 deg turn is a one-station bump (z-slope 0.51 then 0.26) in the R stretch where whisker roots sit 1-3 mm above the line (LOG_mouth M5; REVIEW_mouth s5 whisker-root hazard): rejected",
+     "photo: it cannot see either corner (hidden under the pad fur), so by J2 the photo does not decide; the photo's symmetric crescent (29/29 px) supports a symmetric build"
+    ],
+    "uncertainty_mm": 0.7,
+    "confidence": "medium (three agreeing readings within 0.35 mm, anchored on the +-0.6 L corner)"
+   },
+   "anatomy_note": "the commissure (commissura labiorum) is where the lips meet and join the cheek (reighard1901). The lower lip is attached behind the canine, so the corner must lie caudal to the lower canine. Its position against the teeth was searched for and not found. Tripo's line ends here and turns UP the whisker pad's rear border; a true angulus oris further back under the cheek fur cannot be excluded -> OPEN O3.",
+   "beyond_the_corner": "the groove that continues UP from the corner (L from arc 29, R without a break) is the whisker pad's REAR BORDER, not mouth. Do not build it as lip; hand it to the whisker-pad part."
+  },
+  "commissure_creases": {
+   "what": "one short skin crease per side at the corner, set back under the whisker pad (inventory L3[7]): the fold where the closed lips meet the cheek",
+   "path": "from the corner, continuing the lip line's tangent at s_c (projected on the skin), caudally",
+   "length_mm": {
+    "value": 4.0,
+    "range": [
+     3.0,
+     5.0
+    ],
+    "source": "ESTIMATE (inventory: 'short')"
+   },
+   "depth_mm": {
+    "profile": "0.3 at the corner -> 0 at the end (linear)",
+    "width_mm": 1.0,
+    "source": "ESTIMATE. Tripo's envelope is FLAT here (2 mm reading -0.05..0.04 over L arc 26.2-28.2): the fur hides it, so no Tripo value exists.",
+    "confidence": "estimate"
+   },
+   "photo": "not visible (under the pad fur)"
+  },
+  "lower_lip_and_chin": {
+   "lower_lip": "a smaller fold (engine_anatomy; wikivet_lips 'smaller ... decreased motility') with its free top margin hidden behind the upper-lip flap at height v(s) above Gamma_skin, and its outer face recessed sigma(s) behind the upper margin. Its median frenulum is inside (reighard1901, interior: not built in Stage 3 unless the oral cavity is). Visible only as the shadowed face under the overhang (the photo crescent).",
+   "chin": {
+    "what": "small rounded chin mound under the overhang (mandibular symphysis region); skin = Tripo envelope inset by the chin coat depth (1.5 typical)",
+    "photo": "mound ~13.7 +-1.8 mm wide, lower border ~14.4 +-1.5 mm below the junction in the image plane",
+    "tripo": "x=0 sagittal: the lower lip front is 0.6 mm proud of the apex, then the chin recedes smoothly (P1_sections_fig). No separate chin landmark was measured in Phase 1 (OPEN O4).",
+    "confidence": "low-medium"
+   },
+   "lower_lip_side_folds": {
+    "what": "the creases bounding the chin mound / lower-lip front on each side (P1_mouth 'lower-lip side folds')",
+    "from_mm": [
+     1.83,
+     -66.43,
+     -24.77
+    ],
+    "to_mm": [
+     5.06,
+     -62.64,
+     -29.42
+    ],
+    "note": "L side; R = mirror about x=+0.25. Average of L (1.805,-66.459,-24.743)->(4.879,-63.242,-28.748), 6.0 mm long, and mirrored R (-1.853,-66.407,-24.803)->(-5.241,-62.028,-30.098), 8.1 mm long; envelope depth 0.37-0.71 mm",
+    "build": "skin crease 0.3 mm deep (envelope depth minus fur, ESTIMATE), 1 mm wide, 7.0 +-1.0 mm long (Tripo L/R 6.0/8.1)",
+    "photo": "the chin mound's edges at |x| ~6.8 +-0.9 mm against the folds' lower ends at |x| 4.9-5.2: they agree within ~1.6 mm (soft photo edges)",
+    "confidence": "low (could be a fur parting in Tripo's envelope; no anatomy source for a mentolabial fold in cats was searched)"
+   }
+  },
+  "furless_and_fur": {
+   "labial_margin": "a ~1 mm band either side of each lip's free margin, and the whole slot interior, carry NO fur (engine_hair: naked lips; wikivet_lips: mucocutaneous junction at the margin). Add 'lip_margin' to coat.json furless (rule: within 1 mm of the margin edges and inside the slot): hand-off to the C1/C14 owners.",
+   "fur_over_margin": "upper-lip fur (muzzle, guard 3-7 mm) hangs over the margin at Stage 5 and makes the envelope V; the built envelope apex must land back on Gamma_env (probe P3b)",
+   "pigment": "lip margins are pigmented in cats generally (engine_anatomy); in this white cat the midline junction reads pinkish in the photo (R-G ~33 at y 397-402). Stage 4."
+  }
+ },
+ "sdf_recipe": {
+  "units": "head frame mm; f < 0 inside the skin; smax/smin = polynomial smooth max/min with radius k",
+  "inputs": [
+   "f_S: skin SDF (tripo_rebuild/layers/skin.npz from skin_build.py; read only)",
+   "Gamma_env (parts.mouth_crease_line.gamma_env) and the coat depth d(x) from the C1 depth map",
+   "the profiles sigma(s), v(s), g, r_m, D_in and s_c from parts.upper_lip_lobes_overhang"
+  ],
+  "steps": [
+   "1. Gamma_U_skin(s) (margin) and Gamma_C_skin(s) (contact) as in parts.mouth_crease_line.gamma_skin, sampled every 0.25 mm of arc, both sides, s in [0, s_c]; at s = 0 the margin is the Y junction (the notch top).",
+   "2. Frames. At Gamma_U_skin(s): n = grad f_S / |grad f_S| (outward), t = dGamma_U/ds, b = normalize(n x t) signed so that b.z > 0 (up the skin toward the nose). Lower-lip face plane LL(s): through Gamma_C_skin(s) with normal n_LL = the skin normal 1.0 mm below Gamma_C_skin along the skin (the lower lip's own face, continued upward behind the flap). sigma(s) := distance from Gamma_U_skin(s) to LL(s) along n - check it against the expected profile (fail outside its range: then the margin or the depth map is wrong, do not force it). e_up = the direction of LL(s) in the section, pointing up; e_in = -n.",
+   "3. Slot sheet Pi(s, w), a polyline in each (n, b) section. A: from Gamma_U_skin + 2.0 n - r_m b (outside, just under the margin) straight to P0 = the point of LL(s) + (g/2) n_LL at the margin's height. B: from P0 along e_up (on LL offset g/2) for v(s). C: from the end of B along e_in for D_in, closed by a round end of radius g/2. Loft the section polylines along s; as s -> s_c (v and sigma taper) the sheet shrinks to the corner point.",
+   "4. Signed distance to the sheet: delta(p) = distance to Pi, signed + on the UPPER side (the flap's side: the +n side of B, the +b side of A and C).",
+   "5. Zone Z(p): a tube of radius 8 mm round Gamma_U_skin and Gamma_C_skin with a 2 mm smoothstep edge, clipped at the corners (+1 mm round end). Outside Z nothing changes.",
+   "6. Upper lip: f_up = smax(f_S, g/2 - delta, r_m): the skin on the upper side of the sheet, cut back to the flap's inner face, with the margin edge rounded to r_m.",
+   "7. Lower lip: f_LL = f_S below Gamma_C_skin, and the signed distance to the plane LL(s) above it (behind the flap, up to the lower lip's top margin), blended over 1 mm at Gamma_C_skin; f_lo = smax(f_LL, delta + g/2, 0.4). This REMOVES Tripo's fill between the margin and the lower lip's face (the cavity under the overhang that casts the photo's crescent), keeps the lower lip and chin where Tripo has them below the contact line, clips the lower lip to the lower side of the sheet and rounds its top margin by 0.4 mm.",
+   "8. f_mouth = Z * min(f_up, f_lo) + (1 - Z) * f_S. Commissure creases: f_mouth += a 1 mm-wide Gaussian groove along each crease path with the depth profile of parts.commissure_creases, continuous with the slot's tip at the corner.",
+   "9. Lower-lip side folds: the same groove operator, 0.3 mm deep, along the symmetric fold paths.",
+   "10. Re-mesh at <= 0.25 mm inside Z: the slot gap is 0.15 mm and the mesher must resolve it, otherwise it fills (see the P2 planted failure)."
+  ],
+  "invariants": [
+   "no fur and no paint are used to make the line (E5)",
+   "the two lips are separate surfaces across the slot everywhere on 0 < s < s_c (C6)",
+   "symmetric about x = +0.25 within 0.3 mm (built symmetric; the photo shows no asymmetry)",
+   "outside Z the skin is untouched (identical f)"
+  ]
+ },
+ "probes": {
+  "P1_junction": {
+   "how": "sagittal section of the built skin at x = +0.25, and a frontal view along +y",
+   "pass": [
+    "a notch: in the frontal view the lobes part below the Y (spec_nose point, inset to the skin, within its tol) and the notch reaches down 3.55 +-0.9 mm in z to the midline contact",
+    "the slot opens in the notch: a ray along -y at x = +0.25, 1 mm below the Y, crosses no upper-lip skin and meets the lower lip / slot (gap >= 0.1 mm)",
+    "the lobe margins leave the Y at 25-45 deg below horizontal over the first 2.5 mm"
+   ],
+   "planted_failures": [
+    "Y moved 1 mm up",
+    "lobes merged (no notch; gap filled for s < 2)"
+   ]
+  },
+  "P2_overhang_sections": {
+   "how": "exact sections of the built skin perpendicular to Gamma_U_skin at s = 2, 7, 12 (photo-visible) and 20 (hidden) on BOTH sides: 8 sections. In each: (a) sigma = the distance along n between the upper margin's outer skin and the lower lip's outer skin 1 mm below the margin; (b) walking from P0 up along e_up: flap solid (thickness t_m +-0.3), then an empty gap g in [0.1, 0.3], then lower-lip solid, for the length v(s) +-0.5: the upper lip lies outside the lower lip with a hidden gap; (c) a ray along -n (and along the frozen-camera ray once registered) at every h in [0, v] hits upper-lip skin first: the lower lip's top margin is never visible from the front.",
+   "expected": {
+    "s=2": {
+     "sigma": 1.3,
+     "v": 1.83
+    },
+    "s=7": {
+     "sigma": 1.5,
+     "v": 2.5
+    },
+    "s=12": {
+     "sigma": 1.5,
+     "v": 2.5
+    },
+    "s=20": {
+     "sigma": 1.5,
+     "v": 2.5
+    },
+    "tol": "sigma +-0.3, v +-0.5, gap 0.1-0.3"
+   },
+   "planted_failures": [
+    "butt joint: v = 0 (slot straight in) -> (b) fails",
+    "slot filled (gap 0) -> (b) fails",
+    "drawn line: a 0.2 mm groove with no slot -> (a) and (b) fail",
+    "underbite: lower lip in front (sigma < 0) -> (a) fails",
+    "lower lip visible from the front (flap 1 mm too short) -> (c) fails"
+   ]
+  },
+  "P3_crease_path": {
+   "how": "(a) skin: the distance from the built margin edge to Gamma_skin(s) every 0.5 mm; (b) after the Stage 5 fur: run the Phase 1 mouth tool (v4, altered to take any mesh: a C5 kit item) on the built fur envelope",
+   "pass": [
+    "(a) the built margin edge within 0.5 mm of Gamma_U_skin, the lower lip's face meeting the flap's shadow within 0.5 mm of Gamma_C_skin",
+    "(b) the built fur envelope's V apex within 0.5 mm of Gamma_env (L) and within 0.7 mm (R, symmetric target) at every station to s_c - the fur hanging over the margin fills the cavity as Tripo's envelope does (C8); corners within 0.7 mm",
+    "photo, through the registered projection (photo_evidence.registered_projection): the projected margin Gamma_U lies on the crescent's dark core within 3 px (or 0-2 px above it) for x 680-734; the crescent in a clay render from that camera spans x 677-735 +-3 px; the Y lands on the photo notch (706,401) +-2 px"
+   ],
+   "planted_failures": [
+    "line shifted 1 mm down",
+    "line scaled 10 % in width"
+   ]
+  },
+  "P4_commissures": {
+   "how": "sections at the slot tip and along each crease",
+   "pass": [
+    "the slot tip (where v, sigma and the gap reach 0) is within 0.7 mm of the commissure points",
+    "|x_L - 0.25| and |x_R - 0.25| agree within 0.3 mm",
+    "crease sections perpendicular to its path at 1 / 2 / 3 mm from the corner: depth 0.22 / 0.15 / 0.08 +-0.1 mm",
+    "no lip structure continues up the pad's rear border"
+   ],
+   "planted_failures": [
+    "R corner placed at the rejected turn (-16.86,-55.11,-28.43): a 2.1 mm fail",
+    "crease missing"
+   ]
+  },
+  "P5_lower_lip_chin": {
+   "how": "sagittal sections at x = +0.25 and x = 0.25 +-4; skin-to-Tripo-envelope distance in the chin zone (twosided.MeshDist on a small crop only)",
+   "pass": [
+    "the lower lip's outer face is sigma(s) behind the upper margin (P2a)",
+    "chin skin = envelope - chin coat depth 1.5 +-0.5 mm (C3)",
+    "side folds present, 0.3 +-0.15 mm deep, 6-8 mm long, symmetric within 0.5 mm",
+    "clay render from the photo camera: the chin mound reads under the shadow, ~36 +-5 px wide"
+   ],
+   "planted_failures": [
+    "chin 2 mm too prominent (lower lip in front of the upper)",
+    "side folds missing"
+   ]
+  }
+ },
+ "open": {
+  "O1": "the overlap v and the step sigma have no cited cat measurement; v is an ESTIMATE (1.5-4.0 mm). A close-up closed-mouth side photo of a real cat (not cat1) or a CT/anatomy plate would set it.",
+  "O2": "SETTLED in this spec (was: photo philtrum 3.4 mm vs Tripo-predicted 4.9 mm): through the registered projection the photo's notch (Y) is 3.55 mm above Tripo's midline apex in z. They are different points: the Y is the notch top where the lobes part, Tripo's apex is the lower lip's contact in the shadow. Remaining: the registration is translation-only (~1 mm), so the Y's z is +-0.8.",
+  "O3": "the true angulus oris could lie further caudal under the cheek fur than Tripo's corner (Tripo's line turns up the pad border there; the commissure's position against the teeth was not found in sources).",
+  "O4": "no Phase 1 chin landmark (lowest or most forward chin point) was measured; the chin is specified as an inset of the envelope plus the photo mound.",
+  "O5": "the camera registration used here is the nose builder's translation-only shift (~1 mm, spec_nose.json); a full registration (rotation + scale refit on face landmarks) would tighten u_m (the margin's height above the apex, R-L spread 0.6 mm now).",
+  "O7": "the photo-derived margin Gamma_U and REVIEW_mouth s3's texture band agree, but Tripo's texture was itself made from this photo: they are not independent. One independent check is still missing (a second photo or a reviewer's own trace of the crescent).",
+  "O6": "the Tripo mesh was NOT re-sectioned for this spec (free memory 0.8-1.6 GB during the skin rebuild; the rule is no heavy run under 3 GB). The sigma readings come from the Phase 1 figure (+-0.15 mm reading; sagittal, not perpendicular, cuts). Re-read them with exact perpendicular sections at s = 2/7/12 before building."
+ },
+ "handoffs": {
+  "skin_C3": "the muzzle inset (1.2 mm) plus C3b smoothing erases the mouth groove. This is expected: the mouth is rebuilt by this recipe in Stage 3.",
+  "coat_C1": "add a lip_margin furless entry (parts.furless_and_fur)",
+  "whisker_pad": "the pad's rear-border groove beyond each corner belongs to the pad, not the mouth. The lowest R mystacial roots near (-19.1,-56.5,-27.4) and (-18.1,-58.2,-28.3) sit 1-3 mm above the lip line (REVIEW_mouth s2): keep follicles out of the flap and the slot.",
+  "C13_chin_whiskers": "chin whiskers root in the chin mound (cat-hair-streams [C] VetStreet)"
+ },
+ "run": {
+  "agent": "mouth builder (fresh)",
+  "scratch": "%TEMP%/p2prep_mouth (corner.py, sym.py, gamma.py, photo_prof.py, photo_band.py, secfig2.py, project.py, offs.py, write_spec.py)",
+  "memory": "peak < 150 MB; no mesh loaded",
+  "files_written": [
+   "engine/packs/felid/features/spec_mouth.json"
+  ]
+ }
+}

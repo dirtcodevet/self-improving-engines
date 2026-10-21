@@ -1,0 +1,113 @@
+{
+ "section": {
+  "q_up": 3.0,
+  "q_dn": 2.6,
+  "mid_b": 0.4,
+  "mid_f": 0.5,
+  "clip": 0
+ },
+ "views": {
+  "scale_mm_per_px": {
+   "lateral": 0.07298,
+   "dorsal": 0.07413,
+   "front": 0.07744
+  },
+  "front_scale_spread": {
+   "front": [
+    [
+     "dorsal",
+     "x",
+     0.08034545669649251
+    ],
+    [
+     "lateral",
+     "z",
+     0.07452530179999382
+    ]
+   ]
+  }
+ },
+ "silhouette_iou": {
+  "lateral": 0.9734,
+  "lateral_excess": 0.0177,
+  "lateral_missed": 0.0093,
+  "dorsal": 0.9213,
+  "dorsal_excess": 0.0374,
+  "dorsal_missed": 0.0442,
+  "front": 0.8831,
+  "front_excess": 0.0551,
+  "front_missed": 0.0682
+ },
+ "orbit_z_disagreement_mm": 2.71,
+ "processes": {
+  "frontal.R": {
+   "tip": [
+    -23.08,
+    -2.12,
+    14.96
+   ],
+   "z_lateral": 14.89,
+   "z_front": 15.02
+  },
+  "frontal.L": {
+   "tip": [
+    23.77,
+    -2.12,
+    14.76
+   ],
+   "z_lateral": 14.89,
+   "z_front": 14.64
+  },
+  "jugal.R": {
+   "tip": [
+    -27.33,
+    -6.13,
+    10.74
+   ],
+   "z_lateral": 10.87,
+   "z_front": 10.61
+  },
+  "jugal.L": {
+   "tip": [
+    29.58,
+    -6.13,
+    11.01
+   ],
+   "z_lateral": 10.87,
+   "z_front": 11.15
+  }
+ },
+ "arch_widest_mm": 64.34,
+ "meshes": {
+  "cranium": {
+   "verts": 130892,
+   "faces": 261796
+  },
+  "mandible": {
+   "verts": 30730,
+   "faces": 61456
+  }
+ },
+ "flags": [
+  "cranium width inside the arch span: interpolated across the arch roots (no direct view of the braincase there)",
+  "cranial base between the jaw line's back end and the jaw joint: straight line (hidden by the ramus in the lateral view)",
+  "sections FITTED to the three views (q_up 3.0, q_dn 2.6, widest at 0.5 (face) / 0.4 (braincase) of the height); ends closed by quarter-circle shrinking over 3 mm",
+  "cranium limited per height by the front view's central run (smooth profile): the see-through gaps beside the orbits are measured 'no bone at any depth'",
+  "orbit floor (maxilla/palate under the orbits): y -34.6..-14.0 mm, width from the dorsal outline (measured), top at the arch height (inferred), boxy sections q 4 (unsourced)",
+  "nasal cavity: carved back to the eye seats' y, narrowing, with 1.5 mm walls (wall thickness unsourced; depth derived: the cavity runs between the orbits)",
+  "arches: elliptic bars, horizontal half-thickness 1.33 mm (dorsal view, measured), vertical half-height 1.90 mm (lateral, picked)",
+  "postorbital process BASES inferred (tips picked); cone radii unsourced",
+  "mandible half-thickness 2.4 mm (body) / 1.4 mm (ramus): unsourced; coronoid tips from the front view (measured), their y inferred from the lateral view",
+  "rami: chin x 2.5 mm (symphysis, unsourced) -> 6.1 mm at the lowest ventral point (front-view lobes, picked) -> condyles inside the front view's width at the jaw-joint height (20.5 mm, measured; condyle size unsourced)"
+ ],
+ "aperture": {
+  "width_mm": 16.11,
+  "height_mm": 13.63,
+  "centre_xz": [
+   0.93,
+   5.03
+  ],
+  "depth_to_y": -17.08,
+  "otsu": 174.0
+ }
+}

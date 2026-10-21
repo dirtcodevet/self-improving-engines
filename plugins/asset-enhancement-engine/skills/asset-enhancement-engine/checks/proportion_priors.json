@@ -1,0 +1,14 @@
+{
+  "_note": "Broad anatomical bands for an adult domestic cat, ratios relative to withers height H (ground to top of shoulders) or head width. Measured on the SKIN (no fur). Deliberately wide: they exist to catch gross errors (greyhound torso, bug/buried eyes, pinhead), not to grade likeness. Sources: approximate veterinary/anatomy priors (adult cat: withers ~23-25 cm, head+body ~46 cm, tail ~25-30 cm, eyeball ~21 mm, head width ~8-9.5 cm). Changing a band goes through the ratchet (person's approval).",
+  "bands": {
+    "body_len/H": [1.05, 1.55],
+    "chest_depth/H": [0.40, 0.68],
+    "head_len/H": [0.30, 0.50],
+    "head_w/H": [0.28, 0.46],
+    "eye_d/head_w": [0.20, 0.32],
+    "iod/head_w": [0.32, 0.52],
+    "ear_h/head_w": [0.45, 0.95],
+    "leg_clear/H": [0.30, 0.55],
+    "tail_len/H": [0.75, 1.40]
+  }
+}

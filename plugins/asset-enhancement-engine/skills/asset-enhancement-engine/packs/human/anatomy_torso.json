@@ -1,0 +1,214 @@
+{
+ "what": "ANATOMY PRIORS for an adult female TORSO (domain pack 'human', case woman1 pass 1, preparation only). Cited proportions for what a frontal photo shows (landmarks, widths) and for what it cannot show (back, sides, arm sections), so the unseen side comes from a fitted CLASS model plus these priors, never a flat slab or a mirror. Written 2026-10-18 by the anatomy-research stage. Photo-only pass: nothing under 'Anatomical references/Tripo' was opened, read or listed.",
+ "status": "SPEC (estimated priors). Nothing here is checked by a tool on woman1 yet. Every item has value, range, source URL and confidence (engine-grounding G2). Evidence rank (G3): photo > constraints > cited population data > cited anatomy text > estimate. Tripo (pass 2) is not used.",
+ "units": "mm, degrees, ratios dimensionless. Heights are standing heights above the floor; 'offset' values are vertical distances between landmarks (positive = first landmark higher).",
+ "frame": "torso frame for later use: x = subject's LEFT, y = BACK (posterior), z = UP; origin at suprasternale (jugular notch). Same handedness convention as the felid packs (x left, y back, z up).",
+ "confidence_scale": {
+  "high": "large official population sample, measurement definition read in the original handbook, same sex",
+  "medium": "peer-reviewed or official source but different population/age, or derived from population data through an assumption",
+  "low": "source seen only as a search summary or abstract, or a cross-population scaling",
+  "estimate": "no numeric source fetched; artist/anatomy judgement, flagged for verification"
+ },
+
+ "sources": {
+  "ANSUR2_F": {
+   "what": "ANSUR II (2010-2012 Anthropometric Survey of US Army Personnel), FEMALE public working database, n = 1986, age mean 28.9 (p5 19, p95 45). Statistics computed by this stage from the raw CSV (script: scratchpad/scripts/ansur_stats.py and ansur_extra.py, Python -I, stdlib only).",
+   "url_data": "https://tools.openlab.psu.edu/publicData/ANSUR_II_FEMALE_Public.csv",
+   "url_index": "https://www.openlab.psu.edu/ansur2/",
+   "url_release_notice": "https://www.army.mil/article/188601/for_good_measure_natick_releases_raw_data_from_army_wide_anthropometric_survey",
+   "url_methods_report": "https://apps.dtic.mil/sti/tr/pdf/ADA611869.pdf (Gordon et al. 2014, NATICK/TR-15/007; DTIC returned HTTP 403 to automated download, not read)",
+   "sha256_csv": "ed7e800aa97a4d42f8286b988be2fe1883a2e789588169db959864b707d1757a",
+   "licence": "US Government work; Army states the raw data are 'now available to the public'; handbook cover: 'Approved for public release; distribution is unlimited'. No restrictive licence found. The Army's own host (LiveStories) and DTIC were not reachable by script, so the file came from the Penn State OpenLab mirror (academic mirror, not the Army itself): see open_questions Q1.",
+   "caveat": "Army women: younger and fitter than the general population; chest measures are taken over a bra (see definitions). Use for proportions and ratios; for general-population girth use NHANES."
+  },
+  "ANSUR2_HB": {
+   "what": "ANSUR II Measurer's Handbook, Hotzman et al. 2011, NATICK/TR-11/017, 263 pp. Landmark and measurement definitions read from this file.",
+   "url": "https://tools.openlab.psu.edu/publicData/ANSURII-TR11-017.pdf",
+   "licence": "cover: Approved for public release; distribution is unlimited"
+  },
+  "NHANES": {
+   "what": "Fryar CD et al. Anthropometric Reference Data for Children and Adults: United States, 2015-2018. NCHS Vital Health Stat 3(46), 2021. Tables 9, 19, 22, 25 (adult females 20+).",
+   "url": "https://stacks.cdc.gov/view/cdc/100478/cdc_100478_DS1.pdf",
+   "licence": "NCHS publication, public domain"
+  },
+  "SPINE_REF": {
+   "what": "Review of 31 studies, Cobb-method reference values for healthy adults (not sex-split); seen as a search summary only.",
+   "url": "https://lume.ufrgs.br/bitstream/10183/187361/1/001082137.pdf"
+  },
+  "SPINE_SEX": {
+   "what": "EOS imaging, 403 adults with low back pain: lordosis greater in women at every age. Search summary only.",
+   "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC7221279"
+  },
+  "SCAP_THAI": {
+   "what": "Chompoophuen H, Preedalikit K, Navic P, Mahakkanukrauh P. Stature estimation of a Thai population using the scapula. Int J Morphol 42(6):1646-1652, 2024. 100 female dry scapulae. Table I read from the PDF text; its layout was garbled, so the female values are a best reading.",
+   "url": "https://www.intjmorphol.com/wp-content/uploads/2024/12/Art_25_426_2024.pdf"
+  },
+  "SCAP_LEVEL": {
+   "what": "Radiographic review (Irish Medical Journal 2025), 100 radiographs: the inferior angle of the scapula is most often at T8, not the textbook T7. Search summary only (direct URL returned 404).",
+   "url": "https://imj.ie/wp-content/uploads/2025/02/Questioning-the-anatomical-relationship-between-the-seventh-thoracic-vertebra-and-the-inferior-angle-of-scapula.pdf"
+  },
+  "THORAX_SHAPE": {
+   "what": "Garcia-Martinez D et al. 2020, Sci Rep 10:10737, CT of 80 ribcages ages 7-65: adult female ribcages relatively narrower in the lower thorax and less deep than male; width measured at rib 7, depth T5 to rib 5. No numeric adult values in the text.",
+   "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC7329879/"
+  },
+  "HALLER": {
+   "what": "Biavati M et al. 2020, PLoS One 15(5):e0232575, Dallas Heart Study CT, n = 2687 (1529 women): Haller index median 2.19 (IQR 2.01-2.40), not sex-split in text; women higher than men.",
+   "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC7205298/"
+  },
+  "BREAST_SA": {
+   "what": "Saudi anthropometric study, 54 nulliparous women aged 20-25: sternal notch-nipple 19.8 cm, internipple 20.3 cm, nipple-IMF 7.7 cm. Search summary only.",
+   "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC6756646"
+  },
+  "BREAST_MY": {
+   "what": "Malay women: sternal notch-nipple 18.76 +/- 2.44 cm (R), internipple 18.22 +/- 2.25 cm. Search summary only.",
+   "url": "https://erepo.usm.my/handle/123456789/24082"
+  },
+  "ESM_CSA": {
+   "what": "Davis GA et al. 2015, J Biomech Eng 137(7):071012, erector spinae CSA prediction models from MRI (54 women at L3/L4). PDF is a scan; values not extracted.",
+   "url": "https://stacks.cdc.gov/view/cdc/202648"
+  },
+  "TUFFIER": {
+   "what": "Tuffier's line (top of the iliac crests) traditionally marks the L4 spinous process; accuracy varies.",
+   "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC4323173"
+  }
+ },
+
+ "landmark_definitions": {
+  "_note": "Definitions from ANSUR2_HB (read in the handbook text). 'photo' says whether woman1/ref.jpg shows it and how a tool should find it. Pixel positions are NOT given here on purpose: they must be measured by a tool, not read by eye.",
+  "suprasternale": {"definition": "inferior point of the jugular (sternal) notch, top of the sternum", "src": "ANSUR2_HB", "photo": {"measurable": true, "how": "midline shadow minimum at the base of the neck near the top edge of the frame; the frame top cuts at the neck, so check it is inside the frame (if not, extrapolate from the clavicle heads)"}},
+  "clavicle_points": {"definition": "superior points of the lateral ends of the clavicles", "src": "ANSUR2_HB", "photo": {"measurable": "partly", "how": "clavicle shafts show as faint highlight ridges with a shadow below; trace the ridge from the notch outward; the lateral end blends into the shoulder - low precision"}},
+  "acromion": {"definition": "intersection of the lateral border of the acromial process with a line down the middle of the shoulder", "src": "ANSUR2_HB", "photo": {"measurable": "approx", "how": "the outer shoulder contour's turn from horizontal to vertical, minus the deltoid standoff (bideltoid-biacromial prior, below)"}},
+  "chest_point_anterior": {"definition": "most anterior point of the chest; for women the bust point (on the bra). ANSUR chest breadth, depth, circumference and height are all taken at this level; for women this is unchanged from ANSUR 1988", "src": "ANSUR2_HB", "photo": {"measurable": true, "how": "nipple centres (thelion) in a frontal photo; bust point approximately equals thelion for this breast shape - flag the difference as unchecked"}},
+  "thelion": {"definition": "centre of the nipple", "src": "ANSUR2_HB", "photo": {"measurable": true, "how": "areola colour blob centroids (colour segmentation); both visible"}},
+  "inframammary_fold": {"definition": "lower crease of the breast against the chest wall", "src": "anatomy, estimate", "photo": {"measurable": true, "how": "shading edge below each breast"}},
+  "tenth_rib": {"definition": "inferior point of the right tenth rib (bottom of the rib cage)", "src": "ANSUR2_HB", "photo": {"measurable": "faint", "how": "costal margin shading if present; otherwise from prior offset (below)"}},
+  "omphalion": {"definition": "centre of the navel and its posterior and lateral extensions (the ANSUR waist level)", "src": "ANSUR2_HB", "photo": {"measurable": true, "how": "dark navel blob in the midline, lower third of the frame; this is the most reliable single landmark in the photo"}},
+  "iliocristale": {"definition": "highest palpable point of the right and left iliac crests (side of the pelvis)", "src": "ANSUR2_HB", "photo": {"measurable": "no (indirect)", "how": "lies at the side, not seen from the front; estimate as navel + prior offset; the lateral contour's hip flare near that height is a weak check"}},
+  "anterior_superior_iliac_spine": {"definition": "front point of the iliac crest", "src": "anatomy, estimate", "photo": {"measurable": "faint", "how": "low shading bumps lateral to the lower abdomen near the bottom of the frame, if inside the frame"}},
+  "axilla_anterior_scye": {"definition": "anterior axillary fold on the torso (ANSUR axilla height uses it)", "src": "ANSUR2_HB", "photo": {"measurable": "partly", "how": "the arms hang against the torso, so the axilla itself is hidden; the start of the visible gap between arm and chest wall gives a lower bound"}},
+  "axillary_fold_posterior": {"definition": "highest point of the right and left axillary folds on the back (latissimus/teres fold); ANSUR interscye I spans between them", "src": "ANSUR2_HB", "photo": {"measurable": false, "how": "back: from prior"}},
+  "cervicale": {"definition": "most prominent palpable point of the spine of the seventh cervical vertebra", "src": "ANSUR2_HB", "photo": {"measurable": false, "how": "back: from prior offset to suprasternale"}},
+  "radiale": {"definition": "superior point on the outside edge of the radius (elbow joint line)", "src": "ANSUR2_HB", "photo": {"measurable": "approx", "how": "elbow: the narrowing / crease of the hanging arm's outline; arms are adducted and nearly vertical"}},
+  "buttock_point": {"definition": "level of maximum protrusion of the buttock", "src": "ANSUR2_HB", "photo": {"measurable": false, "how": "back: from prior"}}
+ },
+
+ "scale": {
+  "_note": "The photo has no ruler or known length, so absolute size cannot be measured from it. Scale must come from priors on lengths the photo does show; the person could fix it by giving the subject's height or one measured length (open_questions Q2).",
+  "cues": {
+   "notch_to_navel": {"value": 349.5, "sd": 22.3, "range_p5_p95": [315, 388], "cv": 0.064, "src": "ANSUR2_F (suprasternale height - waist height omphalion)", "url": "https://tools.openlab.psu.edu/publicData/ANSUR_II_FEMALE_Public.csv", "confidence": "high", "photo": "both landmarks visible: best cue"},
+   "biacromial_breadth": {"value": 365.3, "sd": 18.3, "range_p5_p95": [335, 396], "cv": 0.050, "src": "ANSUR2_F", "url": "https://tools.openlab.psu.edu/publicData/ANSUR_II_FEMALE_Public.csv", "confidence": "high", "photo": "acromia approximate (see landmark); adds deltoid uncertainty"},
+   "internipple": {"value": 200, "range": [180, 225], "cv": 0.11, "src": "BREAST_SA (20.3 cm) and BREAST_MY (18.2 cm)", "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC6756646", "confidence": "low", "photo": "visible but varies with breast size; weakest cue"}
+  },
+  "method": "measure each cue in px, convert each to mm/px with its prior, combine by inverse variance; report the combined scale with its uncertainty (expected about +/-4 % one sigma, i.e. about +/-14 mm on the notch-navel length). This is far above the +/-0.5 mm reference-artefact budget: absolute size stays an estimate unless the person supplies a length. Proportions (ratios) do not depend on scale."
+ },
+
+ "front_visible": {
+  "_note": "Items the photo CAN measure. Prior values are for checking the photo measurement (flag if outside p5-p95), not for overriding it.",
+  "chest_breadth_bustpoint": {"value": 269.3, "sd": 18.6, "range_p5_p95": [241, 302], "unit": "mm", "src": "ANSUR2_F", "url": "https://tools.openlab.psu.edu/publicData/ANSUR_II_FEMALE_Public.csv", "confidence": "high", "photo": {"measurable": true, "how": "torso silhouette width at the nipple level, excluding the arms; where the arm touches the torso the edge must be found from shading, not the outer outline"}},
+  "waist_breadth_omphalion": {"value": 299.9, "sd": 33.0, "range_p5_p95": [250, 356], "unit": "mm", "src": "ANSUR2_F (taken at navel level, not the narrowest waist)", "url": "https://tools.openlab.psu.edu/publicData/ANSUR_II_FEMALE_Public.csv", "confidence": "high", "photo": {"measurable": true, "how": "silhouette width at navel height; arms are separated from the torso there"}},
+  "hip_breadth": {"value": 353.8, "sd": 26.7, "range_p5_p95": [311, 400], "unit": "mm", "src": "ANSUR2_F (at buttock-protrusion level)", "url": "https://tools.openlab.psu.edu/publicData/ANSUR_II_FEMALE_Public.csv", "confidence": "high", "photo": {"measurable": "likely no", "how": "the buttock level is about 146 mm below the navel and may be below the frame; use the widest visible lower contour as a lower bound"}},
+  "bideltoid_breadth": {"value": 450.3, "sd": 28.7, "range_p5_p95": [406, 499], "unit": "mm", "src": "ANSUR2_F", "url": "https://tools.openlab.psu.edu/publicData/ANSUR_II_FEMALE_Public.csv", "confidence": "high", "photo": {"measurable": true, "how": "outer width across the shoulders/upper arms at their widest"}},
+  "bideltoid_minus_biacromial": {"value": 85.0, "sd": 23.8, "range_p5_p95": [49, 126], "unit": "mm (both sides together)", "src": "ANSUR2_F (computed per subject)", "url": "https://tools.openlab.psu.edu/publicData/ANSUR_II_FEMALE_Public.csv", "confidence": "high", "photo": {"measurable": "used to place the acromion inside the shoulder outline"}},
+  "notch_to_chest_point": {"value": 158.1, "sd": 22.0, "range_p5_p95": [123, 196], "unit": "mm vertical", "src": "ANSUR2_F (suprasternale - chest height)", "url": "https://tools.openlab.psu.edu/publicData/ANSUR_II_FEMALE_Public.csv", "confidence": "high", "photo": {"measurable": true, "how": "vertical px from notch to nipple line, times scale"}},
+  "sternal_notch_to_nipple_slant": {"value": 195, "range": [165, 225], "unit": "mm along the skin", "src": "BREAST_SA 19.8 cm, BREAST_MY 18.8 +/- 2.4 cm", "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC6756646", "confidence": "low", "photo": {"measurable": "projected only", "how": "the photo gives the projected chord; the surface length needs the breast depth (class model)"}},
+  "notch_to_tenth_rib": {"value": 273.4, "sd": 17.1, "unit": "mm vertical", "src": "ANSUR2_F", "url": "https://tools.openlab.psu.edu/publicData/ANSUR_II_FEMALE_Public.csv", "confidence": "high", "photo": {"measurable": "faint", "how": "costal margin, if the shading shows it; else this prior places the bottom of the rib cage"}},
+  "tenth_rib_to_navel": {"value": 76.1, "sd": 18.2, "unit": "mm vertical", "src": "ANSUR2_F", "url": "https://tools.openlab.psu.edu/publicData/ANSUR_II_FEMALE_Public.csv", "confidence": "high"},
+  "acromion_vs_notch": {"value": 5.4, "sd": 12.7, "range_p5_p95": [-16, 26], "unit": "mm vertical (acromion higher)", "src": "ANSUR2_F", "url": "https://tools.openlab.psu.edu/publicData/ANSUR_II_FEMALE_Public.csv", "confidence": "high", "photo": {"measurable": true, "how": "check of shoulder height vs notch: shoulders roughly level with the notch"}},
+  "notch_to_axilla": {"value": 90.7, "sd": 13.2, "range_p5_p95": [70, 112], "unit": "mm vertical", "src": "ANSUR2_F (suprasternale - axilla height, anterior scye)", "url": "https://tools.openlab.psu.edu/publicData/ANSUR_II_FEMALE_Public.csv", "confidence": "high", "photo": {"measurable": "partly (hidden by adducted arms)"}},
+  "iliac_crest_vs_navel": {"value": 15.6, "sd": 18.7, "range_p5_p95": [-14, 49], "unit": "mm vertical (crest top higher than navel)", "src": "ANSUR2_F (iliocristale height - waist height omphalion)", "url": "https://tools.openlab.psu.edu/publicData/ANSUR_II_FEMALE_Public.csv", "confidence": "high", "photo": {"measurable": false, "how": "place from the navel"}, "note": "the iliac crest top is at about L4 (Tuffier's line), see TUFFIER"},
+  "breast_nipple_to_IMF": {"value": 77, "range": [55, 100], "unit": "mm", "src": "BREAST_SA 7.7 cm", "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC6756646", "confidence": "low", "photo": {"measurable": "projected", "how": "nipple to fold shading, projected"}}
+ },
+
+ "unseen_back": {
+  "_note": "The photo cannot show any of these. They come from the fitted class model plus these priors, positioned from front landmarks.",
+  "cervicale_above_notch": {"value": 66.0, "sd": 11.9, "range_p5_p95": [46, 85], "unit": "mm vertical", "src": "ANSUR2_F (cervicale height - suprasternale height)", "url": "https://tools.openlab.psu.edu/publicData/ANSUR_II_FEMALE_Public.csv", "confidence": "high", "use": "the back of the neck base sits 66 mm higher than the notch: the top edge of the torso slopes up toward the back"},
+  "back_length_cervicale_to_waist": {"value": 425.4, "sd": 26.4, "range_p5_p95": [384, 470], "unit": "mm along the spine surface (tape)", "src": "ANSUR2_F (waist back length, omphalion level)", "url": "https://tools.openlab.psu.edu/publicData/ANSUR_II_FEMALE_Public.csv", "confidence": "high", "use": "arc length check of the back midline from C7 to the navel level; the straight vertical drop is cervicale-omphalion = 66 + 349.5 = 415.5 mm, so the surface arc is only about 10 mm longer: the back curves gently"},
+  "back_breadth_posterior_axillary_folds": {"value": 373.4, "sd": 29.8, "range_p5_p95": [326, 423], "unit": "mm tape across the back (arc, not chord)", "src": "ANSUR2_F (interscye I)", "url": "https://tools.openlab.psu.edu/publicData/ANSUR_II_FEMALE_Public.csv", "confidence": "high", "use": "latissimus/teres fold width; ratio to biacromial 1.023 +/- 0.077"},
+  "back_breadth_midscye": {"value": 395.7, "sd": 25.7, "unit": "mm tape across the back", "src": "ANSUR2_F (interscye II)", "url": "https://tools.openlab.psu.edu/publicData/ANSUR_II_FEMALE_Public.csv", "confidence": "high", "use": "ratio to biacromial 1.084 +/- 0.057"},
+  "scapula_height": {"value": 139, "range": [124, 154], "unit": "mm (superior to inferior angle)", "src": "SCAP_THAI female mean 130.1 +/- 7.4 mm at stature 152.8 cm, scaled by stature to the ANSUR mean 162.9 cm", "url": "https://www.intjmorphol.com/wp-content/uploads/2024/12/Art_25_426_2024.pdf", "confidence": "low", "note": "table text garbled; the 130.1 reading needs a check"},
+  "scapula_breadth": {"value": 95, "range": [85, 105], "unit": "mm (glenoid to medial border)", "src": "estimate: about 0.65-0.70 of height (classic scapular index); Thai table value not cleanly readable", "url": "https://www.intjmorphol.com/wp-content/uploads/2024/12/Art_25_426_2024.pdf", "confidence": "estimate"},
+  "scapula_vertical_levels": {"value": {"superior_angle": "T2", "spine_root": "T3", "inferior_angle": "T7 (radiographs: T8 most common)"}, "src": "standard surface anatomy; SCAP_LEVEL", "url": "https://imj.ie/wp-content/uploads/2025/02/Questioning-the-anatomical-relationship-between-the-seventh-thoracic-vertebra-and-the-inferior-angle-of-scapula.pdf", "confidence": "low", "use": "with T1 about cervicale and the inferior angle near the nipple-to-rib-10 band, the scapula spans roughly 25-175 mm below cervicale; the inferior angle should land about 30-60 mm above the notch-to-chest-point level (estimate)"},
+  "scapula_medial_border_from_midline": {"value": 60, "range": [45, 80], "unit": "mm, arms hanging", "src": "estimate (anatomy texts give ~5-6 cm; not fetched)", "url": null, "confidence": "estimate"},
+  "scapula_surface_relief": {"value": "medial border and inferior angle raise the skin 3-8 mm; the hollow between border and spine furrow is shallow", "src": "estimate", "url": null, "confidence": "estimate"},
+  "spine_furrow": {"value": {"thoracic_depth_mm": [2, 6], "lumbar_depth_mm": [6, 15], "furrow_width_mm": [15, 30]}, "src": "estimate: the furrow is the gap between the two erector spinae columns, deepest in the lumbar region", "url": null, "confidence": "estimate"},
+  "erector_spinae_columns": {"value": {"lateral_edge_from_midline_mm_L3": [45, 65], "height_above_furrow_mm": [6, 15]}, "src": "estimate; numeric CSA source located but unreadable (ESM_CSA)", "url": "https://stacks.cdc.gov/view/cdc/202648", "confidence": "estimate"},
+  "thoracic_kyphosis": {"value": 37, "range": [20, 50], "unit": "deg (Cobb, skeletal)", "src": "SPINE_REF pooled 95% CI 33.7-40.3; radiopaedia normal 20-50", "url": "https://lume.ufrgs.br/bitstream/10183/187361/1/001082137.pdf", "confidence": "medium", "use": "skin back curve is gentler than the skeletal Cobb angle (soft tissue fills the hollows) - estimate the skin curve at about 0.6-0.8 of it"},
+  "lumbar_lordosis": {"value": 42, "range": [30, 55], "unit": "deg (Cobb L1-L5, skeletal)", "src": "SPINE_REF pooled 95% CI 38.1-45.6; SPINE_SEX: greater in women", "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC7221279", "confidence": "medium", "use": "the lumbar hollow peaks near L3 (about navel level, from the waist depth landmark); the skin hollow then rises into the buttock"},
+  "waist_depth_omphalion": {"value": 213.0, "sd": 31.4, "range_p5_p95": [169, 271], "unit": "mm front-to-back at the navel", "src": "ANSUR2_F", "url": "https://tools.openlab.psu.edu/publicData/ANSUR_II_FEMALE_Public.csv", "confidence": "high"},
+  "buttock_depth": {"value": 232.9, "sd": 24.3, "range_p5_p95": [196, 277], "unit": "mm at max buttock protrusion", "src": "ANSUR2_F", "url": "https://tools.openlab.psu.edu/publicData/ANSUR_II_FEMALE_Public.csv", "confidence": "high"},
+  "buttock_point_below_navel": {"value": 146.4, "unit": "mm vertical (waist height omphalion 980.1 - buttock height 833.7, means)", "src": "ANSUR2_F", "url": "https://tools.openlab.psu.edu/publicData/ANSUR_II_FEMALE_Public.csv", "confidence": "high", "note": "difference of means; per-subject SD not computed (about 30 mm expected)"},
+  "buttock_top": {"value": "the gluteal bulge starts at the iliac crest / sacral level, about 0-20 mm below the navel height at the back, and reaches maximum protrusion about 146 mm below the navel; the sacral dimples (PSIS, about S2) sit about 40-60 mm below the crest top, 40-50 mm either side of the midline", "src": "ANSUR2_F levels + estimate for dimples", "url": "https://tools.openlab.psu.edu/publicData/ANSUR_II_FEMALE_Public.csv", "confidence": "estimate", "photo": "the frame may end above the buttock level: the class model only needs the top of it"},
+  "crotch_length_posterior_omphalion": {"value": 341.9, "sd": 28.6, "unit": "mm tape from the back waist (navel level) down over the buttocks to the crotch", "src": "ANSUR2_F", "url": "https://tools.openlab.psu.edu/publicData/ANSUR_II_FEMALE_Public.csv", "confidence": "high", "use": "arc check of the lower back/buttock profile if the build extends that far"}
+ },
+
+ "unseen_sides": {
+  "chest_depth_bustpoint": {"value": 247.4, "sd": 27.3, "range_p5_p95": [205, 296], "unit": "mm (includes breasts, over a bra)", "src": "ANSUR2_F", "url": "https://tools.openlab.psu.edu/publicData/ANSUR_II_FEMALE_Public.csv", "confidence": "high"},
+  "depth_to_breadth_ratios": {
+   "_note": "THE core rule for the unseen side: the photo gives the width at a level; the ratio gives the depth. Per-subject ratios, so they carry the real correlation.",
+   "chest_bustpoint": {"value": 0.918, "sd": 0.076, "range_p5_p95": [0.798, 1.045], "src": "ANSUR2_F", "url": "https://tools.openlab.psu.edu/publicData/ANSUR_II_FEMALE_Public.csv", "confidence": "high"},
+   "waist_navel": {"value": 0.709, "sd": 0.057, "range_p5_p95": [0.623, 0.809], "src": "ANSUR2_F", "url": "https://tools.openlab.psu.edu/publicData/ANSUR_II_FEMALE_Public.csv", "confidence": "high"},
+   "hip_buttock": {"value": 0.658, "sd": 0.047, "range_p5_p95": [0.590, 0.740], "src": "ANSUR2_F", "url": "https://tools.openlab.psu.edu/publicData/ANSUR_II_FEMALE_Public.csv", "confidence": "high"},
+   "underbust_ribcage": {"value": 0.78, "range": [0.70, 0.88], "src": "estimate: interpolated between chest (with breasts) and waist; no underbust depth/breadth in ANSUR II", "url": null, "confidence": "estimate"}
+  },
+  "ribcage_skeletal_width_to_depth": {"value": 1.45, "range": [1.3, 1.6], "unit": "ratio, bony thorax at about rib 7 / T8", "src": "estimate; THORAX_SHAPE gives the female pattern (relatively narrow lower thorax) but no numbers; HALLER median 2.19 is a different (inner, minimum-depth) ratio", "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC7329879/", "confidence": "estimate", "use": "only for an inner skeleton/cage; the skin uses the ANSUR ratios above"},
+  "latissimus": {"value": "the posterior axillary fold (lat + teres major) forms the back edge of the armpit; seen from the side it makes the upper back the widest part of the torso depth above the waist; the lat's lower lateral edge runs from the posterior axillary fold down and medially to the iliac crest at about the mid-axillary line", "src": "standard anatomy; widths from interscye I", "url": "https://tools.openlab.psu.edu/publicData/ANSUR_II_FEMALE_Public.csv", "confidence": "estimate (shape) / high (width)"},
+  "section_shape": {"value": "chest: rounded-rectangular, back flatter than front; waist: ellipse, back has the spine furrow; hip: back fuller than front (buttocks)", "src": "estimate; to be taken from the class mesh", "url": null, "confidence": "estimate"}
+ },
+
+ "unseen_arms": {
+  "acromion_radiale_length": {"value": 311.2, "sd": 17.2, "range_p5_p95": [283, 340], "unit": "mm", "src": "ANSUR2_F", "url": "https://tools.openlab.psu.edu/publicData/ANSUR_II_FEMALE_Public.csv", "confidence": "high", "photo": {"measurable": "approx", "how": "shoulder top to elbow line, if the elbow is in the frame"}},
+  "upper_arm_length_acromion_olecranon": {"value": 360, "range_p5_p95": [324, 395], "unit": "mm", "src": "NHANES Table 25 (women 20+, n = 5255, mean 36.0 cm)", "url": "https://stacks.cdc.gov/view/cdc/100478/cdc_100478_DS1.pdf", "confidence": "high"},
+  "elbow_height_vs_navel": {"value": 43.7, "sd": 25.1, "range_p5_p95": [3, 87], "unit": "mm vertical, radiale above the navel, arm hanging vertical", "src": "ANSUR2_F (acromial height - acromion-radiale length - omphalion height, per subject; assumes a vertical upper arm)", "url": "https://tools.openlab.psu.edu/publicData/ANSUR_II_FEMALE_Public.csv", "confidence": "medium", "photo": {"measurable": true, "how": "elbow outline narrowing vs navel height: a direct check of the arm prior on this photo"}},
+  "elbow_vs_iliac_crest": {"value": 28.2, "sd": 24.1, "unit": "mm vertical, radiale above the crest top", "src": "ANSUR2_F", "url": "https://tools.openlab.psu.edu/publicData/ANSUR_II_FEMALE_Public.csv", "confidence": "medium"},
+  "mid_upper_arm_circumference_relaxed": {"value": 323, "range_p5_p95": [247, 426], "unit": "mm", "src": "NHANES Table 22 (women 20+, n = 5140, mean 32.3 cm, p50 31.6)", "url": "https://stacks.cdc.gov/view/cdc/100478/cdc_100478_DS1.pdf", "confidence": "high", "note": "US general population (higher BMI than ANSUR); a slim subject sits near p15-p50 (268-316 mm)"},
+  "biceps_circumference_flexed": {"value": 305.6, "sd": 30.8, "range_p5_p95": [259, 360], "unit": "mm (arm forward, elbow flexed 90, fist clenched)", "src": "ANSUR2_F", "url": "https://tools.openlab.psu.edu/publicData/ANSUR_II_FEMALE_Public.csv", "confidence": "high", "note": "flexed; the relaxed hanging arm of a fit subject is a little smaller"},
+  "upper_arm_section": {"value": {"shape": "ellipse, slightly flattened side-to-side in the lower half (biceps in front, triceps behind), rounder under the deltoid", "AP_over_ML": 1.08, "AP_over_ML_range": [0.95, 1.2]}, "src": "estimate; no MRI section study fetched", "url": null, "confidence": "estimate", "method": "photo gives ML width w at each level; with a circumference prior C, solve the ellipse AP depth from C (Ramanujan perimeter); clamp AP/ML to the range; if C is unknown use the AP/ML prior directly"},
+  "deltoid_standoff_per_side": {"value": 42.5, "range": [24, 63], "unit": "mm lateral to the acromion", "src": "ANSUR2_F (half of bideltoid - biacromial)", "url": "https://tools.openlab.psu.edu/publicData/ANSUR_II_FEMALE_Public.csv", "confidence": "medium"},
+  "arm_torso_contact": {"value": "with adducted arms the inner upper arm touches the side of the chest from the axilla down to about the bust level; the class model must keep arm and torso as separate surfaces there (no merged slab)", "src": "photo observation (by eye, not measured)", "url": null, "confidence": "medium"}
+ },
+
+ "proportion_checks": {
+  "_note": "Scale-free ratios between items the photo shows; usable as checks on the fitted model whatever the scale.",
+  "biacromial_over_notch_navel": {"value": 1.049, "sd": 0.073, "range_p5_p95": [0.928, 1.174], "src": "ANSUR2_F", "confidence": "high"},
+  "chest_breadth_over_notch_navel": {"value": 0.772, "sd": 0.052, "range_p5_p95": [0.691, 0.864], "src": "ANSUR2_F", "confidence": "high"},
+  "waist_breadth_over_notch_navel": {"value": 0.858, "sd": 0.075, "range_p5_p95": [0.740, 0.986], "src": "ANSUR2_F", "confidence": "high"},
+  "hip_breadth_over_notch_navel": {"value": 1.014, "sd": 0.074, "range_p5_p95": [0.902, 1.142], "src": "ANSUR2_F", "confidence": "high"},
+  "acromion_radiale_over_notch_navel": {"value": 0.893, "sd": 0.063, "range_p5_p95": [0.792, 1.003], "src": "ANSUR2_F", "confidence": "high"},
+  "chest_breadth_over_biacromial": {"value": 0.738, "sd": 0.049, "src": "ANSUR2_F", "confidence": "high"},
+  "waist_breadth_over_chest_breadth": {"value": 1.113, "sd": 0.089, "src": "ANSUR2_F. Caution: ANSUR's 'waist' is at the navel, which sits near the iliac crest tops (crest 16 mm above navel on average), so it already includes the pelvic flare; the narrowest natural waist lies higher (between rib 10 and navel) and is not in ANSUR II. Do not read 1.11 as 'no waist'.", "confidence": "high"},
+  "url": "https://tools.openlab.psu.edu/publicData/ANSUR_II_FEMALE_Public.csv"
+ },
+
+ "photo_vs_class_model": {
+  "photo_measures": [
+   "landmark heights in px: suprasternale, clavicle ridges, nipple line, inframammary folds, navel; approx: shoulder tops, elbows",
+   "silhouette half-widths left and right at every height (torso edge separated from the arms by shading where they touch)",
+   "shading on the front: breast volume, rib-cage edge, abdominal relief (a later shading tool; not trusted for depth on its own)",
+   "left/right asymmetry of the visible front (kept, never mirrored away)",
+   "elbow height vs navel (arm-prior check)"
+  ],
+  "photo_cannot_measure": [
+   "absolute scale (no ruler): from the scale cues, with uncertainty",
+   "any depth: from depth/breadth ratios + class mesh",
+   "the whole back: scapulae, spine furrow, erector columns, kyphosis/lordosis, buttock top: class mesh + priors placed from front landmarks",
+   "the sides: latissimus, axillae, ribcage depth: class mesh + ratios",
+   "arm sections and the arm backs: circumference prior + ellipse rule",
+   "iliac crest tops, cervicale: offsets from the navel / notch"
+  ],
+  "universal_rule_for_any_class": "1) fit a class template mesh (human: MakeHuman base mesh, CC0 to be verified; cat: the felid frame) to the photo silhouette and landmarks; 2) at each height take the photo width and set depth = width x class depth/breadth ratio prior (with its SD); 3) take the section SHAPE (not size) from the class mesh, so the back is curved, furrowed and bulged where the class is; 4) place hidden features (scapulae, spine, buttocks) from visible landmarks through cited offsets; 5) check: no section's depth/width outside p5-p95 without a flag; no back region planar (curvature check); front asymmetry kept, back not a mirror of the front. This is the same pattern as the felid pack: photo first, cited class priors for what is hidden."
+ },
+
+ "open_questions": {
+  "Q1": "ANSUR II files were taken from the Penn State OpenLab mirror (tools.openlab.psu.edu), not an Army server, because DTIC answered 403 and the Army host is a third-party LiveStories page. The data are a US Government public release. Does the person accept this mirror as an official source? Files stay in the session scratchpad until ruled (not copied into the engine).",
+  "Q2": "Is the subject's height or any one real length known? It would replace the +/-4 % scale estimate.",
+  "Q3": "Values marked 'estimate' (spine furrow, erector columns, scapula breadth/position, arm section ratio, underbust ratio, skeletal ribcage ratio) need either a fetched numeric source or the class mesh's own geometry; pass 2 (Tripo) can test them, not set them.",
+  "Q4": "MakeHuman base mesh licence (CC0) not yet verified in this stage: the template-download stage owns it."
+ },
+
+ "downloads": [
+  {"file": "C:/Users/<you>/AppData/Local/Temp/claude/<project-id>/b98bba0a-684a-41e1-ae73-906b9dc847fc/scratchpad/dl_ansur/ANSUR_II_FEMALE_Public.csv", "from": "https://tools.openlab.psu.edu/publicData/ANSUR_II_FEMALE_Public.csv", "bytes": 976573, "sha256": "ed7e800aa97a4d42f8286b988be2fe1883a2e789588169db959864b707d1757a"},
+  {"file": "C:/Users/<you>/AppData/Local/Temp/claude/<project-id>/b98bba0a-684a-41e1-ae73-906b9dc847fc/scratchpad/dl_ansur/ANSURII-TR11-017.pdf", "from": "https://tools.openlab.psu.edu/publicData/ANSURII-TR11-017.pdf", "bytes": 5224258},
+  {"file": "(web fetch cache) CDC NHANES Series 3 No. 46 PDF", "from": "https://stacks.cdc.gov/view/cdc/100478/cdc_100478_DS1.pdf"},
+  {"file": "(web fetch cache) Int J Morphol 2024 scapula PDF", "from": "https://www.intjmorphol.com/wp-content/uploads/2024/12/Art_25_426_2024.pdf"}
+ ]
+}

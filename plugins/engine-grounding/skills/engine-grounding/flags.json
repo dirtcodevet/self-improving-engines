@@ -1,0 +1,18 @@
+{
+ "_how": "true = the item in SKILL.md is in force; false = ignore it. Roll back by setting false and logging why in the engine's METHOD.md.",
+ "G1_concepts_before_first_example": true,
+ "G2_one_record_with_sources": true,
+ "G3_ranked_evidence_for_unknowns": true,
+ "G4_propose_pick_check": true,
+ "G5_references_are_evidence_not_authority": true,
+ "G6_baseline_before_changing_working_code": true,
+ "G7_tuned_values_carry_their_case": true,
+ "G8_contamination_audit": true,
+ "G9_ai_critic_supports_never_decides": true,
+ "G10_cheap_before_expensive": true,
+ "G11_account_for_every_note": true,
+ "G12_person_input_is_evidence_not_authority": true,
+ "G13_approved_work_protected": true,
+ "G14_case_values_in_case_files": true,
+ "_G13_G14": "approved by the person 2026-10-18 (tripo_rebuild/LOG.md #103); rules under A11 of recursive-improvement. SKILL.original.md and flags.original.json are the files before they were added."
+}

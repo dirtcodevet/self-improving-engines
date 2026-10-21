@@ -1,0 +1,1092 @@
+{
+ "_what": "SPEC for MOUTH v3b (cat v3 round 2, ruling R-M, NOTES_v3 2026-10-18 13:25): the lips part along a true parting line into a closed-jaw ORAL CAVITY lined by the skin turning inward (mucosa), with gums, teeth to the cited formula, a tongue with filiform papillae and palatal rugae; upper-jaw parts (upper teeth, upper gums, palate) and lower-jaw parts (lower teeth, lower gums, tongue) are SEPARATE meshes so the rig can open the jaw. The lip FORM stays mouth v3's (feat_mouth_v3 imported unchanged) outside the parting zone; the chin under the lower lip becomes one smooth surface (C1). Builder: feat-mouth-v3b. Read by feat_mouth_v3b.py (skin edit) and feat_oral_v3b.py (parts).",
+ "status": "spec v3b, 2026-10-18; NOT reviewed (A15: needs one narrow review)",
+ "the_person": [
+  "flag_49: 'the form of the lip is generally right, the shape of it... But it doesn't cut all the way through, and there's no cavity and mouth area with tongue or teeth or lips or gums or anything like that. So the mouth would haunt them later. And with the chin mess, it would be very difficult to get it right.'",
+  "V3_BRIEF: this cat gets the skeleton and the rig, so the jaw must be able to open later."
+ ],
+ "frames": {
+  "head": "partition.head_local, mm (x = cat's LEFT, y = back (face at -y), z = up)",
+  "skull_model": "the ref20 reference skull model frame (engine/packs/felid/skull, view_hull.pick_to_model): y = length axis (front at -y), z = up, x = left; scaled to the sourced 89.4 mm skull length",
+  "jaw": "JAW frame, skull-model mm: origin O = the upper I1 labial face at the incisal contact level on the midline; f = forward (= skull -y), l = cat's left (= skull x), u = up (= skull z). Every tooth / level below is in this frame; feat_mouth_v3b maps it to the head with the fitted similarity (scale s)."
+ },
+ "confidence_scale": {
+  "high": "measured twice independently, agreeing within tolerance",
+  "medium": "one measurement or a measured reference with stated uncertainty",
+  "low": "read from a figure / a single snippet, or an inference from anatomy without a number",
+  "estimate": "no source for the number; a stated choice, range given",
+  "construction": "a build constraint, not anatomy"
+ },
+ "sources": {
+  "reighard1901": {
+   "cite": "Reighard J. & Jennings H.S. (1901) Anatomy of the Cat. Henry Holt, New York. Alimentary canal: the mouth pp. 221-230",
+   "url": "https://gutenberg.org/cache/epub/58394/pg58394-images.html",
+   "says": [
+    "p. 224: the adult cat has thirty teeth, fourteen in the lower jaw and sixteen in the upper jaw; twelve incisors, four canines, ten premolars, four molars (formula i 3/3, c 1/1, pm 3/2, m 1/1)",
+    "p. 225: incisors small, the crown edge notched into three minute cusps, one fang; the lateral incisors are the largest, upper larger than lower",
+    "p. 225: canines long, strong, pointed, one fang, one cusp",
+    "p. 225: upper pm1 (modern P2) small, single cusp and fang; pm2 (P3) a large central cusp, one smaller cranial and two small caudal cusps; pm3 (P4) the largest tooth, three large cusps in longitudinal series, three fangs",
+    "pp. 225-226: the upper molar is small and lies caudomediad of the last premolar; two small cusps, two fangs",
+    "p. 226: lower premolars similar, the caudal one a little larger, each four cusps (one large, a small one craniad, two small caudad), two fangs; the lower molar is the largest lower tooth, two large cusps, two fangs",
+    "p. 221: the mouth cavity extends from the lips to the pharynx, narrower toward the lips, broadening caudad as far back as the last teeth",
+    "p. 222: the mucosa of the hard palate is raised into seven or eight curved transverse ridges, concave caudad, with rows of papillae between them",
+    "p. 223: the sides of the mouth cavity are formed by the teeth and the gums",
+    "pp. 226-228: tongue elongated, flat above, broadest in the middle; ventral surface and lateral borders smooth and free of papillae; dorsum papillate with a slight median furrow; filiform papillae, many horny and tooth-like with points turned caudad, most numerous at the middle of the free end; circumvallate papillae in a V with the apex caudad",
+    "p. 230: the soft palate is the free curtain forming the caudal part of the roof, ending caudad in a free arched border"
+   ],
+   "confidence": "high (primary anatomy text, read this session)"
+  },
+  "merck_wright": {
+   "cite": "Wright A. (Cornell). Dentition and Dental Nomenclature of Animals. Merck Veterinary Manual (digestive system / dental development and anatomy)",
+   "url": "https://www.merckvetmanual.com/digestive-system/dental-development-and-anatomy/dentition-and-dental-nomenclature-of-animals",
+   "says": "cats have only one molar in each quadrant (109, 209, 309, 409); footnote: the maxillary second premolar and the maxillary first molar can be absent in some cats",
+   "confidence": "high for the formula (agrees with Reighard 1901: two independent sources)"
+  },
+  "schellenberg2025": {
+   "cite": "Schellenberg E., Lowe C. (2025) Retrospective study of clinically relevant maxillary and mandibular anatomy in all skull types of dogs and cats. Front. Vet. Sci. 12:1665996, doi 10.3389/fvets.2025.1665996 (CT, 41 cats)",
+   "says": "mesocephalic cats: the globe is centred over the maxillary P4 in 45.1 % and over M1 in 54.5 % of eyes; P4 distal root apex to globe 4.7 +- 1.1 mm; edge of the hard palate to the outer globe 8.9 +- 1.6 mm; globe diameter 22.3 +- 0.59 mm",
+   "confidence": "medium (CT measurement, read this session)",
+   "used_for": "registration cross-check: the P4/M1 junction must lie under the globe centre (y within +- 1/2 P4)"
+  },
+  "ramos2021": {
+   "cite": "Ramos J., Viegas I., Pereira H., Requicha J.F. (2021) Morphometrical study of the European shorthair cat skull using computed tomography. Vet. Sci. 8(8):161, doi 10.3390/vetsci8080161",
+   "says": "skull length 89.4 +- 4.5 mm (82.8-98.2), n = 37",
+   "confidence": "medium",
+   "used_for": "the ref20 model scale (89.4) and the plausibility of the fitted scale"
+  },
+  "chrostek2024": {
+   "cite": "Chrostek E., Peralta S., Fiani N. (2024) Morphological study of pulp cavity anatomy of canine teeth in domestic cats using micro-CT. Front. Vet. Sci., doi 10.3389/fvets.2024.1373517",
+   "says": "pulp cavity length maxillary canine 18.26 +- 1.20 mm, mandibular 16.43 +- 1.62 mm (whole-tooth scale; crown not reported)",
+   "confidence": "medium",
+   "used_for": "cross-check only: canine crowns of 8-9 mm sit on teeth about 20 mm long"
+  },
+  "domcat_biometry_P4": {
+   "cite": "'The biometric characteristics of domestic cat skull in three stages of its growth: juvenile, subadult and adult' (ResearchGate 286595464; 70 skulls)",
+   "says": "adult length of the carnassial P4 10.29 +- 0.93 mm (range 8.96-14.12, n = 39)",
+   "confidence": "low (read from a search snippet; the page itself returned 403; column alignment unconfirmed)"
+  },
+  "kudaro_m1": {
+   "cite": "Remains of Felis silvestris and F. catus from Kudaro 1 Cave (ResearchGate figure 285821852, caption text)",
+   "says": "a domestic-type lower m1 of length 7.3 mm, width 3.4 mm",
+   "confidence": "low (one specimen, caption snippet)"
+  },
+  "noel_hu2018": {
+   "cite": "Noel A.C., Hu D.L. (2018) Cats use hollow papillae to wick saliva into fur. PNAS 115(49):12377-12382, doi 10.1073/pnas.1809544115",
+   "says": "the large papillae are hollow scoops; a house cat has nearly 300 of them (AP coverage); 'a couple of millimetres' long (news coverage)",
+   "confidence": "low (the paper returned 403; numbers from press coverage of it)"
+  },
+  "ref20_picks": {
+   "what": "the measured cat skull of the felid pack (engine/packs/felid/skull, ref20 = 20_Hauskatze_Schaedel_PP_noBG.jpg, CC BY-SA 4.0). Teeth PICKED by this builder on contrast-enhanced grid crops of the lateral and front views (G4: code proposes, a picker picks), converted with tools/view_hull.pick_to_model (lateral 0.0730 mm/px from the 89.4 mm length). The front view sees the front teeth magnified by perspective: vertical overlap of the canine tips is 11.77 mm in the front view against 9.93 mm in the lateral view, so front-view distances x 0.84 (measured factor).",
+   "lateral_px": {
+    "uC_tip": [
+     2645,
+     678
+    ],
+    "uC_base": [
+     2603,
+     580
+    ],
+    "lC_tip": [
+     2662,
+     542
+    ],
+    "lC_base": [
+     2660,
+     630
+    ],
+    "uP3_cusp": [
+     2423,
+     678
+    ],
+    "uP4_paracone": [
+     2347,
+     695
+    ],
+    "uP4_distal": [
+     2275,
+     675
+    ],
+    "mand_front_top": [
+     2672,
+     632
+    ],
+    "chin_a": [
+     2640,
+     700
+    ],
+    "chin_b": [
+     2560,
+     765
+    ],
+    "ventral_low": [
+     2300,
+     818
+    ],
+    "angle": [
+     1905,
+     760
+    ],
+    "tmj": [
+     1900,
+     615
+    ]
+   },
+   "front_px": {
+    "uC_tip_R": [
+     455,
+     695
+    ],
+    "uC_tip_L": [
+     740,
+     702
+    ],
+    "lC_tip_R": [
+     487,
+     542
+    ],
+    "lC_tip_L": [
+     717,
+     550
+    ],
+    "uI_row_R": [
+     530,
+     600
+    ],
+    "uI_row_L": [
+     675,
+     600
+    ],
+    "lI_row_R": [
+     550,
+     610
+    ],
+    "lI_row_L": [
+     665,
+     610
+    ]
+   },
+   "derived_skull_mm": {
+    "O_jaw_in_skull_model": [
+     0.0,
+     -44.7,
+     -8.06
+    ],
+    "O_how": "y = the front of the upper incisors (lateral view, px 2678 = the hull front -44.7); z = the incisal contact, placed between the canine tips at the front view's ratio 0.386 (lower canine tip -> upper canine tip) on the lateral canine tips",
+    "uC_tip_fu": [
+     -2.44,
+     -6.1
+    ],
+    "uC_base_fu": [
+     -5.51,
+     1.05
+    ],
+    "lC_tip_fu": [
+     -1.2,
+     3.83
+    ],
+    "lC_base_fu": [
+     -1.35,
+     -2.6
+    ],
+    "uP3_cusp_fu": [
+     -18.65,
+     -6.1
+    ],
+    "uP4_paracone_fu": [
+     -24.19,
+     -7.34
+    ],
+    "uP4_distal_fu": [
+     -29.45,
+     -5.88
+    ],
+    "mand_front_top_fu": [
+     -0.47,
+     -2.74
+    ],
+    "chin_a_fu": [
+     -2.81,
+     -7.7
+    ],
+    "chin_b_fu": [
+     -8.65,
+     -12.45
+    ],
+    "ventral_low_fu": [
+     -27.62,
+     -16.32
+    ],
+    "angle_fu": [
+     -56.45,
+     -12.08
+    ],
+    "tmj_fu": [
+     -56.81,
+     -1.5
+    ],
+    "uC_tip_half_spacing_l": 9.27,
+    "lC_tip_half_spacing_l": 7.48,
+    "uI_row_half_width_l": 4.72,
+    "lI_row_half_width_l": 3.74
+   },
+   "confidence": "low-medium (picked +- 1 mm; one skull; the old jaw_line pick of ref20_picks.json lies 0.5-2 mm off the teeth: its incisor point is in the background beyond the chin contour, so it is NOT used)"
+  }
+ },
+ "registration": {
+  "what": "a weighted SIMILARITY (Umeyama, as tools/skull_place.py) of skull-model landmarks onto head-frame landmarks; residuals and the implied skull length are reported (G5)",
+  "pairs": [
+   {
+    "name": "eye.L",
+    "skull": [
+     17.27,
+     -17.08,
+     11.34
+    ],
+    "head": "feat_eyes.EYES['L']['Cs'] (sclera centre)",
+    "weight": 1.0,
+    "src": "skull_landmarks.json eye_seat (orbit centre) <-> the eye builder's globe centre; medium-low (orbit centre vs globe centre, +-2 mm)"
+   },
+   {
+    "name": "eye.R",
+    "skull": [
+     -17.27,
+     -17.08,
+     11.34
+    ],
+    "head": "feat_eyes.EYES['R']['Cs']",
+    "weight": 1.0,
+    "src": "as eye.L"
+   },
+   {
+    "name": "incisors",
+    "skull": [
+     0.0,
+     -44.7,
+     -8.06
+    ],
+    "head": "the midline lip-slot inner end P2 (feat_mouth_v3 GEOM, s = 0, mean of L and R) moved 1.5 mm back (+y)",
+    "weight": 0.5,
+    "src": "ESTIMATE: the incisors sit directly behind the lips at the rima (Reighard p. 221: the lips bound the entrance of the mouth cavity); 1.5 mm = lip mucosa + vestibule (estimate)"
+   }
+  ],
+  "x_mid": {
+   "value": 0.25,
+   "src": "feat_mouth MID_X (the measured muzzle mirror plane); the jaws are built symmetric about it"
+  },
+  "checks": [
+   "scale -> skull length vs Ramos 2021 82.8-98.2 mm",
+   "Schellenberg 2025: the P4/M1 junction lies within 1/2 P4 of the globe centre in y",
+   "mandible ventral border (lateral picks) >= 2 mm inside the chin skin"
+  ]
+ },
+ "teeth": {
+  "_how": "skull-model mm in the JAW frame, LEFT side (the right side is the mirror l -> -l about the midline). base = crown-base (cervical) centre in plan (f, l) and the CEJ height u_cej; L = mesiodistal crown length, W = buccolingual width at the base, H = crown height from the CEJ to the main cusp tip (upper crowns point -u, lower +u); tip_df / tip_dl = tip offset from the base centre (rake); cusps = (x from -0.5 mesial to +0.5 distal, height fraction of H); axis = plan direction of the mesiodistal axis toward MESIAL (deg from +f toward +l), null = from the arch; root = construction embedding into the gum (not the anatomical root, which is ~1.5x the crown and would leave the gum mesh)",
+  "upper": [
+   {
+    "id": "I1",
+    "type": "incisor",
+    "base": [
+     -0.55,
+     0.75,
+     2.4
+    ],
+    "L": 1.25,
+    "W": 1.1,
+    "H": 2.6,
+    "axis": -90,
+    "cusps": [
+     [
+      -0.33,
+      0.85
+     ],
+     [
+      0.0,
+      1.0
+     ],
+     [
+      0.33,
+      0.85
+     ]
+    ],
+    "root": 1.6,
+    "src": "front-view picks (row half-width 4.72 x 0.84 -> I1-I3 spacing), Reighard p. 225 (three minute cusps); size low"
+   },
+   {
+    "id": "I2",
+    "type": "incisor",
+    "base": [
+     -0.75,
+     2.3,
+     2.4
+    ],
+    "L": 1.3,
+    "W": 1.2,
+    "H": 2.6,
+    "axis": -98,
+    "cusps": [
+     [
+      -0.33,
+      0.85
+     ],
+     [
+      0.0,
+      1.0
+     ],
+     [
+      0.33,
+      0.85
+     ]
+    ],
+    "root": 1.6,
+    "src": "as I1"
+   },
+   {
+    "id": "I3",
+    "type": "incisor3",
+    "base": [
+     -1.25,
+     4.0,
+     2.6
+    ],
+    "L": 1.7,
+    "W": 1.6,
+    "H": 3.4,
+    "axis": -110,
+    "cusps": [
+     [
+      -0.25,
+      0.7
+     ],
+     [
+      0.0,
+      1.0
+     ],
+     [
+      0.3,
+      0.6
+     ]
+    ],
+    "root": 2.0,
+    "src": "Reighard: lateral incisors largest; front-view picks; size low"
+   },
+   {
+    "id": "C",
+    "type": "canine",
+    "base": [
+     -6.0,
+     9.0,
+     1.05
+    ],
+    "L": 4.4,
+    "W": 3.4,
+    "H": 7.15,
+    "tip_df": 3.0,
+    "tip_dl": 0.3,
+    "axis": 0,
+    "root": 3.0,
+    "src": "lateral picks uC_base (-5.51, +1.05) -> uC_tip (-2.44, -6.10): crown 7.8 mm along a 23 deg forward rake (used 3.0 mm forward), front-view tip half-spacing 9.27; base f moved 0.5 mm back for 0.5 mm clearance to the lower canine (construction); W estimate"
+   },
+   {
+    "id": "P2",
+    "type": "premolar1",
+    "base": [
+     -10.2,
+     9.4,
+     -0.5
+    ],
+    "L": 1.8,
+    "W": 1.5,
+    "H": 1.8,
+    "axis": null,
+    "cusps": [
+     [
+      0.0,
+      1.0
+     ]
+    ],
+    "root": 1.5,
+    "src": "Reighard: small, single cusp and fang; Merck: may be absent (kept: formula 30); size ESTIMATE"
+   },
+   {
+    "id": "P3",
+    "type": "premolar",
+    "base": [
+     -18.3,
+     10.8,
+     -2.2
+    ],
+    "L": 4.6,
+    "W": 2.6,
+    "H": 3.9,
+    "axis": null,
+    "cusps": [
+     [
+      -0.32,
+      0.45
+     ],
+     [
+      0.0,
+      1.0
+     ],
+     [
+      0.24,
+      0.55
+     ],
+     [
+      0.4,
+      0.35
+     ]
+    ],
+    "root": 2.0,
+    "src": "lateral pick uP3 cusp (-18.65, -6.10); L from the photo (adjacent to P4); cusp pattern Reighard; low"
+   },
+   {
+    "id": "P4",
+    "type": "carnassial_upper",
+    "base": [
+     -25.05,
+     12.8,
+     -3.3
+    ],
+    "L": 8.8,
+    "W": 3.6,
+    "H": 4.0,
+    "axis": null,
+    "axis_from_to": [
+     [
+      -20.65,
+      11.6
+     ],
+     [
+      -29.45,
+      14.0
+     ]
+    ],
+    "cusps": [
+     [
+      -0.42,
+      0.4
+     ],
+     [
+      -0.12,
+      1.0
+     ],
+     [
+      0.1,
+      0.42
+     ],
+     [
+      0.3,
+      0.72
+     ],
+     [
+      0.47,
+      0.3
+     ]
+    ],
+    "protocone": {
+     "x": -0.35,
+     "lingual_mm": 0.7,
+     "height_frac": 0.3,
+     "r": 0.9
+    },
+    "root": 2.0,
+    "src": "lateral picks paracone (-24.19, -7.34) and distal end (-29.45); L 8.8 skull mm x s 1.13 = 9.9 mm against the cited 10.29 +- 0.93 (domcat_biometry_P4): agree (medium); Reighard: three cusps in series; protocone ESTIMATE"
+   },
+   {
+    "id": "M1",
+    "type": "molar_upper",
+    "base": [
+     -29.3,
+     10.3,
+     -2.6
+    ],
+    "L": 3.2,
+    "W": 1.5,
+    "H": 1.2,
+    "axis": 90,
+    "cusps": [
+     [
+      -0.25,
+      1.0
+     ],
+     [
+      0.25,
+      0.85
+     ]
+    ],
+    "root": 1.2,
+    "src": "Reighard: small, caudomediad of P4, two small cusps; Merck: may be absent (kept); transverse; size ESTIMATE"
+   }
+  ],
+  "lower": [
+   {
+    "id": "I1",
+    "type": "incisor",
+    "base": [
+     -1.85,
+     0.6,
+     -2.6
+    ],
+    "L": 1.0,
+    "W": 0.95,
+    "H": 2.8,
+    "axis": -90,
+    "cusps": [
+     [
+      -0.33,
+      0.85
+     ],
+     [
+      0.0,
+      1.0
+     ],
+     [
+      0.33,
+      0.85
+     ]
+    ],
+    "root": 1.5,
+    "src": "front-view picks (lower row half-width 3.74 x 0.84); scissor bite: lingual to the upper incisors (dvm360 occlusion note in spec_mouth.json); size low"
+   },
+   {
+    "id": "I2",
+    "type": "incisor",
+    "base": [
+     -2.0,
+     1.7,
+     -2.6
+    ],
+    "L": 1.05,
+    "W": 1.0,
+    "H": 2.9,
+    "axis": -95,
+    "cusps": [
+     [
+      -0.33,
+      0.85
+     ],
+     [
+      0.0,
+      1.0
+     ],
+     [
+      0.33,
+      0.85
+     ]
+    ],
+    "root": 1.5,
+    "src": "as I1"
+   },
+   {
+    "id": "I3",
+    "type": "incisor",
+    "base": [
+     -2.3,
+     2.9,
+     -2.5
+    ],
+    "L": 1.25,
+    "W": 1.1,
+    "H": 2.9,
+    "axis": -105,
+    "cusps": [
+     [
+      -0.33,
+      0.8
+     ],
+     [
+      0.0,
+      1.0
+     ],
+     [
+      0.3,
+      0.75
+     ]
+    ],
+    "root": 1.5,
+    "src": "as I1 (lateral largest)"
+   },
+   {
+    "id": "C",
+    "type": "canine",
+    "base": [
+     -1.1,
+     6.6,
+     -2.6
+    ],
+    "L": 3.5,
+    "W": 2.9,
+    "H": 6.4,
+    "tip_df": 0.1,
+    "tip_dl": 0.6,
+    "axis": 0,
+    "root": 2.5,
+    "src": "lateral picks lC_base (-1.35, -2.60) -> lC_tip (-1.20, +3.83); front tip half-spacing 7.48; sits in the upper I3-C diastema (scissor occlusion); W estimate"
+   },
+   {
+    "id": "P3",
+    "type": "premolar",
+    "base": [
+     -13.3,
+     7.4,
+     -6.8
+    ],
+    "L": 5.0,
+    "W": 2.3,
+    "H": 3.8,
+    "axis": null,
+    "cusps": [
+     [
+      -0.32,
+      0.45
+     ],
+     [
+      -0.02,
+      1.0
+     ],
+     [
+      0.25,
+      0.5
+     ],
+     [
+      0.42,
+      0.35
+     ]
+    ],
+    "root": 1.8,
+    "src": "Reighard: four cusps; lingual to the upper row (scissor); f, L, H ESTIMATE from the occlusion with the picked upper row"
+   },
+   {
+    "id": "P4",
+    "type": "premolar",
+    "base": [
+     -19.3,
+     8.0,
+     -7.2
+    ],
+    "L": 5.8,
+    "W": 2.6,
+    "H": 3.9,
+    "axis": null,
+    "cusps": [
+     [
+      -0.32,
+      0.45
+     ],
+     [
+      -0.02,
+      1.0
+     ],
+     [
+      0.25,
+      0.5
+     ],
+     [
+      0.42,
+      0.35
+     ]
+    ],
+    "root": 1.8,
+    "src": "Reighard: like P3, a little larger; ESTIMATE"
+   },
+   {
+    "id": "M1",
+    "type": "carnassial_lower",
+    "base": [
+     -26.4,
+     8.9,
+     -7.5
+    ],
+    "L": 6.8,
+    "W": 3.0,
+    "H": 4.0,
+    "axis": null,
+    "cusps": [
+     [
+      -0.27,
+      0.92
+     ],
+     [
+      -0.02,
+      0.45
+     ],
+     [
+      0.2,
+      1.0
+     ],
+     [
+      0.46,
+      0.22
+     ]
+    ],
+    "root": 2.0,
+    "src": "Reighard: two large cusps; L 6.8 skull mm x 1.13 = 7.7 mm against Kudaro 7.3 x 3.4 mm (low); occludes lingual to the P4 distal blade"
+   }
+  ]
+ },
+ "arch": {
+  "upper_centre_extra": [
+   {
+    "after": "I3",
+    "f": -3.0,
+    "l": 5.2,
+    "u_gum": 2.6,
+    "half_w": 0.75,
+    "src": "the I3-C diastema: the upper gum passes MEDIAL to the lower canine (construction from the scissor occlusion)"
+   }
+  ],
+  "upper_end": {
+   "f": -30.5,
+   "l": 13.6,
+   "u_gum": -3.0,
+   "half_w": 1.2
+  },
+  "lower_centre_extra": [
+   {
+    "after": "C",
+    "f": -5.5,
+    "l": 6.0,
+    "u_gum": -4.0,
+    "half_w": 0.9,
+    "src": "the lower diastema crest lies medial to the upper canine (construction)"
+   },
+   {
+    "after": "C",
+    "f": -9.5,
+    "l": 6.4,
+    "u_gum": -5.2,
+    "half_w": 0.9
+   }
+  ],
+  "lower_end": {
+   "f": -31.5,
+   "l": 9.4,
+   "u_gum": -7.4,
+   "half_w": 1.3
+  },
+  "gum_collar_mm": {
+   "value": 0.3,
+   "src": "the free gingiva covers the crown base (ESTIMATE)",
+   "confidence": "estimate"
+  },
+  "gum_band_extra_mm": {
+   "by_f": [
+    [
+     3.0,
+     0.45
+    ],
+    [
+     -3.0,
+     0.45
+    ],
+    [
+     -8.0,
+     0.9
+    ],
+    [
+     -45.0,
+     0.9
+    ]
+   ],
+   "src": "ESTIMATE: gum + alveolar tissue beyond the crown faces: thin over the incisors' labial faces (0.45 mm; first run: 0.47-0.8 mm lower-lip walls at the midline), 0.9 mm along the cheek teeth",
+   "confidence": "estimate"
+  },
+  "fornix_rise_mm": {
+   "upper": [
+    [
+     2.0,
+     2.3
+    ],
+    [
+     -4.0,
+     2.3
+    ],
+    [
+     -8.0,
+     3.0
+    ],
+    [
+     -40.0,
+     3.0
+    ]
+   ],
+   "lower": [
+    [
+     2.0,
+     1.6
+    ],
+    [
+     -4.5,
+     1.6
+    ],
+    [
+     -9.0,
+     2.6
+    ],
+    [
+     -40.0,
+     2.6
+    ]
+   ],
+   "src": "ESTIMATE: the vestibular fornix lies ~3 mm above the upper gum line; the cat's lower lip is small and closely applied (WikiVet 'Lips': smaller, decreased motility), so the lower labial fornix is shallow (1.6 mm) in front of the canines and 2.6 mm along the cheek teeth; the shallow front keeps >= 1 mm of lip over the lower canines (first run: 0.09 mm wall); the upper LABIAL fornix is 2.3 mm in front of the canines (the nose owner's passages, feat_nose_v3b, run 2.5 mm above a 3.0 mm fornix; spec_nose asks >= 3 mm to the mouth: NOTES 15:05)",
+   "confidence": "estimate"
+  }
+ },
+ "palate": {
+  "mid_u": [
+   [
+    -2.0,
+    2.2
+   ],
+   [
+    -6.0,
+    2.0
+   ],
+   [
+    -12.0,
+    1.2
+   ],
+   [
+    -20.0,
+    0.0
+   ],
+   [
+    -28.0,
+    -0.8
+   ],
+   [
+    -31.0,
+    -1.0
+   ],
+   [
+    -36.0,
+    -1.2
+   ],
+   [
+    -41.0,
+    -1.6
+   ]
+  ],
+  "hard_end_f": -31.0,
+  "vault_mm": 1.0,
+  "src": "ESTIMATE: the palate lies ~2.5-3 mm above the cheek-teeth CEJs and just above the incisor CEJs; hard palate to about M1 (Schellenberg: the palate edge lies near the globe level); the soft palate continues to a free border (Reighard p. 230)",
+  "rugae": {
+   "count": 8,
+   "f_first": -3.6,
+   "f_last": -26.0,
+   "height_mm": 0.35,
+   "width_mm": 0.75,
+   "bow_mm": 1.2,
+   "src": "Reighard p. 222: seven or eight curved transverse ridges, concave caudad; height/width ESTIMATE"
+  },
+  "inter_rugae_papillae": {
+   "height_mm": 0.1,
+   "radius_mm": 0.16,
+   "pitch_mm": 0.7,
+   "src": "Reighard p. 222: rows of papillae between the ridges; size ESTIMATE"
+  },
+  "incisive_papilla": {
+   "f": -2.7,
+   "height_mm": 0.45,
+   "radius_mm": 0.8,
+   "src": "ESTIMATE (standard mammalian palate landmark behind I1)"
+  },
+  "embed_mm": {
+   "value": 0.5,
+   "src": "construction: the palate mesh's top is buried 0.5 mm in the skin's cavity roof (no visible seam)",
+   "confidence": "construction"
+  }
+ },
+ "floor": {
+  "u": [
+   [
+    -3.4,
+    -5.6
+   ],
+   [
+    -8.0,
+    -6.6
+   ],
+   [
+    -15.0,
+    -8.2
+   ],
+   [
+    -25.0,
+    -9.0
+   ],
+   [
+    -35.0,
+    -9.4
+   ],
+   [
+    -42.0,
+    -10.0
+   ]
+  ],
+  "src": "ESTIMATE: the floor of the mouth between the mandibles, above the ventral border (-16.3 at f -27.6, lateral pick) by ~7 mm"
+ },
+ "tongue": {
+  "tip_f": -3.5,
+  "root_f": -42.0,
+  "half_w": [
+   [
+    -3.5,
+    1.6
+   ],
+   [
+    -5.0,
+    3.4
+   ],
+   [
+    -8.0,
+    4.2
+   ],
+   [
+    -12.0,
+    4.6
+   ],
+   [
+    -18.0,
+    5.1
+   ],
+   [
+    -25.0,
+    5.5
+   ],
+   [
+    -32.0,
+    5.6
+   ],
+   [
+    -38.0,
+    5.2
+   ],
+   [
+    -42.0,
+    4.8
+   ]
+  ],
+  "dorsum_below_palate_mm": {
+   "value": 1.2,
+   "src": "construction: rugae 0.35 + papillae 0.45 + 0.4 clearance; the tongue is free to move in the rig"
+  },
+  "free_tip_to_f": -13.0,
+  "free_gap_mm": 0.5,
+  "embed_mm": 0.4,
+  "furrow": {
+   "depth_mm": 0.25,
+   "width_mm": 0.9,
+   "src": "Reighard: a slight median longitudinal furrow; size ESTIMATE"
+  },
+  "papillae": {
+   "count": 290,
+   "field_f": [
+    -5.5,
+    -22.0
+   ],
+   "field_half_w_frac": 0.82,
+   "length_mm": 1.1,
+   "base_r_mm": 0.2,
+   "lie_deg": 22.0,
+   "points": "caudad",
+   "src": "Noel & Hu 2018 (via press: nearly 300 large hollow papillae); Reighard: horny, tooth-like, points caudad, most numerous at the middle of the free end; length/lie ESTIMATE (lying near-flat at rest so the closed mouth keeps clearance)"
+  },
+  "src": "Reighard pp. 226-228 (shape: flat above, broadest in the middle, slightly narrowed at each end); widths fit inside the lower arches with 0.5 mm clearance (construction)"
+ },
+ "bag": {
+  "vestibule_mm": {
+   "value": 0.5,
+   "src": "construction/estimate: the closed lips rest on the teeth; 0.5 mm = 5 voxels at 0.10 mm keeps the lining off the teeth",
+   "confidence": "construction"
+  },
+  "round_mm": {
+   "value": 0.8,
+   "src": "construction: rounding of the cavity edges"
+  },
+  "back_f": -42.0,
+  "fauces_half_w": 6.0,
+  "src": "the cavity = the skin turning inward at the lips; the vestibule follows the teeth and gums (Reighard p. 223), the roof is the palate, the floor is under the tongue; closed at the fauces (the throat is not modelled)",
+  "keepout_mm": {
+   "value": 0.6,
+   "src": "ESTIMATE: lip mucosa + the hidden gap's lining; the cavity stays 0.6 mm off v3's hidden gap (entry -> P0 -> P1), so the lip keeps its thickness round the slot and the overhang / commissure probes read v3's slot",
+   "confidence": "estimate"
+  }
+ },
+ "slot_ext": {
+  "max_len_mm": {
+   "value": 9.0,
+   "src": "construction: the parting line runs through the full lip thickness into the vestibule; fail loudly if the vestibule is further"
+  },
+  "past_wall_mm": {
+   "value": 0.6,
+   "src": "construction: the sheet ends 0.6 mm inside the cavity"
+  },
+  "smooth_mm": {
+   "value": 1.0,
+   "src": "construction: the sheet's inner edge is smoothed along s (sigma)"
+  },
+  "join_k_mm": {
+   "value": 0.25,
+   "src": "construction: smooth-max where the slot air meets the cavity air"
+  }
+ },
+ "chin": {
+  "fade_hc_mm": {
+   "value": [
+    -0.5,
+    -3.0
+   ],
+   "src": "construction: the lower-lip cut is v3's down to 0.5 mm below the contact C and fades to none 3.0 mm below it (smoothstep)"
+  },
+  "mid_blend_mm": {
+   "value": 0.8,
+   "src": "construction: half-width of the linear L/R field blend across the midline (v3 split the sides hard at x = MID_X: a seam and a dimple down the lower lip and chin, visible in the v3 preview renders); applied only BELOW the contact (C - 0.3 .. C - 1.3 ramp): a blend at the Y lost the notch (the first full preview: crease probe 'no notch')"
+  },
+  "tried_and_dropped": {
+   "round_intersection": {
+    "R_mm": 2.5,
+    "result": "eroded the chin up to 0.85 mm where v3's receding plane runs within 2.5 mm of it; field M2 line share 0.98 (v3 0.38); renders showed a rolled lower lip with a groove"
+   },
+   "wide_smooth_max": {
+    "k_mm": [
+     1.5,
+     2.0,
+     3.0
+    ],
+    "result": "line share 0.28-0.38, max deviation 1.03 mm (erosion)"
+   },
+   "vertical_plane_below_C": {
+    "result": "a 0.4 mm step: v3's min(fup, flo) ends the cut away from the slot sheet"
+   },
+   "earlier_ramp": {
+    "H0_RC_SL": [
+     [
+      -0.5,
+      3.0,
+      1.2
+     ],
+     [
+      -1.0,
+      4.0,
+      1.0
+     ]
+    ],
+    "result": "line share 0.36, deviation 0.7 mm"
+   },
+   "src": "field-profile M2 sweeps (scratch m2sweep*.py), 2026-10-18"
+  },
+  "src": "C1 (R-M; the person on flag_49 'the chin mess'): the lower-lip cut fades out below the contact, and the sides blend at the midline"
+ },
+ "resolution": {
+  "region_mm": 0.1,
+  "parts_mm": {
+   "teeth": 0.035,
+   "gums": 0.07,
+   "palate": 0.05,
+   "tongue": 0.05
+  },
+  "src": "slot g 0.30 mm -> 3 voxels at 0.10 (v3); papillae base 0.4 mm and rugae 0.35 mm need <= 0.05 mm; incisor crowns 1.0-1.3 mm -> 30+ voxels at 0.035"
+ }
+}

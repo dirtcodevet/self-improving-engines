@@ -1,0 +1,241 @@
+{
+ "_what": "FEATURE SPEC v3: EYES with real depth and colour (felid pack, case cat1, cat v3). The V3_BRIEF eye standard as a buildable spec: optics (cornea, tear film, anterior chamber, iris, pupil, lens, sclera, limbus), the Cycles material plan, probes with planted failures, and the fixes for the Phase 2 eye defects (goggle step, jagged lid rim, eyelid_wrap input contract). Spec only: no geometry, Blender not touched. Builds ON spec_eyes.json (globe, lid margin, lids, third eyelid) and feat_eyes.py; every value there that is not overridden here stands.",
+ "status": "spec (self-checked; not independently reviewed). Written by the eye-spec-v3 agent, unix 1792341346 to 1792342387.",
+ "labels": "checked = measured here with a script kept in cases/cat1/lab/eyes_v3/ | cited = a published value (sources) | derived = arithmetic on cited/checked values | estimate = no source; flagged, low confidence | unchecked = stated, not measured",
+ "time": {"start_unix": 1792341346, "end_unix": 1792342387},
+
+ "decisions_reported_first": {
+  "cornea_may_bulge": {"person": "yes, eyeballs cornea may bulge past Tripo's flat painted eye - if that's what it's meant to do in a realistic eyeball", "check": "D1: cornea shape = cited anatomy (feat_eyes.probe_globe_shape: r 8.82 +-0.5 by circle fit, apex within 0.5 mm of spec_eyes, axial length 19.75 +-0.3). The bulge in front of Tripo's cap is reported as information (Phase 2: apex 1.48 L / 1.38 R mm outside Tripo, feat_eyes probes.json). C3 applies to the SKIN only."},
+  "real_depth_and_colour": {"person": "we want the eyes to have real depth and color", "check": "D2 = probes R1 (parallax depth), R2 (iris colour dE00 vs photo), R3 (pupil from the photo), R5 (corneal caustic). All four must PASS."}
+ },
+
+ "unseen_side_rule": "The person's direction (NOTES_v3 09:45): the unseen side comes from a fitted model of the CLASS, never a flat slab or a mirror. For the eye the photo sees only the front of the cornea, the iris through it and the pupil. Everything behind (posterior cornea, aqueous depth, iris profile and back, lens, vitreous, fundus, posterior sclera) is taken from the cat's cited ocular biometry (a schematic cat eye), labelled per value below. Nothing is painted onto the cornea to fake depth.",
+
+ "frame": "head-frame mm as spec_eyes.json (x = cat's LEFT, y = BACK, z = UP); per eye the eye frame (n axis, u lateral, v up) and sclera centre Cs from spec_eyes.json eyes.<side>.globe. 'depth' below = distance BEHIND the corneal apex along -n. Apex = Cs + 10.30 n (sag 5.70 at the 8.25 mm limbus radius, limbus plane 4.61 in front of Cs; spec_eyes globe_derivation). Blender scene units are metres: multiply mm by 0.001.",
+
+ "photo_reading": {
+  "_how": "checked: cases/cat1/lab/eyes_v3/eye_photo2.py on cases/cat1/ref.jpg (sRGB -> CIELAB D65, skimage). Regions inside the inner dark-rim ellipses of spec_eyes.json photo.inner_rim_ellipse_px (rms 0.4-0.5 px). Figures: eyes_crop_x8.png, eye_masks.png. Image R = the cat's right eye (image left).",
+  "eye_colour": {
+   "answer": "BLUE. Both irises are a light-to-medium slate / steel blue, greyer and darker at the periphery (limbal ring) and lighter in the lower half. This confirms the lilac-point expectation (pointed cats are blue-eyed).",
+   "iris_body_Lab_median": {"R": [43.3, -2.5, -14.3], "L": [57.9, -3.7, -14.8]},
+   "iris_body_sRGB_median": {"R": [0.318, 0.412, 0.498], "L": [0.455, 0.557, 0.657], "hex": {"R": "#51697F", "L": "#748EA8"}},
+   "iris_body_L_IQR": {"R": [35.5, 52.4], "L": [47.8, 66.2]},
+   "upper_third_vs_lower_third_Lab": {"R": [[35.5, -2.1, -11.7], [50.9, -2.7, -15.1]], "L": [[53.6, -1.1, -10.9], [57.1, -4.5, -17.8]]},
+   "radial_profile_rho_L_a_b": {"_rho": "normalised to the inner-rim ellipse (1 = the dark rim), body pixels only", "R": [[0.35, 30.8, -0.8, -15.3], [0.45, 35.0, -1.9, -15.7], [0.55, 40.2, -2.7, -15.8], [0.65, 47.1, -2.7, -14.7], [0.75, 53.0, -2.8, -14.0], [0.85, 49.4, -2.1, -11.9]], "L": [[0.35, 48.9, -3.7, -17.8], [0.45, 52.4, -4.0, -17.9], [0.55, 58.5, -4.5, -17.1], [0.65, 65.6, -4.7, -15.5], [0.75, 62.2, -3.6, -14.1], [0.85, 62.2, -2.1, -12.3]]},
+   "R_vs_L_dE00": 14.64,
+   "reading": "Hue and chroma agree between the eyes (hue -100 to -105 deg, C* 14.5-15.3); lightness differs by 14.6 L*. One cat has one iris colour, so the L* difference is LIGHTING (the key light comes from the camera's upper right; the R eye sits further from it and under more lid shadow). The photo colour is therefore appearance, not albedo: the albedo is FITTED by rendering under the photo light (probe R2), not copied.",
+   "label": "checked (photo measures); albedo = to be fitted (estimate until R2 runs)"
+  },
+  "pupil": {
+   "shape": "a VERTICAL ellipse with POINTED poles (lens / vesica outline), mid-dilated. Not a slit and not round. Widths at a quarter and three quarters of its height are 4-8 and 12-13 px against a 14-15 px maximum: the top pole is pointed.",
+   "apparent_px": {"R": {"height": 26, "max_width": 15, "area": 280, "centre": [650.3, 304.6]}, "L": {"height": 26, "max_width": 15, "area": 222, "centre": [760.0, 307.9]}, "threshold": "L* < 22 (half-way between the pupil's L* 5-7 and the darker iris), connected to the centre, highlight excluded; at L* < 15 / < 30 the height is 24-25 / 26-27 px and the width 14 / 16-20 px"},
+   "apparent_mm": "height 24-27 px x 0.367-0.39 mm/px = 8.8-10.5 mm; width 14-15 px = 5.1-5.9 mm (photo-scale spread from spec_eyes and check_eyes)",
+   "true_mm": {"height": 8.3, "width": 4.8, "range_height": [7.6, 9.1], "range_width": [4.4, 5.1], "h_over_w": 1.75, "derivation": "apparent / corneal magnification 1.154 (paraxial, two-surface cornea, pupil plane 4.66 mm behind the apex; see optics.paraxial). The view is ~14-16 deg off each eye's axis (spec_eyes), which foreshortens by cos 15 = 0.97: within the range. The builder REPLACES these by fitting the pupil outline through the built cornea to the photo outline (probe R3: fit on L, hold out R)", "label": "derived (estimate until R3 fits it)"},
+   "position": "pupil centres sit 4-5.5 px (1.5-2.1 mm) ABOVE the inner-rim ellipse centres and 0.5 (R) / 2.0 (L) px medial (checked). The rim ellipse is the LID opening, not the limbus, so this offset is not a decentred pupil. Starting value: spec_eyes photo.pupil_on_globe_UV_mm (L [-1.69, 1.3], R [-1.15, 1.31]), which was NOT refraction-corrected (estimate). The builder back-projects the photo pupil centre through the built cornea (ray trace).",
+   "pupil_Lab_median": {"R": [4.6, 1.3, -2.6], "L": [7.3, 3.1, -3.7]}
+  },
+  "corneal_highlight": {"centre_px": {"R": [659.0, 300.9], "L": [766.4, 301.9]}, "area_px": {"R": 33, "L": 51}, "peak_L": {"R": 95.9, "L": 97.0}, "offset_from_pupil_centre_px": {"R": [8.7, -3.7], "L": [6.4, -6.0]}, "reading": "one crisp, compact highlight per eye, upper RIGHT in the image on both eyes (one key light at the camera's upper right; medial-up on R, lateral-up on L). Crisp and saturated: a wet, smooth, strongly curved cornea (tear film).", "label": "checked"},
+  "corneal_caustic": {"what": "a bright crescent in the LOWER-LEFT iris periphery, opposite the highlight, on both eyes: L* 74-75, rho >= 0.6. It is the key light focused through the curved cornea onto the iris (a refractive caustic), a standard depth cue of real eyes.", "area_px": {"R": 39, "L": 108}, "Lab": {"R": [75.4, -1.2, -11.1], "L": [74.0, -4.2, -12.6]}, "consequence": "the render must carry refractive caustics through the cornea (materials_cycles.lighting). A shadow-ray-transparent cornea cannot produce it.", "label": "checked"},
+  "sclera": "no white sclera is visible: the iris fills the opening to the dark lid rim (normal for a cat looking ahead). Sclera colour below is therefore an estimate.",
+  "dark_rim": "the 0.85-1.3 mm dark band round the opening is the pigmented LID MARGIN (spec_eyes photo_findings), owned by the skin and pigment, not by the eye."
+ },
+
+ "optics": {
+  "globe": {"value": "unchanged from spec_eyes.json: sclera sphere RS 9.45, cornea r 8.82, limbus diameter 16.5, axial length 19.75, apex 10.30 in front of Cs, limbal blend 0.8", "label": "cited/derived (spec_eyes)"},
+  "cornea": {
+   "anterior_radius_mm": {"value": 8.82, "sd": 0.49, "source": "cited: keratometry, 73 cats (PMC8437713); photokeratoscopy 9.06/9.20 (PMID 6734262)"},
+   "central_thickness_mm": {"value": 0.578, "sd": 0.064, "source": "cited: Gilger et al. 1993, ultrasonic pachymetry, 35 cats / 70 eyes (PMID 8430933). Cross-check: 0.623 +- 0.048, 18 cats, 2023 (higher; device-dependent)", "label": "cited"},
+   "thickness_profile": {"value": "constant (concentric posterior surface)", "source": "cited: central and peripheral thickness did not differ significantly (Gilger 1993)", "label": "derived"},
+   "posterior_radius_mm": {"value": 8.24, "source": "derived: 8.82 - 0.578 (concentric, constant thickness)", "range": [8.1, 8.4], "label": "derived"},
+   "refractive_index": {"value": 1.376, "source": "the brief's value: human schematic eye (Le Grand / Gullstrand). The cat-specific schematic eye is Bishop, Kozak & Vakkur 1962, J Physiol 163:466 (PMC1359720), not read", "label": "cited (human), adopted for the cat"},
+   "limbus_diameter_mm": {"value": 16.5, "source": "cited: Carrington 1986 via cat-anatomy.md (16.5 x 16.2)"}
+  },
+  "tear_film": {"refractive_index": 1.337, "thickness": "micrometres (human ~3-10 um; no feline value found): NOT geometry, rendered as a clear coat on the anterior cornea", "meniscus": {"what": "the strip of tear fluid along the lower lid margin (a wet glint line)", "radius_mm": 0.2, "range": [0.1, 0.3], "label": "estimate (human tear-meniscus height ~0.2-0.3 mm; no feline value)", "build": "optional thin glass strip along the lower margin from canthus to canthus; off if it fails the lid probes"}, "label": "estimate (index cited for human tears)"},
+  "anterior_chamber": {
+   "anterior_chamber_length_mm": {"value": 4.66, "sd": 0.86, "source": "cited: Konrade et al. 2012, A-mode ultrasound, 98 cats (PMID 22280390): axial length 19.75 +- 1.59, anterior chamber length 4.66 +- 0.86, vitreous chamber 7.92 +- 0.86", "convention": "taken as anterior corneal surface -> anterior lens capsule (the usual A-mode length). If it is posterior cornea -> lens, add 0.58 (pupil plane 5.24 behind the apex). The apparent-depth probe R1 tolerance covers neither alternative, so the builder states which it used; default 4.66", "label": "cited (convention estimate)"},
+   "aqueous_depth_mm": {"value": 4.08, "source": "derived: 4.66 - 0.578"},
+   "aqueous_index": {"value": 1.336, "source": "the brief (human schematic eye)", "label": "cited (human)"},
+   "iridocorneal_angle": "the iris root inserts at the angle recess just inside and behind the limbus (estimate: root radius 8.0 mm from the axis, 5.6 mm behind the apex; the limbus plane is 5.70 behind the apex)"
+  },
+  "iris": {
+   "root_diameter_mm": {"value": 16.0, "range": [15.6, 16.4], "label": "estimate (0.25 mm inside the cited 16.5 limbus)"},
+   "profile": {"value": "a shallow forward-convex cone resting on the lens: pupil margin ON the anterior lens surface at the pupil plane (4.66 behind the apex), root at r 8.0 / depth 5.6", "label": "derived (pupil plane cited; root estimate)"},
+   "thickness_mm": {"value": 0.35, "taper": "0.2 at the pupil margin, 0.4 at mid-iris, 0.3 at the root", "label": "estimate (no feline value found)"},
+   "front_relief_mm": {"value": 0.08, "range": [0.04, 0.12], "what": "radial stromal fibres (trabeculae) and crypts as a bump/height field", "label": "estimate (below the photo's 0.37 mm/px; class prior)"},
+   "radial_fibres": {"count": 60, "range": [40, 90], "width_mm": [0.15, 0.3], "crypts": "Voronoi cells 0.4-0.8 mm, 10 % darker", "collarette": "a faint lighter ring at 30-35 % of the way from pupil margin to root", "label": "estimate (class prior; photo cannot resolve; flagged)"},
+   "colour": "from the photo (photo_reading.eye_colour) via the material fit; posterior surface = pigment epithelium, near-black brown (albedo 0.03, estimate)",
+   "apparent_vs_true": "everything seen of the iris is seen THROUGH the cornea: apparent size = true x 1.154 at the pupil plane (paraxial), shifted 0.64 mm forward. The photo crop must never be projected straight onto the iris; texels are mapped by ray tracing through the built cornea (materials_cycles.iris.texture)."
+  },
+  "pupil": {
+   "shape_model": "vesica / pointed ellipse. Half-width at height y: x(y) = (w/2) * (1 - |2y/h|^k)^(1/k) * (1 - pinch*|2y/h|^2), k = 2, pinch fitted (photo: the quarter-height widths 4-8 / 12-13 of a 14-15 max => pinch ~0.3, estimate). Parameters (h, w, pinch) are RIG controls: slit (bright) to round (dark); the cat's slit pupil changes area ~135-fold (Banks et al. 2015 Sci Adv; cited)",
+   "rest_value": "photo_reading.pupil.true_mm (h 8.3, w 4.8; fitted by R3)",
+   "label": "shape checked on the photo; parameters derived/estimate until fitted"
+  },
+  "lens": {
+   "thickness_mm": {"value": 7.17, "source": "derived: axial length 19.75 - anterior chamber 4.66 - vitreous 7.92 (Konrade 2012). Cross-checks: 6.8 mm (a 2009 30-cat ultrasound study, different scheme); leopard cat 8.1 mm", "label": "derived"},
+   "anterior_radius_mm": {"value": 7.0, "label": "estimate (chosen with the posterior radius to give the derived thickness at an 11.5 mm equator)"},
+   "posterior_radius_mm": {"value": 6.0, "label": "estimate"},
+   "equatorial_diameter_mm": {"value": 11.5, "label": "estimate"},
+   "equivalent_index": {"value": 1.42, "range": [1.40, 1.55], "label": "estimate (human equivalent index; the cat's is not found). Appearance-insensitive: through the pupil the fundus reads black (probe R3)"},
+   "position": "anterior pole at the pupil plane (4.66 behind the apex), posterior pole 11.83 behind the apex; vitreous 7.92 behind it to the retina at 19.75 (derived, closes the axial length)"
+  },
+  "fundus": {"albedo": 0.02, "tapetum": "off by default. Cats have a tapetum lucidum (eyeshine), but the photo's pupils read black (L* 4.6-7.3) under off-axis studio light; pointed blue-eyed cats often have a reduced tapetum. A tapetum layer is an option for a coaxial-flash render only", "label": "estimate"},
+  "sclera": {"colour_sRGB": [0.86, 0.82, 0.80], "perilimbal_band": "grey-brown conjunctival pigment band 1.0 mm wide at the limbus, 25 % darker (common in cats)", "label": "estimate (no sclera visible in the photo)"},
+  "limbus": {"geometry": "the 0.8 mm limbal blend of spec_eyes (sulcus between the cornea and sclera spheres)", "optics": "the cornea turns opaque across the limbus: transmission fades to the sclera shader over 0.8 mm (radial mask on the distance from the axis, 7.85 -> 8.65 mm)", "look": "the photo's darker, greyer iris periphery (rho 0.85: L* -4..-3.6 below the mid-iris, b* 2-3 less blue) is the iris's own limbal ring plus this fade", "label": "geometry derived; fade width estimate; ring checked on the photo"},
+  "paraxial": {
+   "_what": "checked arithmetic (scratch script; values below): an object at the pupil plane d behind the apex, imaged out through the posterior cornea (r 8.24, 1.336 -> 1.376) and the anterior cornea (r 8.82, 1.376 -> 1.0)",
+   "d_4.66": {"apparent_depth_mm": 4.019, "magnification": 1.154},
+   "d_5.24": {"apparent_depth_mm": 4.608, "magnification": 1.177},
+   "single_surface_check": "a single keratometric surface (n 1.336, r 8.82) gives 4.023 / 1.153: the posterior cornea changes < 0.1 %",
+   "note": "the corneal highlight (Purkinje I) of a distant light lies at r/2 = 4.41 mm behind the apex, nearly the same apparent depth as the pupil (4.02): highlight and pupil move almost together under a co-moving light, so the highlight is NOT a parallax reference. R1 uses the camera geometry instead."
+  }
+ },
+
+ "geometry_build": {
+  "_rule": "per eye, separate objects (never unioned with the skin; the globe rotates). Their OUTER surface (sclera + anterior cornea) must equal feat_eyes.globe_field's globe so the Phase 2 socket, lid and third-eyelid edits and probes stay valid.",
+  "objects": [
+   {"name": "Eye_<side>_sclera", "what": "closed globe shell from the limbus back (feat_eyes globe minus the corneal cap), outward normals; its inside face toward the vitreous carries FUNDUS behind the lens"},
+   {"name": "Eye_<side>_cornea_front", "what": "open cap: anterior cornea sphere r 8.82 from the apex to the limbus, merged into the sclera at the limbal blend; normals toward the AIR"},
+   {"name": "Eye_<side>_cornea_back", "what": "open cap: posterior cornea r 8.24 concentric (CCT 0.578), from the axis to the angle, sealed to the iris root so no ray leaks between them; normals toward the AQUEOUS (backward)"},
+   {"name": "Eye_<side>_iris", "what": "annular shell, thickness 0.2-0.4 mm, front surface the cone of optics.iris.profile, inner edge = the pupil outline (optics.pupil) lying on the anterior lens; polar UV (u = angle / 2pi, v = 0 at the pupil margin -> 1 at the root); separate back material"},
+   {"name": "Eye_<side>_lens_front / lens_back", "what": "open caps r 7.0 / 6.0 joined at the 11.5 mm equator (a closed lens is fine too); lens_front normals toward the aqueous (forward), lens_back normals toward the vitreous (backward)"},
+   {"name": "Eye_<side>_tear_meniscus", "what": "optional, optics.tear_film.meniscus"}
+  ],
+  "resolution": "analytic surfaces meshed at <= 0.10 mm edge length on the cornea and the pupil edge (the highlight and refraction need smooth normals: shade smooth; no marching-cubes faceting on the cornea), <= 0.2 mm elsewhere",
+  "parenting": "all eye objects share one empty at Cs (the future eye bone): rotating it rotates the whole optical stack"
+ },
+
+ "materials_cycles": {
+  "_nested_dielectrics": "Cycles has no IOR priority for nested media, so every optical INTERFACE is its own open surface with the ratio of the two indices. Rule: the normal points to the LOWER-index side and IOR = n_high / n_low (>= 1). Cycles then refracts correctly in both directions (entering uses IOR, exiting 1/IOR).",
+  "interfaces": [
+   {"surface": "cornea_front", "between": "air 1.000 | cornea 1.376", "normal_to": "air", "IOR": 1.376},
+   {"surface": "cornea_back", "between": "cornea 1.376 | aqueous 1.336", "normal_to": "aqueous", "IOR": 1.0299},
+   {"surface": "lens_front", "between": "aqueous 1.336 | lens 1.42", "normal_to": "aqueous", "IOR": 1.0629},
+   {"surface": "lens_back", "between": "lens 1.42 | vitreous 1.336", "normal_to": "vitreous", "IOR": 1.0629}
+  ],
+  "shaders": {
+   "CORNEA_FRONT": "Principled BSDF: Base Color 1,1,1; Transmission Weight 1.0; IOR 1.376; Roughness 0.0; Coat Weight 1.0, Coat IOR 1.337, Coat Roughness 0.01 (the TEAR FILM); across the limbus mix to SCLERA with the 0.8 mm radial mask (optics.limbus). Shade smooth.",
+   "CORNEA_BACK": "Refraction BSDF (or Glass BSDF), IOR 1.0299, Roughness 0, white",
+   "LENS_FRONT, LENS_BACK": "Refraction BSDF, IOR 1.0629, Roughness 0, white",
+   "IRIS": "Principled BSDF, no transmission: Base Color = IRIS_TEX; Roughness 0.45; Subsurface Weight 0.05 (blue stromal scatter, estimate); Normal from Bump(height = fibre field, Distance 0.0001 m = 0.1 mm relief)",
+   "IRIS_TEX": "(1) BASE RAMP: the photo radial profile (photo_reading.eye_colour.radial_profile_rho_L_a_b) converted Lab -> linear RGB, as a ColorRamp on v (pupil margin -> root), pupil-side and limbal-ring zones included. (2) PHOTO DETAIL: optional high-pass (> 1 mm wavelength removed) of the de-lit photo crop, mapped by ray tracing each iris texel through the built cornea to the photo (registration by the photo's own rim and pupil ellipses, not by camera_tripo.json, which failed its hold-out), highlight (L* > 75 near the pupil) and caustic crescent masked and inpainted. (3) FIBRES: Wave/Noise texture on (u x 60, v x 2) -> radial streaks, colour x [0.85, 1.15]; Voronoi crypts (scale 12-20 per iris) 10 % darker; collarette ring at v 0.30-0.35 5 % lighter. (4) ALBEDO SCALE: one multiplier on the base ramp (and optionally one on its chroma) FITTED by probe R2 on the L eye; the R eye is the hold-out (chosen now, before any fit; A23).",
+   "IRIS_BACK": "Diffuse, albedo 0.03 (pigment epithelium)",
+   "FUNDUS": "Diffuse, albedo 0.02 (tapetum off; optics.fundus)",
+   "SCLERA": "Principled BSDF: Base Color sRGB 0.86, 0.82, 0.80 (estimate); Subsurface Weight 1.0, Subsurface Radius (1.0, 0.45, 0.25), Subsurface Scale 0.001 (mm-scale radii in a metre scene); Roughness 0.35; Coat Weight 1.0, Coat Roughness 0.03 (wet conjunctiva); perilimbal band (optics.sclera)",
+   "TEAR_MENISCUS": "Glass BSDF IOR 1.337, Roughness 0"
+  },
+  "lighting": {
+   "photo_light": "cases/cat1/light.json (key 155, fill 2.13, rim 80, top 6.53, world 0.147, exposure -1.91, Filmic, Very High Contrast) - the same rig the pigment check uses",
+   "caustics": "PRIMARY: Cycles MNEE shadow caustics - cornea_front and cornea_back objects 'Cast Shadow Caustics', iris and sclera 'Receive Shadow Caustics', the key light 'Shadow Caustics' on; Light Paths: Refractive and Reflective caustics ON, Filter Glossy 0.0 for probe renders. The builder first verifies MNEE handles the two-interface cornea stack in this Blender build (a test render must show the caustic crescent, probe R5). FALLBACK (previews only): on CORNEA_* and LENS_* mix to a Transparent BSDF when Light Path 'Is Shadow Ray' - the iris is lit but has NO caustic, so R5 FAILS and is reported as a known limitation, never hidden.",
+   "light_paths": "Max Bounces 16; Diffuse 4; Glossy 8; Transmission 16; Transparent 16",
+   "sampling": "probe renders >= 1024 spp, denoiser OFF (a denoiser can erase the caustic and the fibres); look renders may denoise (OpenImageDenoise with albedo + normal passes)"
+  }
+ },
+
+ "probes": {
+  "_rules": "Each probe is proven on planted failures on both sides (A22) before its PASS counts. Geometry probes read meshes in head-frame mm. Render probes use Cycles with materials_cycles. Photo-side render probes register the rendered eye to the photo eye by the eye's OWN rim and pupil ellipses (a 2-D similarity), because camera_tripo.json failed its hold-out; positions are compared RELATIVE to the pupil centre.",
+  "geometry": [
+   {"id": "G1 cornea", "probe": "feat_eyes.probe_globe_shape on the cornea_front + sclera surfaces", "expected": "r 8.82 +-0.5 (both sections), apex within 0.5 mm of spec_eyes, axial length 19.75 +-0.3", "planted": "Tripo cap quadric r 14.7 and the flattened sag 4.5 must FAIL (feat_eyes probes.json: they do)"},
+   {"id": "G2 central corneal thickness", "probe": "distance along n between cornea_front and cornea_back at the axis, and at 3 and 6 mm off-axis", "expected_mm": 0.578, "tol_mm": 0.06, "planted": "a single-surface cornea (no back) FAILS (no second hit)"},
+   {"id": "G3 anterior chamber", "probe": "apex to lens_front along n", "expected_mm": 4.66, "tol_mm": 0.3, "planted": "iris disc ON the cornea (painted iris) reads < 1 mm: FAIL"},
+   {"id": "G4 lens", "probe": "lens_front to lens_back along n", "expected_mm": 7.17, "tol_mm": 0.4},
+   {"id": "G5 iris", "probe": "root diameter; pupil margin on the lens (gap <= 0.05 mm); iris front between the two corneal depths it must lie behind (>= 4.0 mm behind the apex everywhere)", "expected": "root 16.0 +-0.5; margin on the lens"},
+   {"id": "G6 sealed optics", "probe": "10,000 rays from the photo camera direction +-30 deg aimed into the opening: every ray that enters cornea_front meets, in order, cornea_back and then (iris | lens_front); none escapes between cornea_back and the iris root or limbus", "expected": "leaks = 0", "planted": "a 0.2 mm gap at the iris root must be found"},
+   {"id": "G7 outer surface unchanged", "probe": "sclera + cornea_front vs feat_eyes.globe_field: |G| at their vertices", "expected_mm": "<= 0.02", "why": "the Phase 2 lid, socket and third-eyelid edits depend on that surface"}
+  ],
+  "render": [
+   {"id": "R1 parallax depth (the brief's parallax test)", "probe": "two ORTHOGRAPHIC close-ups (0.02 mm/px), camera axes rotated +15 and -15 deg about the eye's v axis through Cs, same lighting; pupil centroid (dark blob, L* < 22) image x relative to Cs's projection in each; z_app = (x(+15) - x(-15)) / (2 sin 15 deg); apparent depth behind the apex = 10.30 - z_app",
+    "expected_mm": "the value of an exact Python ray trace of the BUILT surfaces for the same two cameras (paraxial guide 4.02 for a pupil plane 4.66 mm behind the apex: shift between the views 3.25 mm = 162 px)", "tol_mm": 0.35,
+    "planted": {"painted_iris": "iris texture on the cornea front: apparent depth ~0 (shift 5.33 mm) - must FAIL", "no_refraction": "cornea and aqueous IOR 1.0: apparent depth 4.66 (0.64 off) - must FAIL", "opaque_cornea": "no pupil found - must FAIL"},
+    "also": "report the same two views as images for the person (the iris visibly shifts behind the clear cornea)"},
+   {"id": "R2 iris colour (dE vs photo)", "probe": "render through the photo camera with the photo light; iris BODY pixels (inside the rim ellipse rho < 0.92, outside the pupil + 2 px, highlight + 2 px and the caustic crescent excluded, as eye_photo2.py); median Lab per eye vs the photo's",
+    "expected": {"R": [43.3, -2.5, -14.3], "L": [57.9, -3.7, -14.8]}, "pass": "dE00 <= 3.0 on the HOLD-OUT eye R after fitting the albedo scale on L only (3.0 = the pigment check's mark, engine/checks/pigment_check.py); and the render's R-vs-L dE00 within 14.6 +-4 (the lighting reproduces the photo's L* difference)",
+    "planted": "the Phase 2 grey globe (no iris material) FAILS; a uniform iris at the L colour with no lid shadow and no caustic must FAIL the R-vs-L clause",
+    "label": "the camera failed its hold-out, so the result is 'estimated' unless a validated camera exists by then"},
+   {"id": "R3 pupil from the photo", "probe": "same render; pupil = L* < 22 component at the centre",
+    "expected_px": {"height": [24, 27], "max_width": [14, 16], "area": {"R": 280, "L": 222}, "quarter_height_width_over_max": "<= 0.6 (pointed pole)", "pupil_L_star_max": 12},
+    "tol": "height and width +-1.5 px; area +-20 %", "fit": "(h, w, pinch, centre) fitted on L, R is the hold-out",
+    "planted": "a round pupil of the same area and a 1 mm slit must both FAIL"},
+   {"id": "R4 corneal highlight", "probe": "brightest compact blob (L* > 75) in the iris disc; offset from the pupil centroid", "expected_px": {"R": [8.7, -3.7], "L": [6.4, -6.0]}, "tol_px": 2.0, "peak_L": ">= 93", "area_px": {"R": 33, "L": 51, "tol": "+-40 %"},
+    "planted": "the builder first renders the r 14.7 cap plant; if its offset is within 2 px of the photo, R4 is declared NON-DISCRIMINATING for the cornea radius (check_eyes should-fix 7) and only the tear-film gloss clause counts"},
+   {"id": "R5 corneal caustic", "probe": "bright iris pixels (L* >= 70) at rho >= 0.6 on the side opposite the highlight", "expected": "present on both eyes; area >= 50 % of the photo's (R 39, L 108 px)", "planted": "the shadow-ray-transparent fallback (no caustic) must FAIL"},
+   {"id": "R6 look (A17)", "probe": "Cycles close-ups through the photo camera, a three-quarter and a profile: the iris sits visibly BEHIND a clear dome, colour blue, pupil black and pointed, wet highlight", "expected": "the person's review"}
+  ],
+  "phase2_fixes": [
+   {"id": "F1 outer-surface eye ring", "probe": "skin_smooth_checks eye profile measured on the OUTER layer only: drop skin vertices with globe distance h < 1.5 mm whose normal faces the globe (the lid's inner face / socket lining); bins by distance to the v3 margin polygon (spec_eyes lid_margin.outline_head_mm, not coat_field's Phase 1 mask)",
+    "expected": "max step between 1 mm bins <= 0.5 mm, and the outer inset at 1-10 mm within 0.3 mm of skin v2's (v2 outer: 0.65 / 0.74 / 0.75 / 0.77 / 0.85 mm at 1-2 ... 5-6 mm, both eyes)",
+    "planted": {"cat_p2_skin": "must FAIL: outer inset L 1.05 / 1.89 / 2.10 / 1.38 / 1.77, R 1.14 / 1.79 / 2.10 / 1.62 / 1.82 mm (checked, eye_step_layers_p2.json)", "lining_insensitivity": "adding or removing the lining vertices must not change the reading (the Phase 2 all-layer reading jumped 3.8-4.0 mm from them)", "moat": "v2 + a 1.5 mm moat 2-4 mm outside the margin must FAIL"}},
+   {"id": "F2 rim smoothness", "probe": "crease (innermost skin point with |h| < 0.1 mm) at 360 stations; residual after a periodic low-pass keeping harmonics <= 12", "expected_mm": "rms <= 0.03, max <= 0.10", "planted": "a build at the 0.5 mm grid and cat_p2_skin must FAIL; a 0.2 mm sawtooth of 1 mm period on a good build must FAIL", "label": "marks estimate until the plants are run"},
+   {"id": "F3 eyelid_wrap contract", "probe": "inventory_check.eyelid_probe v3 (contract below) on the same mesh with globe_faces = (a) the whole globe, (b) front faces, (c) whole globe reversed", "expected": "(a) = (b) = (c) exactly", "planted": "union of the globe into the skin and a fused lid must FAIL (prove_inventory_check)"},
+   {"id": "F4 lid overhang (B2)", "probe": "occlusion of globe points by non-globe faces along rays from OUTSIDE along -n and along the photo view: hidden width per station", "expected_mm": {"middle": [0.3, 0.5], "medial_corner": 1.0, "lateral_third": [0.5, 0.7]}, "tol_mm": 0.2, "planted": "vertical lid (o = 0) reads 0; a 20 deg lean reads > 0.3", "why": "eyelid_wrap reads 2.19 mm on cat_p2 because its 'overhang' saturates at its 2 mm attach radius: it proves CONTACT (the lid lies on the globe), not the lean"},
+   {"id": "F5 socket lining furless", "probe": "skin vertices with h < 1.0 mm and normal facing the globe: coat depth and follicle count", "expected": "depth 0.0 +-0.05, follicles 0", "planted": "cat_p2_skin (3,754 L / 3,744 R lining vertices at depth 0.75, PHASE2_REMEASURE) must FAIL"},
+   {"id": "F6 resolution contract (A20)", "probe": "the integration report states the grid inside the eye REGION", "expected": "<= 0.15 mm everywhere in REGION; 0.10 mm in the lid band (|M| < 2.5 mm, h < 3 mm) if memory allows (projected: ~36 M voxels per eye at 0.10 mm, processed in 200 k-point chunks)"},
+   {"id": "F7 Phase 2 eye probes kept", "probe": "feat_eyes globe_closed, skin_clear, inner_face, rotate, crease, lid_height, third_eyelid on the v3 build", "expected": "as spec_eyes / feat_eyes (lid_height was OPEN in Phase 2: median 2.23 vs 1.9 +-0.4, 69 % of stations)"}
+  ]
+ },
+
+ "phase2_eye_fixes": {
+  "goggle_step_and_socket_depth": {
+   "symptom": "C3b eye step 3.83 / 3.94 mm (mark 0.5; v2 0.54 / 0.57); periocular inset 5.2-5.55 mm; the person: 'the eye sockets are crazy'",
+   "finding_1_measure": {"what": "The C3b eye profile pools TWO layers. The Phase 2 lid is a real fold, so in the bins 0-4 mm outside the mask margin 715-1,294 of every 1,300-1,700 skin vertices are the lid's INNER face / socket lining, 4.9-7.5 mm inside Tripo. Their median dominates the reading. Outer layer alone: step 0.84 (L) / 0.73 (R) mm. All layers, re-measured: 3.76 / 4.02 (reported 3.83 / 3.94).", "evidence": "cases/cat1/lab/eyes_v3/eye_step_layers.py -> eye_step_layers_p2.json, eye_step_layers_v2.json", "label": "checked"},
+   "finding_2_real_moat": {"what": "The OUTER surface still sinks. Its inset at 2-3 / 3-4 mm outside the margin is 1.89 / 2.10 (L) and 1.79 / 2.10 (R) mm, against v2's 0.74 / 0.75: 1.15-1.35 mm lower (p90 3.0-3.5 mm). At 4-6 mm it is 0.6-1.0 mm lower, and at 6 mm and beyond it is unchanged. That is a moat round each eye, which is the goggle look.", "label": "checked"},
+   "root_cause": {"what": "feat_eyes' TUNNEL, S1 = max(F, -tunnel) with tunnel = max(M - 1.0, -h - 0.5, h - 6.0), measures the margin distance M along the RADIAL projection from the globe centre. That is right for the lid, which stands on the globe, but wrong for a 6 mm-tall cut. The v2 periocular skin 2-5 mm outside the margin stands 3.0-5.3 mm above the globe, and its radial projection lands INSIDE the margin (median M -0.85 to -0.97 mm). So the tunnel deletes 92-94 % of that skin at 2-3 mm, 76-77 % at 3-4 mm, 41-49 % at 4-5 mm and 14-19 % at 5-6 mm: a cone that widens with height. The 1.9 mm lids refill only its bottom.", "evidence": "cases/cat1/lab/eyes_v3/tunnel_cone.py -> tunnel_cone_v2.json (feat_eyes' own margin_dist / globe_field on skin v2's vertices)", "label": "mechanism checked; 'the cat_p2 moat is this cut' estimated (the emptied bins are exactly the lowered ones; 6 mm and beyond is untouched)"},
+   "fix": [
+    "TUNNEL v3 = max(Ma, -h - 0.5, h - (H + 0.5)). Ma is the PLANAR margin distance: p and the margin polygon both projected along the eye axis n onto the plane normal to n (+ outside). The cut is then a prism seen from the front, never a cone, and it stops 0.5 mm above the lid top (Tripo's lid wall top is 1.6-2.3 mm above our globe, so no old skin over the opening stands higher).",
+    "Keep the radial M for the LID (its wall rises along the globe normal, REVIEW_eyes B1/B2) and for the socket.",
+    "Measure C3b on the outer layer (probe F1)."
+   ]
+  },
+  "lid_rim_jagged": {
+   "symptom": "a jagged lid rim (integration report; the person's review)",
+   "root_cause": "the lid's 0.45 mm edge round and 1.9 mm wall were evaluated on the 0.5 mm integration grid, about one voxel across the round (PHASE2_ASSESSMENT 1b; the builder's 0.25-0.3 mm preview was smooth)",
+   "fix": "resolution contract A20 inside the eye REGION (probe F6); smooth-shaded lid band; rim probe F2. fill_voids must not run on the socket or fornix air: mask it as intended air (NOTES_v3 A20).",
+   "label": "root cause cited from the assessment (not re-measured here)"
+  },
+  "eyelid_wrap_contract": {
+   "symptom": "eyelid_wrap PASSED in the eye builder's run and FAILED in the integrator's run (0 % of sectors, covered 0, visible = every sample)",
+   "root_cause": {"what": "The two runs passed different globe_faces. The builder passed feat_eyes.front_faces (front half); the integrator (cat_p2_checks.inventory) passed every face of the closed globe. The probe orients ALL sample normals with one flip, decided by the sign of mean(N . outward). For a whole closed globe that mean is about 0 (-0.002 / +0.001), so sampling noise decides: here it flipped the normals INWARD, every ray ran into the globe's interior, and nothing was hit within 3 mm. Reversing the winding gives the same FAIL, because the flip cancels the winding.", "evidence": "cases/cat1/lab/eyes_v3/wrap_contract.py -> wrap_contract.json: the same cat_p2 mesh and the same probe give (a) whole globe FAIL 0/73,958 covered; (b) front faces PASS, L 23,952 / 38,096 covered, R 24,451 / 38,127, 100 % of sectors; (c) whole globe reversed FAIL", "label": "checked"},
+   "verdict": "The builder's run is right about the mesh: cat_p2's lids do lie on the globe. The integrator's FAIL was a contract error, not a geometry defect.",
+   "contract_v3": {
+    "inputs": "{'globe_faces': EVERY face of that side's closed globe, any winding; 'centre_mm': Cs; 'axis': n}. The 'outward' key is dropped.",
+    "probe_changes": "(1) Orient EACH sample normal radially: N := N * sign(N . (P - Cs)). This is exact because the globe is star-shaped about Cs. (2) Keep the samples with (P - Cs) . n > 0 (the lids lie only on the front half). (3) Keep the result name 'eyelid_wrap', but report it as lid CONTACT (see F4).",
+    "proof": "probe F3: the three inputs give identical results, and the planted union and fused lid FAIL",
+    "owner": "engine/checks/inventory_check.py (edit at build time) and the integrator's register call. The spec only states the contract."
+   }
+  },
+  "interfaces": [
+   "coat_field's eye_opening / periocular masks must use spec_eyes lid_margin.outline_head_mm (carried from spec_eyes; still unowned in Phase 2): owner skin / coat",
+   "socket lining is furless (probe F5): owner coat_field + hair_coat",
+   "supraorbital whisker roots: feat_eyes.SUPRAORBITAL hand-off stands: owner hair-whiskers"
+  ]
+ },
+
+ "build_order": [
+  "1 skin-field edit: feat_eyes with TUNNEL v3, at the A20 grid -> F1, F2, F5-F7",
+  "2 eye optics objects (geometry_build) -> G1-G7",
+  "3 materials + MNEE test render -> R5 first (if MNEE fails the two-interface stack, report it and use the fallback, R5 FAIL stated)",
+  "4 fit pupil (R3) and iris albedo (R2) on L; validate on R",
+  "5 R1 parallax, R4, R6 close-ups for the person"
+ ],
+
+ "open": [
+  "Anterior chamber convention (A-mode length from the anterior or the posterior cornea): 4.66 vs 5.24 mm pupil plane. The builder states which; R1's expected value follows the built geometry.",
+  "Lens radii, equator and index; iris thickness, relief and fibre count; sclera colour; meniscus; the 0.8 mm limbal fade: estimates (flagged). The lens and the fundus do not change the look much (the pupil reads black).",
+  "Corneal and aqueous indices are human schematic-eye values. The cat's own schematic eye (Bishop, Kozak & Vakkur 1962) was not read.",
+  "The photo colour is appearance under the studio light (R vs L L* differs by 14.6). The albedo is a fit, validated on the hold-out eye; it stays estimated while camera_tripo.json fails its hold-out.",
+  "Rim-smoothness marks (F2) are estimates until their plants are run.",
+  "The cat_p2 moat was not traced voxel by voxel to the tunnel term (estimated). F1 on the v3 build settles it."
+ ],
+
+ "sources": {
+  "keratometry_73_cats": "https://pmc.ncbi.nlm.nih.gov/articles/PMC8437713 (corneal radius 8.82 +- 0.49 mm)",
+  "photokeratoscopy": "https://www.ncbi.nlm.nih.gov/pubmed/6734262",
+  "corneal_thickness": "https://www.ncbi.nlm.nih.gov/pubmed/8430933 (Gilger et al. 1993, Am J Vet Res: 578 +- 64 um, 35 cats; central = peripheral) ; https://agris.fao.org/search/en/records/65df4a9663b8185d9cac25bb",
+  "biometry_98_cats": "https://busqueda.bvsalud.org/portal/resource/es/mdl-22280390 (Konrade et al. 2012, Am J Vet Res 73:279: axial length 19.75 +- 1.59, anterior chamber 4.66 +- 0.86, vitreous 7.92 +- 0.86 mm)",
+  "cat_schematic_eye_not_read": "https://pmc.ncbi.nlm.nih.gov/articles/PMC1359720 (Bishop, Kozak & Vakkur 1962)",
+  "pupil_area_range": "Banks, Sprague, Schmoll, Parnell & Love 2015, Science Advances 1:e1500391 ('Why do animal eyes have pupils of different shapes?')",
+  "anatomy_pack": "engine/references/cat-anatomy.md (Carrington 1986 cornea 16.5 x 16.2; third eyelid)",
+  "phase2": "engine/packs/felid/features/spec_eyes.json, check_eyes.json, feat_eyes.py; engine/log/PHASE2_ASSESSMENT.md (1b); engine/checks/inventory_check.py, skin_smooth_checks.py; tripo_rebuild/cat_p2_checks.py"
+ },
+ "evidence_files": "cases/cat1/lab/eyes_v3/: eye_photo2.py + eye_photo2.json, eyes_crop_x8.png, eye_masks.png (photo); eye_step_layers.py + eye_step_layers_p2.json / _v2.json (goggle measure); tunnel_cone.py + tunnel_cone_v2.json (root cause); wrap_contract.py + wrap_contract.json (eyelid_wrap). All read-only, regenerable, run from tripo_rebuild, < 300 MB peak."
+}

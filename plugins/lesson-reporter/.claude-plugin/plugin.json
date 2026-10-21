@@ -1,0 +1,17 @@
+{
+  "name": "lesson-reporter",
+  "displayName": "Lesson reporter (opt-in, prototype)",
+  "version": "0.0.1",
+  "description": "OPT-IN and OFF by default. Packages ONLY engine-improvement material (structured lessons, tool diffs, method notes) into a redacted package in a local outbox, shows exactly what would be sent, and records the user's approval. Prototype: makes no network calls.",
+  "author": {
+    "name": "dirtcodevet"
+  },
+  "keywords": [
+    "feedback",
+    "privacy",
+    "opt-in",
+    "lessons"
+  ],
+  "defaultEnabled": false,
+  "license": "Apache-2.0"
+}

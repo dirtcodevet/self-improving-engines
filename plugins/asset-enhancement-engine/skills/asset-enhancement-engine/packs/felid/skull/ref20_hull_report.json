@@ -1,0 +1,50 @@
+{
+ "box_mm": [
+  63.15,
+  89.4,
+  50.26
+ ],
+ "scale_mm_per_px": {
+  "lateral": 0.07298,
+  "dorsal": 0.07431,
+  "front": 0.07754
+ },
+ "implied_scales": {
+  "front": [
+   [
+    "dorsal",
+    "x",
+    0.08055
+   ],
+   [
+    "lateral",
+    "z",
+    0.07453
+   ]
+  ]
+ },
+ "agreement": {
+  "front": 0.0776
+ },
+ "extents_mm": {
+  "x": [
+   64.36,
+   61.95
+  ],
+  "y": [
+   89.4,
+   89.4
+  ],
+  "z": [
+   49.26,
+   51.25
+  ]
+ },
+ "level_rot_deg": {
+  "lateral": null,
+  "dorsal": 0.39579790193840836,
+  "front": null
+ },
+ "verts": 102242,
+ "faces": 204484
+}

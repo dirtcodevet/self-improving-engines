@@ -1,0 +1,257 @@
+{
+ "what": "CREATURE LANGUAGE PACK (build L1, 2026-10-21): the words for the parts of an animal or a fantasy creature (a dragon: claws, horns, teeth, eyes, wings, tail, legs) and how they are recognised from the measured descriptors of the parts engine/tools/language.py segments. Data only; over engine/packs/generic/language.json. The rules are tried in order; a rule names only parts not named yet, so the specific words come first and the generic ones (engine/packs/generic) last.",
+ "vocabulary": {
+  "body": "the core mass (trunk) the other parts grow from",
+  "head": "the protrusion at the front that carries the most points (horns, teeth, jaws, whiskers)",
+  "leg": "a limb that carries claws (fore or hind by where it grows from)",
+  "claw": "a short pointed tip at the end of a limb",
+  "horn": "a pointed protrusion of the head, or high on the front of the body",
+  "tooth": "a small pointed tip at the front of the head, low (in the mouth)",
+  "tongue": "the front-most protrusion, low and forward",
+  "tail": "the longest slender protrusion behind the body",
+  "spike": "a pointed protrusion along the back or the tail (dorsal spines, the points of a heraldic wing)",
+  "wing": "a thin wide plate high on the body",
+  "eye": "a small closed separate shell high at the front",
+  "sources": [
+   {
+    "what": "the words are plain English anatomy and heraldry (claw, horn, tail, wing, spike, tongue)",
+    "status": "vocabulary, not measurements"
+   }
+  ]
+ },
+ "segmentation": {
+  "methods": [
+   "components",
+   "branches"
+  ],
+  "why": "a creature is a body with protrusions; eyes and teeth are often separate shells in a modelled creature",
+  "branches": {
+   "tip_persistence_3d": 0.08,
+   "min_part_area_3d": 0.0002,
+   "why": "a 3-D creature carries small points (claws, teeth, spines) a few mm long on a body some cm thick: tips that outlive their merge by 0.08 core radii, parts down to 0.02 % of the surface (cases/dragon3d, build L1); a drawing keeps the generic values (0.08 cut the heraldic dragon's tail and hind leg into notches, cases/dragon2d)"
+  }
+ },
+ "frame": "3-D: up = +z, front = -y (the job's up / front turn the model so); 2-D: up = +y, front = the way the creature faces (the job's front, +x or -x)",
+ "rules": [
+  {
+   "kind": "eye",
+   "when": {
+    "part_kind": [
+     "shell"
+    ],
+    "elong_max": 1.6,
+    "area_share_max": 0.01,
+    "up_min": 0.0,
+    "front_min": 0.2
+   },
+   "name": "eye{_side}{_n}"
+  },
+  {
+   "kind": "claw",
+   "when": {
+    "part_kind": [
+     "protrusion"
+    ],
+    "is_leaf": true,
+    "depth_min": 2,
+    "taper_max": 0.75,
+    "length_rel_max": 0.12
+   },
+   "name": "{parent}_claw{_n}"
+  },
+  {
+   "kind": "leg",
+   "when": {
+    "part_kind": [
+     "protrusion"
+    ],
+    "children_kind_min": {
+     "claw": 2
+    }
+   },
+   "name": "{forehind}leg{_side}{_n}"
+  },
+  {
+   "kind": "head",
+   "when": {
+    "part_kind": [
+     "protrusion"
+    ],
+    "depth_max": 1,
+    "front_min": 0.2,
+    "leaves_under_min": 2,
+    "up_min": 0.2,
+    "ground": false
+   },
+   "pick": {
+    "by": "leaves_under",
+    "order": "max",
+    "count": 1
+   },
+   "name": "head"
+  },
+  {
+   "kind": "horn",
+   "when": {
+    "part_kind": [
+     "protrusion"
+    ],
+    "is_leaf": true,
+    "parent_kind": [
+     "head"
+    ],
+    "dir_up_min": 0.2
+   },
+   "name": "horn{_side}{_n}"
+  },
+  {
+   "kind": "tooth",
+   "when": {
+    "part_kind": [
+     "protrusion",
+     "shell"
+    ],
+    "is_leaf": true,
+    "parent_kind": [
+     "head"
+    ],
+    "length_rel_max": 0.05
+   },
+   "name": "tooth{_side}{_n}"
+  },
+  {
+   "kind": "tail",
+   "when": {
+    "part_kind": [
+     "protrusion"
+    ],
+    "depth_max": 1,
+    "front_max": -0.3,
+    "up_max": 0.5
+   },
+   "pick": {
+    "by": "geo_length_cm",
+    "order": "max",
+    "count": 1
+   },
+   "name": "tail"
+  },
+  {
+   "kind": "tail_spike",
+   "when": {
+    "part_kind": [
+     "protrusion"
+    ],
+    "parent_kind": [
+     "tail"
+    ]
+   },
+   "name": "tail_spike{_n}"
+  },
+  {
+   "kind": "tongue",
+   "when": {
+    "part_kind": [
+     "protrusion"
+    ],
+    "is_leaf": true,
+    "front_min": 0.6,
+    "up_max": 0.6,
+    "dir_front_min": 0.5,
+    "up_min": 0.0
+   },
+   "name": "tongue{_n}"
+  },
+  {
+   "kind": "horn",
+   "when": {
+    "part_kind": [
+     "protrusion"
+    ],
+    "is_leaf": true,
+    "front_min": 0.2,
+    "up_min": 0.3,
+    "dir_up_min": 0.3,
+    "taper_max": 0.6
+   },
+   "name": "horn{_side}{_n}"
+  },
+  {
+   "kind": "wing",
+   "when": {
+    "part_kind": [
+     "protrusion",
+     "shell"
+    ],
+    "class": [
+     "sheet"
+    ],
+    "area_share_min": 0.03,
+    "up_min": 0.0
+   },
+   "name": "wing{_side}{_n}"
+  },
+  {
+   "kind": "spike",
+   "when": {
+    "part_kind": [
+     "protrusion"
+    ],
+    "is_leaf": true,
+    "up_min": 0.2,
+    "taper_max": 0.7
+   },
+   "name": "spike{_side}{_n}"
+  },
+  {
+   "kind": "foot",
+   "when": {
+    "part_kind": [
+     "protrusion"
+    ],
+    "ground": true
+   },
+   "name": "foot{_side}{_n}"
+  },
+  {
+   "kind": "limb",
+   "when": {
+    "part_kind": [
+     "protrusion"
+    ],
+    "depth_max": 1,
+    "slender_min": 1.5
+   },
+   "name": "limb{_side}{_n}"
+  }
+ ],
+ "findings": {
+  "_": "measured findings (build L1, 2026-10-21): what was done, what resulted, where; evidence, not rules",
+  "items": [
+   {
+    "what": "Planted creature: every point found and named",
+    "result": "Smooth union of an ellipsoid body, 4 legs x 3 claws, a head with 2 horns and a tapering tail (marching cubes 1.5 mm): claws 12 of 12 at IoU 0.82-0.92 named claw (foreleg_L_claw_2 ...), horns 0.92-0.93, tail 0.88, legs 0.77-0.84 named foreleg / hindleg L / R. A drawn 2-D creature: 4 legs and 8 claws found and named.",
+    "where": "engine/tools/language.py prove",
+    "status": "checked"
+   },
+   {
+    "what": "Heraldic dragon (2-D)",
+    "result": "31 parts, 29 named: 4 legs with 16 claws, horns, spikes (the wing's points), tongue, tail (its arrow tip); the wing and head stay in the body (59 % of the area: no flare separates them in a silhouette). A re-rendering at 1280 px moved no address over 0.032 mm (p99); a horn erased: reported gone, the rest p99 <= 0.081 mm.",
+    "where": "cases/dragon2d",
+    "status": "checked (object.png read by eye; change tests)"
+   },
+   {
+    "what": "Stanford dragon (3-D scan)",
+    "result": "17 parts, 16 named (horns, spikes, feet, tongue, tail fin, one claw); the body holds 88.5 % of the surface: no flare separates the head, neck, legs or the coiled tail from it, and the body's tube chart addresses 19.6 % of its vertices (the rest xyz). Between the scan's 100k- and 437k-vertex reconstructions (surfaces 0.09 mm apart at p50, 0.28 mm p99) the median part moved 0.08 mm, but 542 of 4,255 addresses moved over 1 mm (worst part p99 9.5 mm, on the feet) and 337 missed.",
+    "where": "cases/dragon3d, cases/dragon3d/proof",
+    "status": "checked; big-part segmentation and thin scanned parts OPEN"
+   },
+   {
+    "what": "Taper is measured along the part, not along its chord",
+    "result": "On the heraldic dragon the chord-based taper of curved claws read 0.7-2.2 (none passed as pointed); the ring radius along the walking distance from the tip (tip third / base third) read 0.19-0.47 for claws and about 1 for legs.",
+    "where": "cases/dragon2d (build L1)",
+    "status": "checked"
+   }
+  ]
+ }
+}

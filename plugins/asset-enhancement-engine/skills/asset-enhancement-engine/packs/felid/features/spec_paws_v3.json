@@ -1,0 +1,334 @@
+{
+  "what": "PAWS v3 feature spec (felid pack, case cat1, cat v3 round 2, owner 'paws', 2026-10-18). Every value carries its source and confidence. Values MEASURED on Tripo come from tripo_rebuild/layers/paws.json / paws_pads_<paw>.npz (Phase 1 measurers paws_pads.py / paws_toes.py / paws_extras.py) and are read at import, not copied here. Values below are the ANATOMY (class model) and the design constants that turn the measurements into a skin field.",
+  "labels": "checked = measured or proven here; estimated = inferred, not proven; cited = a published source states it (confidence says how well it was read)",
+  "sources": {
+    "reighard_jennings": {
+      "cite": "Reighard J., Jennings H.S. (1901/1935) Anatomy of the Cat (Integument; Skeleton of the manus and pes), as quoted in engine/references/cat-skeleton-muscle.md [A]",
+      "says": "front foot: pollex (digit I) has 2 phalanges, digits II-V 3; hind foot: 4 digits plus a rudimentary first metatarsal; one large pad per foot, a small pad for each digit, and on the forelimb a small conical (carpal) pad"
+    },
+    "mivart1881": {
+      "cite": "Mivart St G. (1881) The Cat, as quoted in engine/references/cat-skeleton-muscle.md [A]",
+      "says": "7 pads on the fore paw, 5 on the hind paw"
+    },
+    "biokids_tracks": {
+      "cite": "University of Michigan BioKIDS, 'Tracks and sign: mammal tracks set 3' (https://biokids.umich.edu/guides/tracks_and_sign/tracks_key/tracks_mammal/tracks_m_set3), read 2026-10-18",
+      "says": "cat tracks about 2 inches; 4 front toes, 4 back toes; claws don't show (retracted); 'the rear edge of the main pad has three lobes'"
+    },
+    "bobcat_tracks": {
+      "cite": "Winterberry Wildlife, 'Bobcat tracks and trail patterns' (2021), search-result text only (page not read)",
+      "says": "metacarpal / metatarsal pad with a bi-lobed leading edge and a tri-lobed back edge (felid, larger species)"
+    },
+    "hubbard2009": {
+      "cite": "Hubbard C., Naples V., Ross E., Carlon B. (2009) Comparative analysis of paw pad structure in the clouded leopard (Neofelis nebulosa) and domestic cat (Felis catus). Anat Rec 292(8):1213-1228, doi 10.1002/ar.20930, PMID 19530159",
+      "says": "abstract (read via NCBI eutils): pads = stratified cornified epithelium over a fat layer divided by collagen, attached to tendon sheaths. Thickness numbers (metacarpal / metatarsal ~4 mm, 3.4-4.5; digital ~2 mm, 1.25-2.5, N 8 / 24) come from a SEARCH-RESULT SUMMARY of the full text, which also flagged a unit inconsistency: NOT read, used only as an upper bound"
+    },
+    "coat_json": {
+      "cite": "engine/packs/felid/coat.json regions.paw_top",
+      "says": "paw_top coat depth min 0.8 / typical 1.3 / max 2.2 mm, confidence low (estimated)"
+    },
+    "structure_inventory": {
+      "cite": "engine/packs/felid/structure_inventory.json",
+      "says": "front paw: 4 toes + dewclaw, digital pads, main (metacarpal) pad, carpal pad - 'toes separated in clay; pads under them'; hind paw: 4 toes, digital pads, main (metatarsal) pad"
+    },
+    "illustration_L3": {
+      "cite": "engine/references/illustrations/L3_paws_from_five_panel.jpg (AI card, LAYOUT ONLY)",
+      "says": "dewclaw (reduced) high on the medial forepaw; carpal pad on the back of the wrist; claws retractable into sheaths"
+    },
+    "paws_json": {
+      "cite": "tripo_rebuild/layers/paws.json + paws_pads_<paw>.npz (Phase 1, measured on Tripo, reviewed REVIEW_paws.md)",
+      "says": "per paw: 4 toes (direction, tip), 3 clefts (direction, pads' rear edge), 5 pads (core outline at the free level, lowest point, free level), dewclaw section lobe (fore, z 13-19), wrist contour angle (fore, z ~35-36)"
+    }
+  },
+  "anatomy": {
+    "digits_fore": {
+      "value": 5,
+      "note": "digit I = dewclaw, 2 phalanges, set higher on the MEDIAL side; II-V weight-bearing",
+      "src": [
+        "reighard_jennings",
+        "structure_inventory"
+      ],
+      "confidence": "high",
+      "label": "cited"
+    },
+    "digits_hind": {
+      "value": 4,
+      "note": "II-V; MT I rudimentary, no external digit",
+      "src": [
+        "reighard_jennings"
+      ],
+      "confidence": "high",
+      "label": "cited"
+    },
+    "pads_fore": {
+      "value": 7,
+      "note": "4 digital (II-V) + dewclaw digital pad + metacarpal + carpal",
+      "src": [
+        "reighard_jennings",
+        "mivart1881"
+      ],
+      "confidence": "high",
+      "label": "cited"
+    },
+    "pads_hind": {
+      "value": 5,
+      "note": "4 digital + metatarsal",
+      "src": [
+        "reighard_jennings",
+        "mivart1881"
+      ],
+      "confidence": "high",
+      "label": "cited"
+    },
+    "main_pad_caudal_lobes": {
+      "value": 3,
+      "note": "the metacarpal / metatarsal pad's caudal border is trilobed; its leading edge is built as ONE gentle lobe (the bobcat's bi-lobed leading edge is a larger felid and not read)",
+      "src": [
+        "biokids_tracks",
+        "bobcat_tracks"
+      ],
+      "confidence": "medium (trilobed rear edge) / low (leading edge)",
+      "label": "cited"
+    },
+    "carpal_pad": {
+      "value": "small conical pad on the palmar (caudal) carpus",
+      "src": [
+        "reighard_jennings",
+        "illustration_L3"
+      ],
+      "confidence": "high (exists) / low (size)",
+      "label": "cited; position from the measured wrist contour angle (paws.json carpal)"
+    },
+    "claws": {
+      "value": "retractile; at rest each claw lies in a skin sheath at the toe tip, dorsal to the digital pad, and does not show",
+      "src": [
+        "biokids_tracks",
+        "illustration_L3"
+      ],
+      "confidence": "medium (sheath exists) / low (sheath size)",
+      "label": "cited; sheath built as SKIN FORM only, the claw object is OPEN for the rig stage"
+    },
+    "pad_thickness_digital_mm": {
+      "value": [
+        1.25,
+        2.5
+      ],
+      "src": [
+        "hubbard2009"
+      ],
+      "confidence": "low (search summary, unit flag)",
+      "use": "upper bound of a digital pad's protrusion below the sole plane"
+    },
+    "pad_thickness_main_mm": {
+      "value": [
+        3.4,
+        4.5
+      ],
+      "src": [
+        "hubbard2009"
+      ],
+      "confidence": "low",
+      "use": "upper bound of the main pad's protrusion"
+    },
+    "coat_paw_top_mm": {
+      "value": {
+        "min": 0.8,
+        "typical": 1.3,
+        "max": 2.2
+      },
+      "src": [
+        "coat_json"
+      ],
+      "confidence": "low",
+      "label": "estimated (cited range basis in coat.json)"
+    }
+  },
+  "design": {
+    "CLEFT_MIN_MM": {
+      "value": 2.7,
+      "why": "the toe-separation pass mark: coat_paw_top max 2.2 mm + 0.5 mm visibility floor. Each cleft wall carries the coat; for an opening half-angle >= 30 deg a V notch keeps D_skin - d(1/sin a - 1) >= D_skin - d on the fur surface, so a skin cleft >= d_max + 0.5 keeps >= 0.5 mm of notch under the THICKEST declared coat. 0.5 mm = the paws' half-mm reporting precision (paws.json summary_half_mm) and > 2x the largest paw fur scale (0.231 mm)",
+      "label": "derived from cited/estimated values",
+      "confidence": "low-medium"
+    },
+    "CLEFT_FUR_MIN_MM": {
+      "value": 0.5,
+      "why": "after laying the TYPICAL coat (1.3 mm) on the skin section (2-D dilation), the cleft notch left on the fur surface; same 0.5 mm visibility floor",
+      "label": "derived",
+      "confidence": "low-medium"
+    },
+    "CLEFT_TARGET_MM": {
+      "value": 4.5,
+      "why": "the plan notch the two neighbouring digit ELLIPSOIDS leave at their mid height (cleft rule: b = (s^2/4 + D^2) / 2D for centres s apart), BEFORE the web fillet (K_WEB) fills its floor: the built notch is measured by paws_checks (must stay >= CLEFT_MIN 2.7). With the typical coat laid on, a 2-3 mm notch stays on the fur surface, what Tripo / the photo show (front notch p50 0.5-3 mm)",
+      "label": "estimated",
+      "confidence": "low"
+    },
+    "K_WEB_MM": {
+      "value": 2.5,
+      "why": "smooth-union radius between neighbouring digits = the interdigital web fillet: the digits pack side by side with deep narrow creases instead of open V gaps",
+      "label": "estimated"
+    },
+    "K_SOLE_MM": {
+      "value": 1.2,
+      "why": "smooth-max radius rounding the edge where the paw's walls meet the sole plane (no ledge, no rim)",
+      "label": "estimated"
+    },
+    "K_PAD_MM": {
+      "value": 0.35,
+      "why": "smooth-union radius of each pad dome into the sole / toe skin = the SOFT RIM (B4: not a flat plate edge)",
+      "label": "estimated"
+    },
+    "SOLE_ABOVE_FREE_MM": {
+      "value": 0.3,
+      "why": "sole plane = median measured pad free level + 0.3 mm (coat_field's own pad ztop rule, free level + 0.3)",
+      "label": "measured + rule"
+    },
+    "DOME_C_OVER_H": {
+      "value": 2.5,
+      "why": "vertical semi-axis of a pad dome / its protrusion below the sole plane: 1.0 would be a half-ellipsoid with vertical walls at the rim (a plate edge); 2.5 gives a rim contact angle of ~37 deg and a domed face",
+      "label": "estimated"
+    },
+    "PAD_MARGIN_MM": {
+      "value": 0.6,
+      "why": "every pad footprint (positions about its centre included) is scaled until its rim, pushed SIDEWAYS by 0.6 mm + 0.3 mm (the sole rounding's erosion), still lies inside the paw's wall at z_s + 0.3 (wall field without the sole trim): no pad sticks out beyond its toe (a pad wider than its toe IS the coin ledge, P-COIN). A field-value test (F <= -0.9 there) also counted the digit's own bottom curving below the sole and shrank small digits' pads to dots (fore.L toe2 scale 0.21, measured)",
+      "label": "rule (checked at build)"
+    },
+    "FURLESS_RAMP_MM": {
+      "value": 2.0,
+      "why": "the brief: the furless boundary ramps over >= 2 mm and follows the skin: 1 - smoothstep(true 3-D distance to the exposed pad surface, sampled at 0.1 mm / 2 mm)",
+      "label": "brief"
+    },
+    "SHEATH": {
+      "value": {
+        "width_mm": 1.8,
+        "thick_mm": 0.5,
+        "depth_mm": 3.2,
+        "tilt_deg": 35,
+        "open_above_sole_mm": 2.2,
+        "k_mm": 0.08
+      },
+      "why": "claw sheath pocket at each toe tip, dorsal to the digital pad, running back and up along the retracted claw; sizes for a ~1.5-2 mm claw base",
+      "label": "estimated",
+      "confidence": "low"
+    },
+    "DEWCLAW": {
+      "value": {
+        "len_mm": 9.0,
+        "width_mm": 6.0,
+        "thick_mm": 5.0,
+        "protrude_mm": 2.2,
+        "tilt_fwd_deg": 25,
+        "k_mm": 1.5,
+        "pad_mm": [
+          3.2,
+          2.6,
+          0.8
+        ],
+        "sheath": {
+          "width_mm": 1.2,
+          "thick_mm": 0.45,
+          "depth_mm": 2.4
+        },
+        "max_lift_mm": 4.0
+      },
+      "why": "digit I (2 phalanges, reduced) as a small rounded digit on the medial metacarpus at the measured section lobe (fore only), 9 x 6 x 5 mm protruding 2.2 mm from the skin and fused in over 1.5 mm; under fur Tripo shows 0.2-0.65 mm in section and 1-2.3 mm in side views (its fur-level bulge on fore.L is larger: fur, not digit); a dewclaw hangs free: if its distal end would sink into the paw it is lifted along the leg (<= 4 mm, recorded) until the tip clears the paw by 0.5 mm",
+      "label": "position measured; size estimated",
+      "confidence": "low"
+    },
+    "CARPAL": {
+      "value": {
+        "axes_mm": [
+          3.0,
+          2.6
+        ],
+        "protrude_mm": 1.6,
+        "c_mm": 2.4,
+        "k_mm": 0.5
+      },
+      "why": "small conical pad on the palmar carpus at the measured wrist contour angle (fore only)",
+      "label": "position measured; size estimated",
+      "confidence": "low"
+    },
+    "BLEND_MM": {
+      "value": 4.0,
+      "why": "inside each REGION the paw field replaces the input field; it ramps back to the input over the last 4 mm before the REGION faces (only the top face crosses tissue: the leg column)",
+      "label": "rule"
+    },
+    "REGION_MARGIN_MM": {
+      "value": 3.0,
+      "why": "REGION = Tripo's connected leg piece below z_top (fore 46 mm, holding the carpal pad at z ~35; hind 34 mm) + 3 mm",
+      "label": "measured + rule"
+    },
+    "SDF_GRID_MM": {
+      "value": 0.25,
+      "why": "Tripo's exact SDF cached per paw at 0.25 mm, Gaussian sigma 0.6 mm (removes Tripo's etched fur, 0.02-0.06 mm grooves 1.9 mm apart, by ~86 %), read by Keys-cubic interpolation (C1, no trilinear facets)",
+      "label": "rule"
+    },
+    "WALL_EXTRUDE_ABOVE_SOLE_MM": {
+      "value": 2.5,
+      "why": "below z_w = z_s + 2.5 mm the paw's walls continue straight down (Tripo's skin-level section at z_w, smooth-max blended over WALL_EXTRUDE_SOFT) to the sole plane: the sole is a plane, not Tripo's pad relief inset by the coat (which floated ~1 mm above Tripo's own pads and left the pad domes hanging)",
+      "label": "rule"
+    },
+    "WALL_EXTRUDE_SOFT_MM": {
+      "value": 1.5,
+      "why": "softness of max(z, z_w): the wall's z-gradient fades smoothly (C1), no kink at z_w",
+      "label": "rule"
+    },
+    "TOE_FRONT_ROUND": {
+      "value": 1.15,
+      "why": "front semi-axis / lateral semi-axis of a digit in plan: a rounded, slightly long toe front (a cat digit is a little longer than wide)",
+      "label": "estimated"
+    },
+    "TOE_CDN_FACTOR": {
+      "value": 1.4,
+      "why": "a digit's lower vertical semi-axis = 1.4 x its centre height above the sole plane, so its section AT the sole plane keeps 70 % of its width (a flat-enough underside for its digital pad); the sole plane trims it",
+      "label": "estimated"
+    },
+    "TOE_BACK_FACTOR": {
+      "value": 2.2,
+      "why": "a digit's back semi-axis = max(2.2 x its front one, its centre-to-root distance + 4 mm): it keeps its width through the hand-over zone at the root (TOE_BLEND), so no moat opens behind the digits; on the paw's outer flanks the hand-over moves forward to the outer digits' centres (R_root), so these long backs never bulge out of the side walls",
+      "label": "estimated"
+    },
+    "PAD_ASPECT": {
+      "value": 1.2,
+      "why": "a digital pad is an oval a little longer along its digit than across (cat digital pads; anatomical shape, low confidence); its area is Tripo's measured core area at most",
+      "label": "estimated"
+    },
+    "KEEP_OPEN_DEG": {
+      "value": 15.0,
+      "why": "beyond an outer digit's angular half-width the toe zone fades out over 15 deg (the outer digit's flank blends into Tripo's side wall)",
+      "label": "estimated"
+    },
+    "TOE_BLEND_MM": {
+      "value": 5.0,
+      "why": "width of the smoothstep that hands the field from Tripo's palm / leg (inset by the coat) to the parametric digits, starting AT the digit roots (the leg's skin front at z 24 mm + 0.5 mm) and complete 5 mm in front of them, at every height. A convex mix of two near-SDFs has no corner; where Tripo is solid and the digits leave a gap, the surface follows the mix: the cleft fades out over this width into the web and the digit tops slope up into the leg front",
+      "label": "estimated"
+    },
+    "OUTER_B_RANGE": {
+      "value": [
+        0.75,
+        1.4
+      ],
+      "why": "an outer digit's outer lateral semi-axis = Tripo's skin-level flank distance from the digit's centre (measured at the centre height), kept within 0.75-1.4 x its inner semi-axis: the flank meets the paw's side wall tangentially (no dent behind the toe)",
+      "label": "measured + rule"
+    },
+    "K_LOBE_MM": {
+      "value": 1.0,
+      "why": "smooth-union radius fusing the main pad's body and its three caudal lobes into ONE pad whose caudal outline shows three lobes (not three separate pads)",
+      "label": "estimated"
+    },
+    "TOE_PROFILE_P": {
+      "value": 2.0,
+      "why": "a digit is an ellipsoid (exponent 2 in its vertical sections). Measured alternatives, rejected: exponents 3 / 2.5 (blunter fronts) widened the digit bottoms so the pads grew past the digits' rounded bottom edges (P-COIN 0.3-1.4 mm, a handle); the seen-side fit is the whole-digit offset (DIGIT_FIT_MAX)",
+      "label": "estimated; alternatives measured and rejected"
+    },
+    "DIGIT_FIT_MAX_MM": {
+      "value": 1.5,
+      "why": "the seen-side fit: each digit field is offset by the median of Tripo-minus-coat's field over its crown (lateral semi-axes widened by the same amount, the cleft rule given that much more depth in a 2nd pass); the offset is capped at 1.5 mm: a larger mismatch is a construction error to look at, not to absorb. Measured offsets 0.2-1.1 mm (geometry record)",
+      "label": "rule"
+    }
+  },
+  "contract": {
+    "NEED_MM": 0.125,
+    "NEED_MM_SHEATH": 0.1,
+    "why": "A20 cap 0.15 everywhere in REGION; the claw sheath slot is 0.5 mm thick -> 5 voxels at 0.10 mm"
+  }
+}

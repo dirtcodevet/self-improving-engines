@@ -1,0 +1,153 @@
+{
+ "_what": "FELID FRAME TEMPLATE (domain pack data, skill A9): the simplified form-giving frame of a domestic cat (layer L1). Lengths in mm at a size factor of 1.0 (an average adult); a subject has ONE size factor applied to every length, so proportions stay anatomical. Every value carries its source (engine-grounding G2); sources and caveats: engine/references/cat-skeleton-muscle.md.",
+ "units": "mm",
+ "size_factor_range": [
+  0.72,
+  1.15
+ ],
+ "bones": {
+  "scapula": {
+   "len": 71.3,
+   "sd": 2.5,
+   "src": "Rahmati et al. 2024 (n=6)"
+  },
+  "humerus": {
+   "len": 100.6,
+   "sd": 7.0,
+   "src": "Poradowski et al. 2024, Vet Sci 11:522 (n=35-37)"
+  },
+  "radius": {
+   "len": 97.4,
+   "sd": 6.7,
+   "src": "Poradowski 2024"
+  },
+  "ulna": {
+   "len": 114.3,
+   "sd": 7.2,
+   "src": "Poradowski 2024 (olecranon above the elbow)"
+  },
+  "metacarpal_seg": {
+   "len": 35.0,
+   "sd": 3.0,
+   "src": "Day & Jayne 2007 (14.6 % of a 24 cm forelimb, joint centres)"
+  },
+  "fore_phalanges": {
+   "len": 34.0,
+   "sd": 3.0,
+   "src": "Day & Jayne 2007 (14.1 % of 24 cm)"
+  },
+  "os_coxae": {
+   "len": 84.3,
+   "sd": 5.0,
+   "src": "Poradowski 2024"
+  },
+  "femur": {
+   "len": 108.1,
+   "sd": 8.3,
+   "src": "Poradowski 2024"
+  },
+  "tibia": {
+   "len": 113.8,
+   "sd": 6.5,
+   "src": "Poradowski 2024"
+  },
+  "calcaneus": {
+   "len": 28.7,
+   "sd": 1.9,
+   "src": "Poradowski 2024"
+  },
+  "metatarsal_seg": {
+   "len": 73.0,
+   "sd": 5.0,
+   "src": "Day & Jayne 2007 (22.1 % of a 33 cm hindlimb, joint centres)"
+  },
+  "hind_phalanges": {
+   "len": 35.0,
+   "sd": 3.0,
+   "src": "Day & Jayne 2007 (10.5 % of 33 cm)"
+  }
+ },
+ "ratios": {
+  "radius/humerus": {
+   "mean": 0.9665,
+   "sd": 0.0354,
+   "src": "Kartal et al. 2026 brachial index (n=55)"
+  },
+  "tibia/femur": {
+   "mean": 1.0655,
+   "sd": 0.0663,
+   "src": "Kartal 2026 crural index"
+  },
+  "humerus/femur": {
+   "mean": 0.9442,
+   "sd": 0.0546,
+   "src": "Kartal 2026 humerofemoral index"
+  }
+ },
+ "skull": {
+  "length": {
+   "len": 89.4,
+   "sd": 4.5,
+   "src": "Ramos et al. 2021, Vet Sci 8:161 (CT, n=37)"
+  },
+  "zygomatic_width": {
+   "len": 64.1,
+   "sd": 4.0,
+   "src": "Dokkyo collection (8 skulls, 56.1-71.5) [S]"
+  },
+  "orbit_diameter": {
+   "len": 26.5,
+   "sd": 1.7,
+   "src": "Yuwatanakorn et al. 2021, Vet World 14:727 (DSH)"
+  },
+  "eyeball_diameter": {
+   "len": 20.0,
+   "sd": 1.0,
+   "src": "cat-skeleton-muscle.md (eye ~20 mm)"
+  },
+  "eye_outside_orbit": {
+   "frac": 0.095,
+   "src": "Sieslack et al. 2021 (9-10 % of the eyeball outside the bony orbit, DSH)"
+  },
+  "orbit_convergence_deg": {
+   "mean": 65.4,
+   "sd": 5.8,
+   "src": "Heesy 2004 [B, unverified]"
+  }
+ },
+ "body": {
+  "withers_height": {
+   "len": 259.8,
+   "sd": 25.7,
+   "src": "Poradowski 2024 (measured)"
+  },
+  "intergirdle": {
+   "len": 320.0,
+   "sd": 10.0,
+   "src": "Day & Jayne 2007 (shoulder-hip skin markers, walking)"
+  },
+  "head_body_length": {
+   "range": [
+    475,
+    551
+   ],
+   "src": "Paton 2024 (47.5 cm nose-tail base); Fleming 2020 (feral males 551)"
+  }
+ },
+ "spine": {
+  "cervical": 7,
+  "thoracic": 13,
+  "lumbar": 7,
+  "sacral": 3,
+  "caudal_range": [
+   18,
+   23
+  ],
+  "src": "Reighard & Jennings 1901; Mivart 1881 (caudal count disputed: 18-23)"
+ },
+ "stance": {
+  "posture": "digitigrade",
+  "src": "standard; Day & Jayne 2007 joint angles for walking"
+ },
+ "_size_factor_note": "0.85-1.15 covers adults; extended to 0.72 for young cats (head and eyes reach adult size early, long bones keep growing) - cat1 measured at the 0.85 bound (2026-10-17); flagged for the person at milestone M1"
+}

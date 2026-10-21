@@ -1,0 +1,23 @@
+name: Problem report
+description: Something in a skill, tool or page doesn't work as described
+labels: [bug]
+body:
+  - type: dropdown
+    id: plugin
+    attributes:
+      label: Plugin
+      options: [recursive-improvement, engine-grounding, asset enhancement engine (asset-enhancement-engine), lesson-reporter, repo tools or pages]
+    validations:
+      required: true
+  - type: textarea
+    id: what
+    attributes:
+      label: What you ran, what you expected, what happened
+      description: Commands, the prompt you gave, and any output. Please leave out private files and personal data.
+    validations:
+      required: true
+  - type: input
+    id: versions
+    attributes:
+      label: Versions
+      description: Claude Code, plugin version, and for the engine Blender and Python

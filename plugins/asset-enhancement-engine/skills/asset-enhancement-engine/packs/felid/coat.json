@@ -1,0 +1,984 @@
+{
+ "what": "COAT DEPTH (fur surface standoff from the skin, mm) of case cat1 per body region, evidence-ranked (G2/G3): photo first, then cited research, then the Tripo envelope. Read by engine/packs/felid/coat_field.py (depth_mm) and engine/checks/coat_check.py (C1).",
+ "coat_type": {
+  "value": "short, fine, close-lying (Oriental/Siamese type); no ruff, no tail plume; sparse ear furnishings; tail fuller than legs",
+  "evidence": [
+   "photo",
+   "breed_std"
+  ],
+  "status": "checked against the photo by eye (builder), not by a tool"
+ },
+ "definitions": {
+  "coat_depth": "standoff of the fur surface from the skin along the skin normal (NOT hair length: hairs lie at an angle)",
+  "guard_mm": "guard (primary/topcoat) hair length",
+  "down_mm": "down (secondary/undercoat) hair length",
+  "density_per_cm2": "all hairs per cm2 of skin",
+  "status_labels": "checked / estimated / unchecked (A17); every value here is ESTIMATED unless its evidence says measured"
+ },
+ "blend_mm": 10.0,
+ "ramp_mm": 1.5,
+ "regions": {
+  "back": {
+   "part": "core",
+   "rule": "core, z - z_c(y) > 0.45 h(y) (trunk sections)",
+   "depth_mm": {
+    "min": 2.5,
+    "typical": 4.5,
+    "max": 8.0
+   },
+   "depth_cited_range_mm": [
+    1.2,
+    48.51
+   ],
+   "depth_cited_basis": "lower: noelhu2018 fully compressed fur 1.2 mm (the coat can't be thinner than its own hair mass); upper: depth <= guard length max (lehmann2020)",
+   "guard_mm": {
+    "min": 16.8,
+    "typical": 22,
+    "max": 28
+   },
+   "guard_cited_range_mm": [
+    16.76,
+    48.51
+   ],
+   "guard_cited_basis": "lehmann2020 domestic guard hairs min-max (hip); ryder1976 mid-side outer coat 25-30 mm inside it",
+   "down_mm": {
+    "min": 8,
+    "typical": 11,
+    "max": 15
+   },
+   "density_per_cm2": {
+    "min": 6000,
+    "typical": 9300,
+    "max": 14000
+   },
+   "evidence": [
+    "photo_fringe",
+    "photo",
+    "ryder1976",
+    "lehmann2020",
+    "noelhu2018",
+    "breed_std",
+    "model",
+    "engine_v37",
+    "hepper",
+    "noelhu2018",
+    "jjvd2016",
+    "dvm360",
+    "ryder_sp"
+   ],
+   "confidence": "medium (lengths cited for DSH; depth estimated by the lie model; this coat is shorter than DSH per photo/breed_std)",
+   "status": "estimated",
+   "note": "lengths at the short end of the DSH range: the photo shows a very short close-lying coat",
+   "photo_fringe_mm_p50": 1.2
+  },
+  "flanks": {
+   "part": "core",
+   "rule": "core, |z - z_c| <= 0.45 h",
+   "depth_mm": {
+    "min": 2.5,
+    "typical": 4.5,
+    "max": 8.0
+   },
+   "depth_cited_range_mm": [
+    1.2,
+    48.51
+   ],
+   "depth_cited_basis": "lower: noelhu2018 fully compressed fur 1.2 mm (the coat can't be thinner than its own hair mass); upper: depth <= guard length max (lehmann2020)",
+   "guard_mm": {
+    "min": 16.8,
+    "typical": 22,
+    "max": 28
+   },
+   "guard_cited_range_mm": [
+    16.76,
+    48.51
+   ],
+   "guard_cited_basis": "lehmann2020 domestic guard hairs min-max (hip); ryder1976 mid-side outer coat 25-30 mm inside it",
+   "down_mm": {
+    "min": 8,
+    "typical": 11,
+    "max": 15
+   },
+   "density_per_cm2": {
+    "min": 6000,
+    "typical": 9300,
+    "max": 14000
+   },
+   "evidence": [
+    "photo_fringe",
+    "photo",
+    "ryder1976",
+    "lehmann2020",
+    "noelhu2018",
+    "breed_std",
+    "model",
+    "engine_v37",
+    "hepper",
+    "noelhu2018",
+    "jjvd2016",
+    "dvm360",
+    "ryder_sp"
+   ],
+   "confidence": "medium (ryder1976 measured exactly here: mid-side)",
+   "status": "estimated",
+   "note": "",
+   "photo_fringe_mm_p50": 1.2
+  },
+  "chest": {
+   "part": "core",
+   "rule": "core, z - z_c < -0.45 h, y < -85 mm",
+   "depth_mm": {
+    "min": 3.0,
+    "typical": 5.5,
+    "max": 9.0
+   },
+   "depth_cited_range_mm": [
+    1.2,
+    48.51
+   ],
+   "depth_cited_basis": "lower: noelhu2018 fully compressed fur 1.2 mm (the coat can't be thinner than its own hair mass); upper: depth <= guard length max (lehmann2020)",
+   "guard_mm": {
+    "min": 16.8,
+    "typical": 24,
+    "max": 30
+   },
+   "guard_cited_range_mm": [
+    16.76,
+    48.51
+   ],
+   "guard_cited_basis": "lehmann2020 domestic guard hairs min-max (hip); ryder1976 mid-side outer coat 25-30 mm inside it",
+   "down_mm": {
+    "min": 8,
+    "typical": 12,
+    "max": 15
+   },
+   "density_per_cm2": {
+    "min": 9000,
+    "typical": 14000,
+    "max": 20000
+   },
+   "evidence": [
+    "photo_fringe",
+    "photo",
+    "ryder1976",
+    "lehmann2020",
+    "noelhu2018",
+    "breed_std",
+    "model",
+    "engine_v37",
+    "hepper",
+    "noelhu2018",
+    "jjvd2016",
+    "dvm360",
+    "ryder_sp"
+   ],
+   "confidence": "low-medium (photo: chest texture a little fuller than flanks)",
+   "status": "estimated",
+   "note": "photo_fringe ranks the chest above the back (1.6 vs 1.2 mm), consistent",
+   "photo_fringe_mm_p50": 1.6
+  },
+  "belly": {
+   "part": "core",
+   "rule": "core, z - z_c < -0.45 h, y >= -85 mm",
+   "depth_mm": {
+    "min": 3.0,
+    "typical": 5.5,
+    "max": 9.0
+   },
+   "depth_cited_range_mm": [
+    1.2,
+    48.51
+   ],
+   "depth_cited_basis": "lower: noelhu2018 fully compressed fur 1.2 mm (the coat can't be thinner than its own hair mass); upper: depth <= guard length max (lehmann2020)",
+   "guard_mm": {
+    "min": 16.8,
+    "typical": 22,
+    "max": 30
+   },
+   "guard_cited_range_mm": [
+    16.76,
+    48.51
+   ],
+   "guard_cited_basis": "lehmann2020 domestic guard hairs min-max (hip); ryder1976 mid-side outer coat 25-30 mm inside it",
+   "down_mm": {
+    "min": 8,
+    "typical": 12,
+    "max": 15
+   },
+   "density_per_cm2": {
+    "min": 12000,
+    "typical": 18600,
+    "max": 22000
+   },
+   "evidence": [
+    "photo",
+    "ryder1976",
+    "lehmann2020",
+    "noelhu2018",
+    "breed_std",
+    "model",
+    "engine_v37",
+    "hepper",
+    "noelhu2018",
+    "jjvd2016",
+    "dvm360",
+    "ryder_sp"
+   ],
+   "confidence": "low (underside unseen in the photo; denser per hepper)",
+   "status": "estimated",
+   "note": ""
+  },
+  "neck_ruff": {
+   "part": "core",
+   "rule": "core within ~35 mm behind the neck plane",
+   "depth_mm": {
+    "min": 3.0,
+    "typical": 4.5,
+    "max": 7.5
+   },
+   "depth_cited_range_mm": [
+    1.2,
+    48.51
+   ],
+   "depth_cited_basis": "lower: noelhu2018 fully compressed fur 1.2 mm (the coat can't be thinner than its own hair mass); upper: depth <= guard length max (lehmann2020)",
+   "guard_mm": {
+    "min": 16.8,
+    "typical": 22,
+    "max": 28
+   },
+   "guard_cited_range_mm": [
+    16.76,
+    48.51
+   ],
+   "guard_cited_basis": "lehmann2020 domestic guard hairs min-max (hip); ryder1976 mid-side outer coat 25-30 mm inside it",
+   "down_mm": {
+    "min": 8,
+    "typical": 11,
+    "max": 15
+   },
+   "density_per_cm2": {
+    "min": 6000,
+    "typical": 9300,
+    "max": 14000
+   },
+   "evidence": [
+    "photo",
+    "ryder1976",
+    "lehmann2020",
+    "noelhu2018",
+    "breed_std",
+    "model",
+    "engine_v37"
+   ],
+   "confidence": "low-medium (photo: NO ruff)",
+   "status": "estimated",
+   "note": "no ruff: same as the body"
+  },
+  "head_crown": {
+   "part": "head",
+   "rule": "head (neck > 0) not in another head sub-region: skull top/back, throat",
+   "depth_mm": {
+    "min": 1.5,
+    "typical": 2.5,
+    "max": 4.0
+   },
+   "depth_cited_range_mm": [
+    0.3,
+    30.0
+   ],
+   "depth_cited_basis": "ESTIMATE: lower = a fur layer must be thicker than one hair diameter x a few layers (~0.3 mm), upper = depth <= guard length (cited max 30 mm, ryder1976)",
+   "guard_mm": {
+    "min": 6,
+    "typical": 9,
+    "max": 12
+   },
+   "guard_cited_range_mm": [
+    2.0,
+    30.0
+   ],
+   "guard_cited_basis": "ESTIMATE: no cited regional length; upper = ryder1976 adult outer coat max (30 mm), lower = shortest facial hair seen at the photo's 0.27 mm/px (2 mm, estimated)",
+   "down_mm": {
+    "min": 3,
+    "typical": 5,
+    "max": 7
+   },
+   "density_per_cm2": {
+    "min": 6000,
+    "typical": 9000,
+    "max": 14000
+   },
+   "evidence": [
+    "photo",
+    "breed_std",
+    "model",
+    "engine_v37"
+   ],
+   "confidence": "low",
+   "status": "estimated",
+   "note": ""
+  },
+  "forehead": {
+   "part": "head",
+   "rule": "head frame y < 5 mm and z > 12 mm",
+   "depth_mm": {
+    "min": 1.0,
+    "typical": 1.5,
+    "max": 2.5
+   },
+   "depth_cited_range_mm": [
+    0.3,
+    30.0
+   ],
+   "depth_cited_basis": "ESTIMATE: lower = a fur layer must be thicker than one hair diameter x a few layers (~0.3 mm), upper = depth <= guard length (cited max 30 mm, ryder1976)",
+   "guard_mm": {
+    "min": 4,
+    "typical": 6,
+    "max": 9
+   },
+   "guard_cited_range_mm": [
+    2.0,
+    30.0
+   ],
+   "guard_cited_basis": "ESTIMATE: no cited regional length; upper = ryder1976 adult outer coat max (30 mm), lower = shortest facial hair seen at the photo's 0.27 mm/px (2 mm, estimated)",
+   "down_mm": {
+    "min": 2,
+    "typical": 3.5,
+    "max": 5
+   },
+   "density_per_cm2": {
+    "min": 6000,
+    "typical": 9000,
+    "max": 14000
+   },
+   "evidence": [
+    "photo",
+    "breed_std",
+    "model",
+    "engine_v37"
+   ],
+   "confidence": "low",
+   "status": "estimated",
+   "note": "photo: tabby 'M' lines read sharp = very short hair"
+  },
+  "cheeks": {
+   "part": "head",
+   "rule": "head frame |x| > 24, z < 12, y > -50 mm",
+   "depth_mm": {
+    "min": 1.5,
+    "typical": 2.5,
+    "max": 4.0
+   },
+   "depth_cited_range_mm": [
+    0.3,
+    30.0
+   ],
+   "depth_cited_basis": "ESTIMATE: lower = a fur layer must be thicker than one hair diameter x a few layers (~0.3 mm), upper = depth <= guard length (cited max 30 mm, ryder1976)",
+   "guard_mm": {
+    "min": 6,
+    "typical": 9,
+    "max": 13
+   },
+   "guard_cited_range_mm": [
+    2.0,
+    30.0
+   ],
+   "guard_cited_basis": "ESTIMATE: no cited regional length; upper = ryder1976 adult outer coat max (30 mm), lower = shortest facial hair seen at the photo's 0.27 mm/px (2 mm, estimated)",
+   "down_mm": {
+    "min": 3,
+    "typical": 5,
+    "max": 7
+   },
+   "density_per_cm2": {
+    "min": 6000,
+    "typical": 9000,
+    "max": 14000
+   },
+   "evidence": [
+    "photo_fringe",
+    "photo",
+    "breed_std",
+    "model",
+    "engine_v37"
+   ],
+   "confidence": "low",
+   "status": "estimated",
+   "note": "",
+   "photo_fringe_mm_p50": 1.9
+  },
+  "muzzle": {
+   "part": "head",
+   "rule": "head frame y < -48 and z < 0 mm (whisker pads, upper lip)",
+   "depth_mm": {
+    "min": 0.8,
+    "typical": 1.2,
+    "max": 2.0
+   },
+   "depth_cited_range_mm": [
+    0.3,
+    30.0
+   ],
+   "depth_cited_basis": "ESTIMATE: lower = a fur layer must be thicker than one hair diameter x a few layers (~0.3 mm), upper = depth <= guard length (cited max 30 mm, ryder1976)",
+   "guard_mm": {
+    "min": 3,
+    "typical": 5,
+    "max": 7
+   },
+   "guard_cited_range_mm": [
+    2.0,
+    30.0
+   ],
+   "guard_cited_basis": "ESTIMATE: no cited regional length; upper = ryder1976 adult outer coat max (30 mm), lower = shortest facial hair seen at the photo's 0.27 mm/px (2 mm, estimated)",
+   "down_mm": {
+    "min": 1.5,
+    "typical": 2.5,
+    "max": 4
+   },
+   "density_per_cm2": {
+    "min": 6000,
+    "typical": 9000,
+    "max": 14000
+   },
+   "evidence": [
+    "photo",
+    "breed_std",
+    "model",
+    "engine_v37"
+   ],
+   "confidence": "low",
+   "status": "estimated",
+   "note": ""
+  },
+  "chin": {
+   "part": "head",
+   "rule": "head frame y < -30 and z < -24 mm",
+   "depth_mm": {
+    "min": 1.0,
+    "typical": 1.5,
+    "max": 2.5
+   },
+   "depth_cited_range_mm": [
+    0.3,
+    30.0
+   ],
+   "depth_cited_basis": "ESTIMATE: lower = a fur layer must be thicker than one hair diameter x a few layers (~0.3 mm), upper = depth <= guard length (cited max 30 mm, ryder1976)",
+   "guard_mm": {
+    "min": 4,
+    "typical": 6,
+    "max": 9
+   },
+   "guard_cited_range_mm": [
+    2.0,
+    30.0
+   ],
+   "guard_cited_basis": "ESTIMATE: no cited regional length; upper = ryder1976 adult outer coat max (30 mm), lower = shortest facial hair seen at the photo's 0.27 mm/px (2 mm, estimated)",
+   "down_mm": {
+    "min": 2,
+    "typical": 3,
+    "max": 5
+   },
+   "density_per_cm2": {
+    "min": 6000,
+    "typical": 9000,
+    "max": 14000
+   },
+   "evidence": [
+    "photo",
+    "breed_std",
+    "model",
+    "engine_v37"
+   ],
+   "confidence": "low",
+   "status": "estimated",
+   "note": ""
+  },
+  "ear_back": {
+   "part": "ear",
+   "rule": "ear region, SDF gradient faces away from the ear front",
+   "depth_mm": {
+    "min": 0.5,
+    "typical": 0.9,
+    "max": 1.5
+   },
+   "depth_cited_range_mm": [
+    0.3,
+    30.0
+   ],
+   "depth_cited_basis": "ESTIMATE: lower = a fur layer must be thicker than one hair diameter x a few layers (~0.3 mm), upper = depth <= guard length (cited max 30 mm, ryder1976)",
+   "guard_mm": {
+    "min": 3,
+    "typical": 4,
+    "max": 6
+   },
+   "guard_cited_range_mm": [
+    2.0,
+    30.0
+   ],
+   "guard_cited_basis": "ESTIMATE: no cited regional length; upper = ryder1976 adult outer coat max (30 mm), lower = shortest facial hair seen at the photo's 0.27 mm/px (2 mm, estimated)",
+   "down_mm": {
+    "min": 1.5,
+    "typical": 2,
+    "max": 3
+   },
+   "density_per_cm2": {
+    "min": 3000,
+    "typical": 6000,
+    "max": 9000
+   },
+   "evidence": [
+    "photo_fringe",
+    "photo",
+    "breed_std",
+    "model",
+    "engine_v37"
+   ],
+   "confidence": "low",
+   "status": "estimated",
+   "note": "photo: thin-haired ear backs",
+   "photo_fringe_mm_p50": 0.68
+  },
+  "ear_inner": {
+   "part": "ear",
+   "rule": "ear region, gradient faces the ear front, OUTSIDE the pink mask (rim furnishings, conch base)",
+   "depth_mm": {
+    "min": 0.8,
+    "typical": 1.5,
+    "max": 3.0
+   },
+   "depth_cited_range_mm": [
+    0.3,
+    30.0
+   ],
+   "depth_cited_basis": "ESTIMATE: lower = a fur layer must be thicker than one hair diameter x a few layers (~0.3 mm), upper = depth <= guard length (cited max 30 mm, ryder1976)",
+   "guard_mm": {
+    "min": 5,
+    "typical": 9,
+    "max": 14
+   },
+   "guard_cited_range_mm": [
+    2.0,
+    30.0
+   ],
+   "guard_cited_basis": "ESTIMATE: no cited regional length; upper = ryder1976 adult outer coat max (30 mm), lower = shortest facial hair seen at the photo's 0.27 mm/px (2 mm, estimated)",
+   "down_mm": {
+    "min": 1.5,
+    "typical": 2.5,
+    "max": 4
+   },
+   "density_per_cm2": {
+    "min": 500,
+    "typical": 2000,
+    "max": 5000
+   },
+   "evidence": [
+    "photo",
+    "breed_std",
+    "model",
+    "engine_v37"
+   ],
+   "confidence": "low",
+   "status": "estimated",
+   "note": "sparse pale furnishings over pink skin; the pink skin itself is the furless mask inner_ear_pink"
+  },
+  "leg_upper": {
+   "part": "leg",
+   "rule": "leg cylinders, z >= 70 mm",
+   "depth_mm": {
+    "min": 2.0,
+    "typical": 3.0,
+    "max": 5.0
+   },
+   "depth_cited_range_mm": [
+    0.3,
+    30.0
+   ],
+   "depth_cited_basis": "ESTIMATE: lower = a fur layer must be thicker than one hair diameter x a few layers (~0.3 mm), upper = depth <= guard length (cited max 30 mm, ryder1976)",
+   "guard_mm": {
+    "min": 10,
+    "typical": 14,
+    "max": 20
+   },
+   "guard_cited_range_mm": [
+    2.0,
+    30.0
+   ],
+   "guard_cited_basis": "ESTIMATE: no cited regional length; upper = ryder1976 adult outer coat max (30 mm), lower = shortest facial hair seen at the photo's 0.27 mm/px (2 mm, estimated)",
+   "down_mm": {
+    "min": 5,
+    "typical": 7,
+    "max": 10
+   },
+   "density_per_cm2": {
+    "min": 6000,
+    "typical": 9300,
+    "max": 14000
+   },
+   "evidence": [
+    "photo_fringe",
+    "photo",
+    "breed_std",
+    "model",
+    "engine_v37",
+    "tripo_legs"
+   ],
+   "confidence": "low",
+   "status": "estimated",
+   "note": "see leg_lower: photo fringe equal to the back's",
+   "photo_fringe_mm_p50": 1.35
+  },
+  "leg_lower": {
+   "part": "leg",
+   "rule": "leg cylinders, 25 <= z < 70 mm",
+   "depth_mm": {
+    "min": 1.2,
+    "typical": 2.0,
+    "max": 3.2
+   },
+   "depth_cited_range_mm": [
+    0.3,
+    30.0
+   ],
+   "depth_cited_basis": "ESTIMATE: lower = a fur layer must be thicker than one hair diameter x a few layers (~0.3 mm), upper = depth <= guard length (cited max 30 mm, ryder1976)",
+   "guard_mm": {
+    "min": 6,
+    "typical": 9,
+    "max": 13
+   },
+   "guard_cited_range_mm": [
+    2.0,
+    30.0
+   ],
+   "guard_cited_basis": "ESTIMATE: no cited regional length; upper = ryder1976 adult outer coat max (30 mm), lower = shortest facial hair seen at the photo's 0.27 mm/px (2 mm, estimated)",
+   "down_mm": {
+    "min": 3,
+    "typical": 4.5,
+    "max": 6
+   },
+   "density_per_cm2": {
+    "min": 6000,
+    "typical": 9300,
+    "max": 14000
+   },
+   "evidence": [
+    "photo_fringe",
+    "photo",
+    "breed_std",
+    "model",
+    "engine_v37",
+    "tripo_legs"
+   ],
+   "confidence": "low",
+   "status": "estimated",
+   "note": "photo: sleek lower legs; DISAGREEMENT (photo_fringe): the leg silhouette fringe (1.2 mm) equals the back's, so the photo does not show the legs sleeker than the back at the edge; the lower leg depth rests on the engine prior + anatomy, low confidence",
+   "photo_fringe_mm_p50": 1.2
+  },
+  "paw_top": {
+   "part": "leg",
+   "rule": "leg cylinders, z < 25 mm (outside the pad masks)",
+   "depth_mm": {
+    "min": 0.8,
+    "typical": 1.3,
+    "max": 2.2
+   },
+   "depth_cited_range_mm": [
+    0.3,
+    30.0
+   ],
+   "depth_cited_basis": "ESTIMATE: lower = a fur layer must be thicker than one hair diameter x a few layers (~0.3 mm), upper = depth <= guard length (cited max 30 mm, ryder1976)",
+   "guard_mm": {
+    "min": 4,
+    "typical": 6,
+    "max": 9
+   },
+   "guard_cited_range_mm": [
+    2.0,
+    30.0
+   ],
+   "guard_cited_basis": "ESTIMATE: no cited regional length; upper = ryder1976 adult outer coat max (30 mm), lower = shortest facial hair seen at the photo's 0.27 mm/px (2 mm, estimated)",
+   "down_mm": {
+    "min": 2,
+    "typical": 3,
+    "max": 4.5
+   },
+   "density_per_cm2": {
+    "min": 6000,
+    "typical": 9300,
+    "max": 14000
+   },
+   "evidence": [
+    "photo",
+    "breed_std",
+    "model",
+    "engine_v37"
+   ],
+   "confidence": "low",
+   "status": "estimated",
+   "note": ""
+  },
+  "tail": {
+   "part": "tail",
+   "rule": "within the tail radius + 2 mm of its traced centre",
+   "depth_mm": {
+    "min": 5.0,
+    "typical": 7.5,
+    "max": 11.0
+   },
+   "depth_cited_range_mm": [
+    1.2,
+    19.0
+   ],
+   "depth_cited_basis": "lower noelhu2018 compressed fur; upper: tripo_tail radius p50 18.2 mm (the whole envelope radius can't be all fur)",
+   "guard_mm": {
+    "min": 20,
+    "typical": 26,
+    "max": 30
+   },
+   "guard_cited_range_mm": [
+    16.76,
+    48.51
+   ],
+   "guard_cited_basis": "lehmann2020 (body guard range; tail not measured separately)",
+   "down_mm": {
+    "min": 10,
+    "typical": 13,
+    "max": 15
+   },
+   "density_per_cm2": {
+    "min": 6000,
+    "typical": 9300,
+    "max": 14000
+   },
+   "evidence": [
+    "photo_fringe",
+    "photo",
+    "tripo_tail",
+    "ryder1976",
+    "model",
+    "engine_v37"
+   ],
+   "confidence": "low (envelope evidence + photo; tail skin diameter not cited)",
+   "status": "estimated",
+   "note": "photo: visibly fuller than the legs, not plumed; photo_fringe ranks the tail first (1.75 mm), consistent",
+   "photo_fringe_mm_p50": 1.75
+  },
+  "periocular": {
+   "part": "head",
+   "rule": "coat_field.periocular_weight: 1 within 3 mm (PERI_IN) of either eye's lid margin (2-D, in the margin plane), smootherstep back to the underlying head region over the next 10 mm (PERI_W); it lerps over crown / cheeks / forehead",
+   "depth_mm": {
+    "min": 0.5,
+    "typical": 0.75,
+    "max": 1.0
+   },
+   "depth_cited_range_mm": [
+    0.3,
+    2.5
+   ],
+   "depth_cited_basis": "ESTIMATE bounded by sources: cats carry no eyelashes on either lid (vin_ramsey), so the lid margin itself carries only the short facial pelage; lower bound = a fur layer of a few hair diameters (~0.3 mm, as for every region here), upper bound = the forehead's own max (2.5 mm): the periocular coat is the shortest facial hair, shorter than the brow it grades into",
+   "guard_mm": {
+    "min": 2,
+    "typical": 3,
+    "max": 5
+   },
+   "guard_cited_range_mm": [
+    1.0,
+    9.0
+   ],
+   "guard_cited_basis": "ESTIMATE: upper = forehead guard max (9 mm, this table); lower = the shortest facial hair resolvable at the photo's 0.27 mm/px (~1 mm)",
+   "down_mm": {
+    "min": 1,
+    "typical": 1.5,
+    "max": 2.5
+   },
+   "density_per_cm2": {
+    "min": 6000,
+    "typical": 9000,
+    "max": 14000
+   },
+   "evidence": [
+    "vin_ramsey",
+    "photo"
+   ],
+   "confidence": "low",
+   "status": "estimated",
+   "note": "skin v2: added so the periocular taper (V3, no goggle eyes) is a stated region with a source instead of a constant in coat_field.py; 0.75 mm = the depth the V3 fix used. The value is an estimate; the source fixes the qualitative fact (no lashes, short margin hair), not the number."
+  }
+ },
+ "furless": {
+  "nose_leather": {
+   "rule": "inside the Phase 1 leather outline (nose.json leather['0'].outline_head) seen along head y, y < back edge + 2 mm",
+   "evidence": [
+    "photo",
+    "tripo_rebuild/layers/nose.json"
+   ],
+   "ramp_mm": 1.5
+  },
+  "eye_opening": {
+   "rule": "inside the lid margin polygon (eyes.json margin_head_mm) seen along its plane normal, -10..+4 mm",
+   "evidence": [
+    "tripo_rebuild/layers/eyes.json"
+   ],
+   "ramp_mm": 1.5
+  },
+  "paw_pads": {
+   "rule": "inside each pad's catchment footprint (paws_pads_<paw>.npz catch_<pad>) below its free level + 0.3 mm",
+   "evidence": [
+    "tripo_rebuild/layers/paws.json",
+    "paws_pads_*.npz"
+   ],
+   "ramp_mm": 1.5
+  },
+  "inner_ear_pink": {
+   "rule": "ear inner side (SDF gradient . front > 0.3) inside the pink height band (ears.json inner_colour.pink_otsu)",
+   "evidence": [
+    "photo",
+    "tripo_rebuild/layers/ears.json inner_colour"
+   ],
+   "ramp_mm": 1.5,
+   "note": "real inner pinnae carry sparse fine hair; treated as furless skin per the brief (Phase 1 pink)"
+  }
+ },
+ "sources": {
+  "ryder1976": {
+   "cite": "Ryder M.L. (1976) Seasonal changes in the coat of the cat. Research in Veterinary Science 21:280-283",
+   "url": "https://gwern.net/doc/cat/biology/1976-ryder.pdf",
+   "says": "4 domestic cats, coat measured at the mid-side against a ruler: outer coat 25 mm (summer) to 30 mm (winter), undercoat 12 mm to 15 mm; young cats outer ~20 mm, underwool ~10 mm; outer coat = 'leading' (central primary) + 'beard' (lateral primary = awn) hairs, undercoat = secondary-follicle wool"
+  },
+  "lehmann2020": {
+   "cite": "Lehmann L., Stefen C. (2020) Hairs of wild Felis silvestris silvestris and domestic Felis catus - are they distinctive after all? Lynx n.s. (Praha) 51:65-79, doi 10.37520/lynx.2020.006",
+   "url": "https://publikace.nm.cz/file/0c605c653164e63ed84b149c93a38a7e/25894/065_079_Lehmann.pdf",
+   "says": "guard (primary) hairs of 20 tabby/wild-coloured domestic cats, dorsolateral back at the hip, calipers: n 108, mean 36.87 mm, min 16.76, max 48.51, median 37.42, SD 11.20 mm (Table 3)"
+  },
+  "noelhu2018": {
+   "cite": "Noel A.C., Hu D.L. (2018) Cats use hollow papillae to wick saliva into fur. PNAS 115(49):12377-12382, doi 10.1073/pnas.1809544115",
+   "url": "https://hu.gatech.edu/wp-content/uploads/2019/02/Hu18-cats.pdf",
+   "says": "an American shorthair domestic cat's fur compresses from 37 mm to 1.2 mm (uncompressed porosity 0.97); two-layer coat (guard topcoat over down undercoat); down hairs can outnumber guard hairs 24 to 1; tongue papillae 2.3 +- 0.2 mm reach the skin through compressed fur"
+  },
+  "ryder_sp": {
+   "cite": "Ryder 1976 (as above), Discussion",
+   "url": "https://gwern.net/doc/cat/biology/1976-ryder.pdf",
+   "says": "secondary:primary follicle ratio ~3:1 in young cats rising to ~10-15:1 in adults"
+  },
+  "jjvd2016": {
+   "cite": "Japanese Journal of Veterinary Dermatology 22(3), article 22_16-012 (Lykoi vs domestic shorthair follicles)",
+   "url": "https://www.jstage.jst.go.jp/article/jjvd/22/3/22_16-012/_article",
+   "says": "domestic shorthair: mean 23.4 follicles per follicle group, median 18.8 hairs per group (search-result abstract; full text not read)"
+  },
+  "dvm360": {
+   "cite": "dvm360, 'Bald is not beautiful, if you are a cat: managing alopecia in cats (Proceedings)'",
+   "url": "https://dvm360.com/view/bald-not-beautiful-if-you-are-cat-managing-alopecia-cats-proceedings",
+   "says": "cat follicles in compound groups: 2-5 primary hairs surrounded by smaller secondary hairs, up to 20 secondaries per primary (search-result summary; page not read)"
+  },
+  "hepper": {
+   "cite": "Hepper, 'The Human's Guide to Cat Hair' (popular article, no primary reference given)",
+   "url": "https://www.hepper.com/guide-cat-hair/",
+   "says": "~60,000 hairs per square inch on the back (~9,300/cm2) and ~120,000 per square inch underneath (~18,600/cm2) (search-result summary; LOW quality: no primary source)"
+  },
+  "breed_std": {
+   "cite": "Oriental Shorthair standards: CFA ('short, fine textured, glossy or satin-like'), NZCF ('very short, fine, glossy, close-lying'), FIFe ('very short and glossy ... lies very close to the body')",
+   "url": "https://cfa.org/breed/oriental/ ; https://nzcf.com/file_downloads/sop/SH-03-OSH-2020.pdf ; https://fifeweb.org/cats/breeds/oriental-shorthair/",
+   "says": "qualitative: Siamese/Oriental-type coats are very short, fine and close-lying; no numeric lengths"
+  },
+  "photo": {
+   "cite": "cases/cat1/ref.jpg (the case photo, read by the coat builder 2026-10-18)",
+   "url": "cases/cat1/ref.jpg",
+   "says": "SHORT coat, fine and close-lying (Oriental/Siamese type, lilac lynx points): no ruff, no tail plume, no britches; chest/throat fur shows soft texture and is a little fuller than the flanks; legs and paw tops sleek; tail visibly fuller than the legs (soft-edged bands); ears thin-haired on the back with sparse pale furnishings on the inner rim over pink skin; face very short-haired"
+  },
+  "tripo_tail": {
+   "cite": "tripo_rebuild/PHASE1_SUMMARY.md, Tail",
+   "url": "tripo_rebuild/layers/tail.json",
+   "says": "Tripo tail equivalent diameter 27.6-38.3 mm (p50 36.4) - the fur envelope; a cat's tail skin diameter is far smaller (vertebrae + muscle), so the envelope implies a deep tail coat (anatomy value not cited)"
+  },
+  "tripo_legs": {
+   "cite": "tripo_rebuild/atlas_body.json legs r_eq_mm",
+   "url": "tripo_rebuild/atlas_body.json",
+   "says": "Tripo leg equivalent radius 15-16 mm at z 25-49 mm, 19-22 mm higher up (fur envelope)"
+  },
+  "engine_v37": {
+   "cite": "cases/cat1/coat.py (engine v37, Blender-side, tuned by the person's photo reviews)",
+   "url": "cases/cat1/coat.py",
+   "says": "fur LENGTHS used: body 10 mm, chest 16, legs 8.5, lower legs 6.5, tail 17, head 4.5, face front 2.5, ear back 3.5, furnishings 2-12 mm, inner ear density 0.1, pads/nose 0 (lengths, not standoff)"
+  },
+  "photo_fringe": {
+   "cite": "photo_fringe.py (coat builder's scratch tool, %TEMP%/p2_coat; proven on planted blurred steps and ramps, error +0.0..+0.44 px against a 0.5 px pass mark = its sampling step)",
+   "url": "cases/cat1/ref.jpg + ref_mask.png",
+   "says": "10-90 % luminance width across the silhouette, median px (x 0.27 mm/px): ears 2.5 (0.68 mm - the sharpest edge, taken as the optics floor), back top 4.5 (1.2 mm), fore legs 4.5 (1.2), hind legs 5.0 (1.35), chest front 6.0 (1.6), tail 6.5 (1.75), head sides 7.0 (1.9, whiskers cross this edge). Stable within +-0.5 px over contrast 10/15/20 and window 12/15 px. Floor-removed (quadrature): back 1.0, legs 1.0-1.2, chest 1.5, tail 1.6 mm. MEANING: the soft tip zone, an upper bound on fringe + optics and a RANKING (tail > chest > back ~ legs > ears) - not the coat depth itself"
+  },
+  "model": {
+   "cite": "standoff model (this file): depth ~ L_guard x sin(lie angle) for a close-lying coat, lie angle 10-25 deg (ESTIMATED - no cited angle found)",
+   "url": "",
+   "says": "depth can never exceed the guard length; dense down holds the guard hairs off the skin"
+  },
+  "vin_ramsey": {
+   "cite": "Ramsey D.T., 'Conditions of the Eyelids and Ocular Adnexa in Dogs and Cats', Veterinary Information Network (VIN) proceedings document 3844149",
+   "url": "https://www.vin.com/doc/?id=3844149",
+   "says": "dogs carry eyelashes on the upper lid only; cats lack both upper and lower eyelashes (search-result summary of the document, read 2026-10-18; full text not read)"
+  }
+ },
+ "photo_ranking_check": {
+  "photo_fringe_order": [
+   "tail",
+   "chest",
+   "back~legs",
+   "ears"
+  ],
+  "coat_typical_order": [
+   "tail 7.5",
+   "chest 5.5",
+   "back 4.5",
+   "leg_upper 3.0",
+   "leg_lower 2.0",
+   "ear_back 0.9"
+  ],
+  "agrees": "tail > chest > back > ears agrees; legs vs back NOT shown by the photo (see leg_lower note)",
+  "status": "checked (tool proven), meaning estimated"
+ },
+ "gaps": [
+  "no cited measurement of coat depth (standoff) for a domestic cat; depth = lie model on cited lengths, estimated",
+  "no cited regional hair lengths (face, ears, legs, tail) - estimated from the photo and the engine v37 photo-tuned lengths",
+  "density values come from a popular article (hepper) and follicle-group counts; Noel & Hu SI Table S4 has measured domestic cat density but was not read (SI not fetched)",
+  "the hair lie angle (10-25 deg) is not cited"
+ ],
+ "c1_check": {
+  "check": "engine/checks/coat_check.py (parts T table, R ranges, F furless, C continuity, V values)",
+  "true_run_full_density": {
+   "verdict": "PASS",
+   "G_max_mm_per_mm": 3.769,
+   "X": 4.0,
+   "where": "left ear, pink-skin edge at the rim",
+   "points": "1.43 M base vertices + 1.43 M inset into the skin band, 2 random directions each, 31 s"
+  },
+  "X_reason": "steepest designed transition = a furless ramp: 2.5 mm deep neighbour x smoothstep peak 1.5 / 1.5 mm = 2.5 mm/mm, x 1.6 margin; at h = 0.025 mm any step > 0.1 mm is caught (C3 tolerance 0.5 mm, its planted bump 0.3 mm)",
+  "A14_range_over_settings": {
+   "h 0.0125 mm": 3.6702,
+   "h 0.025 mm (default)": 3.7211,
+   "h 0.05 mm": 3.7622,
+   "blend 8 mm": 3.7211,
+   "blend 12 mm": 3.7211,
+   "ramp 1.0 mm": 3.7211,
+   "ramp 2.0 mm": 3.7211
+  },
+  "A14_note": "G_max 3.67-3.76 over h 0.0125/0.025/0.05 mm, blend 8/10/12 mm, ramp 1.0/1.5/2.0 mm (every 4th vertex); always < X = 4 (margin ~6 %, set by the ear pink edge, which follows the SDF-gradient side test, not the mm ramp)",
+  "planted_proofs_every4": {
+   "TRUE (must pass)": "PASS",
+   "region left empty (cheeks removed)": "FAIL",
+   "region with no source (tail evidence [])": "FAIL",
+   "value outside its range (back typical 9 > max 8)": "FAIL",
+   "value outside its cited range (tail max 25 > cited 19)": "FAIL",
+   "step 0.3 mm (C3's bump size) on a 20 mm disc, left flank": "FAIL",
+   "step 0.15 mm (just above the 0.1 mm floor)": "FAIL",
+   "step 1.0 mm on a 20 mm disc": "FAIL",
+   "nose leather mask not applied": "FAIL",
+   "paw pad mask not applied": "FAIL",
+   "furless ramp too steep (0.2 mm instead of 1.5)": "FAIL"
+  },
+  "inner_ear_pink_fraction": {
+   "L": 0.38,
+   "R": 0.394,
+   "phase1_otsu_L_range": [
+    0.294,
+    0.411
+   ],
+   "note": "ear vertices with pink mask >= 0.5; Phase 1 Otsu split +-0.01 gives 29-41 % (L): inside"
+  },
+  "status": "self-proven (planted proofs pass); no independent review yet"
+ }
+}

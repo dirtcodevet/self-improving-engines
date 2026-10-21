@@ -1,0 +1,1532 @@
+{
+ "_what": "FEATURE SPEC: EYES (felid pack, case cat1, Phase 2 Stage 3). Globe, lids wrapping the globe, third eyelid, periocular coat; an SDF construction recipe in the head frame and a geometric probe per inventory part. Written by the 'eyes' builder (spec only, no geometry).",
+ "status": "spec (self-checked against the photo and Phase 1; not independently reviewed)",
+ "criteria": [
+  "C5 positions/sizes (photo where it sees, else Phase 1 within uncertainty, else anatomy)",
+  "C6 eyes are globes with lids on them",
+  "C3/C3b the eye is furless and sits ON the envelope; no goggle eyes",
+  "C4 inventory part 'eyelids wrapping the globe, third eyelid at the inner corner' visible in clay"
+ ],
+ "frame": "partition.head_local(world) * 1000 = head-frame mm: x = the cat's LEFT, y = BACK (the face points -y), z = UP. Tripo world: z-up metres, faces -y.",
+ "evidence_ranking": "photo where it sees > constraints (lid margin ON the globe) > Tripo/Phase 1 numbers with their uncertainty > cited anatomy > estimate (flagged). One argued exception: the CORNEA CURVATURE is cited anatomy over Tripo's cap quadric, because Phase 1 shows Tripo has no globe (a painted shell) and its flat cap (sphere-equivalent r ~14.7 mm) cannot carry a 16.5 mm cornea; G3 'never copy Tripo artefacts as anatomy'. The photo's crisp corneal highlight supports a strongly curved cornea.",
+ "inputs": {
+  "photo": "cases/cat1/ref.jpg (each eye ~40-47 px across; 0.367-0.381 mm/px at the eyes)",
+  "camera": "cases/cat1/camera_frozen.json (lens 108 mm, rms 3.9 px)",
+  "registration_tripo_to_camera_world_m": {
+   "by_iris_centres": [
+    -0.03805,
+    0.15707,
+    0.008
+   ],
+   "by_fissure_midpoints_and_iris_height": [
+    0.00262,
+    0.09223,
+    0.00123
+   ],
+   "note": "translation only (camera rotation used as frozen). Residual < 1 px on the fitted points; the nose leather lands 4 px from the builder's nose point. The two differ by 4 % in scale (0.381 vs 0.367 mm/px) - reported as the photo-scale uncertainty. Tripo's painted irises sit off-centre in their margins (L 1.8 mm medial, R 3.3 mm lateral), so iris-centre registration shifts the margins ~2.5 mm in x; the fissure-midpoint registration is preferred for outlines. Camera view direction in the head frame: (0.023, 0.961, -0.276) - the photo sees the face from 16 deg above the head-frame horizontal, ~14 deg off each eye's axis."
+  },
+  "phase1": "tripo_rebuild/layers/eyes.json (margin_head_mm, canthi, fissure), tripo_rebuild/REVIEW_eyes.md (B1 lid height, B2 overhang, S1 crease angle, S2 slant, S4 wall top)",
+  "anatomy": "engine/references/cat-anatomy.md (Eyes), engine/references/cat-hair-streams.md (Around the eyes)",
+  "coat": "engine/packs/felid/coat.json + coat_field.py (PERIOCULAR_MM, eye_opening mask)"
+ },
+ "photo_findings": {
+  "opening_shape": "near-round, wide-open eyes: inner dark-rim ellipse R 35.0 x 40.2 px, L 35.8 x 42.3 px (rms 0.4-0.5 px) = ~13 x 15.5 mm; Tripo's margin is a squinted almond (11.6-11.7 mm tall). The photo wins on the opening height (lower lid ~0.8 mm lower); Tripo keeps the canthi (an ellipse fit cannot resolve the pointed corners, and the medial wedge is excluded by the tracer).",
+  "dark_margin_band": "a continuous dark (pigmented) rim round the whole opening, 2.3-3.5 px = 0.85-1.3 mm wide face-on (median radial 2.25 px on L; R inflated by a tear stain), then a 0.4-0.8 mm pinkish sparse-haired band, then white fur. Read: hairless pigmented lid margin plus the lid wall seen at a grazing angle.",
+  "third_eyelid": "L medial canthus: a pale wedge 1-2 px wide (0.4-0.7 mm) over ~6 rows (2 mm) between the dark rim and the iris (Lab L 138-165 between rims of L < 80; rows y 318-324). R medial canthus: none visible (dark, tear-stain pigment running down). Matches 'third eyelid pale pink at the inner corner, hidden when alert' (cat-anatomy.md).",
+  "cornea": "a crisp specular highlight on both eyes, upper-lateral of the pupil (R ~(659,301) px, L ~(767,302) px) = a smooth, strongly curved glossy cornea.",
+  "pupil": "vertical slit-ellipse 12 x 19 px (4.5 x 7 mm), ~1.2-1.7 mm medial and ~1.3 mm above the globe apex (registration-dependent): pigment/iris texture for Stage 4, not geometry. If an iris solid is wanted, its plane sits ~4.5-5 mm behind the corneal apex (ESTIMATE from the corneal sag 5.7 mm; flagged)."
+ },
+ "eyes": {
+  "eye.L": {
+   "globe": {
+    "sclera_sphere": {
+     "centre_head_mm": [
+      20.42,
+      -29.79,
+      5.39
+     ],
+     "radius_mm": 9.45,
+     "source": "derived: axial length 19.75 mm (Konrade 2012) with cornea r 8.82 and limbus diameter 16.5 -> RS = 9.45 (see globe_derivation)",
+     "confidence": "medium-low (derived; axial length SD 1.59 mm)"
+    },
+    "cornea_sphere": {
+     "centre_head_mm": [
+      20.73,
+      -31.2,
+      5.73
+     ],
+     "radius_mm": 8.82,
+     "source": "cited: keratometry, 73 cats, mean 8.82 +- 0.49 mm (PMC8437713); photokeratoscopy 9.06/9.20 (PMID 6734262)",
+     "confidence": "medium"
+    },
+    "axis_unit": [
+     0.2081,
+     -0.9514,
+     0.227
+    ],
+    "axis_source": "Tripo: normal of the Phase 1 margin plane (L/R symmetric: 12-13 deg lateral, 13 deg up in the head frame); +-3 deg (estimate)",
+    "apex_head_mm": [
+     22.57,
+     -39.59,
+     7.73
+    ],
+    "apex_source": "globe centre fitted (axis fixed, radii fixed) so the Phase 1 margin crease lies ON the globe: margin-to-globe rms 0.34 mm, p10..p90 -0.31..0.57; canthi 0.86 (medial) / 0.61 (lateral) mm outside the globe",
+    "apex_uncertainty_mm": 0.5,
+    "limbus_diameter_mm": 16.5,
+    "corneal_sag_at_limbus_mm": 5.7,
+    "cornea_bulge_beyond_sclera_sphere_at_apex_mm": 0.85,
+    "cornea_vs_tripo_cap_mm": {
+     "median": -1.23,
+     "p10": -1.45,
+     "p90": -0.41,
+     "meaning": "Tripo's visible cap lies this far INSIDE the anatomical globe on rays through the photo opening: the real cornea bulges ~1.1 mm more at the centre and ~0.4 mm near the margin. Tripo's cap is a flat quadric on a shell with no globe (Phase 1) - not copied."
+    },
+    "eye_frame": {
+     "u_lateral": [
+      0.9594,
+      0.2437,
+      0.1422
+     ],
+     "v_up": [
+      -0.1906,
+      0.1882,
+      0.9635
+     ],
+     "n_axis": [
+      0.2081,
+      -0.9514,
+      0.227
+     ],
+     "angular_coords": "for a point p: q = p - sclera_centre; U = 9.45 * atan2(q.u, q.n); V = 9.45 * atan2(q.v, q.n) (mm on the sclera sphere)"
+    }
+   },
+   "lid_margin": {
+    "what": "the FREE lid margin = where the lid leaves the globe (Phase 1 'margin' crease, sound to one mesh edge, REVIEW_eyes S4) = the inner edge of the photo's dark rim",
+    "outline_head_mm": [
+     [
+      13.48,
+      -36.13,
+      4.45
+     ],
+     [
+      13.88,
+      -36.24,
+      3.16
+     ],
+     [
+      14.55,
+      -36.44,
+      2.13
+     ],
+     [
+      15.15,
+      -36.45,
+      1.24
+     ],
+     [
+      15.87,
+      -36.7,
+      0.82
+     ],
+     [
+      16.63,
+      -36.97,
+      0.47
+     ],
+     [
+      17.4,
+      -37.31,
+      0.31
+     ],
+     [
+      18.14,
+      -37.48,
+      0.1
+     ],
+     [
+      19.12,
+      -37.78,
+      0.08
+     ],
+     [
+      20.18,
+      -37.98,
+      0.11
+     ],
+     [
+      21.34,
+      -37.9,
+      0.02
+     ],
+     [
+      22.57,
+      -37.9,
+      0.3
+     ],
+     [
+      23.8,
+      -37.67,
+      0.58
+     ],
+     [
+      24.91,
+      -37.15,
+      0.73
+     ],
+     [
+      25.86,
+      -36.7,
+      1.12
+     ],
+     [
+      26.6,
+      -36.06,
+      1.29
+     ],
+     [
+      27.34,
+      -35.46,
+      1.73
+     ],
+     [
+      27.87,
+      -34.63,
+      1.85
+     ],
+     [
+      28.35,
+      -34.06,
+      2.33
+     ],
+     [
+      28.69,
+      -33.78,
+      2.93
+     ],
+     [
+      28.92,
+      -33.59,
+      3.5
+     ],
+     [
+      29.22,
+      -33.09,
+      4.29
+     ],
+     [
+      29.4,
+      -32.79,
+      5.49
+     ],
+     [
+      29.49,
+      -32.03,
+      6.79
+     ],
+     [
+      29.27,
+      -32.1,
+      7.77
+     ],
+     [
+      28.98,
+      -32.12,
+      8.71
+     ],
+     [
+      28.6,
+      -32.08,
+      9.61
+     ],
+     [
+      28.06,
+      -32.17,
+      10.54
+     ],
+     [
+      27.51,
+      -32.29,
+      11.26
+     ],
+     [
+      26.88,
+      -32.74,
+      11.86
+     ],
+     [
+      26.21,
+      -33.13,
+      12.36
+     ],
+     [
+      25.47,
+      -33.66,
+      12.75
+     ],
+     [
+      24.59,
+      -34.18,
+      13.08
+     ],
+     [
+      23.63,
+      -34.8,
+      13.24
+     ],
+     [
+      22.52,
+      -35.23,
+      13.37
+     ],
+     [
+      21.33,
+      -35.68,
+      13.3
+     ],
+     [
+      20.11,
+      -36.02,
+      13.09
+     ],
+     [
+      18.93,
+      -36.14,
+      12.81
+     ],
+     [
+      17.87,
+      -36.18,
+      12.43
+     ],
+     [
+      16.9,
+      -36.09,
+      11.99
+     ],
+     [
+      16.21,
+      -36.08,
+      11.52
+     ],
+     [
+      15.43,
+      -36.01,
+      10.89
+     ],
+     [
+      15.0,
+      -36.23,
+      10.16
+     ],
+     [
+      14.42,
+      -36.19,
+      9.35
+     ],
+     [
+      14.19,
+      -36.45,
+      8.47
+     ],
+     [
+      13.93,
+      -36.43,
+      7.79
+     ],
+     [
+      13.67,
+      -36.37,
+      6.85
+     ],
+     [
+      13.45,
+      -36.17,
+      5.79
+     ]
+    ],
+    "outline_UV_mm": [
+     [
+      -10.26,
+      -0.78
+     ],
+     [
+      -10.18,
+      -2.17
+     ],
+     [
+      -9.69,
+      -3.51
+     ],
+     [
+      -9.23,
+      -4.78
+     ],
+     [
+      -8.32,
+      -5.59
+     ],
+     [
+      -7.3,
+      -6.27
+     ],
+     [
+      -6.24,
+      -6.62
+     ],
+     [
+      -5.31,
+      -7.01
+     ],
+     [
+      -4.14,
+      -7.14
+     ],
+     [
+      -3.0,
+      -7.2
+     ],
+     [
+      -1.82,
+      -7.46
+     ],
+     [
+      -0.61,
+      -7.29
+     ],
+     [
+      0.61,
+      -7.17
+     ],
+     [
+      1.81,
+      -7.23
+     ],
+     [
+      2.93,
+      -6.98
+     ],
+     [
+      3.97,
+      -6.98
+     ],
+     [
+      5.13,
+      -6.62
+     ],
+     [
+      6.25,
+      -6.64
+     ],
+     [
+      7.31,
+      -6.09
+     ],
+     [
+      7.99,
+      -5.3
+     ],
+     [
+      8.44,
+      -4.58
+     ],
+     [
+      9.21,
+      -3.59
+     ],
+     [
+      9.61,
+      -2.24
+     ],
+     [
+      10.31,
+      -0.8
+     ],
+     [
+      10.06,
+      0.17
+     ],
+     [
+      9.81,
+      1.13
+     ],
+     [
+      9.54,
+      2.13
+     ],
+     [
+      8.99,
+      3.21
+     ],
+     [
+      8.39,
+      4.13
+     ],
+     [
+      7.39,
+      4.83
+     ],
+     [
+      6.41,
+      5.45
+     ],
+     [
+      5.3,
+      5.86
+     ],
+     [
+      4.14,
+      6.22
+     ],
+     [
+      2.95,
+      6.33
+     ],
+     [
+      1.77,
+      6.54
+     ],
+     [
+      0.54,
+      6.57
+     ],
+     [
+      -0.69,
+      6.53
+     ],
+     [
+      -1.87,
+      6.51
+     ],
+     [
+      -2.98,
+      6.42
+     ],
+     [
+      -4.09,
+      6.28
+     ],
+     [
+      -4.99,
+      5.99
+     ],
+     [
+      -6.08,
+      5.53
+     ],
+     [
+      -6.82,
+      4.72
+     ],
+     [
+      -7.76,
+      3.96
+     ],
+     [
+      -8.23,
+      2.98
+     ],
+     [
+      -8.72,
+      2.33
+     ],
+     [
+      -9.29,
+      1.46
+     ],
+     [
+      -9.9,
+      0.51
+     ]
+    ],
+    "points": 48,
+    "construction": "Phase 1 margin_head_mm mapped to the eye's angular (U,V) coords, ordered by polar angle, resampled to 48 points by arc length with the exact Phase 1 canthi snapped in; the LOWER lid (V<0) scaled by k_low = 1.18, the upper kept (k_up = 1.00); re-seated on the globe surface",
+    "medial_canthus_head_mm": [
+     12.74,
+     -36.64,
+     4.86
+    ],
+    "lateral_canthus_head_mm": [
+     30.01,
+     -32.1,
+     7.39
+    ],
+    "canthi_source": "Phase 1 (Tripo), +-0.35 mm along the fissure, medial z +-0.4 (REVIEW_eyes S2)",
+    "fissure_length_mm": 18.04,
+    "fissure_length_source": "Phase 1, +-0.35 (stands, REVIEW_eyes verdict)",
+    "fissure_height_UV_mm": 14.03,
+    "fissure_height_tripo_UV_mm": 12.9,
+    "fissure_height_frames_note": "fissure_height_UV_mm is in the ANGULAR eye coords (V = 9.45*atan2(q.v, q.n)), which read ~0.6-0.8 mm more than a planar section; the photo comparison in fissure_height_source and in photo.* is in the PLANAR eye frame (apex-centred, u/v axes) - compare like with like",
+    "fissure_height_source": "PHOTO (J2): the inner dark-rim contour back-projected through the frozen camera onto this globe gives a height of 13.1 / 13.6 mm (two registrations) vs Tripo 12.1; the upper lid agrees within 0.6 mm, the LOWER lid sits 0.5-1.3 mm lower in the photo -> k_low 1.18 +- 0.06",
+    "slant_deg": "8-10",
+    "slant_source": "Phase 1 with the REVIEW_eyes S2 spread; CFA: outer corners very slightly higher than inner",
+    "shape": "upper lid = half almond, lower lid fully rounded (CFA via cat-anatomy.md); photo: near-round opening, h/w 0.84-0.87 (inner rim ellipse)"
+   },
+   "photo": {
+    "inner_rim_ellipse_px": {
+     "centre": [
+      762.0,
+      311.91
+     ],
+     "axes_px": [
+      35.78,
+      42.34
+     ],
+     "angle_deg": 71.2,
+     "kept": 61,
+     "n": 72,
+     "rms_px": 0.49
+    },
+    "outer_rim_ellipse_px": {
+     "centre": [
+      762.7,
+      310.46
+     ],
+     "axes_px": [
+      42.03,
+      47.26
+     ],
+     "angle_deg": 55.5,
+     "kept": 61,
+     "n": 72,
+     "rms_px": 0.37
+    },
+    "fissure_on_globe_UV_registration_fissure_midpoints": {
+     "u": [
+      -8.16,
+      7.68
+     ],
+     "v": [
+      -7.0,
+      6.11
+     ]
+    },
+    "fissure_on_globe_UV_registration_iris_centres": {
+     "u": [
+      -9.32,
+      6.0
+     ],
+     "v": [
+      -6.99,
+      6.61
+     ]
+    },
+    "pupil_on_globe_UV_mm": [
+     -1.69,
+     1.3
+    ],
+    "tripo_margin_UV": {
+     "u": [
+      -9.11,
+      8.92
+     ],
+     "v": [
+      -5.86,
+      6.22
+     ]
+    }
+   }
+  },
+  "eye.R": {
+   "globe": {
+    "sclera_sphere": {
+     "centre_head_mm": [
+      -18.62,
+      -29.93,
+      5.38
+     ],
+     "radius_mm": 9.45,
+     "source": "derived: axial length 19.75 mm (Konrade 2012) with cornea r 8.82 and limbus diameter 16.5 -> RS = 9.45 (see globe_derivation)",
+     "confidence": "medium-low (derived; axial length SD 1.59 mm)"
+    },
+    "cornea_sphere": {
+     "centre_head_mm": [
+      -18.95,
+      -31.34,
+      5.7
+     ],
+     "radius_mm": 8.82,
+     "source": "cited: keratometry, 73 cats, mean 8.82 +- 0.49 mm (PMC8437713); photokeratoscopy 9.06/9.20 (PMID 6734262)",
+     "confidence": "medium"
+    },
+    "axis_unit": [
+     -0.222,
+     -0.9498,
+     0.2203
+    ],
+    "axis_source": "Tripo: normal of the Phase 1 margin plane (L/R symmetric: 12-13 deg lateral, 13 deg up in the head frame); +-3 deg (estimate)",
+    "apex_head_mm": [
+     -20.91,
+     -39.72,
+     7.64
+    ],
+    "apex_source": "globe centre fitted (axis fixed, radii fixed) so the Phase 1 margin crease lies ON the globe: margin-to-globe rms 0.31 mm, p10..p90 -0.26..0.55; canthi 0.67 (medial) / 0.55 (lateral) mm outside the globe",
+    "apex_uncertainty_mm": 0.5,
+    "limbus_diameter_mm": 16.5,
+    "corneal_sag_at_limbus_mm": 5.7,
+    "cornea_bulge_beyond_sclera_sphere_at_apex_mm": 0.85,
+    "cornea_vs_tripo_cap_mm": {
+     "median": -1.15,
+     "p10": -1.34,
+     "p90": -0.44,
+     "meaning": "Tripo's visible cap lies this far INSIDE the anatomical globe on rays through the photo opening: the real cornea bulges ~1.1 mm more at the centre and ~0.4 mm near the margin. Tripo's cap is a flat quadric on a shell with no globe (Phase 1) - not copied."
+    },
+    "eye_frame": {
+     "u_lateral": [
+      -0.962,
+      0.2502,
+      0.1094
+     ],
+     "v_up": [
+      0.159,
+      0.1876,
+      0.9693
+     ],
+     "n_axis": [
+      -0.222,
+      -0.9498,
+      0.2203
+     ],
+     "angular_coords": "for a point p: q = p - sclera_centre; U = 9.45 * atan2(q.u, q.n); V = 9.45 * atan2(q.v, q.n) (mm on the sclera sphere)"
+    }
+   },
+   "lid_margin": {
+    "what": "the FREE lid margin = where the lid leaves the globe (Phase 1 'margin' crease, sound to one mesh edge, REVIEW_eyes S4) = the inner edge of the photo's dark rim",
+    "outline_head_mm": [
+     [
+      -11.89,
+      -36.56,
+      4.86
+     ],
+     [
+      -12.22,
+      -36.63,
+      3.53
+     ],
+     [
+      -12.58,
+      -36.51,
+      2.29
+     ],
+     [
+      -13.1,
+      -36.46,
+      1.36
+     ],
+     [
+      -13.82,
+      -36.79,
+      0.99
+     ],
+     [
+      -14.45,
+      -36.95,
+      0.59
+     ],
+     [
+      -15.14,
+      -37.29,
+      0.42
+     ],
+     [
+      -16.01,
+      -37.75,
+      0.4
+     ],
+     [
+      -17.01,
+      -38.06,
+      0.33
+     ],
+     [
+      -18.09,
+      -38.24,
+      0.27
+     ],
+     [
+      -19.18,
+      -38.23,
+      0.2
+     ],
+     [
+      -20.35,
+      -38.15,
+      0.27
+     ],
+     [
+      -21.56,
+      -37.94,
+      0.46
+     ],
+     [
+      -22.69,
+      -37.58,
+      0.72
+     ],
+     [
+      -23.71,
+      -37.01,
+      0.91
+     ],
+     [
+      -24.62,
+      -36.52,
+      1.36
+     ],
+     [
+      -25.39,
+      -35.8,
+      1.64
+     ],
+     [
+      -26.0,
+      -35.3,
+      2.18
+     ],
+     [
+      -26.54,
+      -34.61,
+      2.63
+     ],
+     [
+      -26.94,
+      -34.06,
+      3.13
+     ],
+     [
+      -27.2,
+      -33.65,
+      3.59
+     ],
+     [
+      -27.5,
+      -33.17,
+      4.53
+     ],
+     [
+      -27.68,
+      -32.63,
+      5.37
+     ],
+     [
+      -27.72,
+      -32.22,
+      6.51
+     ],
+     [
+      -27.63,
+      -32.04,
+      7.29
+     ],
+     [
+      -27.15,
+      -32.02,
+      8.88
+     ],
+     [
+      -26.69,
+      -31.94,
+      9.88
+     ],
+     [
+      -26.17,
+      -32.05,
+      10.72
+     ],
+     [
+      -25.61,
+      -32.31,
+      11.4
+     ],
+     [
+      -25.01,
+      -32.77,
+      11.95
+     ],
+     [
+      -24.35,
+      -33.33,
+      12.38
+     ],
+     [
+      -23.61,
+      -33.99,
+      12.71
+     ],
+     [
+      -22.76,
+      -34.46,
+      13.02
+     ],
+     [
+      -21.78,
+      -34.93,
+      13.24
+     ],
+     [
+      -20.69,
+      -35.47,
+      13.3
+     ],
+     [
+      -19.53,
+      -35.93,
+      13.21
+     ],
+     [
+      -18.37,
+      -36.29,
+      12.98
+     ],
+     [
+      -17.26,
+      -36.59,
+      12.58
+     ],
+     [
+      -16.19,
+      -36.67,
+      12.17
+     ],
+     [
+      -15.25,
+      -36.61,
+      11.73
+     ],
+     [
+      -14.36,
+      -36.44,
+      11.24
+     ],
+     [
+      -13.74,
+      -36.54,
+      10.56
+     ],
+     [
+      -13.17,
+      -36.61,
+      9.78
+     ],
+     [
+      -12.77,
+      -36.62,
+      9.12
+     ],
+     [
+      -12.66,
+      -36.94,
+      8.33
+     ],
+     [
+      -12.25,
+      -36.75,
+      7.58
+     ],
+     [
+      -11.93,
+      -36.56,
+      6.81
+     ],
+     [
+      -11.81,
+      -36.51,
+      5.56
+     ]
+    ],
+    "outline_UV_mm": [
+     [
+      -9.92,
+      -0.68
+     ],
+     [
+      -9.89,
+      -2.09
+     ],
+     [
+      -9.87,
+      -3.5
+     ],
+     [
+      -9.51,
+      -4.79
+     ],
+     [
+      -8.54,
+      -5.52
+     ],
+     [
+      -7.7,
+      -6.23
+     ],
+     [
+      -6.71,
+      -6.57
+     ],
+     [
+      -5.53,
+      -6.66
+     ],
+     [
+      -4.35,
+      -6.83
+     ],
+     [
+      -3.18,
+      -6.99
+     ],
+     [
+      -2.07,
+      -7.16
+     ],
+     [
+      -0.92,
+      -7.2
+     ],
+     [
+      0.27,
+      -7.12
+     ],
+     [
+      1.45,
+      -7.0
+     ],
+     [
+      2.62,
+      -6.96
+     ],
+     [
+      3.76,
+      -6.59
+     ],
+     [
+      4.95,
+      -6.4
+     ],
+     [
+      5.97,
+      -5.81
+     ],
+     [
+      7.08,
+      -5.3
+     ],
+     [
+      7.96,
+      -4.68
+     ],
+     [
+      8.59,
+      -4.1
+     ],
+     [
+      9.27,
+      -2.98
+     ],
+     [
+      9.86,
+      -2.01
+     ],
+     [
+      10.18,
+      -0.79
+     ],
+     [
+      10.23,
+      0.02
+     ],
+     [
+      9.84,
+      1.67
+     ],
+     [
+      9.51,
+      2.82
+     ],
+     [
+      8.92,
+      3.85
+     ],
+     [
+      8.13,
+      4.7
+     ],
+     [
+      7.11,
+      5.33
+     ],
+     [
+      6.0,
+      5.76
+     ],
+     [
+      4.83,
+      6.0
+     ],
+     [
+      3.75,
+      6.3
+     ],
+     [
+      2.61,
+      6.53
+     ],
+     [
+      1.42,
+      6.57
+     ],
+     [
+      0.22,
+      6.54
+     ],
+     [
+      -0.96,
+      6.41
+     ],
+     [
+      -2.12,
+      6.15
+     ],
+     [
+      -3.27,
+      5.95
+     ],
+     [
+      -4.34,
+      5.75
+     ],
+     [
+      -5.44,
+      5.51
+     ],
+     [
+      -6.34,
+      4.85
+     ],
+     [
+      -7.22,
+      4.06
+     ],
+     [
+      -7.85,
+      3.42
+     ],
+     [
+      -8.1,
+      2.52
+     ],
+     [
+      -8.79,
+      1.88
+     ],
+     [
+      -9.39,
+      1.21
+     ],
+     [
+      -9.85,
+      0.02
+     ]
+    ],
+    "points": 48,
+    "construction": "Phase 1 margin_head_mm mapped to the eye's angular (U,V) coords, ordered by polar angle, resampled to 48 points by arc length with the exact Phase 1 canthi snapped in; the LOWER lid (V<0) scaled by k_low = 1.18, the upper kept (k_up = 1.00); re-seated on the globe surface",
+    "medial_canthus_head_mm": [
+     -11.32,
+     -36.99,
+     5.56
+    ],
+    "lateral_canthus_head_mm": [
+     -28.16,
+     -32.17,
+     7.39
+    ],
+    "canthi_source": "Phase 1 (Tripo), +-0.35 mm along the fissure, medial z +-0.4 (REVIEW_eyes S2)",
+    "fissure_length_mm": 17.61,
+    "fissure_length_source": "Phase 1, +-0.35 (stands, REVIEW_eyes verdict)",
+    "fissure_height_UV_mm": 13.77,
+    "fissure_height_tripo_UV_mm": 12.67,
+    "fissure_height_frames_note": "fissure_height_UV_mm is in the ANGULAR eye coords (V = 9.45*atan2(q.v, q.n)), which read ~0.6-0.8 mm more than a planar section; the photo comparison in fissure_height_source and in photo.* is in the PLANAR eye frame (apex-centred, u/v axes) - compare like with like",
+    "fissure_height_source": "PHOTO (J2): the inner dark-rim contour back-projected through the frozen camera onto this globe gives a height of 13.1 / 13.5 mm (two registrations) vs Tripo 11.9; the upper lid agrees within 0.6 mm, the LOWER lid sits 0.5-1.3 mm lower in the photo -> k_low 1.18 +- 0.06",
+    "slant_deg": "6-7",
+    "slant_source": "Phase 1 with the REVIEW_eyes S2 spread; CFA: outer corners very slightly higher than inner",
+    "shape": "upper lid = half almond, lower lid fully rounded (CFA via cat-anatomy.md); photo: near-round opening, h/w 0.84-0.87 (inner rim ellipse)"
+   },
+   "photo": {
+    "inner_rim_ellipse_px": {
+     "centre": [
+      649.85,
+      310.07
+     ],
+     "axes_px": [
+      35.0,
+      40.24
+     ],
+     "angle_deg": 115.4,
+     "kept": 65,
+     "n": 72,
+     "rms_px": 0.4
+    },
+    "outer_rim_ellipse_px": {
+     "centre": [
+      651.03,
+      308.61
+     ],
+     "axes_px": [
+      42.63,
+      51.39
+     ],
+     "angle_deg": 124.7,
+     "kept": 58,
+     "n": 72,
+     "rms_px": 0.46
+    },
+    "fissure_on_globe_UV_registration_fissure_midpoints": {
+     "u": [
+      -7.64,
+      7.45
+     ],
+     "v": [
+      -6.26,
+      6.8
+     ]
+    },
+    "fissure_on_globe_UV_registration_iris_centres": {
+     "u": [
+      -5.33,
+      6.26
+     ],
+     "v": [
+      -7.11,
+      6.41
+     ]
+    },
+    "pupil_on_globe_UV_mm": [
+     -1.15,
+     1.31
+    ],
+    "tripo_margin_UV": {
+     "u": [
+      -8.76,
+      8.84
+     ],
+     "v": [
+      -5.75,
+      6.19
+     ]
+    }
+   }
+  }
+ },
+ "globe_derivation": "cornea sphere r = 8.82 mm; limbus radius a = 8.25 mm (corneal diameter 16.5 x 16.2, Carrington 1986 via cat-anatomy.md) -> corneal sag = r - sqrt(r^2 - a^2) = 5.70 mm. Axial length L = 19.75 mm = RS + sqrt(RS^2 - a^2) + 5.70 -> RS = 9.45 mm; limbus plane 4.61 mm in front of the sclera centre, cornea centre 1.48 mm in front of it, apex 10.30 mm in front. Equatorial globe diameter 18.9 mm (derived; cat-anatomy.md's 'globe ~21 mm' is the upper end; acceptable range 18.9-21 - a 21 mm globe with the same cornea only moves the posterior pole ~1 mm deeper).",
+ "lids": {
+  "model": "each lid is a SKIN FOLD resting on the globe: inner face = palpebral conjunctiva lying ON the globe (contact gap 0.05 mm so the globe can rotate and the lids can blink), free margin hairless and pigmented, outer face = face skin running into the periocular skin. Upper and lower lid are one ring joined at the canthi.",
+  "height_above_eye_surface": {
+   "envelope_mm": [
+    2.0,
+    2.4
+   ],
+   "envelope_source": "REVIEW_eyes B1 (exact sections; wall top at the profile turn; +-0.3 mm); NOT eyes.json's 0.5 mm",
+   "skin_on_this_globe_mm": {
+    "value": 1.9,
+    "range": [
+     1.5,
+     2.3
+    ],
+    "derivation": "envelope 2.0-2.4 above Tripo's cap; near the margin our globe is 0.1-0.4 mm in front of the cap (cornea_vs_tripo_cap p90) and the wall top sits at the edge of the furless ramp (coat 0-0.4 mm there) -> 2.2 - 0.25 - 0.1 ~ 1.9 +- 0.4",
+    "confidence": "medium-low (derived)"
+   }
+  },
+  "wall_top_distance_from_margin_mm": {
+   "value": 2.4,
+   "range": [
+    2.3,
+    2.5
+   ],
+   "source": "REVIEW_eyes B1 (arc length s of the turn point)"
+  },
+  "overhang_mm": {
+   "all_round": [
+    0.3,
+    0.5
+   ],
+   "medial_corner": 1.0,
+   "lateral_third": [
+    0.5,
+    0.7
+   ],
+   "source": "REVIEW_eyes B2 (ray occlusion: 76-93 % of cap vertices within 0.5 mm of the margin hidden; 0.5-1.0 mm hits only in the medial and lateral thirds; 1.0-1.5 mm hits almost all medial)",
+   "lean": "the inner face leans over the globe: direction 111-116 deg from the outward tangent; offset -0.33..-0.38 mm at 1 mm height (REVIEW_eyes B2)"
+  },
+  "crease_interior_angle_deg": {
+   "value": 66,
+   "range": [
+    64,
+    69
+   ],
+   "source": "REVIEW_eyes S1 exact sections (0-0.8 mm chord); NOT eyes.json's 75-78"
+  },
+  "margin_thickness_mm": {
+   "value": 1.0,
+   "range": [
+    0.8,
+    1.3
+   ],
+   "source": "PHOTO: the dark pigmented band is 0.85-1.3 mm wide face-on (the margin's intermarginal face plus the wall seen nearly edge-on). No cited cat value found (searched: cat eyelid thickness histology; only human/ox values).",
+   "confidence": "low-medium (photo-derived estimate)"
+  },
+  "margin_edge_radius_mm": {
+   "value": 0.45,
+   "source": "ESTIMATE = about half the margin thickness (rounded free edge)",
+   "confidence": "low"
+  },
+  "fornix_depth_mm": {
+   "value": 4.0,
+   "range": [
+    3,
+    6
+   ],
+   "source": "ESTIMATE: no cat value found; deep enough that the globe can rotate 15 deg and a lid can slide for a blink without exposing the inside",
+   "confidence": "low"
+  },
+  "canthi": {
+   "medial": "rounded notch; the opening tapers to a ~1 mm wide U where the third eyelid shows (photo L)",
+   "lateral": "a V (Phase 1 eyes.py docstring: 'the outer corner is a V'); the 0.45 mm edge radius still applies"
+  },
+  "no_eyelashes": "cats have no cilia; 'the first row of skin hairs are adapted for the same purpose' (Dechra, via cat-hair-streams.md) - a Stage 5 hair item, not geometry"
+ },
+ "third_eyelid": {
+  "what": "nictitating membrane: a conjunctival fold on a T-shaped cartilage whose crossbar stiffens the free edge and curves to hug the cornea; it lies in the ventromedial fornix and can cover the whole cornea (PMC10508502; fupress IJAE 1319)",
+  "presence": "BOTH eyes as structure (anatomy); exposed at the medial canthus only, as a sliver: photo L 0.4-0.7 mm, photo R not visible (0-0.5 mm; hidden or pigmented) -> build an exposed width of 0.5 mm on both eyes (L from the photo; R by symmetry, flagged)",
+  "shape": "a thin curved crescent shell lying on the globe (gap 0.05 mm), leading edge concave toward the cornea (arc radius 6 mm, estimate), running from the medial canthus ~3 mm along the lower margin and ~1.5 mm along the upper margin before disappearing under the lids; the hidden body continues 4 mm under the medial lid into the fornix",
+  "thickness_mm": {
+   "value": 0.6,
+   "range": [
+    0.4,
+    0.8
+   ],
+   "source": "ESTIMATE (no feline value found; searched cat third eyelid size / cartilage)",
+   "confidence": "low"
+  },
+  "leading_edge_radius_mm": 0.3,
+  "colour_note": "pale pink (cat-anatomy.md; photo L pale wedge) - Stage 4 pigment, not geometry"
+ },
+ "periocular_coat": {
+  "lid_margin_band": {
+   "depth_mm": 0.0,
+   "width_from_margin_mm": [
+    0.0,
+    1.0
+   ],
+   "source": "PHOTO: dark hairless band 0.85-1.3 mm; coat.json furless eye_opening ramp 1.5 mm"
+  },
+  "lid_skin_and_periocular": {
+   "depth_mm": 0.75,
+   "range": [
+    0.5,
+    1.0
+   ],
+   "zone": "within 3 mm of the margin, back to the region depth over 10 mm more (coat_field.py PERI_IN 3 mm, PERI_W 10 mm)",
+   "source": "coat_field.py PERIOCULAR_MM = 0.75 (ESTIMATE from the orchestrator brief 'about 0.5-1 mm'); PHOTO: a 0.4-0.8 mm sparse-haired pinkish band, then very short white fur - consistent, but not measurable as a fringe at 0.37 mm/px",
+   "confidence": "low"
+  },
+  "hair_length_mm": {
+   "value": 2.5,
+   "source": "coat.json sources.engine_v37 'face front 2.5' (estimate, photo-tuned)"
+  },
+  "interface_note": "coat_field.py's eye_opening mask still uses the Phase 1 margin polygon. With this spec the lower lid margin sits ~0.8 mm lower, so the furless mask must use lid_margin.outline_head_mm, or the lower lid gets fur on its pigmented margin. Not edited here (the skin agent owns coat_field and the skin)."
+ },
+ "sdf_recipe": {
+  "units": "head-frame mm; sdf < 0 inside. smin(a,b,k) = polynomial smooth min; smax(a,b,k) = -smin(-a,-b,k). Per eye, with the eye frame (n, u, v), sclera centre Cs and cornea centre Cc from eyes[...].globe.",
+  "steps": [
+   "1 GLOBE (its own closed object, NOT unioned with the skin): G(p) = smin(|p-Cs| - 9.45, |p-Cc| - 8.82, k=0.8). The k=0.8 blend makes the limbal sulcus; the corneal radius stays 8.82 within 4 mm of the apex.",
+   "2 EYE COORDS: q = p - Cs; U = 9.45*atan2(q.u, q.n), V = 9.45*atan2(q.v, q.n). M(p) = signed 2-D distance from (U,V) to the polygon lid_margin.outline_UV_mm (+ outside the opening, on the lid side). h(p) = G(p) (height above the globe).",
+   "3 OVERHANG o(phi): phi = polar angle of (U,V) about the opening centre; o = 0.4 mm, raised smoothly to 1.0 mm within 25 deg of the medial canthus and to 0.6 mm within 25 deg of the lateral canthus.",
+   "4 LID SHELL: Sh(p) = max(h - H, 0.05 - h) with H = 1.9 mm (skin value, lids.height_above_eye_surface); keep it to the lid zone: Sh = smax(Sh, M - 6.0, k=1.5) (fades into the face beyond ~6 mm).",
+   "5 OPENING CUT with lean: Lid(p) = max(Sh, -(M + o*clamp(h/1.2, 0, 1) + 0.45)); ROUND: Lid_r = Lid - 0.45 (0.45 mm radius on the free edge; the +0.45 in the cut keeps the crease on the margin polygon). The inner face leans over the globe by o for h >= 1.2 mm.",
+   "6 SKIN EDIT (applied to the Stage 2 skin S; S itself is read-only here): S1 = max(S, -Tunnel) with Tunnel(p) = max(M, -h - 0.5, h - 6.0) (removes the cap/envelope skin covering the opening, from 0.5 mm behind the globe surface to 6 mm in front); S2 = smax(S1, 0.05 - G(p), k=0.3) (the socket: the skin never comes closer than 0.05 mm to the globe).",
+   "7 LIDS INTO THE SKIN: S3 = smin(S2, Lid_r, k=1.0): the outer lid face runs into the periocular skin; k = 1.0 is the soft slope from the wall top into the face (Tripo's profile turns > 60 deg at the wall top, REVIEW_eyes B1).",
+   "8 THIRD EYELID (own object, or smin into S3 with k=0.2): TEL(p) = max(|h - 0.35| - 0.3, Cr(U,V), M - 4.0, -M - 6.0), where Cr(U,V) = 6.0 - |(U,V) - (Pmed + (0.5 + 6.0)*e_med)| clips a crescent (Pmed = the medial canthus in (U,V), e_med = unit vector from Pmed toward the opening centre); round its leading edge by 0.3 mm with the same offset trick as step 5. Exposed width at the canthus = 0.5 mm.",
+   "9 FORNIX: the lid's inner face (the h = 0.05 shell surface) continues under the skin to M = +4.0 (step 4's shell already covers it); nothing more to add for clay."
+  ],
+  "blend_radii_mm": {
+   "limbus": 0.8,
+   "socket": 0.3,
+   "lid_to_skin": 1.0,
+   "lid_zone_fade": 1.5,
+   "margin_edge_round": 0.45,
+   "tel_edge_round": 0.3,
+   "tel_to_skin": 0.2
+  },
+  "do_not": [
+   "copy Tripo's cap quadric as the cornea (shell artefact)",
+   "use eyes.json lid_step 0.5 mm or crease 75-78 deg (REVIEW_eyes B1/S1)",
+   "paint a dark ring in place of the lid margin (E5)",
+   "union the globe into the skin (the globe must rotate; 'lids cut through the globe' is C6's planted failure)"
+  ]
+ },
+ "probes": {
+  "_how": "measured on the BUILT mesh (skin + lids + globe + third eyelid), head frame, exact plane sections (tripo_rebuild exact-section tools), never on vertex rings; each with expected value and tolerance. Phase 1 eyes.py must be re-pointed at our mesh (A16) and fixed per REVIEW_eyes B1/B2 before its numbers count.",
+  "globe": [
+   {
+    "probe": "corneal radius: circle fit to the globe's section through the axis n, central +-4 mm, two perpendicular planes",
+    "expected_mm": 8.82,
+    "tol_mm": 0.5
+   },
+   {
+    "probe": "apex position (furthest globe point along n)",
+    "expected": "eyes.<side>.globe.apex_head_mm",
+    "tol_mm": 0.5
+   },
+   {
+    "probe": "axial length: apex to posterior pole along n",
+    "expected_mm": 19.75,
+    "tol_mm": 0.3,
+    "note": "construction value; cited SD 1.59"
+   },
+   {
+    "probe": "limbus: the crease ring between the cornea and sclera spheres, its diameter",
+    "expected_mm": 16.5,
+    "tol_mm": 0.5
+   },
+   {
+    "probe": "the globe is a separate closed manifold and does not come through the skin outside the opening: count skin vertices with M > 0.5 and G < 0",
+    "expected": 0
+   },
+   {
+    "probe": "corneal highlight: render with the photo light (cases/cat1/light.json) through the frozen camera",
+    "expected": "a specular spot upper-lateral of the pupil on both eyes",
+    "tol": "within 5 px of the photo's (R ~(659,301), L ~(767,302) px)"
+   }
+  ],
+  "lid_margin": [
+   {
+    "probe": "crease = where the built surface leaves the globe (d > 0.1 mm) on sections perpendicular to the margin (plane spanned by the globe normal and the outward tangent), 48 stations",
+    "expected": "eyes.<side>.lid_margin.outline_head_mm",
+    "tol_mm": 0.5
+   },
+   {
+    "probe": "fissure length, canthus to canthus",
+    "expected_mm": {
+     "L": 18.0,
+     "R": 17.6
+    },
+    "tol_mm": 0.5
+   },
+   {
+    "probe": "fissure height in the eye frame (V extent of the crease)",
+    "expected_mm": "eyes.<side>.lid_margin.fissure_height_UV_mm",
+    "tol_mm": 0.5
+   },
+   {
+    "probe": "photo outline: render through the frozen camera (fissure-midpoint registration), trace the inner dark-rim / globe boundary with radial profiles, fit an ellipse",
+    "expected_px": {
+     "R": [
+      35.0,
+      40.2
+     ],
+     "L": [
+      35.8,
+      42.3
+     ]
+    },
+    "tol_px": 1.5
+   }
+  ],
+  "lids": [
+   {
+    "probe": "lid height: wall-top turn point (direction > 60 deg toward outward; also report 45 deg) on the 48 perpendicular sections, height above the globe",
+    "expected_mm": 1.9,
+    "tol_mm": 0.4,
+    "envelope_check": "after fur (Stage 5) the fur surface there stands 2.0-2.4 mm above Tripo's cap (REVIEW_eyes B1)"
+   },
+   {
+    "probe": "overhang: occlusion of globe points by non-globe faces along the globe normal (REVIEW_eyes B2 method), hidden width per station",
+    "expected_mm": {
+     "upper_lower_middle": [
+      0.3,
+      0.5
+     ],
+     "medial_corner": 1.0,
+     "lateral_third": [
+      0.5,
+      0.7
+     ]
+    },
+    "tol_mm": 0.2,
+    "planted": "a vertical lid (o = 0) must read 0 hidden width; a 20 deg lean must read > 0.3 mm"
+   },
+   {
+    "probe": "crease interior angle (0-0.8 mm chord) between the globe tangent and the lid's inner face",
+    "expected_deg": 66,
+    "tol_deg": 5
+   },
+   {
+    "probe": "no gap and no penetration between the lid's inner face and the globe: distance from lid inner-face vertices (M in [0, 4]) to the globe",
+    "expected_mm": [
+     0.0,
+     0.1
+    ]
+   },
+   {
+    "probe": "margin thickness: lid width on each section at h = 1.0 mm",
+    "expected_mm": 1.0,
+    "tol_mm": 0.3
+   },
+   {
+    "probe": "clay render (E5, A17): front, three-quarter and side close-ups, X-ray off: the lid reads as a raised rounded rim casting a contact shadow on the globe all round; no painted ring",
+    "expected": "visible to the person / reviewer"
+   }
+  ],
+  "third_eyelid": [
+   {
+    "probe": "exists as structure: a section through the medial canthus perpendicular to the margin shows a membrane edge between the globe and the medial lid",
+    "expected_mm": "thickness 0.4-0.8"
+   },
+   {
+    "probe": "exposed width along the fissure axis at the medial canthus, seen along n",
+    "expected_mm": 0.5,
+    "tol_mm": 0.3
+   },
+   {
+    "probe": "photo-camera render: pale wedge at the L medial canthus (Lab L > 135 between the dark rim and the iris)",
+    "expected_px": "1-2 px wide, ~6 rows",
+    "tol": "present on L; may be absent on R"
+   }
+  ],
+  "periocular_coat": [
+   {
+    "probe": "coat depth on the lid margin band (0-1 mm outside the crease)",
+    "expected_mm": 0.0,
+    "tol_mm": 0.1
+   },
+   {
+    "probe": "coat depth 1.5-3 mm outside the crease",
+    "expected_mm": 0.75,
+    "tol_mm": 0.25
+   },
+   {
+    "probe": "C3b goggle-eye check: skin-to-envelope distance in the ring 3-13 mm outside the crease rises monotonically from 0.75 to the region depth, no step > 0.3 mm",
+    "expected": "monotone"
+   }
+  ]
+ },
+ "open_and_conflicts": [
+  "PHOTO vs TRIPO on the opening height: the photo's opening is ~1.0-1.5 mm taller (lower lid lower). Taken from the photo (J2) via k_low 1.18 +- 0.06; the upper lid is kept from Tripo (agrees within 0.6 mm).",
+  "Photo scale depends on the Tripo-to-camera registration (translation only): 0.367-0.381 mm/px (4 %). A rotation+scale registration on more landmarks (ears, chin) would tighten it; not done (time cap).",
+  "Cornea curvature from anatomy overrides Tripo's flat cap (argued in evidence_ranking). Consequence: the cornea stands ~1.1 mm in front of Tripo's cap at the centre - the furless eye on the envelope (C3) must be checked against OUR globe, not the Tripo cap, and the skin agent's surface over the opening is removed by recipe step 6.",
+  "Globe axis taken from the Tripo margin plane (symmetric L/R). Cat optic-axis divergence was not researched (Bishop, Kozak & Vakkur 1962 has it; full text not read).",
+  "Lid margin thickness, fornix depth, third-eyelid thickness and crescent radius: no cited feline values found - estimates, flagged low.",
+  "Periocular coat depth 0.75 mm: estimate (no cited source); the photo is consistent but not a measurement.",
+  "coat_field.py's eye_opening mask uses the old (Phase 1) margin; it needs lid_margin.outline_head_mm (interface note)."
+ ],
+ "sources": {
+  "keratometry_73_cats": "https://pmc.ncbi.nlm.nih.gov/articles/PMC8437713 - handheld keratometer, 73 cats: mean corneal radius ~8.82 +- 0.49 mm; kittens < 1 y ~8.04 mm; cats > 2 y ~8.8-9.0 mm",
+  "photokeratoscopy_9_cats": "https://www.ncbi.nlm.nih.gov/pubmed/6734262 - central corneal radius ~9.06 / 9.20 mm (steep / flat meridian), 9 unanaesthetised cats",
+  "axial_length": "https://busqueda.bvsalud.org/portal/resource/es/mdl-22280390 (PMID 22280390, Konrade et al. 2012) - A-mode ultrasound, 98 normal domestic cats: axial globe length 19.75 +- 1.59 mm",
+  "cornea_diameter_globe_orbit": "engine/references/cat-anatomy.md (Carrington 1986: cornea 16.5 x 16.2 mm; globe ~21 mm; orbit 24-28 mm; fissure 20-28 mm; third eyelid pale pink at the inner corner, hidden when alert; upper lid half almond, lower lid round, outer corners slightly higher - CFA)",
+  "third_eyelid_structure": "https://pmc.ncbi.nlm.nih.gov/articles/PMC10508502 and https://oajournals.fupress.net/index.php/ijae/article/download/1319/1317/1247 - T-shaped cartilage between two conjunctival layers, crossbar parallel to and stiffening the free edge, curving to hug the cornea; in the cat crescent-shaped with a straight body, elastic cartilage; large enough to cover the cornea (search-result summaries; full texts not read)",
+  "lids_hair": "engine/references/cat-hair-streams.md - no cilia; 'the first row of skin hairs are adapted' (Dechra Anatomy of the Eye: Upper and Lower Lids); lids haired outside, conjunctiva inside (Reighard & Jennings 1901)",
+  "phase1": "tripo_rebuild/layers/eyes.json; tripo_rebuild/REVIEW_eyes.md (B1, B2, S1, S2, S4); tripo_rebuild/PHASE1_SUMMARY.md",
+  "searched_not_found": "cat eyelid thickness (only human: 0.32 mm near the margin, 1.1 mm below the brow; ox tarsal plate - not used); third-eyelid size in mm; periocular hair length"
+ },
+ "scratch": "%TEMP%/p2prep_eyes/ (proj.py + reg2.py registration, contours.py + ell.py photo rim traces, globe3.py globe fit, write_spec.py; overlay.png and contours.png figures) - regenerable"
+}

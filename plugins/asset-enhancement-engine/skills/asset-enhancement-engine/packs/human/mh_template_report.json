@@ -1,0 +1,4516 @@
+{
+ "tool": "class_template_npz.py",
+ "template": "<project>/engine/packs/human/template",
+ "source": {
+  "repo": "https://github.com/makehumancommunity/makehuman",
+  "tag": "v1.3.0",
+  "commit": "1f508f6083b2f823dab15de924b3bde72e08d77c",
+  "n_files": 711,
+  "bytes": 103736541
+ },
+ "base_mesh": {
+  "file": "3dobjs/base.obj",
+  "n_vertices_total": 19158,
+  "n_faces_total": 18486,
+  "n_uv": 21334,
+  "all_quads": true,
+  "n_groups": 139,
+  "groups_helpers": [
+   "helper-genital",
+   "helper-hair",
+   "helper-l-eye",
+   "helper-l-eyelashes-1",
+   "helper-l-eyelashes-2",
+   "helper-lower-teeth",
+   "helper-r-eye",
+   "helper-r-eyelashes-1",
+   "helper-r-eyelashes-2",
+   "helper-skirt",
+   "helper-tights",
+   "helper-tongue",
+   "helper-upper-teeth"
+  ],
+  "n_joint_landmarks": 125,
+  "body": {
+   "n_vertices": 13380,
+   "n_faces_quads": 13378,
+   "n_edges": 26756,
+   "n_connected_components": 1,
+   "boundary_edges": 0,
+   "nonmanifold_edges": 0,
+   "max_boundary_vertex_degree": 0,
+   "boundary_loops": [],
+   "euler_chi": 2,
+   "euler_chi_if_each_loop_capped": 2,
+   "genus_if_capped": 0.0,
+   "closed": true,
+   "shares_vertices_with_helpers": 0,
+   "unreferenced_vertices_in_file": 0
+  },
+  "bbox_body_min": [
+   -4.9627,
+   -8.1676,
+   -1.0154
+  ],
+  "bbox_body_max": [
+   4.9627,
+   8.4913,
+   3.2147
+  ],
+  "extent_body": [
+   9.9254,
+   16.6589,
+   4.2301
+  ]
+ },
+ "axes_and_pose": {
+  "up_axis": "y",
+  "up_sign": "+",
+  "forward_axis": "z",
+  "forward_sign": "+",
+  "character_left_axis_sign": "+x",
+  "l_upperarm_frontal_deg_below_horizontal": 50.35,
+  "l_upperarm_forward_pitch_deg": -0.35,
+  "l_forearm_frontal_deg_below_horizontal": 41.37,
+  "l_forearm_forward_pitch_deg": 45.87,
+  "l_elbow_bend_deg": 46.9,
+  "r_upperarm_frontal_deg_below_horizontal": 50.35,
+  "r_upperarm_forward_pitch_deg": -0.35,
+  "r_forearm_frontal_deg_below_horizontal": 41.37,
+  "r_forearm_forward_pitch_deg": 45.87,
+  "r_elbow_bend_deg": 46.9,
+  "mirror_exact_pairs_at_1e-4": "13380/13380",
+  "mirror_exact_pairs_note": "count of body vertices whose x-mirror is a body vertex to 1e-4 units"
+ },
+ "targets": {
+  "n_targets": 702,
+  "n_deltas_total": 4923003,
+  "licence_headers": {
+   "cc0": 702,
+   "without_cc0_word": []
+  },
+  "macro_files": {
+   "macrodetails/universal-": 54,
+   "macrodetails/height/": 108,
+   "macrodetails/proportions/": 108,
+   "macrodetails/<ethnic>-": 18,
+   "breast/<macro cup+firmness>": 216
+  },
+  "empty_targets": [
+   "macrodetails/universal-female-child-averagemuscle-averageweight",
+   "macrodetails/universal-female-old-averagemuscle-averageweight",
+   "macrodetails/universal-female-young-averagemuscle-averageweight",
+   "macrodetails/universal-male-child-averagemuscle-averageweight",
+   "macrodetails/universal-male-old-averagemuscle-averageweight",
+   "macrodetails/universal-male-young-averagemuscle-averageweight"
+  ],
+  "helper_only_targets": [],
+  "per_target": [
+   {
+    "name": "armslegs/l-hand-scale-decr",
+    "nnz": 1897,
+    "nnz_body": 1689,
+    "max_disp_units": 0.3902
+   },
+   {
+    "name": "armslegs/l-hand-scale-incr",
+    "nnz": 1897,
+    "nnz_body": 1689,
+    "max_disp_units": 0.6217
+   },
+   {
+    "name": "armslegs/l-hand-trans-in",
+    "nnz": 1964,
+    "nnz_body": 1730,
+    "max_disp_units": 0.2113
+   },
+   {
+    "name": "armslegs/l-hand-trans-out",
+    "nnz": 1897,
+    "nnz_body": 1689,
+    "max_disp_units": 0.3171
+   },
+   {
+    "name": "armslegs/l-lowerarm-fat-decr",
+    "nnz": 297,
+    "nnz_body": 166,
+    "max_disp_units": 0.1137
+   },
+   {
+    "name": "armslegs/l-lowerarm-fat-incr",
+    "nnz": 585,
+    "nnz_body": 421,
+    "max_disp_units": 0.2178
+   },
+   {
+    "name": "armslegs/l-lowerarm-muscle-decr",
+    "nnz": 226,
+    "nnz_body": 226,
+    "max_disp_units": 0.0689
+   },
+   {
+    "name": "armslegs/l-lowerarm-muscle-incr",
+    "nnz": 237,
+    "nnz_body": 155,
+    "max_disp_units": 0.1314
+   },
+   {
+    "name": "armslegs/l-lowerarm-scale-depth-decr",
+    "nnz": 413,
+    "nnz_body": 289,
+    "max_disp_units": 0.1326
+   },
+   {
+    "name": "armslegs/l-lowerarm-scale-depth-incr",
+    "nnz": 407,
+    "nnz_body": 287,
+    "max_disp_units": 0.1146
+   },
+   {
+    "name": "armslegs/l-lowerarm-scale-horiz-decr",
+    "nnz": 2061,
+    "nnz_body": 1793,
+    "max_disp_units": 0.5142
+   },
+   {
+    "name": "armslegs/l-lowerarm-scale-horiz-incr",
+    "nnz": 2063,
+    "nnz_body": 1794,
+    "max_disp_units": 0.649
+   },
+   {
+    "name": "armslegs/l-lowerarm-scale-vert-decr",
+    "nnz": 429,
+    "nnz_body": 301,
+    "max_disp_units": 0.1643
+   },
+   {
+    "name": "armslegs/l-lowerarm-scale-vert-incr",
+    "nnz": 429,
+    "nnz_body": 301,
+    "max_disp_units": 0.1643
+   },
+   {
+    "name": "armslegs/l-upperarm-fat-decr",
+    "nnz": 596,
+    "nnz_body": 400,
+    "max_disp_units": 0.1241
+   },
+   {
+    "name": "armslegs/l-upperarm-fat-incr",
+    "nnz": 614,
+    "nnz_body": 412,
+    "max_disp_units": 0.1682
+   },
+   {
+    "name": "armslegs/l-upperarm-muscle-decr",
+    "nnz": 321,
+    "nnz_body": 212,
+    "max_disp_units": 0.1245
+   },
+   {
+    "name": "armslegs/l-upperarm-muscle-incr",
+    "nnz": 319,
+    "nnz_body": 209,
+    "max_disp_units": 0.2102
+   },
+   {
+    "name": "armslegs/l-upperarm-scale-depth-decr",
+    "nnz": 391,
+    "nnz_body": 261,
+    "max_disp_units": 0.141
+   },
+   {
+    "name": "armslegs/l-upperarm-scale-depth-incr",
+    "nnz": 391,
+    "nnz_body": 261,
+    "max_disp_units": 0.141
+   },
+   {
+    "name": "armslegs/l-upperarm-scale-horiz-decr",
+    "nnz": 2367,
+    "nnz_body": 1994,
+    "max_disp_units": 0.4106
+   },
+   {
+    "name": "armslegs/l-upperarm-scale-horiz-incr",
+    "nnz": 2353,
+    "nnz_body": 1988,
+    "max_disp_units": 0.7212
+   },
+   {
+    "name": "armslegs/l-upperarm-scale-vert-decr",
+    "nnz": 302,
+    "nnz_body": 202,
+    "max_disp_units": 0.1604
+   },
+   {
+    "name": "armslegs/l-upperarm-scale-vert-incr",
+    "nnz": 301,
+    "nnz_body": 202,
+    "max_disp_units": 0.1448
+   },
+   {
+    "name": "armslegs/l-upperarm-shoulder-muscle-decr",
+    "nnz": 62,
+    "nnz_body": 50,
+    "max_disp_units": 0.1422
+   },
+   {
+    "name": "armslegs/l-upperarm-shoulder-muscle-incr",
+    "nnz": 237,
+    "nnz_body": 163,
+    "max_disp_units": 0.1885
+   },
+   {
+    "name": "armslegs/l-upperleg-fat-decr",
+    "nnz": 447,
+    "nnz_body": 283,
+    "max_disp_units": 0.2322
+   },
+   {
+    "name": "armslegs/l-upperleg-fat-incr",
+    "nnz": 1003,
+    "nnz_body": 479,
+    "max_disp_units": 0.3305
+   },
+   {
+    "name": "armslegs/l-upperleg-muscle-decr",
+    "nnz": 431,
+    "nnz_body": 281,
+    "max_disp_units": 0.1665
+   },
+   {
+    "name": "armslegs/l-upperleg-muscle-incr",
+    "nnz": 474,
+    "nnz_body": 262,
+    "max_disp_units": 0.2021
+   },
+   {
+    "name": "armslegs/l-upperleg-scale-depth-decr",
+    "nnz": 522,
+    "nnz_body": 245,
+    "max_disp_units": 0.356
+   },
+   {
+    "name": "armslegs/l-upperleg-scale-depth-incr",
+    "nnz": 536,
+    "nnz_body": 250,
+    "max_disp_units": 0.385
+   },
+   {
+    "name": "armslegs/l-upperleg-scale-horiz-decr",
+    "nnz": 504,
+    "nnz_body": 246,
+    "max_disp_units": 0.2171
+   },
+   {
+    "name": "armslegs/l-upperleg-scale-horiz-incr",
+    "nnz": 665,
+    "nnz_body": 316,
+    "max_disp_units": 0.2821
+   },
+   {
+    "name": "armslegs/l-upperleg-scale-vert-decr",
+    "nnz": 667,
+    "nnz_body": 393,
+    "max_disp_units": 0.564
+   },
+   {
+    "name": "armslegs/l-upperleg-scale-vert-incr",
+    "nnz": 529,
+    "nnz_body": 314,
+    "max_disp_units": 0.3931
+   },
+   {
+    "name": "armslegs/r-hand-scale-decr",
+    "nnz": 1897,
+    "nnz_body": 1689,
+    "max_disp_units": 0.3902
+   },
+   {
+    "name": "armslegs/r-hand-scale-incr",
+    "nnz": 1897,
+    "nnz_body": 1689,
+    "max_disp_units": 0.6217
+   },
+   {
+    "name": "armslegs/r-hand-trans-in",
+    "nnz": 1964,
+    "nnz_body": 1730,
+    "max_disp_units": 0.2113
+   },
+   {
+    "name": "armslegs/r-hand-trans-out",
+    "nnz": 1897,
+    "nnz_body": 1689,
+    "max_disp_units": 0.3171
+   },
+   {
+    "name": "armslegs/r-lowerarm-fat-decr",
+    "nnz": 297,
+    "nnz_body": 166,
+    "max_disp_units": 0.1137
+   },
+   {
+    "name": "armslegs/r-lowerarm-fat-incr",
+    "nnz": 585,
+    "nnz_body": 421,
+    "max_disp_units": 0.2178
+   },
+   {
+    "name": "armslegs/r-lowerarm-muscle-decr",
+    "nnz": 226,
+    "nnz_body": 226,
+    "max_disp_units": 0.0689
+   },
+   {
+    "name": "armslegs/r-lowerarm-muscle-incr",
+    "nnz": 237,
+    "nnz_body": 155,
+    "max_disp_units": 0.1314
+   },
+   {
+    "name": "armslegs/r-lowerarm-scale-depth-decr",
+    "nnz": 413,
+    "nnz_body": 289,
+    "max_disp_units": 0.1326
+   },
+   {
+    "name": "armslegs/r-lowerarm-scale-depth-incr",
+    "nnz": 407,
+    "nnz_body": 287,
+    "max_disp_units": 0.1146
+   },
+   {
+    "name": "armslegs/r-lowerarm-scale-horiz-decr",
+    "nnz": 2061,
+    "nnz_body": 1793,
+    "max_disp_units": 0.5142
+   },
+   {
+    "name": "armslegs/r-lowerarm-scale-horiz-incr",
+    "nnz": 2063,
+    "nnz_body": 1794,
+    "max_disp_units": 0.649
+   },
+   {
+    "name": "armslegs/r-lowerarm-scale-vert-decr",
+    "nnz": 429,
+    "nnz_body": 301,
+    "max_disp_units": 0.1643
+   },
+   {
+    "name": "armslegs/r-lowerarm-scale-vert-incr",
+    "nnz": 429,
+    "nnz_body": 301,
+    "max_disp_units": 0.1643
+   },
+   {
+    "name": "armslegs/r-upperarm-fat-decr",
+    "nnz": 596,
+    "nnz_body": 400,
+    "max_disp_units": 0.1241
+   },
+   {
+    "name": "armslegs/r-upperarm-fat-incr",
+    "nnz": 614,
+    "nnz_body": 412,
+    "max_disp_units": 0.1682
+   },
+   {
+    "name": "armslegs/r-upperarm-muscle-decr",
+    "nnz": 321,
+    "nnz_body": 212,
+    "max_disp_units": 0.1245
+   },
+   {
+    "name": "armslegs/r-upperarm-muscle-incr",
+    "nnz": 319,
+    "nnz_body": 209,
+    "max_disp_units": 0.2102
+   },
+   {
+    "name": "armslegs/r-upperarm-scale-depth-decr",
+    "nnz": 391,
+    "nnz_body": 261,
+    "max_disp_units": 0.141
+   },
+   {
+    "name": "armslegs/r-upperarm-scale-depth-incr",
+    "nnz": 391,
+    "nnz_body": 261,
+    "max_disp_units": 0.141
+   },
+   {
+    "name": "armslegs/r-upperarm-scale-horiz-decr",
+    "nnz": 2367,
+    "nnz_body": 1994,
+    "max_disp_units": 0.4106
+   },
+   {
+    "name": "armslegs/r-upperarm-scale-horiz-incr",
+    "nnz": 2353,
+    "nnz_body": 1988,
+    "max_disp_units": 0.7212
+   },
+   {
+    "name": "armslegs/r-upperarm-scale-vert-decr",
+    "nnz": 302,
+    "nnz_body": 202,
+    "max_disp_units": 0.1604
+   },
+   {
+    "name": "armslegs/r-upperarm-scale-vert-incr",
+    "nnz": 301,
+    "nnz_body": 202,
+    "max_disp_units": 0.1448
+   },
+   {
+    "name": "armslegs/r-upperarm-shoulder-muscle-decr",
+    "nnz": 62,
+    "nnz_body": 50,
+    "max_disp_units": 0.1422
+   },
+   {
+    "name": "armslegs/r-upperarm-shoulder-muscle-incr",
+    "nnz": 237,
+    "nnz_body": 163,
+    "max_disp_units": 0.1885
+   },
+   {
+    "name": "armslegs/r-upperleg-fat-decr",
+    "nnz": 447,
+    "nnz_body": 283,
+    "max_disp_units": 0.2322
+   },
+   {
+    "name": "armslegs/r-upperleg-fat-incr",
+    "nnz": 1003,
+    "nnz_body": 479,
+    "max_disp_units": 0.3305
+   },
+   {
+    "name": "armslegs/r-upperleg-muscle-decr",
+    "nnz": 431,
+    "nnz_body": 281,
+    "max_disp_units": 0.1665
+   },
+   {
+    "name": "armslegs/r-upperleg-muscle-incr",
+    "nnz": 474,
+    "nnz_body": 262,
+    "max_disp_units": 0.2021
+   },
+   {
+    "name": "armslegs/r-upperleg-scale-depth-decr",
+    "nnz": 532,
+    "nnz_body": 250,
+    "max_disp_units": 0.356
+   },
+   {
+    "name": "armslegs/r-upperleg-scale-depth-incr",
+    "nnz": 536,
+    "nnz_body": 250,
+    "max_disp_units": 0.385
+   },
+   {
+    "name": "armslegs/r-upperleg-scale-horiz-decr",
+    "nnz": 504,
+    "nnz_body": 246,
+    "max_disp_units": 0.2171
+   },
+   {
+    "name": "armslegs/r-upperleg-scale-horiz-incr",
+    "nnz": 665,
+    "nnz_body": 316,
+    "max_disp_units": 0.2821
+   },
+   {
+    "name": "armslegs/r-upperleg-scale-vert-decr",
+    "nnz": 667,
+    "nnz_body": 393,
+    "max_disp_units": 0.564
+   },
+   {
+    "name": "armslegs/r-upperleg-scale-vert-incr",
+    "nnz": 529,
+    "nnz_body": 314,
+    "max_disp_units": 0.3931
+   },
+   {
+    "name": "bodyshapes/bodyshapes-elvs-fem-adrenal",
+    "nnz": 6915,
+    "nnz_body": 3269,
+    "max_disp_units": 1.0209
+   },
+   {
+    "name": "bodyshapes/bodyshapes-elvs-fem-apple",
+    "nnz": 6413,
+    "nnz_body": 2769,
+    "max_disp_units": 1.0058
+   },
+   {
+    "name": "bodyshapes/bodyshapes-elvs-fem-diamond",
+    "nnz": 6351,
+    "nnz_body": 2705,
+    "max_disp_units": 1.0077
+   },
+   {
+    "name": "bodyshapes/bodyshapes-elvs-fem-full-hourglass",
+    "nnz": 6015,
+    "nnz_body": 2369,
+    "max_disp_units": 1.0062
+   },
+   {
+    "name": "bodyshapes/bodyshapes-elvs-fem-invert-triangle",
+    "nnz": 6218,
+    "nnz_body": 2572,
+    "max_disp_units": 1.0051
+   },
+   {
+    "name": "bodyshapes/bodyshapes-elvs-fem-lean-column",
+    "nnz": 6161,
+    "nnz_body": 2515,
+    "max_disp_units": 1.0052
+   },
+   {
+    "name": "bodyshapes/bodyshapes-elvs-fem-liver",
+    "nnz": 7395,
+    "nnz_body": 3749,
+    "max_disp_units": 1.026
+   },
+   {
+    "name": "bodyshapes/bodyshapes-elvs-fem-neat-hourglass",
+    "nnz": 6100,
+    "nnz_body": 2454,
+    "max_disp_units": 1.0057
+   },
+   {
+    "name": "bodyshapes/bodyshapes-elvs-fem-ovary",
+    "nnz": 5556,
+    "nnz_body": 1910,
+    "max_disp_units": 1.007
+   },
+   {
+    "name": "bodyshapes/bodyshapes-elvs-fem-rectangle",
+    "nnz": 6121,
+    "nnz_body": 2475,
+    "max_disp_units": 1.0051
+   },
+   {
+    "name": "bodyshapes/bodyshapes-elvs-fem-thyroid",
+    "nnz": 12537,
+    "nnz_body": 8891,
+    "max_disp_units": 1.2541
+   },
+   {
+    "name": "bodyshapes/bodyshapes-elvs-fem-triangle",
+    "nnz": 6438,
+    "nnz_body": 2793,
+    "max_disp_units": 1.0077
+   },
+   {
+    "name": "bodyshapes/bodyshapes-elvs-man-adrenal",
+    "nnz": 6754,
+    "nnz_body": 3044,
+    "max_disp_units": 1.061
+   },
+   {
+    "name": "bodyshapes/bodyshapes-elvs-man-apple",
+    "nnz": 5421,
+    "nnz_body": 1831,
+    "max_disp_units": 1.0597
+   },
+   {
+    "name": "bodyshapes/bodyshapes-elvs-man-gonadal",
+    "nnz": 5379,
+    "nnz_body": 1669,
+    "max_disp_units": 1.3641
+   },
+   {
+    "name": "bodyshapes/bodyshapes-elvs-man-invert-triangle",
+    "nnz": 6269,
+    "nnz_body": 2647,
+    "max_disp_units": 1.3526
+   },
+   {
+    "name": "bodyshapes/bodyshapes-elvs-man-lean-column",
+    "nnz": 5524,
+    "nnz_body": 1902,
+    "max_disp_units": 1.3521
+   },
+   {
+    "name": "bodyshapes/bodyshapes-elvs-man-liver",
+    "nnz": 4255,
+    "nnz_body": 545,
+    "max_disp_units": 1.3681
+   },
+   {
+    "name": "bodyshapes/bodyshapes-elvs-man-rectangle",
+    "nnz": 4467,
+    "nnz_body": 845,
+    "max_disp_units": 1.3522
+   },
+   {
+    "name": "bodyshapes/bodyshapes-elvs-man-thyroid",
+    "nnz": 12422,
+    "nnz_body": 8713,
+    "max_disp_units": 1.0825
+   },
+   {
+    "name": "bodyshapes/bodyshapes-elvs-man-trapezoid",
+    "nnz": 6222,
+    "nnz_body": 2600,
+    "max_disp_units": 1.3524
+   },
+   {
+    "name": "bodyshapes/bodyshapes-elvs-man-triangle",
+    "nnz": 5766,
+    "nnz_body": 2144,
+    "max_disp_units": 1.0622
+   },
+   {
+    "name": "breast/breast-dist-decr",
+    "nnz": 380,
+    "nnz_body": 297,
+    "max_disp_units": 0.3307
+   },
+   {
+    "name": "breast/breast-dist-incr",
+    "nnz": 488,
+    "nnz_body": 290,
+    "max_disp_units": 0.2568
+   },
+   {
+    "name": "breast/breast-point-decr",
+    "nnz": 408,
+    "nnz_body": 283,
+    "max_disp_units": 0.1311
+   },
+   {
+    "name": "breast/breast-point-incr",
+    "nnz": 264,
+    "nnz_body": 210,
+    "max_disp_units": 0.2933
+   },
+   {
+    "name": "breast/breast-trans-down",
+    "nnz": 889,
+    "nnz_body": 593,
+    "max_disp_units": 0.33
+   },
+   {
+    "name": "breast/breast-trans-up",
+    "nnz": 878,
+    "nnz_body": 583,
+    "max_disp_units": 0.178
+   },
+   {
+    "name": "breast/breast-volume-vert-down",
+    "nnz": 278,
+    "nnz_body": 244,
+    "max_disp_units": 0.1481
+   },
+   {
+    "name": "breast/breast-volume-vert-up",
+    "nnz": 601,
+    "nnz_body": 369,
+    "max_disp_units": 0.1841
+   },
+   {
+    "name": "breast/female-child-averagemuscle-averageweight-averagecup-maxfirmness",
+    "nnz": 285,
+    "nnz_body": 285,
+    "max_disp_units": 0.0586
+   },
+   {
+    "name": "breast/female-child-averagemuscle-averageweight-averagecup-minfirmness",
+    "nnz": 230,
+    "nnz_body": 230,
+    "max_disp_units": 0.0602
+   },
+   {
+    "name": "breast/female-child-averagemuscle-averageweight-maxcup-averagefirmness",
+    "nnz": 706,
+    "nnz_body": 406,
+    "max_disp_units": 0.8715
+   },
+   {
+    "name": "breast/female-child-averagemuscle-averageweight-maxcup-maxfirmness",
+    "nnz": 702,
+    "nnz_body": 406,
+    "max_disp_units": 0.762
+   },
+   {
+    "name": "breast/female-child-averagemuscle-averageweight-maxcup-minfirmness",
+    "nnz": 871,
+    "nnz_body": 464,
+    "max_disp_units": 1.3577
+   },
+   {
+    "name": "breast/female-child-averagemuscle-averageweight-mincup-averagefirmness",
+    "nnz": 286,
+    "nnz_body": 286,
+    "max_disp_units": 0.0783
+   },
+   {
+    "name": "breast/female-child-averagemuscle-averageweight-mincup-maxfirmness",
+    "nnz": 286,
+    "nnz_body": 286,
+    "max_disp_units": 0.0783
+   },
+   {
+    "name": "breast/female-child-averagemuscle-averageweight-mincup-minfirmness",
+    "nnz": 286,
+    "nnz_body": 286,
+    "max_disp_units": 0.0783
+   },
+   {
+    "name": "breast/female-child-averagemuscle-maxweight-averagecup-maxfirmness",
+    "nnz": 270,
+    "nnz_body": 270,
+    "max_disp_units": 0.0585
+   },
+   {
+    "name": "breast/female-child-averagemuscle-maxweight-averagecup-minfirmness",
+    "nnz": 218,
+    "nnz_body": 218,
+    "max_disp_units": 0.0602
+   },
+   {
+    "name": "breast/female-child-averagemuscle-maxweight-maxcup-averagefirmness",
+    "nnz": 702,
+    "nnz_body": 406,
+    "max_disp_units": 0.8715
+   },
+   {
+    "name": "breast/female-child-averagemuscle-maxweight-maxcup-maxfirmness",
+    "nnz": 839,
+    "nnz_body": 467,
+    "max_disp_units": 0.7532
+   },
+   {
+    "name": "breast/female-child-averagemuscle-maxweight-maxcup-minfirmness",
+    "nnz": 924,
+    "nnz_body": 523,
+    "max_disp_units": 1.3577
+   },
+   {
+    "name": "breast/female-child-averagemuscle-maxweight-mincup-averagefirmness",
+    "nnz": 286,
+    "nnz_body": 286,
+    "max_disp_units": 0.0783
+   },
+   {
+    "name": "breast/female-child-averagemuscle-maxweight-mincup-maxfirmness",
+    "nnz": 286,
+    "nnz_body": 286,
+    "max_disp_units": 0.0783
+   },
+   {
+    "name": "breast/female-child-averagemuscle-maxweight-mincup-minfirmness",
+    "nnz": 286,
+    "nnz_body": 286,
+    "max_disp_units": 0.0783
+   },
+   {
+    "name": "breast/female-child-averagemuscle-minweight-averagecup-maxfirmness",
+    "nnz": 308,
+    "nnz_body": 270,
+    "max_disp_units": 0.0581
+   },
+   {
+    "name": "breast/female-child-averagemuscle-minweight-averagecup-minfirmness",
+    "nnz": 218,
+    "nnz_body": 218,
+    "max_disp_units": 0.0602
+   },
+   {
+    "name": "breast/female-child-averagemuscle-minweight-maxcup-averagefirmness",
+    "nnz": 702,
+    "nnz_body": 406,
+    "max_disp_units": 0.8715
+   },
+   {
+    "name": "breast/female-child-averagemuscle-minweight-maxcup-maxfirmness",
+    "nnz": 700,
+    "nnz_body": 404,
+    "max_disp_units": 0.7555
+   },
+   {
+    "name": "breast/female-child-averagemuscle-minweight-maxcup-minfirmness",
+    "nnz": 875,
+    "nnz_body": 464,
+    "max_disp_units": 1.3577
+   },
+   {
+    "name": "breast/female-child-averagemuscle-minweight-mincup-averagefirmness",
+    "nnz": 236,
+    "nnz_body": 196,
+    "max_disp_units": 0.0467
+   },
+   {
+    "name": "breast/female-child-averagemuscle-minweight-mincup-maxfirmness",
+    "nnz": 236,
+    "nnz_body": 196,
+    "max_disp_units": 0.0467
+   },
+   {
+    "name": "breast/female-child-averagemuscle-minweight-mincup-minfirmness",
+    "nnz": 236,
+    "nnz_body": 196,
+    "max_disp_units": 0.0467
+   },
+   {
+    "name": "breast/female-child-maxmuscle-averageweight-averagecup-maxfirmness",
+    "nnz": 280,
+    "nnz_body": 280,
+    "max_disp_units": 0.0585
+   },
+   {
+    "name": "breast/female-child-maxmuscle-averageweight-averagecup-minfirmness",
+    "nnz": 218,
+    "nnz_body": 218,
+    "max_disp_units": 0.0602
+   },
+   {
+    "name": "breast/female-child-maxmuscle-averageweight-maxcup-averagefirmness",
+    "nnz": 710,
+    "nnz_body": 412,
+    "max_disp_units": 0.8838
+   },
+   {
+    "name": "breast/female-child-maxmuscle-averageweight-maxcup-maxfirmness",
+    "nnz": 700,
+    "nnz_body": 404,
+    "max_disp_units": 0.762
+   },
+   {
+    "name": "breast/female-child-maxmuscle-averageweight-maxcup-minfirmness",
+    "nnz": 873,
+    "nnz_body": 466,
+    "max_disp_units": 1.3577
+   },
+   {
+    "name": "breast/female-child-maxmuscle-averageweight-mincup-averagefirmness",
+    "nnz": 293,
+    "nnz_body": 293,
+    "max_disp_units": 0.0834
+   },
+   {
+    "name": "breast/female-child-maxmuscle-averageweight-mincup-maxfirmness",
+    "nnz": 293,
+    "nnz_body": 293,
+    "max_disp_units": 0.0834
+   },
+   {
+    "name": "breast/female-child-maxmuscle-averageweight-mincup-minfirmness",
+    "nnz": 293,
+    "nnz_body": 293,
+    "max_disp_units": 0.0834
+   },
+   {
+    "name": "breast/female-child-maxmuscle-maxweight-averagecup-maxfirmness",
+    "nnz": 278,
+    "nnz_body": 278,
+    "max_disp_units": 0.0585
+   },
+   {
+    "name": "breast/female-child-maxmuscle-maxweight-averagecup-minfirmness",
+    "nnz": 218,
+    "nnz_body": 218,
+    "max_disp_units": 0.0602
+   },
+   {
+    "name": "breast/female-child-maxmuscle-maxweight-maxcup-averagefirmness",
+    "nnz": 704,
+    "nnz_body": 406,
+    "max_disp_units": 0.8838
+   },
+   {
+    "name": "breast/female-child-maxmuscle-maxweight-maxcup-maxfirmness",
+    "nnz": 700,
+    "nnz_body": 404,
+    "max_disp_units": 0.762
+   },
+   {
+    "name": "breast/female-child-maxmuscle-maxweight-maxcup-minfirmness",
+    "nnz": 875,
+    "nnz_body": 468,
+    "max_disp_units": 1.3577
+   },
+   {
+    "name": "breast/female-child-maxmuscle-maxweight-mincup-averagefirmness",
+    "nnz": 301,
+    "nnz_body": 301,
+    "max_disp_units": 0.0834
+   },
+   {
+    "name": "breast/female-child-maxmuscle-maxweight-mincup-maxfirmness",
+    "nnz": 301,
+    "nnz_body": 301,
+    "max_disp_units": 0.0834
+   },
+   {
+    "name": "breast/female-child-maxmuscle-maxweight-mincup-minfirmness",
+    "nnz": 301,
+    "nnz_body": 301,
+    "max_disp_units": 0.0834
+   },
+   {
+    "name": "breast/female-child-maxmuscle-minweight-averagecup-maxfirmness",
+    "nnz": 268,
+    "nnz_body": 268,
+    "max_disp_units": 0.0475
+   },
+   {
+    "name": "breast/female-child-maxmuscle-minweight-averagecup-minfirmness",
+    "nnz": 218,
+    "nnz_body": 218,
+    "max_disp_units": 0.0602
+   },
+   {
+    "name": "breast/female-child-maxmuscle-minweight-maxcup-averagefirmness",
+    "nnz": 704,
+    "nnz_body": 408,
+    "max_disp_units": 0.8715
+   },
+   {
+    "name": "breast/female-child-maxmuscle-minweight-maxcup-maxfirmness",
+    "nnz": 700,
+    "nnz_body": 404,
+    "max_disp_units": 0.7555
+   },
+   {
+    "name": "breast/female-child-maxmuscle-minweight-maxcup-minfirmness",
+    "nnz": 871,
+    "nnz_body": 464,
+    "max_disp_units": 1.3577
+   },
+   {
+    "name": "breast/female-child-maxmuscle-minweight-mincup-averagefirmness",
+    "nnz": 282,
+    "nnz_body": 256,
+    "max_disp_units": 0.0397
+   },
+   {
+    "name": "breast/female-child-maxmuscle-minweight-mincup-maxfirmness",
+    "nnz": 282,
+    "nnz_body": 256,
+    "max_disp_units": 0.0397
+   },
+   {
+    "name": "breast/female-child-maxmuscle-minweight-mincup-minfirmness",
+    "nnz": 282,
+    "nnz_body": 256,
+    "max_disp_units": 0.0397
+   },
+   {
+    "name": "breast/female-child-minmuscle-averageweight-averagecup-maxfirmness",
+    "nnz": 270,
+    "nnz_body": 270,
+    "max_disp_units": 0.059
+   },
+   {
+    "name": "breast/female-child-minmuscle-averageweight-averagecup-minfirmness",
+    "nnz": 252,
+    "nnz_body": 218,
+    "max_disp_units": 0.0602
+   },
+   {
+    "name": "breast/female-child-minmuscle-averageweight-maxcup-averagefirmness",
+    "nnz": 702,
+    "nnz_body": 406,
+    "max_disp_units": 0.8715
+   },
+   {
+    "name": "breast/female-child-minmuscle-averageweight-maxcup-maxfirmness",
+    "nnz": 702,
+    "nnz_body": 406,
+    "max_disp_units": 0.762
+   },
+   {
+    "name": "breast/female-child-minmuscle-averageweight-maxcup-minfirmness",
+    "nnz": 885,
+    "nnz_body": 478,
+    "max_disp_units": 1.3577
+   },
+   {
+    "name": "breast/female-child-minmuscle-averageweight-mincup-averagefirmness",
+    "nnz": 286,
+    "nnz_body": 286,
+    "max_disp_units": 0.0783
+   },
+   {
+    "name": "breast/female-child-minmuscle-averageweight-mincup-maxfirmness",
+    "nnz": 286,
+    "nnz_body": 286,
+    "max_disp_units": 0.0783
+   },
+   {
+    "name": "breast/female-child-minmuscle-averageweight-mincup-minfirmness",
+    "nnz": 286,
+    "nnz_body": 286,
+    "max_disp_units": 0.0783
+   },
+   {
+    "name": "breast/female-child-minmuscle-maxweight-averagecup-maxfirmness",
+    "nnz": 268,
+    "nnz_body": 268,
+    "max_disp_units": 0.081
+   },
+   {
+    "name": "breast/female-child-minmuscle-maxweight-averagecup-minfirmness",
+    "nnz": 254,
+    "nnz_body": 254,
+    "max_disp_units": 0.1557
+   },
+   {
+    "name": "breast/female-child-minmuscle-maxweight-maxcup-averagefirmness",
+    "nnz": 702,
+    "nnz_body": 406,
+    "max_disp_units": 0.8715
+   },
+   {
+    "name": "breast/female-child-minmuscle-maxweight-maxcup-maxfirmness",
+    "nnz": 702,
+    "nnz_body": 406,
+    "max_disp_units": 0.762
+   },
+   {
+    "name": "breast/female-child-minmuscle-maxweight-maxcup-minfirmness",
+    "nnz": 875,
+    "nnz_body": 464,
+    "max_disp_units": 1.3497
+   },
+   {
+    "name": "breast/female-child-minmuscle-maxweight-mincup-averagefirmness",
+    "nnz": 286,
+    "nnz_body": 286,
+    "max_disp_units": 0.0846
+   },
+   {
+    "name": "breast/female-child-minmuscle-maxweight-mincup-maxfirmness",
+    "nnz": 286,
+    "nnz_body": 286,
+    "max_disp_units": 0.0846
+   },
+   {
+    "name": "breast/female-child-minmuscle-maxweight-mincup-minfirmness",
+    "nnz": 286,
+    "nnz_body": 286,
+    "max_disp_units": 0.0846
+   },
+   {
+    "name": "breast/female-child-minmuscle-minweight-averagecup-maxfirmness",
+    "nnz": 258,
+    "nnz_body": 258,
+    "max_disp_units": 0.0254
+   },
+   {
+    "name": "breast/female-child-minmuscle-minweight-averagecup-minfirmness",
+    "nnz": 218,
+    "nnz_body": 218,
+    "max_disp_units": 0.076
+   },
+   {
+    "name": "breast/female-child-minmuscle-minweight-maxcup-averagefirmness",
+    "nnz": 665,
+    "nnz_body": 406,
+    "max_disp_units": 0.7506
+   },
+   {
+    "name": "breast/female-child-minmuscle-minweight-maxcup-maxfirmness",
+    "nnz": 702,
+    "nnz_body": 406,
+    "max_disp_units": 0.762
+   },
+   {
+    "name": "breast/female-child-minmuscle-minweight-maxcup-minfirmness",
+    "nnz": 873,
+    "nnz_body": 466,
+    "max_disp_units": 1.3577
+   },
+   {
+    "name": "breast/female-child-minmuscle-minweight-mincup-averagefirmness",
+    "nnz": 300,
+    "nnz_body": 300,
+    "max_disp_units": 0.0594
+   },
+   {
+    "name": "breast/female-child-minmuscle-minweight-mincup-maxfirmness",
+    "nnz": 300,
+    "nnz_body": 300,
+    "max_disp_units": 0.0594
+   },
+   {
+    "name": "breast/female-child-minmuscle-minweight-mincup-minfirmness",
+    "nnz": 300,
+    "nnz_body": 300,
+    "max_disp_units": 0.0594
+   },
+   {
+    "name": "breast/female-old-averagemuscle-averageweight-averagecup-maxfirmness",
+    "nnz": 288,
+    "nnz_body": 254,
+    "max_disp_units": 0.1182
+   },
+   {
+    "name": "breast/female-old-averagemuscle-averageweight-averagecup-minfirmness",
+    "nnz": 297,
+    "nnz_body": 244,
+    "max_disp_units": 0.2071
+   },
+   {
+    "name": "breast/female-old-averagemuscle-averageweight-maxcup-averagefirmness",
+    "nnz": 769,
+    "nnz_body": 400,
+    "max_disp_units": 0.8676
+   },
+   {
+    "name": "breast/female-old-averagemuscle-averageweight-maxcup-maxfirmness",
+    "nnz": 767,
+    "nnz_body": 396,
+    "max_disp_units": 0.6877
+   },
+   {
+    "name": "breast/female-old-averagemuscle-averageweight-maxcup-minfirmness",
+    "nnz": 864,
+    "nnz_body": 463,
+    "max_disp_units": 1.4143
+   },
+   {
+    "name": "breast/female-old-averagemuscle-averageweight-mincup-averagefirmness",
+    "nnz": 699,
+    "nnz_body": 567,
+    "max_disp_units": 0.3042
+   },
+   {
+    "name": "breast/female-old-averagemuscle-averageweight-mincup-maxfirmness",
+    "nnz": 699,
+    "nnz_body": 567,
+    "max_disp_units": 0.3042
+   },
+   {
+    "name": "breast/female-old-averagemuscle-averageweight-mincup-minfirmness",
+    "nnz": 699,
+    "nnz_body": 567,
+    "max_disp_units": 0.3042
+   },
+   {
+    "name": "breast/female-old-averagemuscle-maxweight-averagecup-maxfirmness",
+    "nnz": 315,
+    "nnz_body": 276,
+    "max_disp_units": 0.1274
+   },
+   {
+    "name": "breast/female-old-averagemuscle-maxweight-averagecup-minfirmness",
+    "nnz": 290,
+    "nnz_body": 240,
+    "max_disp_units": 0.2071
+   },
+   {
+    "name": "breast/female-old-averagemuscle-maxweight-maxcup-averagefirmness",
+    "nnz": 773,
+    "nnz_body": 400,
+    "max_disp_units": 0.7362
+   },
+   {
+    "name": "breast/female-old-averagemuscle-maxweight-maxcup-maxfirmness",
+    "nnz": 775,
+    "nnz_body": 396,
+    "max_disp_units": 0.6876
+   },
+   {
+    "name": "breast/female-old-averagemuscle-maxweight-maxcup-minfirmness",
+    "nnz": 864,
+    "nnz_body": 463,
+    "max_disp_units": 1.4468
+   },
+   {
+    "name": "breast/female-old-averagemuscle-maxweight-mincup-averagefirmness",
+    "nnz": 693,
+    "nnz_body": 561,
+    "max_disp_units": 0.3042
+   },
+   {
+    "name": "breast/female-old-averagemuscle-maxweight-mincup-maxfirmness",
+    "nnz": 693,
+    "nnz_body": 561,
+    "max_disp_units": 0.3042
+   },
+   {
+    "name": "breast/female-old-averagemuscle-maxweight-mincup-minfirmness",
+    "nnz": 693,
+    "nnz_body": 561,
+    "max_disp_units": 0.3042
+   },
+   {
+    "name": "breast/female-old-averagemuscle-minweight-averagecup-maxfirmness",
+    "nnz": 292,
+    "nnz_body": 262,
+    "max_disp_units": 0.1274
+   },
+   {
+    "name": "breast/female-old-averagemuscle-minweight-averagecup-minfirmness",
+    "nnz": 292,
+    "nnz_body": 262,
+    "max_disp_units": 0.1274
+   },
+   {
+    "name": "breast/female-old-averagemuscle-minweight-maxcup-averagefirmness",
+    "nnz": 779,
+    "nnz_body": 408,
+    "max_disp_units": 0.8676
+   },
+   {
+    "name": "breast/female-old-averagemuscle-minweight-maxcup-maxfirmness",
+    "nnz": 827,
+    "nnz_body": 456,
+    "max_disp_units": 0.6877
+   },
+   {
+    "name": "breast/female-old-averagemuscle-minweight-maxcup-minfirmness",
+    "nnz": 882,
+    "nnz_body": 481,
+    "max_disp_units": 1.3577
+   },
+   {
+    "name": "breast/female-old-averagemuscle-minweight-mincup-averagefirmness",
+    "nnz": 346,
+    "nnz_body": 346,
+    "max_disp_units": 0.1438
+   },
+   {
+    "name": "breast/female-old-averagemuscle-minweight-mincup-maxfirmness",
+    "nnz": 346,
+    "nnz_body": 346,
+    "max_disp_units": 0.1438
+   },
+   {
+    "name": "breast/female-old-averagemuscle-minweight-mincup-minfirmness",
+    "nnz": 346,
+    "nnz_body": 346,
+    "max_disp_units": 0.1438
+   },
+   {
+    "name": "breast/female-old-maxmuscle-averageweight-averagecup-maxfirmness",
+    "nnz": 276,
+    "nnz_body": 248,
+    "max_disp_units": 0.1182
+   },
+   {
+    "name": "breast/female-old-maxmuscle-averageweight-averagecup-minfirmness",
+    "nnz": 362,
+    "nnz_body": 246,
+    "max_disp_units": 0.2942
+   },
+   {
+    "name": "breast/female-old-maxmuscle-averageweight-maxcup-averagefirmness",
+    "nnz": 769,
+    "nnz_body": 400,
+    "max_disp_units": 0.912
+   },
+   {
+    "name": "breast/female-old-maxmuscle-averageweight-maxcup-maxfirmness",
+    "nnz": 784,
+    "nnz_body": 413,
+    "max_disp_units": 0.7184
+   },
+   {
+    "name": "breast/female-old-maxmuscle-averageweight-maxcup-minfirmness",
+    "nnz": 864,
+    "nnz_body": 463,
+    "max_disp_units": 1.4143
+   },
+   {
+    "name": "breast/female-old-maxmuscle-averageweight-mincup-averagefirmness",
+    "nnz": 296,
+    "nnz_body": 296,
+    "max_disp_units": 0.1829
+   },
+   {
+    "name": "breast/female-old-maxmuscle-averageweight-mincup-maxfirmness",
+    "nnz": 296,
+    "nnz_body": 296,
+    "max_disp_units": 0.1829
+   },
+   {
+    "name": "breast/female-old-maxmuscle-averageweight-mincup-minfirmness",
+    "nnz": 296,
+    "nnz_body": 296,
+    "max_disp_units": 0.1829
+   },
+   {
+    "name": "breast/female-old-maxmuscle-maxweight-averagecup-maxfirmness",
+    "nnz": 780,
+    "nnz_body": 411,
+    "max_disp_units": 0.6877
+   },
+   {
+    "name": "breast/female-old-maxmuscle-maxweight-averagecup-minfirmness",
+    "nnz": 372,
+    "nnz_body": 248,
+    "max_disp_units": 0.2942
+   },
+   {
+    "name": "breast/female-old-maxmuscle-maxweight-maxcup-averagefirmness",
+    "nnz": 780,
+    "nnz_body": 411,
+    "max_disp_units": 0.6976
+   },
+   {
+    "name": "breast/female-old-maxmuscle-maxweight-maxcup-maxfirmness",
+    "nnz": 780,
+    "nnz_body": 411,
+    "max_disp_units": 0.6877
+   },
+   {
+    "name": "breast/female-old-maxmuscle-maxweight-maxcup-minfirmness",
+    "nnz": 874,
+    "nnz_body": 463,
+    "max_disp_units": 1.3603
+   },
+   {
+    "name": "breast/female-old-maxmuscle-maxweight-mincup-averagefirmness",
+    "nnz": 693,
+    "nnz_body": 561,
+    "max_disp_units": 0.3042
+   },
+   {
+    "name": "breast/female-old-maxmuscle-maxweight-mincup-maxfirmness",
+    "nnz": 693,
+    "nnz_body": 561,
+    "max_disp_units": 0.3042
+   },
+   {
+    "name": "breast/female-old-maxmuscle-maxweight-mincup-minfirmness",
+    "nnz": 693,
+    "nnz_body": 561,
+    "max_disp_units": 0.3042
+   },
+   {
+    "name": "breast/female-old-maxmuscle-minweight-averagecup-maxfirmness",
+    "nnz": 272,
+    "nnz_body": 272,
+    "max_disp_units": 0.0861
+   },
+   {
+    "name": "breast/female-old-maxmuscle-minweight-averagecup-minfirmness",
+    "nnz": 370,
+    "nnz_body": 216,
+    "max_disp_units": 0.1373
+   },
+   {
+    "name": "breast/female-old-maxmuscle-minweight-maxcup-averagefirmness",
+    "nnz": 769,
+    "nnz_body": 400,
+    "max_disp_units": 0.7069
+   },
+   {
+    "name": "breast/female-old-maxmuscle-minweight-maxcup-maxfirmness",
+    "nnz": 765,
+    "nnz_body": 396,
+    "max_disp_units": 0.6644
+   },
+   {
+    "name": "breast/female-old-maxmuscle-minweight-maxcup-minfirmness",
+    "nnz": 904,
+    "nnz_body": 463,
+    "max_disp_units": 1.4143
+   },
+   {
+    "name": "breast/female-old-maxmuscle-minweight-mincup-averagefirmness",
+    "nnz": 252,
+    "nnz_body": 252,
+    "max_disp_units": 0.0816
+   },
+   {
+    "name": "breast/female-old-maxmuscle-minweight-mincup-maxfirmness",
+    "nnz": 252,
+    "nnz_body": 252,
+    "max_disp_units": 0.0816
+   },
+   {
+    "name": "breast/female-old-maxmuscle-minweight-mincup-minfirmness",
+    "nnz": 252,
+    "nnz_body": 252,
+    "max_disp_units": 0.0816
+   },
+   {
+    "name": "breast/female-old-minmuscle-averageweight-averagecup-maxfirmness",
+    "nnz": 278,
+    "nnz_body": 248,
+    "max_disp_units": 0.1182
+   },
+   {
+    "name": "breast/female-old-minmuscle-averageweight-averagecup-minfirmness",
+    "nnz": 304,
+    "nnz_body": 254,
+    "max_disp_units": 0.2105
+   },
+   {
+    "name": "breast/female-old-minmuscle-averageweight-maxcup-averagefirmness",
+    "nnz": 769,
+    "nnz_body": 400,
+    "max_disp_units": 0.7361
+   },
+   {
+    "name": "breast/female-old-minmuscle-averageweight-maxcup-maxfirmness",
+    "nnz": 765,
+    "nnz_body": 396,
+    "max_disp_units": 0.6877
+   },
+   {
+    "name": "breast/female-old-minmuscle-averageweight-maxcup-minfirmness",
+    "nnz": 673,
+    "nnz_body": 391,
+    "max_disp_units": 1.3815
+   },
+   {
+    "name": "breast/female-old-minmuscle-averageweight-mincup-averagefirmness",
+    "nnz": 693,
+    "nnz_body": 561,
+    "max_disp_units": 0.3042
+   },
+   {
+    "name": "breast/female-old-minmuscle-averageweight-mincup-maxfirmness",
+    "nnz": 693,
+    "nnz_body": 561,
+    "max_disp_units": 0.3042
+   },
+   {
+    "name": "breast/female-old-minmuscle-averageweight-mincup-minfirmness",
+    "nnz": 693,
+    "nnz_body": 561,
+    "max_disp_units": 0.3042
+   },
+   {
+    "name": "breast/female-old-minmuscle-maxweight-averagecup-maxfirmness",
+    "nnz": 523,
+    "nnz_body": 373,
+    "max_disp_units": 0.2139
+   },
+   {
+    "name": "breast/female-old-minmuscle-maxweight-averagecup-minfirmness",
+    "nnz": 549,
+    "nnz_body": 286,
+    "max_disp_units": 0.3353
+   },
+   {
+    "name": "breast/female-old-minmuscle-maxweight-maxcup-averagefirmness",
+    "nnz": 840,
+    "nnz_body": 402,
+    "max_disp_units": 0.8551
+   },
+   {
+    "name": "breast/female-old-minmuscle-maxweight-maxcup-maxfirmness",
+    "nnz": 734,
+    "nnz_body": 404,
+    "max_disp_units": 0.9104
+   },
+   {
+    "name": "breast/female-old-minmuscle-maxweight-maxcup-minfirmness",
+    "nnz": 738,
+    "nnz_body": 393,
+    "max_disp_units": 1.9595
+   },
+   {
+    "name": "breast/female-old-minmuscle-maxweight-mincup-averagefirmness",
+    "nnz": 616,
+    "nnz_body": 370,
+    "max_disp_units": 0.3045
+   },
+   {
+    "name": "breast/female-old-minmuscle-maxweight-mincup-maxfirmness",
+    "nnz": 616,
+    "nnz_body": 370,
+    "max_disp_units": 0.3045
+   },
+   {
+    "name": "breast/female-old-minmuscle-maxweight-mincup-minfirmness",
+    "nnz": 616,
+    "nnz_body": 370,
+    "max_disp_units": 0.3045
+   },
+   {
+    "name": "breast/female-old-minmuscle-minweight-averagecup-maxfirmness",
+    "nnz": 288,
+    "nnz_body": 288,
+    "max_disp_units": 0.0819
+   },
+   {
+    "name": "breast/female-old-minmuscle-minweight-averagecup-minfirmness",
+    "nnz": 196,
+    "nnz_body": 196,
+    "max_disp_units": 0.0711
+   },
+   {
+    "name": "breast/female-old-minmuscle-minweight-maxcup-averagefirmness",
+    "nnz": 757,
+    "nnz_body": 397,
+    "max_disp_units": 0.9941
+   },
+   {
+    "name": "breast/female-old-minmuscle-minweight-maxcup-maxfirmness",
+    "nnz": 644,
+    "nnz_body": 370,
+    "max_disp_units": 0.6224
+   },
+   {
+    "name": "breast/female-old-minmuscle-minweight-maxcup-minfirmness",
+    "nnz": 708,
+    "nnz_body": 387,
+    "max_disp_units": 1.4769
+   },
+   {
+    "name": "breast/female-old-minmuscle-minweight-mincup-averagefirmness",
+    "nnz": 434,
+    "nnz_body": 412,
+    "max_disp_units": 0.0785
+   },
+   {
+    "name": "breast/female-old-minmuscle-minweight-mincup-maxfirmness",
+    "nnz": 434,
+    "nnz_body": 412,
+    "max_disp_units": 0.0785
+   },
+   {
+    "name": "breast/female-old-minmuscle-minweight-mincup-minfirmness",
+    "nnz": 434,
+    "nnz_body": 412,
+    "max_disp_units": 0.0785
+   },
+   {
+    "name": "breast/female-young-averagemuscle-averageweight-averagecup-maxfirmness",
+    "nnz": 284,
+    "nnz_body": 284,
+    "max_disp_units": 0.0818
+   },
+   {
+    "name": "breast/female-young-averagemuscle-averageweight-averagecup-minfirmness",
+    "nnz": 338,
+    "nnz_body": 252,
+    "max_disp_units": 0.1652
+   },
+   {
+    "name": "breast/female-young-averagemuscle-averageweight-maxcup-averagefirmness",
+    "nnz": 700,
+    "nnz_body": 404,
+    "max_disp_units": 0.9243
+   },
+   {
+    "name": "breast/female-young-averagemuscle-averageweight-maxcup-maxfirmness",
+    "nnz": 704,
+    "nnz_body": 408,
+    "max_disp_units": 0.7836
+   },
+   {
+    "name": "breast/female-young-averagemuscle-averageweight-maxcup-minfirmness",
+    "nnz": 864,
+    "nnz_body": 463,
+    "max_disp_units": 1.3577
+   },
+   {
+    "name": "breast/female-young-averagemuscle-averageweight-mincup-averagefirmness",
+    "nnz": 540,
+    "nnz_body": 402,
+    "max_disp_units": 0.2508
+   },
+   {
+    "name": "breast/female-young-averagemuscle-averageweight-mincup-maxfirmness",
+    "nnz": 540,
+    "nnz_body": 402,
+    "max_disp_units": 0.2508
+   },
+   {
+    "name": "breast/female-young-averagemuscle-averageweight-mincup-minfirmness",
+    "nnz": 540,
+    "nnz_body": 402,
+    "max_disp_units": 0.2508
+   },
+   {
+    "name": "breast/female-young-averagemuscle-maxweight-averagecup-maxfirmness",
+    "nnz": 280,
+    "nnz_body": 280,
+    "max_disp_units": 0.0818
+   },
+   {
+    "name": "breast/female-young-averagemuscle-maxweight-averagecup-minfirmness",
+    "nnz": 340,
+    "nnz_body": 256,
+    "max_disp_units": 0.1652
+   },
+   {
+    "name": "breast/female-young-averagemuscle-maxweight-maxcup-averagefirmness",
+    "nnz": 700,
+    "nnz_body": 404,
+    "max_disp_units": 0.9243
+   },
+   {
+    "name": "breast/female-young-averagemuscle-maxweight-maxcup-maxfirmness",
+    "nnz": 702,
+    "nnz_body": 406,
+    "max_disp_units": 0.7836
+   },
+   {
+    "name": "breast/female-young-averagemuscle-maxweight-maxcup-minfirmness",
+    "nnz": 818,
+    "nnz_body": 467,
+    "max_disp_units": 1.3577
+   },
+   {
+    "name": "breast/female-young-averagemuscle-maxweight-mincup-averagefirmness",
+    "nnz": 532,
+    "nnz_body": 402,
+    "max_disp_units": 0.2508
+   },
+   {
+    "name": "breast/female-young-averagemuscle-maxweight-mincup-maxfirmness",
+    "nnz": 532,
+    "nnz_body": 402,
+    "max_disp_units": 0.2508
+   },
+   {
+    "name": "breast/female-young-averagemuscle-maxweight-mincup-minfirmness",
+    "nnz": 532,
+    "nnz_body": 402,
+    "max_disp_units": 0.2508
+   },
+   {
+    "name": "breast/female-young-averagemuscle-minweight-averagecup-maxfirmness",
+    "nnz": 214,
+    "nnz_body": 214,
+    "max_disp_units": 0.0757
+   },
+   {
+    "name": "breast/female-young-averagemuscle-minweight-averagecup-minfirmness",
+    "nnz": 400,
+    "nnz_body": 242,
+    "max_disp_units": 0.2017
+   },
+   {
+    "name": "breast/female-young-averagemuscle-minweight-maxcup-averagefirmness",
+    "nnz": 702,
+    "nnz_body": 406,
+    "max_disp_units": 0.8964
+   },
+   {
+    "name": "breast/female-young-averagemuscle-minweight-maxcup-maxfirmness",
+    "nnz": 702,
+    "nnz_body": 406,
+    "max_disp_units": 0.7836
+   },
+   {
+    "name": "breast/female-young-averagemuscle-minweight-maxcup-minfirmness",
+    "nnz": 816,
+    "nnz_body": 455,
+    "max_disp_units": 1.3577
+   },
+   {
+    "name": "breast/female-young-averagemuscle-minweight-mincup-averagefirmness",
+    "nnz": 587,
+    "nnz_body": 408,
+    "max_disp_units": 0.2304
+   },
+   {
+    "name": "breast/female-young-averagemuscle-minweight-mincup-maxfirmness",
+    "nnz": 577,
+    "nnz_body": 408,
+    "max_disp_units": 0.2306
+   },
+   {
+    "name": "breast/female-young-averagemuscle-minweight-mincup-minfirmness",
+    "nnz": 587,
+    "nnz_body": 408,
+    "max_disp_units": 0.2309
+   },
+   {
+    "name": "breast/female-young-maxmuscle-averageweight-averagecup-maxfirmness",
+    "nnz": 282,
+    "nnz_body": 282,
+    "max_disp_units": 0.087
+   },
+   {
+    "name": "breast/female-young-maxmuscle-averageweight-averagecup-minfirmness",
+    "nnz": 334,
+    "nnz_body": 250,
+    "max_disp_units": 0.1652
+   },
+   {
+    "name": "breast/female-young-maxmuscle-averageweight-maxcup-averagefirmness",
+    "nnz": 702,
+    "nnz_body": 406,
+    "max_disp_units": 0.8848
+   },
+   {
+    "name": "breast/female-young-maxmuscle-averageweight-maxcup-maxfirmness",
+    "nnz": 702,
+    "nnz_body": 406,
+    "max_disp_units": 0.7909
+   },
+   {
+    "name": "breast/female-young-maxmuscle-averageweight-maxcup-minfirmness",
+    "nnz": 816,
+    "nnz_body": 455,
+    "max_disp_units": 1.3577
+   },
+   {
+    "name": "breast/female-young-maxmuscle-averageweight-mincup-averagefirmness",
+    "nnz": 574,
+    "nnz_body": 442,
+    "max_disp_units": 0.2508
+   },
+   {
+    "name": "breast/female-young-maxmuscle-averageweight-mincup-maxfirmness",
+    "nnz": 574,
+    "nnz_body": 442,
+    "max_disp_units": 0.2508
+   },
+   {
+    "name": "breast/female-young-maxmuscle-averageweight-mincup-minfirmness",
+    "nnz": 566,
+    "nnz_body": 434,
+    "max_disp_units": 0.2508
+   },
+   {
+    "name": "breast/female-young-maxmuscle-maxweight-averagecup-maxfirmness",
+    "nnz": 282,
+    "nnz_body": 282,
+    "max_disp_units": 0.087
+   },
+   {
+    "name": "breast/female-young-maxmuscle-maxweight-averagecup-minfirmness",
+    "nnz": 330,
+    "nnz_body": 250,
+    "max_disp_units": 0.1652
+   },
+   {
+    "name": "breast/female-young-maxmuscle-maxweight-maxcup-averagefirmness",
+    "nnz": 702,
+    "nnz_body": 406,
+    "max_disp_units": 0.8848
+   },
+   {
+    "name": "breast/female-young-maxmuscle-maxweight-maxcup-maxfirmness",
+    "nnz": 662,
+    "nnz_body": 404,
+    "max_disp_units": 0.8731
+   },
+   {
+    "name": "breast/female-young-maxmuscle-maxweight-maxcup-minfirmness",
+    "nnz": 864,
+    "nnz_body": 463,
+    "max_disp_units": 1.3577
+   },
+   {
+    "name": "breast/female-young-maxmuscle-maxweight-mincup-averagefirmness",
+    "nnz": 604,
+    "nnz_body": 428,
+    "max_disp_units": 0.2278
+   },
+   {
+    "name": "breast/female-young-maxmuscle-maxweight-mincup-maxfirmness",
+    "nnz": 587,
+    "nnz_body": 428,
+    "max_disp_units": 0.2271
+   },
+   {
+    "name": "breast/female-young-maxmuscle-maxweight-mincup-minfirmness",
+    "nnz": 604,
+    "nnz_body": 428,
+    "max_disp_units": 0.2361
+   },
+   {
+    "name": "breast/female-young-maxmuscle-minweight-averagecup-maxfirmness",
+    "nnz": 214,
+    "nnz_body": 214,
+    "max_disp_units": 0.0757
+   },
+   {
+    "name": "breast/female-young-maxmuscle-minweight-averagecup-minfirmness",
+    "nnz": 380,
+    "nnz_body": 242,
+    "max_disp_units": 0.2017
+   },
+   {
+    "name": "breast/female-young-maxmuscle-minweight-maxcup-averagefirmness",
+    "nnz": 702,
+    "nnz_body": 406,
+    "max_disp_units": 0.8964
+   },
+   {
+    "name": "breast/female-young-maxmuscle-minweight-maxcup-maxfirmness",
+    "nnz": 702,
+    "nnz_body": 406,
+    "max_disp_units": 0.7836
+   },
+   {
+    "name": "breast/female-young-maxmuscle-minweight-maxcup-minfirmness",
+    "nnz": 868,
+    "nnz_body": 465,
+    "max_disp_units": 1.3577
+   },
+   {
+    "name": "breast/female-young-maxmuscle-minweight-mincup-averagefirmness",
+    "nnz": 595,
+    "nnz_body": 408,
+    "max_disp_units": 0.2352
+   },
+   {
+    "name": "breast/female-young-maxmuscle-minweight-mincup-maxfirmness",
+    "nnz": 585,
+    "nnz_body": 408,
+    "max_disp_units": 0.2292
+   },
+   {
+    "name": "breast/female-young-maxmuscle-minweight-mincup-minfirmness",
+    "nnz": 596,
+    "nnz_body": 408,
+    "max_disp_units": 0.2563
+   },
+   {
+    "name": "breast/female-young-minmuscle-averageweight-averagecup-maxfirmness",
+    "nnz": 303,
+    "nnz_body": 303,
+    "max_disp_units": 0.0818
+   },
+   {
+    "name": "breast/female-young-minmuscle-averageweight-averagecup-minfirmness",
+    "nnz": 334,
+    "nnz_body": 250,
+    "max_disp_units": 0.1652
+   },
+   {
+    "name": "breast/female-young-minmuscle-averageweight-maxcup-averagefirmness",
+    "nnz": 700,
+    "nnz_body": 404,
+    "max_disp_units": 0.9243
+   },
+   {
+    "name": "breast/female-young-minmuscle-averageweight-maxcup-maxfirmness",
+    "nnz": 702,
+    "nnz_body": 406,
+    "max_disp_units": 0.7836
+   },
+   {
+    "name": "breast/female-young-minmuscle-averageweight-maxcup-minfirmness",
+    "nnz": 864,
+    "nnz_body": 463,
+    "max_disp_units": 1.3577
+   },
+   {
+    "name": "breast/female-young-minmuscle-averageweight-mincup-averagefirmness",
+    "nnz": 538,
+    "nnz_body": 406,
+    "max_disp_units": 0.2508
+   },
+   {
+    "name": "breast/female-young-minmuscle-averageweight-mincup-maxfirmness",
+    "nnz": 538,
+    "nnz_body": 406,
+    "max_disp_units": 0.2508
+   },
+   {
+    "name": "breast/female-young-minmuscle-averageweight-mincup-minfirmness",
+    "nnz": 538,
+    "nnz_body": 406,
+    "max_disp_units": 0.2508
+   },
+   {
+    "name": "breast/female-young-minmuscle-maxweight-averagecup-maxfirmness",
+    "nnz": 492,
+    "nnz_body": 331,
+    "max_disp_units": 0.198
+   },
+   {
+    "name": "breast/female-young-minmuscle-maxweight-averagecup-minfirmness",
+    "nnz": 528,
+    "nnz_body": 280,
+    "max_disp_units": 0.3353
+   },
+   {
+    "name": "breast/female-young-minmuscle-maxweight-maxcup-averagefirmness",
+    "nnz": 835,
+    "nnz_body": 412,
+    "max_disp_units": 0.9243
+   },
+   {
+    "name": "breast/female-young-minmuscle-maxweight-maxcup-maxfirmness",
+    "nnz": 704,
+    "nnz_body": 408,
+    "max_disp_units": 0.7836
+   },
+   {
+    "name": "breast/female-young-minmuscle-maxweight-maxcup-minfirmness",
+    "nnz": 1021,
+    "nnz_body": 581,
+    "max_disp_units": 1.4157
+   },
+   {
+    "name": "breast/female-young-minmuscle-maxweight-mincup-averagefirmness",
+    "nnz": 562,
+    "nnz_body": 378,
+    "max_disp_units": 0.3136
+   },
+   {
+    "name": "breast/female-young-minmuscle-maxweight-mincup-maxfirmness",
+    "nnz": 562,
+    "nnz_body": 378,
+    "max_disp_units": 0.3136
+   },
+   {
+    "name": "breast/female-young-minmuscle-maxweight-mincup-minfirmness",
+    "nnz": 556,
+    "nnz_body": 378,
+    "max_disp_units": 0.3125
+   },
+   {
+    "name": "breast/female-young-minmuscle-minweight-averagecup-maxfirmness",
+    "nnz": 214,
+    "nnz_body": 214,
+    "max_disp_units": 0.0757
+   },
+   {
+    "name": "breast/female-young-minmuscle-minweight-averagecup-minfirmness",
+    "nnz": 400,
+    "nnz_body": 242,
+    "max_disp_units": 0.2017
+   },
+   {
+    "name": "breast/female-young-minmuscle-minweight-maxcup-averagefirmness",
+    "nnz": 702,
+    "nnz_body": 406,
+    "max_disp_units": 0.8715
+   },
+   {
+    "name": "breast/female-young-minmuscle-minweight-maxcup-maxfirmness",
+    "nnz": 702,
+    "nnz_body": 406,
+    "max_disp_units": 0.7836
+   },
+   {
+    "name": "breast/female-young-minmuscle-minweight-maxcup-minfirmness",
+    "nnz": 864,
+    "nnz_body": 463,
+    "max_disp_units": 1.3577
+   },
+   {
+    "name": "breast/female-young-minmuscle-minweight-mincup-averagefirmness",
+    "nnz": 585,
+    "nnz_body": 414,
+    "max_disp_units": 0.2278
+   },
+   {
+    "name": "breast/female-young-minmuscle-minweight-mincup-maxfirmness",
+    "nnz": 593,
+    "nnz_body": 414,
+    "max_disp_units": 0.2403
+   },
+   {
+    "name": "breast/female-young-minmuscle-minweight-mincup-minfirmness",
+    "nnz": 585,
+    "nnz_body": 414,
+    "max_disp_units": 0.2263
+   },
+   {
+    "name": "breast/nipple-point-decr",
+    "nnz": 32,
+    "nnz_body": 32,
+    "max_disp_units": 0.041
+   },
+   {
+    "name": "breast/nipple-point-incr",
+    "nnz": 32,
+    "nnz_body": 32,
+    "max_disp_units": 0.0708
+   },
+   {
+    "name": "breast/nipple-size-decr",
+    "nnz": 162,
+    "nnz_body": 162,
+    "max_disp_units": 0.0782
+   },
+   {
+    "name": "breast/nipple-size-incr",
+    "nnz": 32,
+    "nnz_body": 32,
+    "max_disp_units": 0.067
+   },
+   {
+    "name": "buttocks/buttocks-volume-decr",
+    "nnz": 375,
+    "nnz_body": 203,
+    "max_disp_units": 0.2643
+   },
+   {
+    "name": "buttocks/buttocks-volume-incr",
+    "nnz": 1103,
+    "nnz_body": 526,
+    "max_disp_units": 0.2963
+   },
+   {
+    "name": "hip/hip-scale-depth-decr",
+    "nnz": 2548,
+    "nnz_body": 1198,
+    "max_disp_units": 0.361
+   },
+   {
+    "name": "hip/hip-scale-depth-incr",
+    "nnz": 2534,
+    "nnz_body": 1190,
+    "max_disp_units": 0.396
+   },
+   {
+    "name": "hip/hip-scale-horiz-decr",
+    "nnz": 2140,
+    "nnz_body": 1110,
+    "max_disp_units": 0.396
+   },
+   {
+    "name": "hip/hip-scale-horiz-incr",
+    "nnz": 2140,
+    "nnz_body": 1110,
+    "max_disp_units": 0.396
+   },
+   {
+    "name": "hip/hip-scale-vert-decr",
+    "nnz": 2287,
+    "nnz_body": 1092,
+    "max_disp_units": 0.358
+   },
+   {
+    "name": "hip/hip-scale-vert-incr",
+    "nnz": 2266,
+    "nnz_body": 1082,
+    "max_disp_units": 0.358
+   },
+   {
+    "name": "hip/hip-trans-backward",
+    "nnz": 2588,
+    "nnz_body": 1202,
+    "max_disp_units": 0.4
+   },
+   {
+    "name": "hip/hip-trans-down",
+    "nnz": 2427,
+    "nnz_body": 1126,
+    "max_disp_units": 0.4
+   },
+   {
+    "name": "hip/hip-trans-forward",
+    "nnz": 2598,
+    "nnz_body": 1202,
+    "max_disp_units": 0.5223
+   },
+   {
+    "name": "hip/hip-trans-in",
+    "nnz": 2445,
+    "nnz_body": 1138,
+    "max_disp_units": 0.3
+   },
+   {
+    "name": "hip/hip-trans-out",
+    "nnz": 2445,
+    "nnz_body": 1138,
+    "max_disp_units": 0.3
+   },
+   {
+    "name": "hip/hip-trans-up",
+    "nnz": 2427,
+    "nnz_body": 1126,
+    "max_disp_units": 0.4
+   },
+   {
+    "name": "hip/hip-waist-down",
+    "nnz": 1958,
+    "nnz_body": 970,
+    "max_disp_units": 0.6101
+   },
+   {
+    "name": "hip/hip-waist-up",
+    "nnz": 881,
+    "nnz_body": 529,
+    "max_disp_units": 0.345
+   },
+   {
+    "name": "macrodetails/african-female-child",
+    "nnz": 19150,
+    "nnz_body": 13380,
+    "max_disp_units": 3.8336
+   },
+   {
+    "name": "macrodetails/african-female-old",
+    "nnz": 19158,
+    "nnz_body": 13380,
+    "max_disp_units": 0.9628
+   },
+   {
+    "name": "macrodetails/african-female-young",
+    "nnz": 19158,
+    "nnz_body": 13380,
+    "max_disp_units": 0.9265
+   },
+   {
+    "name": "macrodetails/african-male-child",
+    "nnz": 19158,
+    "nnz_body": 13380,
+    "max_disp_units": 2.839
+   },
+   {
+    "name": "macrodetails/african-male-old",
+    "nnz": 19158,
+    "nnz_body": 13380,
+    "max_disp_units": 1.7881
+   },
+   {
+    "name": "macrodetails/african-male-young",
+    "nnz": 19150,
+    "nnz_body": 13380,
+    "max_disp_units": 1.9002
+   },
+   {
+    "name": "macrodetails/asian-female-child",
+    "nnz": 19158,
+    "nnz_body": 13380,
+    "max_disp_units": 4.5752
+   },
+   {
+    "name": "macrodetails/asian-female-old",
+    "nnz": 19150,
+    "nnz_body": 13380,
+    "max_disp_units": 1.8653
+   },
+   {
+    "name": "macrodetails/asian-female-young",
+    "nnz": 19150,
+    "nnz_body": 13380,
+    "max_disp_units": 1.7457
+   },
+   {
+    "name": "macrodetails/asian-male-child",
+    "nnz": 19150,
+    "nnz_body": 13380,
+    "max_disp_units": 3.5208
+   },
+   {
+    "name": "macrodetails/asian-male-old",
+    "nnz": 19150,
+    "nnz_body": 13380,
+    "max_disp_units": 1.0726
+   },
+   {
+    "name": "macrodetails/asian-male-young",
+    "nnz": 19150,
+    "nnz_body": 13380,
+    "max_disp_units": 1.1407
+   },
+   {
+    "name": "macrodetails/caucasian-female-child",
+    "nnz": 19150,
+    "nnz_body": 13380,
+    "max_disp_units": 4.2239
+   },
+   {
+    "name": "macrodetails/caucasian-female-old",
+    "nnz": 19156,
+    "nnz_body": 13380,
+    "max_disp_units": 1.2014
+   },
+   {
+    "name": "macrodetails/caucasian-female-young",
+    "nnz": 19150,
+    "nnz_body": 13380,
+    "max_disp_units": 0.9555
+   },
+   {
+    "name": "macrodetails/caucasian-male-child",
+    "nnz": 19150,
+    "nnz_body": 13380,
+    "max_disp_units": 3.2031
+   },
+   {
+    "name": "macrodetails/caucasian-male-old",
+    "nnz": 19158,
+    "nnz_body": 13380,
+    "max_disp_units": 1.1943
+   },
+   {
+    "name": "macrodetails/caucasian-male-young",
+    "nnz": 19150,
+    "nnz_body": 13380,
+    "max_disp_units": 1.3281
+   },
+   {
+    "name": "macrodetails/height/female-child-averagemuscle-averageweight-maxheight",
+    "nnz": 19150,
+    "nnz_body": 13380,
+    "max_disp_units": 2.8847
+   },
+   {
+    "name": "macrodetails/height/female-child-averagemuscle-averageweight-minheight",
+    "nnz": 19150,
+    "nnz_body": 13380,
+    "max_disp_units": 3.6769
+   },
+   {
+    "name": "macrodetails/height/female-child-averagemuscle-maxweight-maxheight",
+    "nnz": 19150,
+    "nnz_body": 13380,
+    "max_disp_units": 2.8847
+   },
+   {
+    "name": "macrodetails/height/female-child-averagemuscle-maxweight-minheight",
+    "nnz": 19150,
+    "nnz_body": 13380,
+    "max_disp_units": 3.6769
+   },
+   {
+    "name": "macrodetails/height/female-child-averagemuscle-minweight-maxheight",
+    "nnz": 19150,
+    "nnz_body": 13380,
+    "max_disp_units": 2.8847
+   },
+   {
+    "name": "macrodetails/height/female-child-averagemuscle-minweight-minheight",
+    "nnz": 19150,
+    "nnz_body": 13380,
+    "max_disp_units": 3.6769
+   },
+   {
+    "name": "macrodetails/height/female-child-maxmuscle-averageweight-maxheight",
+    "nnz": 19150,
+    "nnz_body": 13380,
+    "max_disp_units": 2.8847
+   },
+   {
+    "name": "macrodetails/height/female-child-maxmuscle-averageweight-minheight",
+    "nnz": 19150,
+    "nnz_body": 13380,
+    "max_disp_units": 3.6769
+   },
+   {
+    "name": "macrodetails/height/female-child-maxmuscle-maxweight-maxheight",
+    "nnz": 19150,
+    "nnz_body": 13380,
+    "max_disp_units": 2.8847
+   },
+   {
+    "name": "macrodetails/height/female-child-maxmuscle-maxweight-minheight",
+    "nnz": 19150,
+    "nnz_body": 13380,
+    "max_disp_units": 3.6769
+   },
+   {
+    "name": "macrodetails/height/female-child-maxmuscle-minweight-maxheight",
+    "nnz": 19150,
+    "nnz_body": 13380,
+    "max_disp_units": 2.8847
+   },
+   {
+    "name": "macrodetails/height/female-child-maxmuscle-minweight-minheight",
+    "nnz": 19150,
+    "nnz_body": 13380,
+    "max_disp_units": 3.6769
+   },
+   {
+    "name": "macrodetails/height/female-child-minmuscle-averageweight-maxheight",
+    "nnz": 19150,
+    "nnz_body": 13380,
+    "max_disp_units": 2.8847
+   },
+   {
+    "name": "macrodetails/height/female-child-minmuscle-averageweight-minheight",
+    "nnz": 19150,
+    "nnz_body": 13380,
+    "max_disp_units": 3.6769
+   },
+   {
+    "name": "macrodetails/height/female-child-minmuscle-maxweight-maxheight",
+    "nnz": 19150,
+    "nnz_body": 13380,
+    "max_disp_units": 2.8847
+   },
+   {
+    "name": "macrodetails/height/female-child-minmuscle-maxweight-minheight",
+    "nnz": 19150,
+    "nnz_body": 13380,
+    "max_disp_units": 3.6769
+   },
+   {
+    "name": "macrodetails/height/female-child-minmuscle-minweight-maxheight",
+    "nnz": 19150,
+    "nnz_body": 13380,
+    "max_disp_units": 2.8847
+   },
+   {
+    "name": "macrodetails/height/female-child-minmuscle-minweight-minheight",
+    "nnz": 19150,
+    "nnz_body": 13380,
+    "max_disp_units": 3.6769
+   },
+   {
+    "name": "macrodetails/height/female-old-averagemuscle-averageweight-maxheight",
+    "nnz": 19150,
+    "nnz_body": 13380,
+    "max_disp_units": 7.2117
+   },
+   {
+    "name": "macrodetails/height/female-old-averagemuscle-averageweight-minheight",
+    "nnz": 19150,
+    "nnz_body": 13380,
+    "max_disp_units": 3.6769
+   },
+   {
+    "name": "macrodetails/height/female-old-averagemuscle-maxweight-maxheight",
+    "nnz": 19150,
+    "nnz_body": 13380,
+    "max_disp_units": 7.2164
+   },
+   {
+    "name": "macrodetails/height/female-old-averagemuscle-maxweight-minheight",
+    "nnz": 19150,
+    "nnz_body": 13380,
+    "max_disp_units": 3.6769
+   },
+   {
+    "name": "macrodetails/height/female-old-averagemuscle-minweight-maxheight",
+    "nnz": 19150,
+    "nnz_body": 13380,
+    "max_disp_units": 7.2164
+   },
+   {
+    "name": "macrodetails/height/female-old-averagemuscle-minweight-minheight",
+    "nnz": 19150,
+    "nnz_body": 13380,
+    "max_disp_units": 3.6769
+   },
+   {
+    "name": "macrodetails/height/female-old-maxmuscle-averageweight-maxheight",
+    "nnz": 19150,
+    "nnz_body": 13380,
+    "max_disp_units": 7.2164
+   },
+   {
+    "name": "macrodetails/height/female-old-maxmuscle-averageweight-minheight",
+    "nnz": 19150,
+    "nnz_body": 13380,
+    "max_disp_units": 3.6769
+   },
+   {
+    "name": "macrodetails/height/female-old-maxmuscle-maxweight-maxheight",
+    "nnz": 19150,
+    "nnz_body": 13380,
+    "max_disp_units": 7.2164
+   },
+   {
+    "name": "macrodetails/height/female-old-maxmuscle-maxweight-minheight",
+    "nnz": 1717,
+    "nnz_body": 1701,
+    "max_disp_units": 0.1663
+   },
+   {
+    "name": "macrodetails/height/female-old-maxmuscle-minweight-maxheight",
+    "nnz": 19150,
+    "nnz_body": 13380,
+    "max_disp_units": 7.2164
+   },
+   {
+    "name": "macrodetails/height/female-old-maxmuscle-minweight-minheight",
+    "nnz": 19150,
+    "nnz_body": 13380,
+    "max_disp_units": 3.6769
+   },
+   {
+    "name": "macrodetails/height/female-old-minmuscle-averageweight-maxheight",
+    "nnz": 19150,
+    "nnz_body": 13380,
+    "max_disp_units": 7.2164
+   },
+   {
+    "name": "macrodetails/height/female-old-minmuscle-averageweight-minheight",
+    "nnz": 19150,
+    "nnz_body": 13380,
+    "max_disp_units": 3.6769
+   },
+   {
+    "name": "macrodetails/height/female-old-minmuscle-maxweight-maxheight",
+    "nnz": 19150,
+    "nnz_body": 13380,
+    "max_disp_units": 7.2164
+   },
+   {
+    "name": "macrodetails/height/female-old-minmuscle-maxweight-minheight",
+    "nnz": 19150,
+    "nnz_body": 13380,
+    "max_disp_units": 3.6769
+   },
+   {
+    "name": "macrodetails/height/female-old-minmuscle-minweight-maxheight",
+    "nnz": 19150,
+    "nnz_body": 13380,
+    "max_disp_units": 7.2164
+   },
+   {
+    "name": "macrodetails/height/female-old-minmuscle-minweight-minheight",
+    "nnz": 19150,
+    "nnz_body": 13380,
+    "max_disp_units": 3.6769
+   },
+   {
+    "name": "macrodetails/height/female-young-averagemuscle-averageweight-maxheight",
+    "nnz": 19150,
+    "nnz_body": 13380,
+    "max_disp_units": 7.2164
+   },
+   {
+    "name": "macrodetails/height/female-young-averagemuscle-averageweight-minheight",
+    "nnz": 19150,
+    "nnz_body": 13380,
+    "max_disp_units": 3.6769
+   },
+   {
+    "name": "macrodetails/height/female-young-averagemuscle-maxweight-maxheight",
+    "nnz": 19150,
+    "nnz_body": 13380,
+    "max_disp_units": 7.2164
+   },
+   {
+    "name": "macrodetails/height/female-young-averagemuscle-maxweight-minheight",
+    "nnz": 19150,
+    "nnz_body": 13380,
+    "max_disp_units": 3.6769
+   },
+   {
+    "name": "macrodetails/height/female-young-averagemuscle-minweight-maxheight",
+    "nnz": 19150,
+    "nnz_body": 13380,
+    "max_disp_units": 7.2164
+   },
+   {
+    "name": "macrodetails/height/female-young-averagemuscle-minweight-minheight",
+    "nnz": 19150,
+    "nnz_body": 13380,
+    "max_disp_units": 3.6769
+   },
+   {
+    "name": "macrodetails/height/female-young-maxmuscle-averageweight-maxheight",
+    "nnz": 19150,
+    "nnz_body": 13380,
+    "max_disp_units": 7.2164
+   },
+   {
+    "name": "macrodetails/height/female-young-maxmuscle-averageweight-minheight",
+    "nnz": 19150,
+    "nnz_body": 13380,
+    "max_disp_units": 3.6769
+   },
+   {
+    "name": "macrodetails/height/female-young-maxmuscle-maxweight-maxheight",
+    "nnz": 19150,
+    "nnz_body": 13380,
+    "max_disp_units": 7.2164
+   },
+   {
+    "name": "macrodetails/height/female-young-maxmuscle-maxweight-minheight",
+    "nnz": 19150,
+    "nnz_body": 13380,
+    "max_disp_units": 3.6769
+   },
+   {
+    "name": "macrodetails/height/female-young-maxmuscle-minweight-maxheight",
+    "nnz": 19150,
+    "nnz_body": 13380,
+    "max_disp_units": 7.2164
+   },
+   {
+    "name": "macrodetails/height/female-young-maxmuscle-minweight-minheight",
+    "nnz": 19150,
+    "nnz_body": 13380,
+    "max_disp_units": 3.6769
+   },
+   {
+    "name": "macrodetails/height/female-young-minmuscle-averageweight-maxheight",
+    "nnz": 19150,
+    "nnz_body": 13380,
+    "max_disp_units": 7.2164
+   },
+   {
+    "name": "macrodetails/height/female-young-minmuscle-averageweight-minheight",
+    "nnz": 19150,
+    "nnz_body": 13380,
+    "max_disp_units": 3.6769
+   },
+   {
+    "name": "macrodetails/height/female-young-minmuscle-maxweight-maxheight",
+    "nnz": 19150,
+    "nnz_body": 13380,
+    "max_disp_units": 7.2164
+   },
+   {
+    "name": "macrodetails/height/female-young-minmuscle-maxweight-minheight",
+    "nnz": 19150,
+    "nnz_body": 13380,
+    "max_disp_units": 3.6769
+   },
+   {
+    "name": "macrodetails/height/female-young-minmuscle-minweight-maxheight",
+    "nnz": 19150,
+    "nnz_body": 13380,
+    "max_disp_units": 7.2164
+   },
+   {
+    "name": "macrodetails/height/female-young-minmuscle-minweight-minheight",
+    "nnz": 19150,
+    "nnz_body": 13380,
+    "max_disp_units": 3.6769
+   },
+   {
+    "name": "macrodetails/height/male-child-averagemuscle-averageweight-maxheight",
+    "nnz": 19150,
+    "nnz_body": 13380,
+    "max_disp_units": 2.8847
+   },
+   {
+    "name": "macrodetails/height/male-child-averagemuscle-averageweight-minheight",
+    "nnz": 19150,
+    "nnz_body": 13380,
+    "max_disp_units": 3.6769
+   },
+   {
+    "name": "macrodetails/height/male-child-averagemuscle-maxweight-maxheight",
+    "nnz": 19150,
+    "nnz_body": 13380,
+    "max_disp_units": 2.8847
+   },
+   {
+    "name": "macrodetails/height/male-child-averagemuscle-maxweight-minheight",
+    "nnz": 19150,
+    "nnz_body": 13380,
+    "max_disp_units": 3.6769
+   },
+   {
+    "name": "macrodetails/height/male-child-averagemuscle-minweight-maxheight",
+    "nnz": 19150,
+    "nnz_body": 13380,
+    "max_disp_units": 2.8847
+   },
+   {
+    "name": "macrodetails/height/male-child-averagemuscle-minweight-minheight",
+    "nnz": 19150,
+    "nnz_body": 13380,
+    "max_disp_units": 3.6769
+   },
+   {
+    "name": "macrodetails/height/male-child-maxmuscle-averageweight-maxheight",
+    "nnz": 19150,
+    "nnz_body": 13380,
+    "max_disp_units": 2.8847
+   },
+   {
+    "name": "macrodetails/height/male-child-maxmuscle-averageweight-minheight",
+    "nnz": 19150,
+    "nnz_body": 13380,
+    "max_disp_units": 3.6769
+   },
+   {
+    "name": "macrodetails/height/male-child-maxmuscle-maxweight-maxheight",
+    "nnz": 19150,
+    "nnz_body": 13380,
+    "max_disp_units": 2.8847
+   },
+   {
+    "name": "macrodetails/height/male-child-maxmuscle-maxweight-minheight",
+    "nnz": 19150,
+    "nnz_body": 13380,
+    "max_disp_units": 3.6769
+   },
+   {
+    "name": "macrodetails/height/male-child-maxmuscle-minweight-maxheight",
+    "nnz": 19150,
+    "nnz_body": 13380,
+    "max_disp_units": 2.8847
+   },
+   {
+    "name": "macrodetails/height/male-child-maxmuscle-minweight-minheight",
+    "nnz": 19150,
+    "nnz_body": 13380,
+    "max_disp_units": 3.6769
+   },
+   {
+    "name": "macrodetails/height/male-child-minmuscle-averageweight-maxheight",
+    "nnz": 19150,
+    "nnz_body": 13380,
+    "max_disp_units": 2.8847
+   },
+   {
+    "name": "macrodetails/height/male-child-minmuscle-averageweight-minheight",
+    "nnz": 19150,
+    "nnz_body": 13380,
+    "max_disp_units": 3.6769
+   },
+   {
+    "name": "macrodetails/height/male-child-minmuscle-maxweight-maxheight",
+    "nnz": 19150,
+    "nnz_body": 13380,
+    "max_disp_units": 2.8847
+   },
+   {
+    "name": "macrodetails/height/male-child-minmuscle-maxweight-minheight",
+    "nnz": 19150,
+    "nnz_body": 13380,
+    "max_disp_units": 3.6769
+   },
+   {
+    "name": "macrodetails/height/male-child-minmuscle-minweight-maxheight",
+    "nnz": 19150,
+    "nnz_body": 13380,
+    "max_disp_units": 2.8847
+   },
+   {
+    "name": "macrodetails/height/male-child-minmuscle-minweight-minheight",
+    "nnz": 19150,
+    "nnz_body": 13380,
+    "max_disp_units": 3.6769
+   },
+   {
+    "name": "macrodetails/height/male-old-averagemuscle-averageweight-maxheight",
+    "nnz": 19150,
+    "nnz_body": 13380,
+    "max_disp_units": 7.2164
+   },
+   {
+    "name": "macrodetails/height/male-old-averagemuscle-averageweight-minheight",
+    "nnz": 19150,
+    "nnz_body": 13380,
+    "max_disp_units": 3.6769
+   },
+   {
+    "name": "macrodetails/height/male-old-averagemuscle-maxweight-maxheight",
+    "nnz": 19150,
+    "nnz_body": 13380,
+    "max_disp_units": 7.2164
+   },
+   {
+    "name": "macrodetails/height/male-old-averagemuscle-maxweight-minheight",
+    "nnz": 19150,
+    "nnz_body": 13380,
+    "max_disp_units": 3.6769
+   },
+   {
+    "name": "macrodetails/height/male-old-averagemuscle-minweight-maxheight",
+    "nnz": 19150,
+    "nnz_body": 13380,
+    "max_disp_units": 7.2164
+   },
+   {
+    "name": "macrodetails/height/male-old-averagemuscle-minweight-minheight",
+    "nnz": 19150,
+    "nnz_body": 13380,
+    "max_disp_units": 3.6769
+   },
+   {
+    "name": "macrodetails/height/male-old-maxmuscle-averageweight-maxheight",
+    "nnz": 19150,
+    "nnz_body": 13380,
+    "max_disp_units": 7.2164
+   },
+   {
+    "name": "macrodetails/height/male-old-maxmuscle-averageweight-minheight",
+    "nnz": 19150,
+    "nnz_body": 13380,
+    "max_disp_units": 3.6769
+   },
+   {
+    "name": "macrodetails/height/male-old-maxmuscle-maxweight-maxheight",
+    "nnz": 19150,
+    "nnz_body": 13380,
+    "max_disp_units": 7.2164
+   },
+   {
+    "name": "macrodetails/height/male-old-maxmuscle-maxweight-minheight",
+    "nnz": 453,
+    "nnz_body": 453,
+    "max_disp_units": 0.0731
+   },
+   {
+    "name": "macrodetails/height/male-old-maxmuscle-minweight-maxheight",
+    "nnz": 19150,
+    "nnz_body": 13380,
+    "max_disp_units": 7.2164
+   },
+   {
+    "name": "macrodetails/height/male-old-maxmuscle-minweight-minheight",
+    "nnz": 19150,
+    "nnz_body": 13380,
+    "max_disp_units": 3.6769
+   },
+   {
+    "name": "macrodetails/height/male-old-minmuscle-averageweight-maxheight",
+    "nnz": 19150,
+    "nnz_body": 13380,
+    "max_disp_units": 7.2164
+   },
+   {
+    "name": "macrodetails/height/male-old-minmuscle-averageweight-minheight",
+    "nnz": 19150,
+    "nnz_body": 13380,
+    "max_disp_units": 3.6769
+   },
+   {
+    "name": "macrodetails/height/male-old-minmuscle-maxweight-maxheight",
+    "nnz": 19150,
+    "nnz_body": 13380,
+    "max_disp_units": 7.2164
+   },
+   {
+    "name": "macrodetails/height/male-old-minmuscle-maxweight-minheight",
+    "nnz": 19150,
+    "nnz_body": 13380,
+    "max_disp_units": 3.6769
+   },
+   {
+    "name": "macrodetails/height/male-old-minmuscle-minweight-maxheight",
+    "nnz": 19150,
+    "nnz_body": 13380,
+    "max_disp_units": 7.2164
+   },
+   {
+    "name": "macrodetails/height/male-old-minmuscle-minweight-minheight",
+    "nnz": 19150,
+    "nnz_body": 13380,
+    "max_disp_units": 3.6769
+   },
+   {
+    "name": "macrodetails/height/male-young-averagemuscle-averageweight-maxheight",
+    "nnz": 19150,
+    "nnz_body": 13380,
+    "max_disp_units": 7.2164
+   },
+   {
+    "name": "macrodetails/height/male-young-averagemuscle-averageweight-minheight",
+    "nnz": 19150,
+    "nnz_body": 13380,
+    "max_disp_units": 3.6769
+   },
+   {
+    "name": "macrodetails/height/male-young-averagemuscle-maxweight-maxheight",
+    "nnz": 19150,
+    "nnz_body": 13380,
+    "max_disp_units": 7.2164
+   },
+   {
+    "name": "macrodetails/height/male-young-averagemuscle-maxweight-minheight",
+    "nnz": 19150,
+    "nnz_body": 13380,
+    "max_disp_units": 3.6769
+   },
+   {
+    "name": "macrodetails/height/male-young-averagemuscle-minweight-maxheight",
+    "nnz": 19150,
+    "nnz_body": 13380,
+    "max_disp_units": 7.2164
+   },
+   {
+    "name": "macrodetails/height/male-young-averagemuscle-minweight-minheight",
+    "nnz": 19150,
+    "nnz_body": 13380,
+    "max_disp_units": 3.6769
+   },
+   {
+    "name": "macrodetails/height/male-young-maxmuscle-averageweight-maxheight",
+    "nnz": 19150,
+    "nnz_body": 13380,
+    "max_disp_units": 7.2164
+   },
+   {
+    "name": "macrodetails/height/male-young-maxmuscle-averageweight-minheight",
+    "nnz": 19150,
+    "nnz_body": 13380,
+    "max_disp_units": 3.6769
+   },
+   {
+    "name": "macrodetails/height/male-young-maxmuscle-maxweight-maxheight",
+    "nnz": 19150,
+    "nnz_body": 13380,
+    "max_disp_units": 7.2164
+   },
+   {
+    "name": "macrodetails/height/male-young-maxmuscle-maxweight-minheight",
+    "nnz": 19150,
+    "nnz_body": 13380,
+    "max_disp_units": 3.6769
+   },
+   {
+    "name": "macrodetails/height/male-young-maxmuscle-minweight-maxheight",
+    "nnz": 19150,
+    "nnz_body": 13380,
+    "max_disp_units": 7.2164
+   },
+   {
+    "name": "macrodetails/height/male-young-maxmuscle-minweight-minheight",
+    "nnz": 19150,
+    "nnz_body": 13380,
+    "max_disp_units": 3.6769
+   },
+   {
+    "name": "macrodetails/height/male-young-minmuscle-averageweight-maxheight",
+    "nnz": 19150,
+    "nnz_body": 13380,
+    "max_disp_units": 7.2164
+   },
+   {
+    "name": "macrodetails/height/male-young-minmuscle-averageweight-minheight",
+    "nnz": 19150,
+    "nnz_body": 13380,
+    "max_disp_units": 3.6769
+   },
+   {
+    "name": "macrodetails/height/male-young-minmuscle-maxweight-maxheight",
+    "nnz": 19150,
+    "nnz_body": 13380,
+    "max_disp_units": 7.2164
+   },
+   {
+    "name": "macrodetails/height/male-young-minmuscle-maxweight-minheight",
+    "nnz": 19150,
+    "nnz_body": 13380,
+    "max_disp_units": 3.6769
+   },
+   {
+    "name": "macrodetails/height/male-young-minmuscle-minweight-maxheight",
+    "nnz": 19150,
+    "nnz_body": 13380,
+    "max_disp_units": 7.2164
+   },
+   {
+    "name": "macrodetails/height/male-young-minmuscle-minweight-minheight",
+    "nnz": 19150,
+    "nnz_body": 13380,
+    "max_disp_units": 3.6769
+   },
+   {
+    "name": "macrodetails/proportions/female-child-averagemuscle-averageweight-idealproportions",
+    "nnz": 19058,
+    "nnz_body": 13366,
+    "max_disp_units": 0.496
+   },
+   {
+    "name": "macrodetails/proportions/female-child-averagemuscle-averageweight-uncommonproportions",
+    "nnz": 17854,
+    "nnz_body": 12718,
+    "max_disp_units": 0.2076
+   },
+   {
+    "name": "macrodetails/proportions/female-child-averagemuscle-maxweight-idealproportions",
+    "nnz": 19058,
+    "nnz_body": 13366,
+    "max_disp_units": 0.496
+   },
+   {
+    "name": "macrodetails/proportions/female-child-averagemuscle-maxweight-uncommonproportions",
+    "nnz": 17854,
+    "nnz_body": 12718,
+    "max_disp_units": 0.2076
+   },
+   {
+    "name": "macrodetails/proportions/female-child-averagemuscle-minweight-idealproportions",
+    "nnz": 19058,
+    "nnz_body": 13366,
+    "max_disp_units": 0.496
+   },
+   {
+    "name": "macrodetails/proportions/female-child-averagemuscle-minweight-uncommonproportions",
+    "nnz": 17854,
+    "nnz_body": 12718,
+    "max_disp_units": 0.2076
+   },
+   {
+    "name": "macrodetails/proportions/female-child-maxmuscle-averageweight-idealproportions",
+    "nnz": 19058,
+    "nnz_body": 13366,
+    "max_disp_units": 0.496
+   },
+   {
+    "name": "macrodetails/proportions/female-child-maxmuscle-averageweight-uncommonproportions",
+    "nnz": 17854,
+    "nnz_body": 12718,
+    "max_disp_units": 0.2076
+   },
+   {
+    "name": "macrodetails/proportions/female-child-maxmuscle-maxweight-idealproportions",
+    "nnz": 19058,
+    "nnz_body": 13366,
+    "max_disp_units": 0.496
+   },
+   {
+    "name": "macrodetails/proportions/female-child-maxmuscle-maxweight-uncommonproportions",
+    "nnz": 17854,
+    "nnz_body": 12718,
+    "max_disp_units": 0.2076
+   },
+   {
+    "name": "macrodetails/proportions/female-child-maxmuscle-minweight-idealproportions",
+    "nnz": 19058,
+    "nnz_body": 13366,
+    "max_disp_units": 0.496
+   },
+   {
+    "name": "macrodetails/proportions/female-child-maxmuscle-minweight-uncommonproportions",
+    "nnz": 17854,
+    "nnz_body": 12718,
+    "max_disp_units": 0.2076
+   },
+   {
+    "name": "macrodetails/proportions/female-child-minmuscle-averageweight-idealproportions",
+    "nnz": 19058,
+    "nnz_body": 13366,
+    "max_disp_units": 0.496
+   },
+   {
+    "name": "macrodetails/proportions/female-child-minmuscle-averageweight-uncommonproportions",
+    "nnz": 17854,
+    "nnz_body": 12718,
+    "max_disp_units": 0.2076
+   },
+   {
+    "name": "macrodetails/proportions/female-child-minmuscle-maxweight-idealproportions",
+    "nnz": 19058,
+    "nnz_body": 13366,
+    "max_disp_units": 0.496
+   },
+   {
+    "name": "macrodetails/proportions/female-child-minmuscle-maxweight-uncommonproportions",
+    "nnz": 17854,
+    "nnz_body": 12718,
+    "max_disp_units": 0.2076
+   },
+   {
+    "name": "macrodetails/proportions/female-child-minmuscle-minweight-idealproportions",
+    "nnz": 19058,
+    "nnz_body": 13366,
+    "max_disp_units": 0.505
+   },
+   {
+    "name": "macrodetails/proportions/female-child-minmuscle-minweight-uncommonproportions",
+    "nnz": 17854,
+    "nnz_body": 12718,
+    "max_disp_units": 0.2076
+   },
+   {
+    "name": "macrodetails/proportions/female-old-averagemuscle-averageweight-idealproportions",
+    "nnz": 19058,
+    "nnz_body": 13366,
+    "max_disp_units": 0.4979
+   },
+   {
+    "name": "macrodetails/proportions/female-old-averagemuscle-averageweight-uncommonproportions",
+    "nnz": 17854,
+    "nnz_body": 12718,
+    "max_disp_units": 0.2076
+   },
+   {
+    "name": "macrodetails/proportions/female-old-averagemuscle-maxweight-idealproportions",
+    "nnz": 19064,
+    "nnz_body": 13372,
+    "max_disp_units": 0.4979
+   },
+   {
+    "name": "macrodetails/proportions/female-old-averagemuscle-maxweight-uncommonproportions",
+    "nnz": 17854,
+    "nnz_body": 12718,
+    "max_disp_units": 0.2076
+   },
+   {
+    "name": "macrodetails/proportions/female-old-averagemuscle-minweight-idealproportions",
+    "nnz": 19060,
+    "nnz_body": 13368,
+    "max_disp_units": 0.4979
+   },
+   {
+    "name": "macrodetails/proportions/female-old-averagemuscle-minweight-uncommonproportions",
+    "nnz": 17854,
+    "nnz_body": 12718,
+    "max_disp_units": 0.2076
+   },
+   {
+    "name": "macrodetails/proportions/female-old-maxmuscle-averageweight-idealproportions",
+    "nnz": 19058,
+    "nnz_body": 13366,
+    "max_disp_units": 0.4979
+   },
+   {
+    "name": "macrodetails/proportions/female-old-maxmuscle-averageweight-uncommonproportions",
+    "nnz": 17854,
+    "nnz_body": 12718,
+    "max_disp_units": 0.2076
+   },
+   {
+    "name": "macrodetails/proportions/female-old-maxmuscle-maxweight-idealproportions",
+    "nnz": 19058,
+    "nnz_body": 13366,
+    "max_disp_units": 0.5128
+   },
+   {
+    "name": "macrodetails/proportions/female-old-maxmuscle-maxweight-uncommonproportions",
+    "nnz": 17854,
+    "nnz_body": 12718,
+    "max_disp_units": 0.2076
+   },
+   {
+    "name": "macrodetails/proportions/female-old-maxmuscle-minweight-idealproportions",
+    "nnz": 19058,
+    "nnz_body": 13366,
+    "max_disp_units": 0.4979
+   },
+   {
+    "name": "macrodetails/proportions/female-old-maxmuscle-minweight-uncommonproportions",
+    "nnz": 17854,
+    "nnz_body": 12718,
+    "max_disp_units": 0.2076
+   },
+   {
+    "name": "macrodetails/proportions/female-old-minmuscle-averageweight-idealproportions",
+    "nnz": 19058,
+    "nnz_body": 13366,
+    "max_disp_units": 0.4971
+   },
+   {
+    "name": "macrodetails/proportions/female-old-minmuscle-averageweight-uncommonproportions",
+    "nnz": 17854,
+    "nnz_body": 12718,
+    "max_disp_units": 0.2076
+   },
+   {
+    "name": "macrodetails/proportions/female-old-minmuscle-maxweight-idealproportions",
+    "nnz": 19058,
+    "nnz_body": 13366,
+    "max_disp_units": 0.4979
+   },
+   {
+    "name": "macrodetails/proportions/female-old-minmuscle-maxweight-uncommonproportions",
+    "nnz": 17854,
+    "nnz_body": 12718,
+    "max_disp_units": 0.2076
+   },
+   {
+    "name": "macrodetails/proportions/female-old-minmuscle-minweight-idealproportions",
+    "nnz": 19058,
+    "nnz_body": 13366,
+    "max_disp_units": 0.4979
+   },
+   {
+    "name": "macrodetails/proportions/female-old-minmuscle-minweight-uncommonproportions",
+    "nnz": 17854,
+    "nnz_body": 12718,
+    "max_disp_units": 0.2076
+   },
+   {
+    "name": "macrodetails/proportions/female-young-averagemuscle-averageweight-idealproportions",
+    "nnz": 19058,
+    "nnz_body": 13366,
+    "max_disp_units": 0.4979
+   },
+   {
+    "name": "macrodetails/proportions/female-young-averagemuscle-averageweight-uncommonproportions",
+    "nnz": 17854,
+    "nnz_body": 12718,
+    "max_disp_units": 0.2076
+   },
+   {
+    "name": "macrodetails/proportions/female-young-averagemuscle-maxweight-idealproportions",
+    "nnz": 19058,
+    "nnz_body": 13366,
+    "max_disp_units": 0.4979
+   },
+   {
+    "name": "macrodetails/proportions/female-young-averagemuscle-maxweight-uncommonproportions",
+    "nnz": 17854,
+    "nnz_body": 12718,
+    "max_disp_units": 0.2076
+   },
+   {
+    "name": "macrodetails/proportions/female-young-averagemuscle-minweight-idealproportions",
+    "nnz": 19058,
+    "nnz_body": 13366,
+    "max_disp_units": 0.4979
+   },
+   {
+    "name": "macrodetails/proportions/female-young-averagemuscle-minweight-uncommonproportions",
+    "nnz": 17854,
+    "nnz_body": 12718,
+    "max_disp_units": 0.2076
+   },
+   {
+    "name": "macrodetails/proportions/female-young-maxmuscle-averageweight-idealproportions",
+    "nnz": 19058,
+    "nnz_body": 13366,
+    "max_disp_units": 0.4934
+   },
+   {
+    "name": "macrodetails/proportions/female-young-maxmuscle-averageweight-uncommonproportions",
+    "nnz": 17854,
+    "nnz_body": 12718,
+    "max_disp_units": 0.2076
+   },
+   {
+    "name": "macrodetails/proportions/female-young-maxmuscle-maxweight-idealproportions",
+    "nnz": 19058,
+    "nnz_body": 13366,
+    "max_disp_units": 0.4979
+   },
+   {
+    "name": "macrodetails/proportions/female-young-maxmuscle-maxweight-uncommonproportions",
+    "nnz": 17854,
+    "nnz_body": 12718,
+    "max_disp_units": 0.2076
+   },
+   {
+    "name": "macrodetails/proportions/female-young-maxmuscle-minweight-idealproportions",
+    "nnz": 19058,
+    "nnz_body": 13366,
+    "max_disp_units": 0.5478
+   },
+   {
+    "name": "macrodetails/proportions/female-young-maxmuscle-minweight-uncommonproportions",
+    "nnz": 17854,
+    "nnz_body": 12718,
+    "max_disp_units": 0.2076
+   },
+   {
+    "name": "macrodetails/proportions/female-young-minmuscle-averageweight-idealproportions",
+    "nnz": 19058,
+    "nnz_body": 13366,
+    "max_disp_units": 0.4979
+   },
+   {
+    "name": "macrodetails/proportions/female-young-minmuscle-averageweight-uncommonproportions",
+    "nnz": 17854,
+    "nnz_body": 12718,
+    "max_disp_units": 0.2076
+   },
+   {
+    "name": "macrodetails/proportions/female-young-minmuscle-maxweight-idealproportions",
+    "nnz": 19058,
+    "nnz_body": 13366,
+    "max_disp_units": 0.4979
+   },
+   {
+    "name": "macrodetails/proportions/female-young-minmuscle-maxweight-uncommonproportions",
+    "nnz": 17854,
+    "nnz_body": 12718,
+    "max_disp_units": 0.2076
+   },
+   {
+    "name": "macrodetails/proportions/female-young-minmuscle-minweight-idealproportions",
+    "nnz": 19058,
+    "nnz_body": 13366,
+    "max_disp_units": 0.4972
+   },
+   {
+    "name": "macrodetails/proportions/female-young-minmuscle-minweight-uncommonproportions",
+    "nnz": 17854,
+    "nnz_body": 12718,
+    "max_disp_units": 0.2076
+   },
+   {
+    "name": "macrodetails/proportions/male-child-averagemuscle-averageweight-idealproportions",
+    "nnz": 9205,
+    "nnz_body": 6305,
+    "max_disp_units": 0.236
+   },
+   {
+    "name": "macrodetails/proportions/male-child-averagemuscle-averageweight-uncommonproportions",
+    "nnz": 10031,
+    "nnz_body": 6811,
+    "max_disp_units": 0.3123
+   },
+   {
+    "name": "macrodetails/proportions/male-child-averagemuscle-maxweight-idealproportions",
+    "nnz": 9205,
+    "nnz_body": 6305,
+    "max_disp_units": 0.236
+   },
+   {
+    "name": "macrodetails/proportions/male-child-averagemuscle-maxweight-uncommonproportions",
+    "nnz": 10031,
+    "nnz_body": 6811,
+    "max_disp_units": 0.3123
+   },
+   {
+    "name": "macrodetails/proportions/male-child-averagemuscle-minweight-idealproportions",
+    "nnz": 9205,
+    "nnz_body": 6305,
+    "max_disp_units": 0.236
+   },
+   {
+    "name": "macrodetails/proportions/male-child-averagemuscle-minweight-uncommonproportions",
+    "nnz": 10031,
+    "nnz_body": 6811,
+    "max_disp_units": 0.3123
+   },
+   {
+    "name": "macrodetails/proportions/male-child-maxmuscle-averageweight-idealproportions",
+    "nnz": 9205,
+    "nnz_body": 6305,
+    "max_disp_units": 0.236
+   },
+   {
+    "name": "macrodetails/proportions/male-child-maxmuscle-averageweight-uncommonproportions",
+    "nnz": 10031,
+    "nnz_body": 6811,
+    "max_disp_units": 0.3123
+   },
+   {
+    "name": "macrodetails/proportions/male-child-maxmuscle-maxweight-idealproportions",
+    "nnz": 9205,
+    "nnz_body": 6305,
+    "max_disp_units": 0.236
+   },
+   {
+    "name": "macrodetails/proportions/male-child-maxmuscle-maxweight-uncommonproportions",
+    "nnz": 10031,
+    "nnz_body": 6811,
+    "max_disp_units": 0.3123
+   },
+   {
+    "name": "macrodetails/proportions/male-child-maxmuscle-minweight-idealproportions",
+    "nnz": 9205,
+    "nnz_body": 6305,
+    "max_disp_units": 0.236
+   },
+   {
+    "name": "macrodetails/proportions/male-child-maxmuscle-minweight-uncommonproportions",
+    "nnz": 10031,
+    "nnz_body": 6811,
+    "max_disp_units": 0.3123
+   },
+   {
+    "name": "macrodetails/proportions/male-child-minmuscle-averageweight-idealproportions",
+    "nnz": 9205,
+    "nnz_body": 6305,
+    "max_disp_units": 0.236
+   },
+   {
+    "name": "macrodetails/proportions/male-child-minmuscle-averageweight-uncommonproportions",
+    "nnz": 10031,
+    "nnz_body": 6811,
+    "max_disp_units": 0.3123
+   },
+   {
+    "name": "macrodetails/proportions/male-child-minmuscle-maxweight-idealproportions",
+    "nnz": 9205,
+    "nnz_body": 6305,
+    "max_disp_units": 0.236
+   },
+   {
+    "name": "macrodetails/proportions/male-child-minmuscle-maxweight-uncommonproportions",
+    "nnz": 10031,
+    "nnz_body": 6811,
+    "max_disp_units": 0.3123
+   },
+   {
+    "name": "macrodetails/proportions/male-child-minmuscle-minweight-idealproportions",
+    "nnz": 9205,
+    "nnz_body": 6305,
+    "max_disp_units": 0.236
+   },
+   {
+    "name": "macrodetails/proportions/male-child-minmuscle-minweight-uncommonproportions",
+    "nnz": 10031,
+    "nnz_body": 6811,
+    "max_disp_units": 0.3123
+   },
+   {
+    "name": "macrodetails/proportions/male-old-averagemuscle-averageweight-idealproportions",
+    "nnz": 9229,
+    "nnz_body": 6333,
+    "max_disp_units": 0.3489
+   },
+   {
+    "name": "macrodetails/proportions/male-old-averagemuscle-averageweight-uncommonproportions",
+    "nnz": 10031,
+    "nnz_body": 6811,
+    "max_disp_units": 0.3123
+   },
+   {
+    "name": "macrodetails/proportions/male-old-averagemuscle-maxweight-idealproportions",
+    "nnz": 9229,
+    "nnz_body": 6333,
+    "max_disp_units": 0.3489
+   },
+   {
+    "name": "macrodetails/proportions/male-old-averagemuscle-maxweight-uncommonproportions",
+    "nnz": 10031,
+    "nnz_body": 6811,
+    "max_disp_units": 0.3123
+   },
+   {
+    "name": "macrodetails/proportions/male-old-averagemuscle-minweight-idealproportions",
+    "nnz": 9229,
+    "nnz_body": 6333,
+    "max_disp_units": 0.3489
+   },
+   {
+    "name": "macrodetails/proportions/male-old-averagemuscle-minweight-uncommonproportions",
+    "nnz": 10031,
+    "nnz_body": 6811,
+    "max_disp_units": 0.3123
+   },
+   {
+    "name": "macrodetails/proportions/male-old-maxmuscle-averageweight-idealproportions",
+    "nnz": 9229,
+    "nnz_body": 6333,
+    "max_disp_units": 0.3489
+   },
+   {
+    "name": "macrodetails/proportions/male-old-maxmuscle-averageweight-uncommonproportions",
+    "nnz": 10031,
+    "nnz_body": 6811,
+    "max_disp_units": 0.3123
+   },
+   {
+    "name": "macrodetails/proportions/male-old-maxmuscle-maxweight-idealproportions",
+    "nnz": 9229,
+    "nnz_body": 6333,
+    "max_disp_units": 0.3489
+   },
+   {
+    "name": "macrodetails/proportions/male-old-maxmuscle-maxweight-uncommonproportions",
+    "nnz": 10031,
+    "nnz_body": 6811,
+    "max_disp_units": 0.3123
+   },
+   {
+    "name": "macrodetails/proportions/male-old-maxmuscle-minweight-idealproportions",
+    "nnz": 9229,
+    "nnz_body": 6333,
+    "max_disp_units": 0.3489
+   },
+   {
+    "name": "macrodetails/proportions/male-old-maxmuscle-minweight-uncommonproportions",
+    "nnz": 10031,
+    "nnz_body": 6811,
+    "max_disp_units": 0.3123
+   },
+   {
+    "name": "macrodetails/proportions/male-old-minmuscle-averageweight-idealproportions",
+    "nnz": 9229,
+    "nnz_body": 6333,
+    "max_disp_units": 0.3489
+   },
+   {
+    "name": "macrodetails/proportions/male-old-minmuscle-averageweight-uncommonproportions",
+    "nnz": 10031,
+    "nnz_body": 6811,
+    "max_disp_units": 0.3123
+   },
+   {
+    "name": "macrodetails/proportions/male-old-minmuscle-maxweight-idealproportions",
+    "nnz": 9229,
+    "nnz_body": 6333,
+    "max_disp_units": 0.3489
+   },
+   {
+    "name": "macrodetails/proportions/male-old-minmuscle-maxweight-uncommonproportions",
+    "nnz": 10031,
+    "nnz_body": 6811,
+    "max_disp_units": 0.3123
+   },
+   {
+    "name": "macrodetails/proportions/male-old-minmuscle-minweight-idealproportions",
+    "nnz": 9229,
+    "nnz_body": 6333,
+    "max_disp_units": 0.3489
+   },
+   {
+    "name": "macrodetails/proportions/male-old-minmuscle-minweight-uncommonproportions",
+    "nnz": 10031,
+    "nnz_body": 6811,
+    "max_disp_units": 0.3123
+   },
+   {
+    "name": "macrodetails/proportions/male-young-averagemuscle-averageweight-idealproportions",
+    "nnz": 9378,
+    "nnz_body": 6504,
+    "max_disp_units": 0.448
+   },
+   {
+    "name": "macrodetails/proportions/male-young-averagemuscle-averageweight-uncommonproportions",
+    "nnz": 9810,
+    "nnz_body": 6658,
+    "max_disp_units": 0.3123
+   },
+   {
+    "name": "macrodetails/proportions/male-young-averagemuscle-maxweight-idealproportions",
+    "nnz": 9288,
+    "nnz_body": 6414,
+    "max_disp_units": 0.4319
+   },
+   {
+    "name": "macrodetails/proportions/male-young-averagemuscle-maxweight-uncommonproportions",
+    "nnz": 9779,
+    "nnz_body": 6638,
+    "max_disp_units": 0.3123
+   },
+   {
+    "name": "macrodetails/proportions/male-young-averagemuscle-minweight-idealproportions",
+    "nnz": 9428,
+    "nnz_body": 6554,
+    "max_disp_units": 0.4328
+   },
+   {
+    "name": "macrodetails/proportions/male-young-averagemuscle-minweight-uncommonproportions",
+    "nnz": 9798,
+    "nnz_body": 6660,
+    "max_disp_units": 0.3123
+   },
+   {
+    "name": "macrodetails/proportions/male-young-maxmuscle-averageweight-idealproportions",
+    "nnz": 9229,
+    "nnz_body": 6333,
+    "max_disp_units": 0.3489
+   },
+   {
+    "name": "macrodetails/proportions/male-young-maxmuscle-averageweight-uncommonproportions",
+    "nnz": 10031,
+    "nnz_body": 6811,
+    "max_disp_units": 0.3123
+   },
+   {
+    "name": "macrodetails/proportions/male-young-maxmuscle-maxweight-idealproportions",
+    "nnz": 9229,
+    "nnz_body": 6333,
+    "max_disp_units": 0.3489
+   },
+   {
+    "name": "macrodetails/proportions/male-young-maxmuscle-maxweight-uncommonproportions",
+    "nnz": 10031,
+    "nnz_body": 6811,
+    "max_disp_units": 0.3123
+   },
+   {
+    "name": "macrodetails/proportions/male-young-maxmuscle-minweight-idealproportions",
+    "nnz": 9229,
+    "nnz_body": 6333,
+    "max_disp_units": 0.3489
+   },
+   {
+    "name": "macrodetails/proportions/male-young-maxmuscle-minweight-uncommonproportions",
+    "nnz": 10031,
+    "nnz_body": 6811,
+    "max_disp_units": 0.3123
+   },
+   {
+    "name": "macrodetails/proportions/male-young-minmuscle-averageweight-idealproportions",
+    "nnz": 9229,
+    "nnz_body": 6333,
+    "max_disp_units": 0.3489
+   },
+   {
+    "name": "macrodetails/proportions/male-young-minmuscle-averageweight-uncommonproportions",
+    "nnz": 10031,
+    "nnz_body": 6811,
+    "max_disp_units": 0.3123
+   },
+   {
+    "name": "macrodetails/proportions/male-young-minmuscle-maxweight-idealproportions",
+    "nnz": 9229,
+    "nnz_body": 6333,
+    "max_disp_units": 0.3489
+   },
+   {
+    "name": "macrodetails/proportions/male-young-minmuscle-maxweight-uncommonproportions",
+    "nnz": 10031,
+    "nnz_body": 6811,
+    "max_disp_units": 0.3123
+   },
+   {
+    "name": "macrodetails/proportions/male-young-minmuscle-minweight-idealproportions",
+    "nnz": 9229,
+    "nnz_body": 6333,
+    "max_disp_units": 0.3489
+   },
+   {
+    "name": "macrodetails/proportions/male-young-minmuscle-minweight-uncommonproportions",
+    "nnz": 10031,
+    "nnz_body": 6811,
+    "max_disp_units": 0.3123
+   },
+   {
+    "name": "macrodetails/universal-female-child-averagemuscle-averageweight",
+    "nnz": 0,
+    "nnz_body": 0,
+    "max_disp_units": 0.0
+   },
+   {
+    "name": "macrodetails/universal-female-child-averagemuscle-maxweight",
+    "nnz": 6330,
+    "nnz_body": 3357,
+    "max_disp_units": 0.1942
+   },
+   {
+    "name": "macrodetails/universal-female-child-averagemuscle-minweight",
+    "nnz": 6725,
+    "nnz_body": 3970,
+    "max_disp_units": 0.1512
+   },
+   {
+    "name": "macrodetails/universal-female-child-maxmuscle-averageweight",
+    "nnz": 6728,
+    "nnz_body": 3906,
+    "max_disp_units": 0.2841
+   },
+   {
+    "name": "macrodetails/universal-female-child-maxmuscle-maxweight",
+    "nnz": 6483,
+    "nnz_body": 3800,
+    "max_disp_units": 0.1663
+   },
+   {
+    "name": "macrodetails/universal-female-child-maxmuscle-minweight",
+    "nnz": 6609,
+    "nnz_body": 3950,
+    "max_disp_units": 0.1867
+   },
+   {
+    "name": "macrodetails/universal-female-child-minmuscle-averageweight",
+    "nnz": 12780,
+    "nnz_body": 7958,
+    "max_disp_units": 0.1786
+   },
+   {
+    "name": "macrodetails/universal-female-child-minmuscle-maxweight",
+    "nnz": 13456,
+    "nnz_body": 8688,
+    "max_disp_units": 0.8313
+   },
+   {
+    "name": "macrodetails/universal-female-child-minmuscle-minweight",
+    "nnz": 11695,
+    "nnz_body": 7703,
+    "max_disp_units": 0.4417
+   },
+   {
+    "name": "macrodetails/universal-female-old-averagemuscle-averageweight",
+    "nnz": 0,
+    "nnz_body": 0,
+    "max_disp_units": 0.0
+   },
+   {
+    "name": "macrodetails/universal-female-old-averagemuscle-maxweight",
+    "nnz": 7453,
+    "nnz_body": 3837,
+    "max_disp_units": 0.2195
+   },
+   {
+    "name": "macrodetails/universal-female-old-averagemuscle-minweight",
+    "nnz": 7001,
+    "nnz_body": 4039,
+    "max_disp_units": 0.3554
+   },
+   {
+    "name": "macrodetails/universal-female-old-maxmuscle-averageweight",
+    "nnz": 6614,
+    "nnz_body": 3771,
+    "max_disp_units": 0.2808
+   },
+   {
+    "name": "macrodetails/universal-female-old-maxmuscle-maxweight",
+    "nnz": 7721,
+    "nnz_body": 4112,
+    "max_disp_units": 0.7606
+   },
+   {
+    "name": "macrodetails/universal-female-old-maxmuscle-minweight",
+    "nnz": 6964,
+    "nnz_body": 4028,
+    "max_disp_units": 0.4005
+   },
+   {
+    "name": "macrodetails/universal-female-old-minmuscle-averageweight",
+    "nnz": 5258,
+    "nnz_body": 2757,
+    "max_disp_units": 0.3411
+   },
+   {
+    "name": "macrodetails/universal-female-old-minmuscle-maxweight",
+    "nnz": 9526,
+    "nnz_body": 6098,
+    "max_disp_units": 1.2253
+   },
+   {
+    "name": "macrodetails/universal-female-old-minmuscle-minweight",
+    "nnz": 12239,
+    "nnz_body": 8506,
+    "max_disp_units": 0.5651
+   },
+   {
+    "name": "macrodetails/universal-female-young-averagemuscle-averageweight",
+    "nnz": 0,
+    "nnz_body": 0,
+    "max_disp_units": 0.0
+   },
+   {
+    "name": "macrodetails/universal-female-young-averagemuscle-maxweight",
+    "nnz": 6027,
+    "nnz_body": 3357,
+    "max_disp_units": 0.2203
+   },
+   {
+    "name": "macrodetails/universal-female-young-averagemuscle-minweight",
+    "nnz": 6968,
+    "nnz_body": 4051,
+    "max_disp_units": 0.3022
+   },
+   {
+    "name": "macrodetails/universal-female-young-maxmuscle-averageweight",
+    "nnz": 6547,
+    "nnz_body": 3781,
+    "max_disp_units": 0.2722
+   },
+   {
+    "name": "macrodetails/universal-female-young-maxmuscle-maxweight",
+    "nnz": 7753,
+    "nnz_body": 4138,
+    "max_disp_units": 0.7071
+   },
+   {
+    "name": "macrodetails/universal-female-young-maxmuscle-minweight",
+    "nnz": 7029,
+    "nnz_body": 4057,
+    "max_disp_units": 0.3303
+   },
+   {
+    "name": "macrodetails/universal-female-young-minmuscle-averageweight",
+    "nnz": 5152,
+    "nnz_body": 2757,
+    "max_disp_units": 0.3411
+   },
+   {
+    "name": "macrodetails/universal-female-young-minmuscle-maxweight",
+    "nnz": 9798,
+    "nnz_body": 6180,
+    "max_disp_units": 0.9713
+   },
+   {
+    "name": "macrodetails/universal-female-young-minmuscle-minweight",
+    "nnz": 18910,
+    "nnz_body": 13140,
+    "max_disp_units": 0.6856
+   },
+   {
+    "name": "macrodetails/universal-male-child-averagemuscle-averageweight",
+    "nnz": 0,
+    "nnz_body": 0,
+    "max_disp_units": 0.0
+   },
+   {
+    "name": "macrodetails/universal-male-child-averagemuscle-maxweight",
+    "nnz": 7191,
+    "nnz_body": 3597,
+    "max_disp_units": 0.1278
+   },
+   {
+    "name": "macrodetails/universal-male-child-averagemuscle-minweight",
+    "nnz": 7152,
+    "nnz_body": 3675,
+    "max_disp_units": 0.1322
+   },
+   {
+    "name": "macrodetails/universal-male-child-maxmuscle-averageweight",
+    "nnz": 7823,
+    "nnz_body": 4059,
+    "max_disp_units": 0.1598
+   },
+   {
+    "name": "macrodetails/universal-male-child-maxmuscle-maxweight",
+    "nnz": 8107,
+    "nnz_body": 4252,
+    "max_disp_units": 0.261
+   },
+   {
+    "name": "macrodetails/universal-male-child-maxmuscle-minweight",
+    "nnz": 7179,
+    "nnz_body": 3736,
+    "max_disp_units": 0.1735
+   },
+   {
+    "name": "macrodetails/universal-male-child-minmuscle-averageweight",
+    "nnz": 7260,
+    "nnz_body": 3445,
+    "max_disp_units": 0.2496
+   },
+   {
+    "name": "macrodetails/universal-male-child-minmuscle-maxweight",
+    "nnz": 11047,
+    "nnz_body": 7142,
+    "max_disp_units": 0.7931
+   },
+   {
+    "name": "macrodetails/universal-male-child-minmuscle-minweight",
+    "nnz": 10073,
+    "nnz_body": 6367,
+    "max_disp_units": 0.4847
+   },
+   {
+    "name": "macrodetails/universal-male-old-averagemuscle-averageweight",
+    "nnz": 0,
+    "nnz_body": 0,
+    "max_disp_units": 0.0
+   },
+   {
+    "name": "macrodetails/universal-male-old-averagemuscle-maxweight",
+    "nnz": 7299,
+    "nnz_body": 3707,
+    "max_disp_units": 0.2043
+   },
+   {
+    "name": "macrodetails/universal-male-old-averagemuscle-minweight",
+    "nnz": 7064,
+    "nnz_body": 3649,
+    "max_disp_units": 0.2655
+   },
+   {
+    "name": "macrodetails/universal-male-old-maxmuscle-averageweight",
+    "nnz": 6947,
+    "nnz_body": 3911,
+    "max_disp_units": 0.4286
+   },
+   {
+    "name": "macrodetails/universal-male-old-maxmuscle-maxweight",
+    "nnz": 8241,
+    "nnz_body": 4671,
+    "max_disp_units": 0.7706
+   },
+   {
+    "name": "macrodetails/universal-male-old-maxmuscle-minweight",
+    "nnz": 7005,
+    "nnz_body": 3989,
+    "max_disp_units": 0.4757
+   },
+   {
+    "name": "macrodetails/universal-male-old-minmuscle-averageweight",
+    "nnz": 7355,
+    "nnz_body": 3619,
+    "max_disp_units": 0.2237
+   },
+   {
+    "name": "macrodetails/universal-male-old-minmuscle-maxweight",
+    "nnz": 11115,
+    "nnz_body": 7275,
+    "max_disp_units": 1.4124
+   },
+   {
+    "name": "macrodetails/universal-male-old-minmuscle-minweight",
+    "nnz": 8596,
+    "nnz_body": 4727,
+    "max_disp_units": 0.7066
+   },
+   {
+    "name": "macrodetails/universal-male-young-averagemuscle-averageweight",
+    "nnz": 0,
+    "nnz_body": 0,
+    "max_disp_units": 0.0
+   },
+   {
+    "name": "macrodetails/universal-male-young-averagemuscle-maxweight",
+    "nnz": 7354,
+    "nnz_body": 3707,
+    "max_disp_units": 0.3063
+   },
+   {
+    "name": "macrodetails/universal-male-young-averagemuscle-minweight",
+    "nnz": 7001,
+    "nnz_body": 3629,
+    "max_disp_units": 0.2542
+   },
+   {
+    "name": "macrodetails/universal-male-young-maxmuscle-averageweight",
+    "nnz": 6825,
+    "nnz_body": 3911,
+    "max_disp_units": 0.4432
+   },
+   {
+    "name": "macrodetails/universal-male-young-maxmuscle-maxweight",
+    "nnz": 8239,
+    "nnz_body": 4667,
+    "max_disp_units": 0.8973
+   },
+   {
+    "name": "macrodetails/universal-male-young-maxmuscle-minweight",
+    "nnz": 7033,
+    "nnz_body": 4017,
+    "max_disp_units": 0.4376
+   },
+   {
+    "name": "macrodetails/universal-male-young-minmuscle-averageweight",
+    "nnz": 7321,
+    "nnz_body": 3585,
+    "max_disp_units": 0.4999
+   },
+   {
+    "name": "macrodetails/universal-male-young-minmuscle-maxweight",
+    "nnz": 11115,
+    "nnz_body": 7275,
+    "max_disp_units": 1.4124
+   },
+   {
+    "name": "macrodetails/universal-male-young-minmuscle-minweight",
+    "nnz": 8600,
+    "nnz_body": 4725,
+    "max_disp_units": 0.6631
+   },
+   {
+    "name": "measure/measure-bust-circ-decr",
+    "nnz": 1876,
+    "nnz_body": 1170,
+    "max_disp_units": 0.3333
+   },
+   {
+    "name": "measure/measure-bust-circ-incr",
+    "nnz": 1972,
+    "nnz_body": 1273,
+    "max_disp_units": 0.4461
+   },
+   {
+    "name": "measure/measure-frontchest-dist-decr",
+    "nnz": 822,
+    "nnz_body": 600,
+    "max_disp_units": 0.148
+   },
+   {
+    "name": "measure/measure-frontchest-dist-incr",
+    "nnz": 693,
+    "nnz_body": 533,
+    "max_disp_units": 0.2264
+   },
+   {
+    "name": "measure/measure-hips-circ-decr",
+    "nnz": 1387,
+    "nnz_body": 692,
+    "max_disp_units": 0.1889
+   },
+   {
+    "name": "measure/measure-hips-circ-incr",
+    "nnz": 1418,
+    "nnz_body": 707,
+    "max_disp_units": 0.3786
+   },
+   {
+    "name": "measure/measure-lowerarm-length-decr",
+    "nnz": 4296,
+    "nnz_body": 3714,
+    "max_disp_units": 0.4517
+   },
+   {
+    "name": "measure/measure-lowerarm-length-incr",
+    "nnz": 4108,
+    "nnz_body": 3584,
+    "max_disp_units": 0.6594
+   },
+   {
+    "name": "measure/measure-napetowaist-dist-decr",
+    "nnz": 13238,
+    "nnz_body": 9992,
+    "max_disp_units": 0.5324
+   },
+   {
+    "name": "measure/measure-napetowaist-dist-incr",
+    "nnz": 13223,
+    "nnz_body": 9986,
+    "max_disp_units": 0.796
+   },
+   {
+    "name": "measure/measure-neck-circ-decr",
+    "nnz": 505,
+    "nnz_body": 384,
+    "max_disp_units": 0.1093
+   },
+   {
+    "name": "measure/measure-neck-circ-incr",
+    "nnz": 833,
+    "nnz_body": 672,
+    "max_disp_units": 0.1204
+   },
+   {
+    "name": "measure/measure-neck-height-decr",
+    "nnz": 5494,
+    "nnz_body": 4350,
+    "max_disp_units": 0.3
+   },
+   {
+    "name": "measure/measure-neck-height-incr",
+    "nnz": 5542,
+    "nnz_body": 4350,
+    "max_disp_units": 0.39
+   },
+   {
+    "name": "measure/measure-shoulder-dist-decr",
+    "nnz": 5920,
+    "nnz_body": 4718,
+    "max_disp_units": 0.135
+   },
+   {
+    "name": "measure/measure-shoulder-dist-incr",
+    "nnz": 5568,
+    "nnz_body": 4524,
+    "max_disp_units": 0.249
+   },
+   {
+    "name": "measure/measure-thigh-circ-decr",
+    "nnz": 890,
+    "nnz_body": 548,
+    "max_disp_units": 0.139
+   },
+   {
+    "name": "measure/measure-thigh-circ-incr",
+    "nnz": 1096,
+    "nnz_body": 551,
+    "max_disp_units": 0.2248
+   },
+   {
+    "name": "measure/measure-underbust-circ-decr",
+    "nnz": 2132,
+    "nnz_body": 1137,
+    "max_disp_units": 0.138
+   },
+   {
+    "name": "measure/measure-underbust-circ-incr",
+    "nnz": 2181,
+    "nnz_body": 1149,
+    "max_disp_units": 0.3798
+   },
+   {
+    "name": "measure/measure-upperarm-circ-decr",
+    "nnz": 786,
+    "nnz_body": 540,
+    "max_disp_units": 0.1727
+   },
+   {
+    "name": "measure/measure-upperarm-circ-incr",
+    "nnz": 786,
+    "nnz_body": 540,
+    "max_disp_units": 0.1727
+   },
+   {
+    "name": "measure/measure-upperarm-length-decr",
+    "nnz": 4960,
+    "nnz_body": 4156,
+    "max_disp_units": 0.4851
+   },
+   {
+    "name": "measure/measure-upperarm-length-incr",
+    "nnz": 4960,
+    "nnz_body": 4156,
+    "max_disp_units": 0.6972
+   },
+   {
+    "name": "measure/measure-waist-circ-decr",
+    "nnz": 1518,
+    "nnz_body": 862,
+    "max_disp_units": 0.323
+   },
+   {
+    "name": "measure/measure-waist-circ-incr",
+    "nnz": 1518,
+    "nnz_body": 862,
+    "max_disp_units": 0.323
+   },
+   {
+    "name": "measure/measure-waisttohip-dist-decr",
+    "nnz": 13587,
+    "nnz_body": 10120,
+    "max_disp_units": 0.48
+   },
+   {
+    "name": "measure/measure-waisttohip-dist-incr",
+    "nnz": 13147,
+    "nnz_body": 9924,
+    "max_disp_units": 0.761
+   },
+   {
+    "name": "measure/measure-wrist-circ-decr",
+    "nnz": 548,
+    "nnz_body": 468,
+    "max_disp_units": 0.0401
+   },
+   {
+    "name": "measure/measure-wrist-circ-incr",
+    "nnz": 556,
+    "nnz_body": 474,
+    "max_disp_units": 0.0929
+   },
+   {
+    "name": "neck/neck-back-scale-depth-decr",
+    "nnz": 244,
+    "nnz_body": 244,
+    "max_disp_units": 0.1843
+   },
+   {
+    "name": "neck/neck-back-scale-depth-incr",
+    "nnz": 164,
+    "nnz_body": 164,
+    "max_disp_units": 0.1199
+   },
+   {
+    "name": "neck/neck-double-decr",
+    "nnz": 160,
+    "nnz_body": 160,
+    "max_disp_units": 0.1397
+   },
+   {
+    "name": "neck/neck-double-incr",
+    "nnz": 188,
+    "nnz_body": 188,
+    "max_disp_units": 0.1322
+   },
+   {
+    "name": "neck/neck-scale-depth-decr",
+    "nnz": 845,
+    "nnz_body": 676,
+    "max_disp_units": 0.12
+   },
+   {
+    "name": "neck/neck-scale-depth-incr",
+    "nnz": 845,
+    "nnz_body": 676,
+    "max_disp_units": 0.12
+   },
+   {
+    "name": "neck/neck-scale-horiz-decr",
+    "nnz": 544,
+    "nnz_body": 424,
+    "max_disp_units": 0.119
+   },
+   {
+    "name": "neck/neck-scale-horiz-incr",
+    "nnz": 702,
+    "nnz_body": 556,
+    "max_disp_units": 0.138
+   },
+   {
+    "name": "neck/neck-scale-vert-decr",
+    "nnz": 6114,
+    "nnz_body": 4566,
+    "max_disp_units": 0.38
+   },
+   {
+    "name": "neck/neck-scale-vert-incr",
+    "nnz": 5748,
+    "nnz_body": 4339,
+    "max_disp_units": 0.5651
+   },
+   {
+    "name": "neck/neck-trans-backward",
+    "nnz": 1042,
+    "nnz_body": 857,
+    "max_disp_units": 0.2
+   },
+   {
+    "name": "neck/neck-trans-down",
+    "nnz": 663,
+    "nnz_body": 511,
+    "max_disp_units": 0.073
+   },
+   {
+    "name": "neck/neck-trans-forward",
+    "nnz": 803,
+    "nnz_body": 644,
+    "max_disp_units": 0.2
+   },
+   {
+    "name": "neck/neck-trans-in",
+    "nnz": 667,
+    "nnz_body": 517,
+    "max_disp_units": 0.1
+   },
+   {
+    "name": "neck/neck-trans-out",
+    "nnz": 589,
+    "nnz_body": 456,
+    "max_disp_units": 0.1
+   },
+   {
+    "name": "neck/neck-trans-up",
+    "nnz": 315,
+    "nnz_body": 269,
+    "max_disp_units": 0.1
+   },
+   {
+    "name": "pelvis/bulge-decr",
+    "nnz": 12,
+    "nnz_body": 12,
+    "max_disp_units": 0.1442
+   },
+   {
+    "name": "pelvis/bulge-incr",
+    "nnz": 328,
+    "nnz_body": 57,
+    "max_disp_units": 0.1285
+   },
+   {
+    "name": "pelvis/pelvis-tone-decr",
+    "nnz": 327,
+    "nnz_body": 221,
+    "max_disp_units": 0.3809
+   },
+   {
+    "name": "pelvis/pelvis-tone-incr",
+    "nnz": 925,
+    "nnz_body": 488,
+    "max_disp_units": 0.2966
+   },
+   {
+    "name": "stomach/stomach-navel-down",
+    "nnz": 322,
+    "nnz_body": 162,
+    "max_disp_units": 0.377
+   },
+   {
+    "name": "stomach/stomach-navel-in",
+    "nnz": 19,
+    "nnz_body": 19,
+    "max_disp_units": 0.062
+   },
+   {
+    "name": "stomach/stomach-navel-out",
+    "nnz": 19,
+    "nnz_body": 19,
+    "max_disp_units": 0.028
+   },
+   {
+    "name": "stomach/stomach-navel-up",
+    "nnz": 319,
+    "nnz_body": 161,
+    "max_disp_units": 0.282
+   },
+   {
+    "name": "stomach/stomach-pregnant-decr",
+    "nnz": 224,
+    "nnz_body": 144,
+    "max_disp_units": 0.1664
+   },
+   {
+    "name": "stomach/stomach-pregnant-incr",
+    "nnz": 607,
+    "nnz_body": 350,
+    "max_disp_units": 0.9803
+   },
+   {
+    "name": "stomach/stomach-tone-decr",
+    "nnz": 437,
+    "nnz_body": 199,
+    "max_disp_units": 0.5076
+   },
+   {
+    "name": "stomach/stomach-tone-incr",
+    "nnz": 175,
+    "nnz_body": 175,
+    "max_disp_units": 0.085
+   },
+   {
+    "name": "torso/torso-muscle-dorsi-decr",
+    "nnz": 868,
+    "nnz_body": 497,
+    "max_disp_units": 0.2856
+   },
+   {
+    "name": "torso/torso-muscle-dorsi-incr",
+    "nnz": 868,
+    "nnz_body": 497,
+    "max_disp_units": 0.2856
+   },
+   {
+    "name": "torso/torso-muscle-pectoral-decr",
+    "nnz": 470,
+    "nnz_body": 470,
+    "max_disp_units": 0.065
+   },
+   {
+    "name": "torso/torso-muscle-pectoral-incr",
+    "nnz": 863,
+    "nnz_body": 472,
+    "max_disp_units": 0.418
+   },
+   {
+    "name": "torso/torso-scale-depth-decr",
+    "nnz": 2831,
+    "nnz_body": 1671,
+    "max_disp_units": 0.193
+   },
+   {
+    "name": "torso/torso-scale-depth-incr",
+    "nnz": 2651,
+    "nnz_body": 1590,
+    "max_disp_units": 0.351
+   },
+   {
+    "name": "torso/torso-scale-horiz-decr",
+    "nnz": 7836,
+    "nnz_body": 5866,
+    "max_disp_units": 0.338
+   },
+   {
+    "name": "torso/torso-scale-horiz-incr",
+    "nnz": 7196,
+    "nnz_body": 5526,
+    "max_disp_units": 0.342
+   },
+   {
+    "name": "torso/torso-scale-vert-decr",
+    "nnz": 13196,
+    "nnz_body": 10018,
+    "max_disp_units": 0.4785
+   },
+   {
+    "name": "torso/torso-scale-vert-incr",
+    "nnz": 12865,
+    "nnz_body": 9816,
+    "max_disp_units": 1.028
+   },
+   {
+    "name": "torso/torso-trans-backward",
+    "nnz": 13011,
+    "nnz_body": 9891,
+    "max_disp_units": 0.5
+   },
+   {
+    "name": "torso/torso-trans-down",
+    "nnz": 12970,
+    "nnz_body": 9872,
+    "max_disp_units": 0.8357
+   },
+   {
+    "name": "torso/torso-trans-forward",
+    "nnz": 13011,
+    "nnz_body": 9891,
+    "max_disp_units": 0.5
+   },
+   {
+    "name": "torso/torso-trans-in",
+    "nnz": 13030,
+    "nnz_body": 9905,
+    "max_disp_units": 0.5
+   },
+   {
+    "name": "torso/torso-trans-out",
+    "nnz": 13030,
+    "nnz_body": 9905,
+    "max_disp_units": 0.5
+   },
+   {
+    "name": "torso/torso-trans-up",
+    "nnz": 12616,
+    "nnz_body": 9638,
+    "max_disp_units": 1.0
+   },
+   {
+    "name": "torso/torso-vshape-decr",
+    "nnz": 6420,
+    "nnz_body": 5088,
+    "max_disp_units": 0.267
+   },
+   {
+    "name": "torso/torso-vshape-incr",
+    "nnz": 6342,
+    "nnz_body": 5036,
+    "max_disp_units": 0.267
+   }
+  ]
+ },
+ "modifiers": {
+  "n_defined_in_json": 291,
+  "n_backed_by_fetched_targets": 121,
+  "backed_by_group": {
+   "neck": [
+    "neck-double-decr|incr",
+    "neck-scale-depth-decr|incr",
+    "neck-scale-horiz-decr|incr",
+    "neck-scale-vert-decr|incr",
+    "neck-trans-in|out",
+    "neck-trans-down|up",
+    "neck-trans-backward|forward",
+    "neck-back-scale-depth-decr|incr"
+   ],
+   "torso": [
+    "torso-scale-depth-decr|incr",
+    "torso-scale-horiz-decr|incr",
+    "torso-scale-vert-decr|incr",
+    "torso-trans-in|out",
+    "torso-trans-down|up",
+    "torso-trans-backward|forward",
+    "torso-vshape-decr|incr",
+    "torso-muscle-dorsi-decr|incr",
+    "torso-muscle-pectoral-decr|incr"
+   ],
+   "hip": [
+    "hip-scale-depth-decr|incr",
+    "hip-scale-horiz-decr|incr",
+    "hip-scale-vert-decr|incr",
+    "hip-trans-in|out",
+    "hip-trans-down|up",
+    "hip-trans-backward|forward",
+    "hip-waist-down|up"
+   ],
+   "stomach": [
+    "stomach-navel-in|out",
+    "stomach-tone-decr|incr",
+    "stomach-pregnant-decr|incr",
+    "stomach-navel-down|up"
+   ],
+   "buttocks": [
+    "buttocks-volume-decr|incr"
+   ],
+   "pelvis": [
+    "pelvis-tone-decr|incr",
+    "bulge-decr|incr"
+   ],
+   "armslegs": [
+    "r-hand-scale-decr|incr",
+    "r-hand-trans-in|out",
+    "l-hand-scale-decr|incr",
+    "l-hand-trans-in|out",
+    "r-lowerarm-scale-depth-decr|incr",
+    "r-lowerarm-scale-horiz-decr|incr",
+    "r-lowerarm-scale-vert-decr|incr",
+    "r-lowerarm-fat-decr|incr",
+    "r-lowerarm-muscle-decr|incr",
+    "r-upperarm-scale-depth-decr|incr",
+    "r-upperarm-scale-horiz-decr|incr",
+    "r-upperarm-scale-vert-decr|incr",
+    "r-upperarm-fat-decr|incr",
+    "r-upperarm-shoulder-muscle-decr|incr",
+    "r-upperarm-muscle-decr|incr",
+    "l-lowerarm-scale-depth-decr|incr",
+    "l-lowerarm-scale-horiz-decr|incr",
+    "l-lowerarm-scale-vert-decr|incr",
+    "l-lowerarm-fat-decr|incr",
+    "l-lowerarm-muscle-decr|incr",
+    "l-upperarm-scale-depth-decr|incr",
+    "l-upperarm-scale-horiz-decr|incr",
+    "l-upperarm-scale-vert-decr|incr",
+    "l-upperarm-fat-decr|incr",
+    "l-upperarm-shoulder-muscle-decr|incr",
+    "l-upperarm-muscle-decr|incr",
+    "r-upperleg-scale-depth-decr|incr",
+    "r-upperleg-scale-horiz-decr|incr",
+    "r-upperleg-scale-vert-decr|incr",
+    "r-upperleg-fat-decr|incr",
+    "r-upperleg-muscle-decr|incr",
+    "l-upperleg-scale-depth-decr|incr",
+    "l-upperleg-scale-horiz-decr|incr",
+    "l-upperleg-scale-vert-decr|incr",
+    "l-upperleg-fat-decr|incr",
+    "l-upperleg-muscle-decr|incr"
+   ],
+   "breast": [
+    "BreastSize",
+    "BreastFirmness",
+    "breast-trans-down|up",
+    "breast-dist-decr|incr",
+    "breast-point-decr|incr",
+    "breast-volume-vert-down|up",
+    "nipple-size-decr|incr",
+    "nipple-point-decr|incr"
+   ],
+   "macrodetails": [
+    "Gender",
+    "Age",
+    "African",
+    "Asian",
+    "Caucasian"
+   ],
+   "macrodetails-universal": [
+    "Muscle",
+    "Weight"
+   ],
+   "macrodetails-height": [
+    "Height"
+   ],
+   "macrodetails-proportions": [
+    "BodyProportions"
+   ],
+   "measure": [
+    "measure-neck-circ-decr|incr",
+    "measure-neck-height-decr|incr",
+    "measure-upperarm-circ-decr|incr",
+    "measure-upperarm-length-decr|incr",
+    "measure-lowerarm-length-decr|incr",
+    "measure-wrist-circ-decr|incr",
+    "measure-frontchest-dist-decr|incr",
+    "measure-bust-circ-decr|incr",
+    "measure-underbust-circ-decr|incr",
+    "measure-waist-circ-decr|incr",
+    "measure-napetowaist-dist-decr|incr",
+    "measure-waisttohip-dist-decr|incr",
+    "measure-shoulder-dist-decr|incr",
+    "measure-hips-circ-decr|incr",
+    "measure-thigh-circ-decr|incr"
+   ],
+   "bodyshapes": [
+    "bodyshapes-elvs-fem-apple",
+    "bodyshapes-elvs-fem-diamond",
+    "bodyshapes-elvs-fem-full-hourglass",
+    "bodyshapes-elvs-fem-neat-hourglass",
+    "bodyshapes-elvs-fem-invert-triangle",
+    "bodyshapes-elvs-fem-lean-column",
+    "bodyshapes-elvs-fem-rectangle",
+    "bodyshapes-elvs-fem-triangle",
+    "bodyshapes-elvs-fem-adrenal",
+    "bodyshapes-elvs-fem-liver",
+    "bodyshapes-elvs-fem-ovary",
+    "bodyshapes-elvs-fem-thyroid",
+    "bodyshapes-elvs-man-apple",
+    "bodyshapes-elvs-man-rectangle",
+    "bodyshapes-elvs-man-lean-column",
+    "bodyshapes-elvs-man-triangle",
+    "bodyshapes-elvs-man-invert-triangle",
+    "bodyshapes-elvs-man-trapezoid",
+    "bodyshapes-elvs-man-adrenal",
+    "bodyshapes-elvs-man-liver",
+    "bodyshapes-elvs-man-gonadal",
+    "bodyshapes-elvs-man-thyroid"
+   ]
+  },
+  "groups_with_unfetched_modifiers": [
+   "armslegs",
+   "cheek",
+   "chin",
+   "ears",
+   "eyebrows",
+   "eyes",
+   "forehead",
+   "genitals",
+   "head",
+   "measure",
+   "mouth",
+   "nose"
+  ]
+ },
+ "scale": {
+  "units": "MakeHuman decimetre convention (1 unit = 0.1 m); checked for plausibility below",
+  "base_height_units": 16.6589,
+  "est_young_female_avg_height_units": 15.8979,
+  "est_young_male_avg_height_units": 17.304,
+  "est_weights_used_female": {
+   "macrodetails/universal-female-young-averagemuscle-averageweight": 1.0,
+   "macrodetails/african-female-young": 0.3333333333333333,
+   "macrodetails/asian-female-young": 0.3333333333333333,
+   "macrodetails/caucasian-female-young": 0.3333333333333333
+  },
+  "note": "female/male weights are this tool's reading of MH's macro scheme (gender 0/1, age 25 y, muscle 0.5, weight 0.5, ethnic 1/3 each); estimated, not run through MakeHuman"
+ },
+ "roundtrip": {
+  "v_max_abs_err": 4.760742182696731e-07,
+  "f_equal": true,
+  "target_roundtrip_equal": true
+ },
+ "outputs": {
+  "mh_base.npz": 691410,
+  "mh_targets_body.npz": 26099136
+ },
+ "seconds": 8.0,
+ "peak_working_set_MB": 257.6
+}

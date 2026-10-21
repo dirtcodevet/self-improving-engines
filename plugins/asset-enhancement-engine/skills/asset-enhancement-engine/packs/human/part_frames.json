@@ -1,0 +1,1102 @@
+{
+ "_": "Part-frame definitions for engine/tools/part_frame.py (woman2 build 09, 2026-10-20). Each entry says what a part is in anatomical terms: which vertices, which landmarks, the frame's origin and axes, the address system, per-vertex fields and measures, using only the tool's generic operations (its docstring lists them). Inputs are NAMES (zones, masks, joints, height grids, face-set groups) that a case's job file binds to one source mesh. A new part (torso, leg, neck, head, eyeball) is a new entry; parts may overlap (a breast is also part of the torso). Units in entries: cm. Positions and directions refer to the source's frame (the human pack's: x = subject left, y = back, z = up). Build 10 (2026-10-20): each part also has 'skin' charts - addresses read by walking on the skin along sections, so the grid follows the skin (walls, folds, caps) evenly and every vertex has an address; the build-09 'address' stays so the addresses already in use keep resolving.",
+ "convention": {
+  "axes": "X lateral, Y superior, Z anterior / outward (projection), as in the anatomical position",
+  "sides": "a part on the subject's right gets the mirrored (left-handed) frame, so lateral is +X on both sides and left and right read alike",
+  "units": "cm",
+  "addresses": "every pick is written in the part's address system (height, tube or sphere) and as xyz; both re-resolve on a later build of the part from the same definition, so a picked place keeps its meaning after a remesh or a reshaping (vertex numbers do not); build 10: the grid and the vertex addresses are the part's skin charts (entry 'skin'), the build-09 kinds (h+ / h- / tube) still resolve"
+ },
+ "parts": {
+  "breast": {
+   "what": "one breast with 2 cm of the chest round its footprint; its frame stands on the chest wall under the nipple",
+   "inputs": {
+    "wall": "height grid: the skin (top) and the chest wall (base) over the breast's own plane, with the footprint mask and polar outline",
+    "nipple": "zone weight",
+    "areola": "zone weight",
+    "arm": "mask of the arm limbs",
+    "suprasternale": "point",
+    "midline_x": "number (source x of the midline)"
+   },
+   "select": [
+    {
+     "grid_mask": {
+      "grid": "wall",
+      "dilate_cm": 2.0,
+      "above_base_cm": -1.5
+     }
+    },
+    {
+     "not": {
+      "mask": "arm"
+     }
+    }
+   ],
+   "landmarks": {
+    "tip": {
+     "extreme": {
+      "dir": {
+       "grid_normal": "wall"
+      },
+      "among": [
+       {
+        "weight": "nipple",
+        "min": 0.5
+       },
+       {
+        "side": true
+       }
+      ]
+     },
+     "source": "ANSUR II thelion: the tip of the nipple; here the nipple-zone vertex furthest along the wall's normal"
+    },
+    "nipple_centre": {
+     "centroid": {
+      "among": [
+       {
+        "weight": "nipple",
+        "min": 0.02
+       },
+       {
+        "side": true
+       }
+      ],
+      "weight": "nipple"
+     },
+     "source": "the nipple zone's centre (area x zone-weight centroid); the frame hangs on it, not on the tip vertex: on the remeshed v12 the most-projecting vertex hopped across the papilla's flat top and moved the whole frame 0.5-1.8 mm (remesh proof, first run)"
+    },
+    "foot": {
+     "grid_base_under": {
+      "grid": "wall",
+      "point": "nipple_centre"
+     },
+     "source": "the chest wall under the nipple centre along the wall's normal (the closing surface of 3-D breast-volume methods; packs/human/references/breast_cup_size.md R6)"
+    },
+    "suprasternale": {
+     "point": "suprasternale",
+     "source": "jugular notch (ANSUR II suprasternale)"
+    }
+   },
+   "frame": {
+    "origin": "foot",
+    "axes": [
+     [
+      "z",
+      {
+       "grid_normal": "wall"
+      }
+     ],
+     [
+      "y",
+      {
+       "vector": [
+        0,
+        0,
+        1
+       ]
+      }
+     ]
+    ],
+    "check": {
+     "x": {
+      "vector_side": [
+       1,
+       0,
+       0
+      ]
+     }
+    },
+    "why": "Z = the chest wall's mean outward normal over the footprint (the breast's own projection axis), Y = the body's up made perpendicular to it, X = lateral; origin on the wall under the nipple, so the tip's Z is the projection"
+   },
+   "address": {
+    "kind": "height",
+    "up": "z",
+    "sides": [
+     "+"
+    ],
+    "step_cm": 1.0
+   },
+   "skin": {
+    "why": "Build 10. The build-09 grid was a flat lattice along Z: on the walls round the breast's base it spanned up to 4.6 cm of skin per 1 cm step and dropped points where the skin turned past 70 deg; the nipple had one point. Here the rings are read along the skin in planes through the nipple axis (a section cuts the wall and the fold square), equal to the frame's x, y on the breast's face (so a build-09 h+ number there names the same place) and growing with the skin past a 30 deg turn; finer lattices over the areola and the nipple (zone weight >= 0.5, widened by a margin).",
+    "charts": [
+     {
+      "name": "skin",
+      "kind": "disc",
+      "axis": "z",
+      "through": "foot",
+      "from": "+",
+      "turn_deg": 30,
+      "grid": [
+       {
+        "step_cm": 1.0
+       },
+       {
+        "step_cm": 0.25,
+        "near": [
+         {
+          "weight": "areola",
+          "min": 0.5
+         }
+        ],
+        "margin_cm": 0.5,
+        "why": "the areola (about 3.1 cm across on v12): 2.5 mm, 12 or more points across"
+       },
+       {
+        "step_cm": 0.1,
+        "near": [
+         {
+          "weight": "nipple",
+          "min": 0.5
+         }
+        ],
+        "margin_cm": 0.15,
+        "why": "the nipple (about 11-13 mm across at its base): 1 mm, 11 or more points across"
+       }
+      ]
+     }
+    ]
+   },
+   "fields": {
+    "above_wall_cm": {
+     "above_grid_base": "wall"
+    },
+    "areola_zone": {
+     "input": "areola"
+    }
+   },
+   "overlays": {
+    "footprint": {
+     "grid_outline": "wall"
+    }
+   },
+   "measures": {
+    "tip_projection_cm": {
+     "coord": [
+      "tip",
+      "z"
+     ],
+     "what": "the nipple tip's height along Z above the chest wall under the nipple centre"
+    },
+    "footprint": {
+     "grid_mask_extent": "wall",
+     "what": "the footprint (R6 outline) on the wall: extents along X and Y, area projected on the frame's XY plane"
+    },
+    "volume_above_wall": {
+     "grid_volume": "wall",
+     "what": "tissue between the skin and the chest wall inside the footprint",
+     "source": "R6 / Hass18 / Col22 closing surface (chest_wall.json)"
+    },
+    "areola": {
+     "extent": {
+      "among": [
+       {
+        "weight": "areola",
+        "min": 0.5
+       }
+      ],
+      "axes": "xy"
+     },
+     "what": "extent of the areola zone (weight >= 0.5) along X and Y"
+    },
+    "nipple": {
+     "extent": {
+      "among": [
+       {
+        "weight": "nipple",
+        "min": 0.5
+       }
+      ],
+      "axes": "xyz"
+     },
+     "what": "extent of the nipple zone (weight >= 0.5)"
+    },
+    "sternal_notch_to_nipple_cm": {
+     "distance": [
+      "suprasternale",
+      "tip"
+     ],
+     "what": "straight distance, jugular notch to nipple tip",
+     "source": "plastic-surgery SN-N"
+    },
+    "nipple_to_midline_cm": {
+     "plane_distance": {
+      "point": "tip",
+      "x": "midline_x"
+     },
+     "what": "the tip's distance from the body's midline plane"
+    }
+   }
+  },
+  "arm": {
+   "what": "one arm from the shoulder junction to the end of its wrist cap; its frame is the humerus's (ISB) at the shoulder joint",
+   "inputs": {
+    "arm": "mask of the arm limbs",
+    "gh": "glenohumeral joint centre",
+    "elbow": "elbow joint centre",
+    "wrist": "wrist joint centre",
+    "acromion": "point"
+   },
+   "select": [
+    {
+     "mask": "arm"
+    },
+    {
+     "side": true
+    }
+   ],
+   "landmarks": {
+    "gh": {
+     "point": "gh",
+     "source": "glenohumeral rotation centre (ISB, Wu et al. 2005, J Biomech 38:981)"
+    },
+    "acromion": {
+     "point": "acromion"
+    },
+    "elbow": {
+     "point": "elbow",
+     "source": "elbow joint centre (ISB: midpoint of the epicondyles)"
+    },
+    "wrist": {
+     "point": "wrist",
+     "source": "wrist joint centre"
+    },
+    "cap_plane": {
+     "lerp": [
+      "wrist",
+      "elbow",
+      -0.03
+     ],
+     "source": "3 % of the forearm's length past the wrist centre: where the wrist cap begins (estimate)"
+    }
+   },
+   "frame": {
+    "origin": "gh",
+    "axes": [
+     [
+      "y",
+      {
+       "from": "elbow",
+       "to": "gh"
+      }
+     ],
+     [
+      "z",
+      {
+       "vector": [
+        0,
+        -1,
+        0
+       ]
+      }
+     ]
+    ],
+    "check": {
+     "x": {
+      "vector_side": [
+       1,
+       0,
+       0
+      ]
+     }
+    },
+    "why": "ISB humerus: Y from the elbow centre to the glenohumeral centre; Z = the body's anterior made perpendicular to Y (ISB uses the epicondyles' plane; those are not landmarked here); X lateral"
+   },
+   "address": {
+    "kind": "tube",
+    "through": [
+     "gh",
+     "elbow",
+     "wrist"
+    ],
+    "before_cm": 4.0,
+    "after_cm": 3.0,
+    "blend_cm": 4.0,
+    "step_cm": 1.0,
+    "angle_deg": 15
+   },
+   "skin": {
+    "why": "Build 10. Rings round the arm on the legacy tube's axis (the same stations where the skin runs along the arm), read along the skin in half-planes through the axis past a 30 deg turn, so the wrist cap and the folds at the shoulder junction get rings of their own; points every 1 cm of skin round each ring (c, from the lateral line, which reaches the top of the part, + toward posterior) instead of every 15 deg.",
+    "charts": [
+     {
+      "name": "skin",
+      "kind": "tube",
+      "through": [
+       "gh",
+       "elbow",
+       "wrist"
+      ],
+      "before_cm": 4.0,
+      "after_cm": 3.0,
+      "blend_cm": 4.0,
+      "ref": {
+       "mid": [
+        "gh",
+        "elbow"
+       ]
+      },
+      "c_from_deg": 90,
+      "turn_deg": 30,
+      "grid": [
+       {
+        "step_cm": 1.0
+       }
+      ]
+     },
+     {
+      "name": "cap",
+      "kind": "disc",
+      "axis": {
+       "from": "elbow",
+       "to": "wrist"
+      },
+      "through": "wrist",
+      "from": "+",
+      "turn_deg": 30,
+      "region": [
+       {
+        "plane": {
+         "through": "cap_plane",
+         "normal": {
+          "from": "elbow",
+          "to": "wrist"
+         },
+         "keep": "+"
+        }
+       }
+      ],
+      "role": "fallback: after the tube, where its rings close round the tip's highest point without meeting the reference line; drawn only where it addresses the skin",
+      "grid": [
+       {
+        "step_cm": 1.0
+       }
+      ]
+     }
+    ]
+   },
+   "overlays": {
+    "axis": {
+     "polyline": [
+      "gh",
+      "elbow",
+      "wrist"
+     ]
+    }
+   },
+   "measures": {
+    "acromion_to_elbow_cm": {
+     "distance": [
+      "acromion",
+      "elbow"
+     ],
+     "source": "approximates ANSUR II acromion-radiale length"
+    },
+    "elbow_to_wrist_cm": {
+     "distance": [
+      "elbow",
+      "wrist"
+     ]
+    },
+    "gh_to_wrist_cm": {
+     "distance": [
+      "gh",
+      "wrist"
+     ]
+    },
+    "elbow_angle_deg": {
+     "angle": [
+      "gh",
+      "elbow",
+      "wrist"
+     ],
+     "what": "angle at the elbow between the upper arm and the forearm (180 = straight)"
+    },
+    "forearm_direction": {
+     "segment_angles": [
+      "elbow",
+      "wrist"
+     ],
+     "what": "the forearm's direction in the humerus frame: toward X (carrying angle, lateral +) and toward Z (flexion, anterior +)"
+    },
+    "sections": {
+     "tube_sections": {
+      "step_cm": 1.0,
+      "rays": 180,
+      "named": {
+       "mid_upper_arm": {
+        "mid": [
+         "acromion",
+         "elbow"
+        ]
+       },
+       "at_elbow": {
+        "at": "elbow"
+       },
+       "at_wrist": {
+        "at": "wrist"
+       },
+       "upper_arm_max": {
+        "between": [
+         "gh",
+         "elbow"
+        ],
+        "kind": "max",
+        "inset_cm": 4.0
+       },
+       "forearm_max": {
+        "between": [
+         "elbow",
+         "wrist"
+        ],
+        "kind": "max",
+        "inset_cm": 2.0
+       },
+       "forearm_min": {
+        "between": [
+         "elbow",
+         "wrist"
+        ],
+        "kind": "min",
+        "inset_cm": 2.0
+       }
+      }
+     },
+     "what": "girth (tape: convex hull), perimeter and area of the section normal to the arm's axis every 1 cm (s from the shoulder joint centre, distal +); named stations",
+     "source": "NHANES mid upper arm circumference (midpoint acromion-elbow); ANSUR II forearm and wrist circumferences"
+    }
+   }
+  },
+  "hand": {
+   "what": "one hand from the wrist line to the fingertips; its frame stands at the wrist centre, Y along the third metacarpal, X toward the thumb",
+   "inputs": {
+    "hand": "mask: palm and all digits",
+    "palm": "mask",
+    "forearm": "mask",
+    "digit1..5": "masks: thumb, index, middle, ring, little (all segments)",
+    "digit1_1..digit5_1": "masks: each digit's proximal segment"
+   },
+   "select": [
+    {
+     "mask": "hand"
+    }
+   ],
+   "landmarks": {
+    "wrist": {
+     "seam": [
+      {
+       "mask": "palm"
+      },
+      {
+       "mask": "forearm"
+      }
+     ],
+     "source": "centroid of the hand's boundary with the forearm (the wrist line); ISB places the hand's origin at the wrist joint (Wu et al. 2005)"
+    },
+    "mcp2": {
+     "seam": [
+      {
+       "mask": "palm"
+      },
+      {
+       "mask": "digit2_1"
+      }
+     ]
+    },
+    "mcp3": {
+     "seam": [
+      {
+       "mask": "palm"
+      },
+      {
+       "mask": "digit3_1"
+      }
+     ],
+     "source": "base of the middle finger (third metacarpophalangeal level)"
+    },
+    "mcp4": {
+     "seam": [
+      {
+       "mask": "palm"
+      },
+      {
+       "mask": "digit4_1"
+      }
+     ]
+    },
+    "mcp5": {
+     "seam": [
+      {
+       "mask": "palm"
+      },
+      {
+       "mask": "digit5_1"
+      }
+     ]
+    },
+    "thumb_base": {
+     "seam": [
+      {
+       "mask": "palm"
+      },
+      {
+       "mask": "digit1_1"
+      }
+     ]
+    },
+    "tip1": {
+     "farthest": {
+      "from": "thumb_base",
+      "among": [
+       {
+        "mask": "digit1"
+       }
+      ]
+     }
+    },
+    "tip2": {
+     "farthest": {
+      "from": "mcp2",
+      "among": [
+       {
+        "mask": "digit2"
+       }
+      ]
+     }
+    },
+    "tip3": {
+     "farthest": {
+      "from": "mcp3",
+      "among": [
+       {
+        "mask": "digit3"
+       }
+      ]
+     },
+     "source": "ANSUR II dactylion: tip of the middle finger"
+    },
+    "tip4": {
+     "farthest": {
+      "from": "mcp4",
+      "among": [
+       {
+        "mask": "digit4"
+       }
+      ]
+     }
+    },
+    "tip5": {
+     "farthest": {
+      "from": "mcp5",
+      "among": [
+       {
+        "mask": "digit5"
+       }
+      ]
+     }
+    },
+    "metacarpal_level": {
+     "lerp": [
+      "mcp3",
+      "wrist",
+      0.2
+     ],
+     "source": "estimate: the metacarpal heads lie about a fifth of the palm length proximal of the finger bases"
+    },
+    "palm_centre": {
+     "lerp": [
+      "wrist",
+      "mcp3",
+      0.45
+     ],
+     "source": "the palm's centre on its mid-surface: 45 % of the way from the wrist line to the middle finger's base (both seam centroids, so mid-thickness)"
+    },
+    "tip1_cap": {
+     "lerp": [
+      "tip1",
+      "thumb_base",
+      0.12
+     ],
+     "source": "12 % of the digit's base-to-tip length back from its tip: where the fingertip's cap begins (estimate)"
+    },
+    "tip2_cap": {
+     "lerp": [
+      "tip2",
+      "mcp2",
+      0.12
+     ],
+     "source": "12 % of the digit's base-to-tip length back from its tip: where the fingertip's cap begins (estimate)"
+    },
+    "tip3_cap": {
+     "lerp": [
+      "tip3",
+      "mcp3",
+      0.12
+     ],
+     "source": "12 % of the digit's base-to-tip length back from its tip: where the fingertip's cap begins (estimate)"
+    },
+    "tip4_cap": {
+     "lerp": [
+      "tip4",
+      "mcp4",
+      0.12
+     ],
+     "source": "12 % of the digit's base-to-tip length back from its tip: where the fingertip's cap begins (estimate)"
+    },
+    "tip5_cap": {
+     "lerp": [
+      "tip5",
+      "mcp5",
+      0.12
+     ],
+     "source": "12 % of the digit's base-to-tip length back from its tip: where the fingertip's cap begins (estimate)"
+    }
+   },
+   "frame": {
+    "origin": "wrist",
+    "axes": [
+     [
+      "y",
+      {
+       "from": "mcp3",
+       "to": "wrist"
+      }
+     ],
+     [
+      "x",
+      {
+       "from": "mcp5",
+       "to": "mcp2"
+      }
+     ]
+    ],
+    "check": {
+     "x": {
+      "from": "wrist",
+      "to": "thumb_base"
+     }
+    },
+    "why": "Y along the hand's long axis (third metacarpal, ISB), toward the wrist = superior in the anatomical position; X along the row of finger bases from the little finger to the index = radial = lateral in the anatomical position (the palm's plane); Z (palmar = anterior) follows from the side's handedness. Check: the thumb lies on +X. (A first version took X toward the thumb's seam: that seam sits palmar of the palm's plane and turned the knuckle row 35 deg out of X - measured, mcp2 z -0.85, mcp5 z +2.93 cm.)"
+   },
+   "address": {
+    "kind": "height",
+    "up": "z",
+    "sides": [
+     "+",
+     "-"
+    ],
+    "step_cm": 0.5
+   },
+   "skin": {
+    "why": "Build 10. The build-09 two-sided height grid missed the finger sides, the palm's edges and the skin between the fingers (82 % of vertices addressed). Here the hand body is two discs walked on the skin from the palm's centre - the palmar face ('palm', from +Z) and the back of the hand ('back', from -Z), split at the frame's mid-plane, each round its edges, into the webs and over the knuckles - and each digit is its own tube (base seam to tip, rings over the fingertip past a 30 deg turn); 5 mm steps.",
+    "charts": [
+     {
+      "name": "palm",
+      "kind": "disc",
+      "axis": "z",
+      "through": "palm_centre",
+      "from": "+",
+      "turn_deg": 30,
+      "region": [
+       {
+        "mask": "palm"
+       },
+       {
+        "plane": {
+         "through": "wrist",
+         "normal": {
+          "frame_axis": "z"
+         },
+         "keep": "+"
+        }
+       }
+      ],
+      "grid": [
+       {
+        "step_cm": 0.5
+       }
+      ]
+     },
+     {
+      "name": "back",
+      "kind": "disc",
+      "axis": "z",
+      "through": "palm_centre",
+      "from": "-",
+      "turn_deg": 30,
+      "region": [
+       {
+        "mask": "palm"
+       }
+      ],
+      "grid": [
+       {
+        "step_cm": 0.5
+       }
+      ],
+      "role": "the back of the hand; its region is the whole hand body, so it also takes the places the palmar disc cannot reach (the web between thumb and index); drawn only where it addresses the skin"
+     },
+     {
+      "name": "thumb",
+      "kind": "tube",
+      "region": [
+       {
+        "mask": "digit1"
+       }
+      ],
+      "through": [
+       "thumb_base",
+       "tip1"
+      ],
+      "before_cm": 2.5,
+      "after_cm": 0.5,
+      "ref": {
+       "fraction": 0.5
+      },
+      "c_from_deg": 180.0,
+      "turn_deg": 30,
+      "grid": [
+       {
+        "step_cm": 0.5
+       }
+      ]
+     },
+     {
+      "name": "index",
+      "kind": "tube",
+      "region": [
+       {
+        "mask": "digit2"
+       }
+      ],
+      "through": [
+       "mcp2",
+       "tip2"
+      ],
+      "before_cm": 1.5,
+      "after_cm": 0.5,
+      "ref": {
+       "fraction": 0.5
+      },
+      "c_from_deg": 180.0,
+      "turn_deg": 30,
+      "grid": [
+       {
+        "step_cm": 0.5
+       }
+      ]
+     },
+     {
+      "name": "middle",
+      "kind": "tube",
+      "region": [
+       {
+        "mask": "digit3"
+       }
+      ],
+      "through": [
+       "mcp3",
+       "tip3"
+      ],
+      "before_cm": 1.5,
+      "after_cm": 0.5,
+      "ref": {
+       "fraction": 0.5
+      },
+      "c_from_deg": 180.0,
+      "turn_deg": 30,
+      "grid": [
+       {
+        "step_cm": 0.5
+       }
+      ]
+     },
+     {
+      "name": "ring",
+      "kind": "tube",
+      "region": [
+       {
+        "mask": "digit4"
+       }
+      ],
+      "through": [
+       "mcp4",
+       "tip4"
+      ],
+      "before_cm": 1.5,
+      "after_cm": 0.5,
+      "ref": {
+       "fraction": 0.5
+      },
+      "c_from_deg": 180.0,
+      "turn_deg": 30,
+      "grid": [
+       {
+        "step_cm": 0.5
+       }
+      ]
+     },
+     {
+      "name": "little",
+      "kind": "tube",
+      "region": [
+       {
+        "mask": "digit5"
+       }
+      ],
+      "through": [
+       "mcp5",
+       "tip5"
+      ],
+      "before_cm": 1.5,
+      "after_cm": 0.5,
+      "ref": {
+       "fraction": 0.5
+      },
+      "c_from_deg": 180.0,
+      "turn_deg": 30,
+      "grid": [
+       {
+        "step_cm": 0.5
+       }
+      ]
+     },
+     {
+      "name": "thumb_tip",
+      "kind": "disc",
+      "axis": {
+       "from": "thumb_base",
+       "to": "tip1"
+      },
+      "through": "tip1",
+      "from": "+",
+      "turn_deg": 30,
+      "region": [
+       {
+        "mask": "digit1"
+       },
+       {
+        "plane": {
+         "through": "tip1_cap",
+         "normal": {
+          "from": "thumb_base",
+          "to": "tip1"
+         },
+         "keep": "+"
+        }
+       }
+      ],
+      "role": "fallback: after the tube, where its rings close round the tip's highest point without meeting the reference line; drawn only where it addresses the skin",
+      "grid": [
+       {
+        "step_cm": 0.5
+       }
+      ]
+     },
+     {
+      "name": "index_tip",
+      "kind": "disc",
+      "axis": {
+       "from": "mcp2",
+       "to": "tip2"
+      },
+      "through": "tip2",
+      "from": "+",
+      "turn_deg": 30,
+      "region": [
+       {
+        "mask": "digit2"
+       },
+       {
+        "plane": {
+         "through": "tip2_cap",
+         "normal": {
+          "from": "mcp2",
+          "to": "tip2"
+         },
+         "keep": "+"
+        }
+       }
+      ],
+      "role": "fallback: after the tube, where its rings close round the tip's highest point without meeting the reference line; drawn only where it addresses the skin",
+      "grid": [
+       {
+        "step_cm": 0.5
+       }
+      ]
+     },
+     {
+      "name": "middle_tip",
+      "kind": "disc",
+      "axis": {
+       "from": "mcp3",
+       "to": "tip3"
+      },
+      "through": "tip3",
+      "from": "+",
+      "turn_deg": 30,
+      "region": [
+       {
+        "mask": "digit3"
+       },
+       {
+        "plane": {
+         "through": "tip3_cap",
+         "normal": {
+          "from": "mcp3",
+          "to": "tip3"
+         },
+         "keep": "+"
+        }
+       }
+      ],
+      "role": "fallback: after the tube, where its rings close round the tip's highest point without meeting the reference line; drawn only where it addresses the skin",
+      "grid": [
+       {
+        "step_cm": 0.5
+       }
+      ]
+     },
+     {
+      "name": "ring_tip",
+      "kind": "disc",
+      "axis": {
+       "from": "mcp4",
+       "to": "tip4"
+      },
+      "through": "tip4",
+      "from": "+",
+      "turn_deg": 30,
+      "region": [
+       {
+        "mask": "digit4"
+       },
+       {
+        "plane": {
+         "through": "tip4_cap",
+         "normal": {
+          "from": "mcp4",
+          "to": "tip4"
+         },
+         "keep": "+"
+        }
+       }
+      ],
+      "role": "fallback: after the tube, where its rings close round the tip's highest point without meeting the reference line; drawn only where it addresses the skin",
+      "grid": [
+       {
+        "step_cm": 0.5
+       }
+      ]
+     },
+     {
+      "name": "little_tip",
+      "kind": "disc",
+      "axis": {
+       "from": "mcp5",
+       "to": "tip5"
+      },
+      "through": "tip5",
+      "from": "+",
+      "turn_deg": 30,
+      "region": [
+       {
+        "mask": "digit5"
+       },
+       {
+        "plane": {
+         "through": "tip5_cap",
+         "normal": {
+          "from": "mcp5",
+          "to": "tip5"
+         },
+         "keep": "+"
+        }
+       }
+      ],
+      "role": "fallback: after the tube, where its rings close round the tip's highest point without meeting the reference line; drawn only where it addresses the skin",
+      "grid": [
+       {
+        "step_cm": 0.5
+       }
+      ]
+     }
+    ]
+   },
+   "overlays": {
+    "axis": {
+     "polyline": [
+      "wrist",
+      "mcp3",
+      "tip3"
+     ]
+    }
+   },
+   "measures": {
+    "hand_length_cm": {
+     "distance": [
+      "wrist",
+      "tip3"
+     ],
+     "source": "ANSUR II hand length (wrist crease to dactylion); here from the wrist line's centroid"
+    },
+    "palm_length_cm": {
+     "distance": [
+      "wrist",
+      "mcp3"
+     ]
+    },
+    "thumb_seam_to_tip_cm": {
+     "distance": [
+      "thumb_base",
+      "tip1"
+     ]
+    },
+    "index_base_to_tip_cm": {
+     "distance": [
+      "mcp2",
+      "tip2"
+     ]
+    },
+    "middle_base_to_tip_cm": {
+     "distance": [
+      "mcp3",
+      "tip3"
+     ]
+    },
+    "ring_base_to_tip_cm": {
+     "distance": [
+      "mcp4",
+      "tip4"
+     ]
+    },
+    "little_base_to_tip_cm": {
+     "distance": [
+      "mcp5",
+      "tip5"
+     ]
+    },
+    "metacarpal_section": {
+     "extent": {
+      "among": [
+       {
+        "mask": "palm"
+       }
+      ],
+      "axes": "xz",
+      "band": {
+       "axis": "y",
+       "at": "metacarpal_level",
+       "half_cm": 0.5
+      }
+     },
+     "what": "the palm's extent across X (hand breadth, ANSUR II: metacarpale II-V) and Z (thickness) in a 1 cm band at the metacarpal level"
+    },
+    "tip3_palmar_cm": {
+     "coord": [
+      "tip3",
+      "z"
+     ],
+     "what": "the middle fingertip's Z: > 0 = the fingers curl toward the palm (a check on the palm side)"
+    }
+   }
+  }
+ }
+}

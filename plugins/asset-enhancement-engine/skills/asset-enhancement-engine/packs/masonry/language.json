@@ -1,0 +1,157 @@
+{
+ "what": "MASONRY LANGUAGE PACK (build L1, 2026-10-21): the words for the parts of a brick (and of other masonry units) and how they are recognised. Data for engine/tools/language.py; over engine/packs/generic/language.json.",
+ "vocabulary": {
+  "bed": "the face a brick is laid on (upper and lower bed faces); a frog is pressed into a bed face",
+  "stretcher": "the long side face, shown along the wall's face when the brick is laid lengthwise",
+  "header": "the short end face, shown when the brick is laid across the wall",
+  "frog": "the recess in a bed face (floor and walls), to save clay and key the mortar",
+  "arris": "an edge where two faces meet",
+  "corner": "where three faces meet",
+  "sources": [
+   {
+    "what": "standard metric brick work size 215 x 102.5 x 65 mm; terms bed, stretcher, header, frog, arris",
+    "where": "BS EN 771-1 (clay masonry units) / BS 3921:1985; the terms as used in UK bricklaying (e.g. Brick Development Association, 'Brickwork: guidance', glossary)",
+    "status": "the standard and the terms: well established (estimated reference; not opened in this build)"
+   }
+  ]
+ },
+ "segmentation": {
+  "methods": [
+   "facets"
+  ],
+  "why": "a brick is faceted: its parts are its faces and the strips between them"
+ },
+ "frame": "the brick lies on its bed: up (+z) = the upper bed's normal, length along x, width along y (the model's own axes; ingest turns them)",
+ "rules": [
+  {
+   "kind": "bed",
+   "when": {
+    "part_kind": [
+     "facet"
+    ],
+    "normal_up_abs_min": 0.9,
+    "facing": "out",
+    "up_abs_min": 0.9
+   },
+   "name": "bed_{updown}"
+  },
+  {
+   "kind": "frog_floor",
+   "when": {
+    "part_kind": [
+     "facet"
+    ],
+    "normal_up_min": 0.9,
+    "up_max": 0.9,
+    "up_min": 0.0
+   },
+   "name": "frog_floor"
+  },
+  {
+   "kind": "frog_wall",
+   "when": {
+    "part_kind": [
+     "facet"
+    ],
+    "normal_up_abs_max": 0.4,
+    "facing": "in"
+   },
+   "name": "frog_wall_{place}"
+  },
+  {
+   "kind": "stretcher",
+   "when": {
+    "part_kind": [
+     "facet"
+    ],
+    "normal_front_abs_min": 0.9,
+    "facing": "out"
+   },
+   "name": "stretcher_{frontback}"
+  },
+  {
+   "kind": "header",
+   "when": {
+    "part_kind": [
+     "facet"
+    ],
+    "normal_left_abs_min": 0.9,
+    "facing": "out"
+   },
+   "name": "header_{leftright}"
+  },
+  {
+   "kind": "frog_corner",
+   "when": {
+    "part_kind": [
+     "corner"
+    ],
+    "between_kind_any": [
+     "frog_floor",
+     "frog_wall"
+    ]
+   },
+   "name": "frog_corner_{between}"
+  },
+  {
+   "kind": "frog_edge",
+   "when": {
+    "part_kind": [
+     "edge"
+    ],
+    "between_kind_any": [
+     "frog_floor",
+     "frog_wall"
+    ]
+   },
+   "name": "frog_edge_{between}"
+  },
+  {
+   "kind": "arris",
+   "when": {
+    "part_kind": [
+     "edge"
+    ]
+   },
+   "name": "arris_{between}"
+  },
+  {
+   "kind": "corner",
+   "when": {
+    "part_kind": [
+     "corner"
+    ]
+   },
+   "name": "corner_{between}"
+  }
+ ],
+ "findings": {
+  "_": "measured findings (build L1, 2026-10-21): what was done, what resulted, where; evidence, not rules",
+  "items": [
+   {
+    "what": "A brick segments into its faces, the strips between them and the patches where three meet",
+    "result": "Standard metric brick (215 x 102.5 x 65 mm, a 145 x 55 x 10 mm frog, 2 mm arrises; marching cubes at 1 mm): 11 facets (2 beds, 2 stretchers, 2 headers, frog floor, 4 frog walls), 20 edges (12 arrises, 8 frog edges), 16 corners (8 brick, 8 frog): 47 parts, every face in one, all named by masonry words, 100 % of vertices addressed. A facet = the flat face + the fillet band within 20 deg: stretcher 131.46 cm2 against (211 + 2 x 0.68) x (61 + 2 x 0.68) mm = 132.4 cm2.",
+    "where": "cases/brick1/language/segmentation.json, cases/brick1/brick_truth.json",
+    "status": "checked"
+   },
+   {
+    "what": "Mirror faces read alike only off the meshing lattice",
+    "result": "With the marching-cubes lattice on the brick's planes, exact zeros there made the stretchers 128.7 and 134.4 cm2 and the frog walls 8.9 and 11.3 cm2; offset by 0.37 voxel both pairs were equal to 0.01 cm2.",
+    "where": "cases/brick1/make_brick.py",
+    "status": "checked"
+   },
+   {
+    "what": "A planar face is addressed in its own plane from its area centroid",
+    "result": "The upper bed is a ring round the frog: an origin at the nearest surface point to its centroid hopped between the two inner edges on a remesh (56 mm). From the area centroid with a ray address (h+), re-voxelised 1.0 -> 0.7 mm: no address of the 47 parts moved more than 0.27 mm (worst part p99); 81 of 3,464 fell just off their part's edge.",
+    "where": "cases/brick1/proof/change_remesh_0p7mm.json",
+    "status": "checked"
+   },
+   {
+    "what": "A broken corner leaves the rest of the brick's language in place",
+    "result": "A 20 mm sphere off one corner: that corner reported gone; 43 of the other 46 parts' addresses moved under 0.05 mm (p99), one address over 1 mm (on the header where the material went), 43 of 3,440 miss (in the chip).",
+    "where": "cases/brick1/proof/change_chipped_corner.json",
+    "status": "checked"
+   }
+  ]
+ }
+}

@@ -1,0 +1,18 @@
+{
+  "name": "engine-grounding",
+  "displayName": "Engine grounding",
+  "version": "0.2.0",
+  "description": "Companion to recursive-improvement and to an engine's own skill (supplements, never replaces): where every value comes from and how sure it is, references as evidence not authority, baselines before changing working code, approved work protected, every human note accounted for. Items G1-G14 are each switchable in flags.json.",
+  "author": {
+    "name": "dirtcodevet"
+  },
+  "keywords": [
+    "evals",
+    "provenance",
+    "method"
+  ],
+  "dependencies": [
+    "recursive-improvement"
+  ],
+  "license": "Apache-2.0"
+}

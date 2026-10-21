@@ -1,0 +1,83 @@
+# DRAFT - INERT. GitHub only runs files in .github/workflows/ ending in .yml/.yaml; this one is neither.
+# Design: docs/lesson-reporter/SPEC.md, section 11. Before activating:
+#   - pin every action to a full commit SHA (the @<sha> placeholders below are deliberately not filled in);
+#   - create the repository variables used in `if:` (each job is switchable);
+#   - add CODEOWNERS and branch protection, and the `ratchet-approved` / `code-reviewed` labels.
+name: lesson-intake
+
+on:
+  pull_request:            # never pull_request_target: a fork's code must not run with this repo's token or secrets
+    paths:
+      - "inbox/**"
+      - "plugins/**"
+      - ".claude-plugin/**"
+
+permissions:
+  contents: read           # no write token, no secrets in any job
+
+jobs:
+  screen:                  # every received package re-screened without knowing the sender
+    if: vars.CI_SCREEN != 'off'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@<pin-full-sha>
+      - uses: actions/setup-python@<pin-full-sha>
+        with: { python-version: "3.12" }
+      - name: Screen inbox packages
+        run: |
+          set -euo pipefail
+          status=0
+          while IFS= read -r -d '' pkg; do
+            # the engine name comes from an untrusted file: accept only an existing plugin folder name
+            engine=$(python -I -c "import json,sys; print(json.load(open(sys.argv[1], encoding='utf-8')).get('engine',''))" "$pkg" || true)
+            if ! [[ "$engine" =~ ^[a-z0-9-]{1,64}$ ]] || [ ! -f "plugins/$engine/reporter.json" ]; then
+              echo "::error file=$pkg::unknown engine"; status=1; continue
+            fi
+            python -I plugins/lesson-reporter/scripts/lesson_reporter.py screen "$pkg" --engine "plugins/$engine" || status=1
+          done < <(find inbox -name package.json -print0 2>/dev/null)
+          exit $status
+
+  reporter-tests:
+    if: vars.CI_REPORTER_TESTS != 'off'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@<pin-full-sha>
+      - uses: actions/setup-python@<pin-full-sha>
+        with: { python-version: "3.12" }
+      - run: python -m unittest discover -s plugins/lesson-reporter/tests
+
+  manifests:
+    if: vars.CI_MANIFESTS != 'off'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@<pin-full-sha>
+      - uses: actions/setup-node@<pin-full-sha>
+        with: { node-version: "22" }
+      - run: npm install -g @anthropic-ai/claude-code@<pin-version>
+      - run: |
+          claude plugin validate . --strict
+          for p in plugins/*/; do claude plugin validate "$p" --strict; done
+
+  proofs:                  # each touched check's own planted-defect proof (plugins/<engine>/proofs.json)
+    if: vars.CI_PROOFS == 'on'          # off until public synthetic fixtures exist (SPEC 11, "fixture gap")
+    needs: [screen, reporter-tests]
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@<pin-full-sha>
+      - uses: actions/setup-python@<pin-full-sha>
+        with: { python-version: "3.12" }
+      - run: pip install --require-hashes -r ci/requirements-proofs.txt    # to be written, hash-pinned
+      - env:
+          BASE_SHA: ${{ github.event.pull_request.base.sha }}
+        run: python ci/run_proofs.py --changed-from "$BASE_SHA"      # to be written
+
+  ratchet:                 # checks never loosen without the maintainer's label (SPEC 10)
+    if: vars.CI_RATCHET == 'on'         # to be written
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@<pin-full-sha>
+        with: { fetch-depth: 0 }
+      - env:                          # event data reaches the script as env vars, never pasted into shell text
+          BASE_SHA: ${{ github.event.pull_request.base.sha }}
+          PR_LABELS: ${{ toJSON(github.event.pull_request.labels.*.name) }}
+        run: python ci/ratchet.py --base "$BASE_SHA" --labels-env PR_LABELS

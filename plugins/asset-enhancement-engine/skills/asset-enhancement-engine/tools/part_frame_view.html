@@ -1,0 +1,399 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>__TITLE__</title>
+<!-- engine/tools/part_frame_view.html: the part-frame viewer template; part_frame.py fills the data block. One file, no
+     network: WebGL2, orbit / pan / zoom, click or box-pick dots, copy picks as addresses that survive a remesh. -->
+<style>
+:root{--bg:#f4f2ee;--panel:#ffffff;--ink:#1d1d1f;--mute:#6b6b70;--line:#e2dfd8;--accent:#c75b12;--sel:#ff7a1a;--btn:#efece6;--btnh:#e3dfd6}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#18181b;--panel:#222226;--ink:#ececef;--mute:#9a9aa2;--line:#34343a;--accent:#ff9a4d;--sel:#ffb15c;--btn:#2d2d33;--btnh:#3a3a42}}
+:root[data-theme="dark"]{--bg:#18181b;--panel:#222226;--ink:#ececef;--mute:#9a9aa2;--line:#34343a;--accent:#ff9a4d;--sel:#ffb15c;--btn:#2d2d33;--btnh:#3a3a42}
+*{box-sizing:border-box}
+html,body{margin:0;height:100%;background:var(--bg);color:var(--ink);font:13px/1.4 system-ui,-apple-system,"Segoe UI",sans-serif}
+#app{display:flex;height:100%;width:100%;overflow:hidden}
+#stage{position:relative;flex:1;min-width:0;touch-action:none}
+canvas{display:block;width:100%;height:100%;cursor:crosshair}
+#labels{position:absolute;inset:0;pointer-events:none;overflow:hidden}
+.lab{position:absolute;transform:translate(4px,-50%);font-size:11px;white-space:nowrap;text-shadow:0 0 3px var(--bg),0 0 3px var(--bg)}
+.lab.lm{color:#c0392b;font-weight:600}.lab.ax{font-weight:700}.lab.tk{color:var(--mute);font-size:10px}
+#box{position:absolute;border:1px dashed var(--accent);background:color-mix(in srgb,var(--accent) 12%,transparent);display:none;pointer-events:none}
+#tip{position:absolute;pointer-events:none;background:var(--panel);border:1px solid var(--line);border-radius:6px;padding:4px 7px;font:11px ui-monospace,Consolas,monospace;display:none;white-space:nowrap;box-shadow:0 2px 8px rgba(0,0,0,.15)}
+#legend{position:absolute;left:10px;bottom:10px;font-size:11px;color:var(--mute);background:color-mix(in srgb,var(--panel) 85%,transparent);padding:4px 8px;border-radius:6px}
+#legend .bar{display:inline-block;width:120px;height:9px;vertical-align:middle;margin:0 6px;border-radius:2px}
+aside{width:360px;flex:none;background:var(--panel);border-left:1px solid var(--line);overflow:auto;padding:12px 14px}
+h1{font-size:15px;margin:0 0 2px}h2{font-size:12px;text-transform:uppercase;letter-spacing:.04em;color:var(--mute);margin:14px 0 6px}
+.sub{color:var(--mute);font-size:12px}
+.row{display:flex;flex-wrap:wrap;gap:4px;align-items:center;margin:4px 0}
+button{font:inherit;background:var(--btn);color:var(--ink);border:1px solid var(--line);border-radius:6px;padding:4px 8px;cursor:pointer}
+button:hover{background:var(--btnh)}button.on{border-color:var(--accent);color:var(--accent)}
+button.primary{background:var(--accent);color:#fff;border-color:var(--accent)}
+label{display:inline-flex;gap:4px;align-items:center;margin-right:8px;white-space:nowrap}
+select,input[type=range]{font:inherit;accent-color:var(--accent)}
+select{background:var(--btn);color:var(--ink);border:1px solid var(--line);border-radius:6px;padding:3px}
+#sel{list-style:none;margin:0;padding:0;font:11.5px ui-monospace,Consolas,monospace}
+#sel li{border-bottom:1px solid var(--line);padding:4px 0;display:flex;gap:6px}
+#sel li .n{color:var(--accent);min-width:1.8em}#sel li .x{margin-left:auto;cursor:pointer;color:var(--mute)}
+#sel li .k{color:var(--mute)}
+textarea{width:100%;height:110px;font:11px ui-monospace,Consolas,monospace;background:var(--bg);color:var(--ink);border:1px solid var(--line);border-radius:6px;padding:6px}
+details{margin:4px 0}summary{cursor:pointer;color:var(--mute)}
+table.m{border-collapse:collapse;width:100%;font-size:12px}table.m td{border-bottom:1px solid var(--line);padding:2px 4px;vertical-align:top}
+table.m td:last-child{text-align:right;font-variant-numeric:tabular-nums}
+.help{color:var(--mute);font-size:12px}.help b{color:var(--ink);font-weight:600}
+.prow{display:flex;gap:6px;align-items:center;padding:2px 0;cursor:pointer}.prow:hover{color:var(--ink)}.prow .sw{width:10px;height:10px;border-radius:2px;flex:none}.prow a{margin-left:auto;color:var(--accent)}
+#msg{color:var(--accent);font-size:12px;min-height:1.2em}
+@media (max-width:700px){#app{flex-direction:column}aside{width:100%;max-height:46vh;border-left:0;border-top:1px solid var(--line);padding:10px 16px}#stage{min-height:54vh}}
+</style>
+</head>
+<body>
+<div id="app">
+ <div id="stage"><canvas id="gl"></canvas><div id="labels"></div><div id="box"></div><div id="tip"></div><div id="legend"></div></div>
+ <aside>
+  <h1 id="title"></h1><div class="sub" id="subtitle"></div>
+  <h2>View</h2>
+  <div class="row" id="views"></div>
+  <div class="row"><button id="ortho">Orthographic</button><button id="reset">Reset</button><button id="theme" title="light / dark">Theme</button></div>
+  <h2>Show</h2>
+  <div class="row" id="layers"></div>
+  <div class="row"><label>Colour <select id="colour"></select></label><label>Dots <input type="range" id="dot" min="1" max="10" step="0.5" value="3"></label></div>
+  <h2>Picked <span id="count" class="sub"></span></h2>
+  <ul id="sel"></ul>
+  <div class="row"><button class="primary" id="copy">Copy for chat</button><button id="run" title="fill the grid points between the last two picked grid points on one grid line">Run between last two</button><button id="undo">Undo</button><button id="clear">Clear</button><button id="boxmode" title="drag a box to pick every visible dot inside">Box</button></div>
+  <div id="msg"></div>
+  <textarea id="out" readonly placeholder="Picked addresses appear here."></textarea>
+  <h2>How</h2>
+  <div class="help"><b>Drag</b> turn &middot; <b>Right-drag</b> or <b>Shift-drag</b> pan &middot; <b>Wheel</b> / pinch zoom<br>
+   <b>Click</b> a dot: pick it &middot; <b>Shift-click</b>: add / remove &middot; <b>Ctrl- or Alt-drag</b> (or Box): pick all visible dots in a box<br>
+   <b>Run</b>: pick two grid dots on one grid line, then Run fills the series between them.<br>
+   Zoom in until dots separate to pick one exact vertex (a click takes the visible dot nearest the pointer).
+   Blue dots are the part's address grid, laid on the skin (small dots: the finer grid over small features); grey dots are mesh
+   vertices. A grid dot's name is its address. A vertex is written in the part's address system when that address lands back on
+   it, otherwise as xyz (nearest surface point). Addresses re-resolve on a later or remeshed build of this part; vertex numbers
+   are listed for this build only. Addresses pasted from the earlier grid (h+, h-, tube) still resolve.</div>
+  <div id="partsbox" style="display:none"><h2>Parts <span id="pcount" class="sub"></span></h2><div id="parts" class="help"></div></div>
+  <h2>Frame</h2><div id="frame" class="help"></div>
+  <h2>Measures</h2><div id="measures"></div>
+ </aside>
+</div>
+<script id="data" type="application/json">/*__DATA__*/null</script>
+<script>
+"use strict";
+const D = JSON.parse(document.getElementById("data").textContent);
+const I = D.info, PART = I.part, AK = I.address.kind;
+function dec(s, T){ const b = atob(s), u = new Uint8Array(b.length); for (let i = 0; i < b.length; i++) u[i] = b.charCodeAt(i); return new T(u.buffer); }
+const V = dec(D.V, Float32Array), F = dec(D.F, Uint32Array), VID = dec(D.vid, Uint32Array);
+const AP = dec(D.ap, Float32Array), AS = dec(D.as, Int8Array);
+const GP = dec(D.gP, Float32Array), GPRM = dec(D.gprm, Float32Array), GS = dec(D.gside, Int8Array), GLF = dec(D.glines, Int32Array);
+const GLEV = D.glev ? dec(D.glev, Int8Array) : new Int8Array(D.gnames.length);
+const SYS = D.systems || null;            // build 10: per-vertex addr_side indexes these address systems (skin charts, then build 09's)
+const GN = D.gnames, nV = D.nV, nG = GN.length;
+const FIELDS = {}; for (const k in D.fields) FIELDS[k] = dec(D.fields[k], Float32Array);
+const LMN = Object.keys(I.landmarks_cm), LMP = LMN.map(k => I.landmarks_cm[k]);
+const SIDES = I.address.sides || ["+"];
+const AXN = I.axes;
+// build L1: the whole-object page (engine/tools/language.py) carries D.object: per vertex its part and its address in
+// that part's own system; part pages do not, and everything below behaves as before for them
+const OBJ = D.object || null;
+if (OBJ){ OBJ.VP = dec(OBJ.vp, Int16Array); OBJ.AP = dec(OBJ.ap, Float32Array); OBJ.VS = dec(OBJ.vs, Int8Array); OBJ.C = OBJ.colour ? dec(OBJ.colour, Float32Array) : null; }
+// ---------------------------------------------------------------------------------------------- address text
+const up = AK === "height" ? (I.address.up || "z") : null;
+const hax = up ? ["x","y","z"].filter(a => a !== up) : null;
+function addrText(p0, p1, side){
+  if (AK === "height") return `${PART} h${side} ${hax[0]}=${p0.toFixed(2)} ${hax[1]}=${p1.toFixed(2)}`;
+  if (AK === "tube") return `${PART} tube s=${p0.toFixed(2)} a=${p1.toFixed(1)}`;
+  return `${PART} sphere lat=${p0.toFixed(1)} lon=${p1.toFixed(1)}`;
+}
+const xyzText = (x,y,z) => `${PART} xyz x=${x.toFixed(2)} y=${y.toFixed(2)} z=${z.toFixed(2)}`;
+const f2 = v => (v >= 0 ? " " : "") + v.toFixed(2);
+function fieldText(vi){ let s = ""; for (const k in FIELDS) s += `  ${k} ${FIELDS[k][vi].toFixed(2)}`; return s; }
+function itemInfo(it){
+  if (it.k === "g"){ const i = it.i, x = GP[3*i], y = GP[3*i+1], z = GP[3*i+2];
+    return {addr: GN[i], xyz: [x,y,z], kind: "grid point", extra: ""}; }
+  if (it.k === "v"){ const i = it.i, x = V[3*i], y = V[3*i+1], z = V[3*i+2];
+    let a, kd;
+    if (OBJ){ const pp = OBJ.parts[OBJ.VP[i]] || {name: "?", systems: []}, si = OBJ.VS[i];
+      if (si >= 0 && pp.systems[si]){ const s = pp.systems[si]; a = `${pp.name} ${s.name} ${s.coords[0]}=${OBJ.AP[2*i].toFixed(2)} ${s.coords[1]}=${OBJ.AP[2*i+1].toFixed(2)}`; kd = "vertex on " + pp.name; }
+      else { a = xyzText(x,y,z); kd = "vertex on " + pp.name + ", xyz only"; }
+      return {addr: a, xyz: [x,y,z], kind: kd, extra: ""}; }
+    if (AS[i] < 0) { a = xyzText(x,y,z); kd = "vertex, xyz only"; }
+    else if (SYS) { const s = SYS[AS[i]]; a = `${PART} ${s.name} ${s.coords[0]}=${AP[2*i].toFixed(2)} ${s.coords[1]}=${AP[2*i+1].toFixed(2)}`; kd = s.build === 9 ? "vertex (build 09 address)" : "vertex"; }
+    else { a = addrText(AP[2*i], AP[2*i+1], AK === "height" ? SIDES[AS[i]] : ""); kd = "vertex"; }
+    return {addr: a, xyz: [x,y,z], kind: kd, extra: fieldText(i) + `  vertex #${VID[i]} (this build only)`}; }
+  const p = LMP[it.i]; return {addr: xyzText(p[0],p[1],p[2]), xyz: p, kind: "landmark " + LMN[it.i], extra: ""};
+}
+// ---------------------------------------------------------------------------------------------- GL setup
+const cv = document.getElementById("gl"), gl = cv.getContext("webgl2", {antialias: true, preserveDrawingBuffer: false});
+if (!gl) { document.getElementById("stage").innerHTML = "<p style='padding:20px'>This view needs WebGL2 (any current Chrome, Edge, Firefox or Safari).</p>"; throw new Error("no webgl2"); }
+function sh(type, src){ const s = gl.createShader(type); gl.shaderSource(s, src); gl.compileShader(s); if (!gl.getShaderParameter(s, gl.COMPILE_STATUS)) throw new Error(gl.getShaderInfoLog(s)); return s; }
+function prog(vs, fs){ const p = gl.createProgram(); gl.attachShader(p, sh(gl.VERTEX_SHADER, vs)); gl.attachShader(p, sh(gl.FRAGMENT_SHADER, fs)); gl.linkProgram(p);
+  if (!gl.getProgramParameter(p, gl.LINK_STATUS)) throw new Error(gl.getProgramInfoLog(p)); return p; }
+const P_MESH = prog(`#version 300 es
+in vec3 p; in vec3 n; in vec3 c; uniform mat4 M; uniform mat4 Vw; out vec3 vn; out vec3 vc; out vec3 vp;
+void main(){ gl_Position = M * vec4(p,1.0); vn = mat3(Vw) * n; vc = c; vp = (Vw * vec4(p,1.0)).xyz; }`,
+`#version 300 es
+precision highp float; in vec3 vn; in vec3 vc; in vec3 vp; uniform int pick; out vec4 o;
+void main(){ if (pick == 1) { o = vec4(0.0,0.0,0.0,1.0); return; }
+ vec3 N = normalize(vn); if (!gl_FrontFacing) N = -N; vec3 L = normalize(vec3(0.35,0.55,1.0)); vec3 E = normalize(-vp);
+ float d = abs(dot(N, L)); float h = pow(max(dot(N, normalize(L+E)),0.0), 40.0);
+ o = vec4(vc * (0.28 + 0.72*d) + 0.10*h, 1.0); }`);
+const P_PT = prog(`#version 300 es
+in vec3 p; in vec3 c; uniform mat4 M; uniform float sz; out vec3 vc;
+void main(){ gl_Position = M * vec4(p,1.0); gl_PointSize = sz; vc = c; }`,
+`#version 300 es
+precision highp float; in vec3 vc; uniform int pick; out vec4 o;
+void main(){ vec2 q = gl_PointCoord - 0.5; float r = dot(q,q); if (r > 0.25) discard;
+ if (pick == 1) { o = vec4(vc,1.0); return; } o = vec4(vc * (r > 0.12 ? 0.7 : 1.0), 1.0); }`);
+const P_LN = prog(`#version 300 es
+in vec3 p; in vec3 c; uniform mat4 M; out vec3 vc; void main(){ gl_Position = M * vec4(p,1.0); vc = c; }`,
+`#version 300 es
+precision highp float; in vec3 vc; out vec4 o; void main(){ o = vec4(vc,1.0); }`);
+function buf(data, target){ const b = gl.createBuffer(); gl.bindBuffer(target || gl.ARRAY_BUFFER, b); gl.bufferData(target || gl.ARRAY_BUFFER, data, gl.STATIC_DRAW); return b; }
+function vao(prg, attrs, ebo){ const a = gl.createVertexArray(); gl.bindVertexArray(a);
+  for (const [name, b, size, type, norm] of attrs){ const loc = gl.getAttribLocation(prg, name); if (loc < 0) continue; gl.bindBuffer(gl.ARRAY_BUFFER, b); gl.enableVertexAttribArray(loc); gl.vertexAttribPointer(loc, size, type || gl.FLOAT, !!norm, 0, 0); }
+  if (ebo) gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER, ebo); gl.bindVertexArray(null); return a; }
+// normals
+const N = new Float32Array(V.length);
+for (let t = 0; t < F.length; t += 3){ const a = 3*F[t], b = 3*F[t+1], c = 3*F[t+2];
+  const ux = V[b]-V[a], uy = V[b+1]-V[a+1], uz = V[b+2]-V[a+2], wx = V[c]-V[a], wy = V[c+1]-V[a+1], wz = V[c+2]-V[a+2];
+  const nx = uy*wz-uz*wy, ny = uz*wx-ux*wz, nz = ux*wy-uy*wx; for (const k of [a,b,c]) { N[k]+=nx; N[k+1]+=ny; N[k+2]+=nz; } }
+for (let i = 0; i < N.length; i += 3){ const l = Math.hypot(N[i],N[i+1],N[i+2]) || 1; N[i]/=l; N[i+1]/=l; N[i+2]/=l; }
+const bP = buf(V), bN = buf(N), bC = gl.createBuffer(), eF = buf(F, gl.ELEMENT_ARRAY_BUFFER);
+const aMesh = vao(P_MESH, [["p", bP, 3], ["n", bN, 3], ["c", bC, 3]], eF);
+function idCols(n, off){ const c = new Uint8Array(3*n); for (let i = 0; i < n; i++){ const id = i + off; c[3*i] = id & 255; c[3*i+1] = (id >> 8) & 255; c[3*i+2] = (id >> 16) & 255; } return c; }
+function fill(n, rgb){ const c = new Float32Array(3*n); for (let i = 0; i < n; i++) c.set(rgb, 3*i); return c; }
+const OFF_G = 1, OFF_V = 1 + nG, OFF_L = 1 + nG + nV;
+const GRUNS = []; for (let i = 0; i < nG; i++){ if (!GRUNS.length || GRUNS[GRUNS.length-1][2] !== GLEV[i]) GRUNS.push([i, 0, GLEV[i]]); GRUNS[GRUNS.length-1][1]++; }   // the grid's levels (1 cm, 2.5 mm, 1 mm ...)
+const bVdotC = buf(fill(nV, [0.32,0.32,0.36])), bVid = buf(idCols(nV, OFF_V));
+const aVdot = vao(P_PT, [["p", bP, 3], ["c", bVdotC, 3]]), aVpick = vao(P_PT, [["p", bP, 3], ["c", bVid, 3, gl.UNSIGNED_BYTE, true]]);
+const bG = buf(GP.length ? GP : new Float32Array(3)), bGC = buf(fill(Math.max(nG,1), [0.16,0.42,0.86])), bGid = buf(idCols(Math.max(nG,1), OFF_G));
+const aGdot = vao(P_PT, [["p", bG, 3], ["c", bGC, 3]]), aGpick = vao(P_PT, [["p", bG, 3], ["c", bGid, 3, gl.UNSIGNED_BYTE, true]]);
+const LINES = []; { let cur = []; for (const v of GLF){ if (v < 0) { if (cur.length > 1) LINES.push(cur); cur = []; } else cur.push(v); } if (cur.length > 1) LINES.push(cur); }
+const gIdx = []; for (const ln of LINES) for (let k = 0; k + 1 < ln.length; k++) gIdx.push(ln[k], ln[k+1]);
+const eG = buf(new Uint32Array(gIdx.length ? gIdx : [0,0]), gl.ELEMENT_ARRAY_BUFFER), bGLC = buf(fill(Math.max(nG,1), [0.45,0.62,0.92]));
+const aGline = vao(P_LN, [["p", bG, 3], ["c", bGLC, 3]], eG);
+const LMF = new Float32Array(LMP.flat()), bL = buf(LMF.length ? LMF : new Float32Array(3)), bLC = buf(fill(LMN.length, [0.78,0.18,0.15])), bLid = buf(idCols(LMN.length, OFF_L));
+const aLdot = vao(P_PT, [["p", bL, 3], ["c", bLC, 3]]), aLpick = vao(P_PT, [["p", bL, 3], ["c", bLid, 3, gl.UNSIGNED_BYTE, true]]);
+// bounds, axes, ticks, overlays
+let lo = [1e9,1e9,1e9], hi = [-1e9,-1e9,-1e9]; for (let i = 0; i < V.length; i += 3) for (let a = 0; a < 3; a++){ lo[a] = Math.min(lo[a], V[i+a]); hi[a] = Math.max(hi[a], V[i+a]); }
+const CEN = [0,1,2].map(a => (lo[a]+hi[a])/2), DIAG = Math.hypot(hi[0]-lo[0], hi[1]-lo[1], hi[2]-lo[2]);
+const AXL = Math.max(5, Math.ceil(Math.max(...lo.map(Math.abs), ...hi.map(Math.abs)) / 5) * 5);
+const axP = [], axC = [], AXCOL = [[0.78,0.22,0.17],[0.15,0.6,0.3],[0.15,0.4,0.75]], TICKS = [];
+for (let a = 0; a < 3; a++){ const e = [0,0,0]; e[a] = 1; const o = [0,0,0]; o[(a+1)%3] = 1;
+  axP.push(...e.map(x => -x*AXL), ...e.map(x => x*AXL)); axC.push(...AXCOL[a], ...AXCOL[a]);
+  for (let t = -AXL; t <= AXL; t += 1){ if (t === 0) continue; const L = (t % 5 === 0) ? 0.35 : 0.15; const p = e.map(x => x*t);
+    axP.push(...p.map((x,i) => x - o[i]*L), ...p.map((x,i) => x + o[i]*L)); axC.push(...AXCOL[a], ...AXCOL[a]); if (t % 5 === 0) TICKS.push([p, String(t)]); } }
+const bAx = buf(new Float32Array(axP)), bAxC = buf(new Float32Array(axC)), aAx = vao(P_LN, [["p", bAx, 3], ["c", bAxC, 3]]), nAx = axP.length/3;
+const ovP = [], ovC = []; for (const k in D.overlays){ const Q = D.overlays[k]; for (let i = 0; i + 1 < Q.length; i++){ ovP.push(...Q[i], ...Q[i+1]); ovC.push(0.12,0.38,0.55, 0.12,0.38,0.55); } }
+const bOv = buf(new Float32Array(ovP.length ? ovP : [0,0,0])), bOvC = buf(new Float32Array(ovC.length ? ovC : [0,0,0])), aOv = vao(P_LN, [["p", bOv, 3], ["c", bOvC, 3]]), nOv = ovP.length/3;
+const bS = gl.createBuffer(), bSC = gl.createBuffer(), aSel = vao(P_PT, [["p", bS, 3], ["c", bSC, 3]]); let nSel = 0;
+// ---------------------------------------------------------------------------------------------- colour modes
+const VIR = [[0.267,0.005,0.329],[0.283,0.141,0.458],[0.254,0.265,0.530],[0.207,0.372,0.553],[0.164,0.471,0.558],[0.128,0.567,0.551],[0.135,0.659,0.518],[0.267,0.749,0.441],[0.478,0.821,0.318],[0.741,0.873,0.150],[0.993,0.906,0.144]];
+function cmap(t){ t = Math.min(1, Math.max(0, t)) * (VIR.length - 1); const i = Math.min(VIR.length - 2, Math.floor(t)), f = t - i; return VIR[i].map((v,k) => v + (VIR[i+1][k]-v)*f); }
+let MODES = {"clay": null, "X lateral (cm)": i => V[3*i], "Y superior (cm)": i => V[3*i+1], "Z anterior / out (cm)": i => V[3*i+2]};
+for (const k in FIELDS) MODES[k] = (f => i => f[i])(FIELDS[k]);
+MODES["address coverage"] = OBJ ? (i => OBJ.VS[i] >= 0 ? 1 : 0) : (i => AS[i] >= 0 ? 1 : 0);
+if (OBJ){ MODES = Object.assign({"parts": "parts"}, MODES); if (OBJ.C) MODES["image colour"] = "image"; }
+if (SYS && SYS.length > 2) MODES["address system"] = i => AS[i];
+function setColour(mode){ const c = new Float32Array(3*nV), fn = MODES[mode]; const leg = document.getElementById("legend");
+  if (fn === "parts" || fn === "image"){ for (let i = 0; i < nV; i++){ const col = fn === "image" ? [OBJ.C[3*i], OBJ.C[3*i+1], OBJ.C[3*i+2]] : (OBJ.parts[OBJ.VP[i]] || {colour: [0.8,0.8,0.8]}).colour; c.set(col, 3*i); }
+    leg.style.display = "none"; }
+  else if (!fn){ for (let i = 0; i < nV; i++) c.set([0.86,0.79,0.72], 3*i); leg.style.display = "none"; }
+  else { const vals = new Float32Array(nV); for (let i = 0; i < nV; i++) vals[i] = fn(i); const s = Array.from(vals).filter(Number.isFinite).sort((a,b) => a-b);
+    const a = s[Math.floor(0.01*(s.length-1))], b = s[Math.floor(0.99*(s.length-1))] , r = (b - a) || 1;
+    for (let i = 0; i < nV; i++) c.set(cmap((vals[i]-a)/r), 3*i);
+    const stops = VIR.map((v,k) => `rgb(${v.map(x => Math.round(x*255)).join(",")}) ${k*10}%`).join(",");
+    leg.innerHTML = mode === "address coverage" ? `<span class="bar" style="background:linear-gradient(90deg,${stops})"></span> left: xyz only &middot; right: has an address`
+      : mode === "address system" ? `<span class="bar" style="background:linear-gradient(90deg,${stops})"></span> ${SYS.map(s => s.name).join(" &middot; ")}`
+      : `${mode} ${a.toFixed(2)}<span class="bar" style="background:linear-gradient(90deg,${stops})"></span>${b.toFixed(2)}`; leg.style.display = "block"; }
+  gl.bindBuffer(gl.ARRAY_BUFFER, bC); gl.bufferData(gl.ARRAY_BUFFER, c, gl.STATIC_DRAW); draw(); }
+// ---------------------------------------------------------------------------------------------- camera
+const cam = {t: CEN.slice(), d: DIAG*1.5, yaw: OBJ && OBJ.dim === 2 ? 0 : 0.6, pitch: OBJ && OBJ.dim === 2 ? 0 : 0.35, ortho: false, fov: 30*Math.PI/180};
+const fitD = () => (DIAG/2) / Math.tan(cam.fov/2) * 1.05 / Math.min(1, (cv.clientWidth || 1) / (cv.clientHeight || 1));   // the whole part in view
+const sub = (a,b) => [a[0]-b[0],a[1]-b[1],a[2]-b[2]], cross = (a,b) => [a[1]*b[2]-a[2]*b[1], a[2]*b[0]-a[0]*b[2], a[0]*b[1]-a[1]*b[0]], dot = (a,b) => a[0]*b[0]+a[1]*b[1]+a[2]*b[2];
+const nrm = a => { const l = Math.hypot(...a) || 1; return a.map(x => x/l); };
+function mul(a,b){ const o = new Float32Array(16); for (let i = 0; i < 4; i++) for (let j = 0; j < 4; j++){ let s = 0; for (let k = 0; k < 4; k++) s += a[k*4+i]*b[j*4+k]; o[j*4+i] = s; } return o; }
+function eye(){ const c = Math.cos(cam.pitch); return [cam.t[0] + cam.d*c*Math.sin(cam.yaw), cam.t[1] + cam.d*Math.sin(cam.pitch), cam.t[2] + cam.d*c*Math.cos(cam.yaw)]; }
+function viewM(){ const e = eye(), z = nrm(sub(e, cam.t)), x = nrm(cross([0,1,0], z)), y = cross(z, x);
+  return new Float32Array([x[0],y[0],z[0],0, x[1],y[1],z[1],0, x[2],y[2],z[2],0, -dot(x,e),-dot(y,e),-dot(z,e),1]); }
+function projM(){ const asp = cv.width / cv.height, n = Math.max(cam.d - DIAG*2, cam.d*0.02), f = cam.d + DIAG*2;
+  if (cam.ortho){ const h = cam.d*Math.tan(cam.fov/2), w = h*asp; return new Float32Array([1/w,0,0,0, 0,1/h,0,0, 0,0,-2/(f-n),0, 0,0,-(f+n)/(f-n),1]); }
+  const t = 1/Math.tan(cam.fov/2); return new Float32Array([t/asp,0,0,0, 0,t,0,0, 0,0,(f+n)/(n-f),-1, 0,0,2*f*n/(n-f),0]); }
+let VW, MVP;
+function toScreen(p){ const m = MVP, x = m[0]*p[0]+m[4]*p[1]+m[8]*p[2]+m[12], y = m[1]*p[0]+m[5]*p[1]+m[9]*p[2]+m[13], w = m[3]*p[0]+m[7]*p[1]+m[11]*p[2]+m[15];
+  if (w <= 0) return null; return [(x/w*0.5+0.5)*cv.clientWidth, (1-(y/w*0.5+0.5))*cv.clientHeight]; }
+// ---------------------------------------------------------------------------------------------- state & drawing
+const show = {mesh: true, vertices: !OBJ, grid: nG > 0, lines: nG > 0, axes: true, landmarks: true, overlays: nOv > 0, labels: !(OBJ && OBJ.parts.length > 16)};
+let dotPx = 3, sel = [], pickDirty = true;
+const dpr = () => window.devicePixelRatio || 1;
+let fbo = null, fboTex = null, fboDepth = null, fboW = 0, fboH = 0;
+function ensureFbo(){ if (fbo && fboW === cv.width && fboH === cv.height) return;
+  if (!fbo){ fbo = gl.createFramebuffer(); fboTex = gl.createTexture(); fboDepth = gl.createRenderbuffer(); }
+  fboW = cv.width; fboH = cv.height; gl.bindTexture(gl.TEXTURE_2D, fboTex); gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA8, fboW, fboH, 0, gl.RGBA, gl.UNSIGNED_BYTE, null);
+  gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.NEAREST); gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MAG_FILTER, gl.NEAREST);
+  gl.bindRenderbuffer(gl.RENDERBUFFER, fboDepth); gl.renderbufferStorage(gl.RENDERBUFFER, gl.DEPTH_COMPONENT24, fboW, fboH);
+  gl.bindFramebuffer(gl.FRAMEBUFFER, fbo); gl.framebufferTexture2D(gl.FRAMEBUFFER, gl.COLOR_ATTACHMENT0, gl.TEXTURE_2D, fboTex, 0);
+  gl.framebufferRenderbuffer(gl.FRAMEBUFFER, gl.DEPTH_ATTACHMENT, gl.RENDERBUFFER, fboDepth); gl.bindFramebuffer(gl.FRAMEBUFFER, null); pickDirty = true; }
+function pass(pick){
+  const bg = getComputedStyle(document.documentElement).getPropertyValue("--bg").trim();
+  if (pick) gl.clearColor(0,0,0,1); else { const c = hex(bg); gl.clearColor(c[0], c[1], c[2], 1); }
+  gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT); gl.enable(gl.DEPTH_TEST); gl.depthFunc(gl.LEQUAL);
+  if (show.mesh){ gl.useProgram(P_MESH); gl.uniformMatrix4fv(gl.getUniformLocation(P_MESH, "M"), false, MVP); gl.uniformMatrix4fv(gl.getUniformLocation(P_MESH, "Vw"), false, VW);
+    gl.uniform1i(gl.getUniformLocation(P_MESH, "pick"), pick ? 1 : 0); gl.enable(gl.POLYGON_OFFSET_FILL); gl.polygonOffset(1.5, 2.0);
+    gl.bindVertexArray(aMesh); gl.drawElements(gl.TRIANGLES, F.length, gl.UNSIGNED_INT, 0); gl.disable(gl.POLYGON_OFFSET_FILL); }
+  if (!pick){ gl.useProgram(P_LN); gl.uniformMatrix4fv(gl.getUniformLocation(P_LN, "M"), false, MVP);
+    if (show.lines && gIdx.length){ gl.bindVertexArray(aGline); gl.drawElements(gl.LINES, gIdx.length, gl.UNSIGNED_INT, 0); }
+    if (show.overlays && nOv){ gl.bindVertexArray(aOv); gl.drawArrays(gl.LINES, 0, nOv); }
+    if (show.axes){ gl.bindVertexArray(aAx); gl.drawArrays(gl.LINES, 0, nAx); } }
+  gl.useProgram(P_PT); const uM = gl.getUniformLocation(P_PT, "M"), uS = gl.getUniformLocation(P_PT, "sz"), uP = gl.getUniformLocation(P_PT, "pick");
+  gl.uniformMatrix4fv(uM, false, MVP); gl.uniform1i(uP, pick ? 1 : 0); const k = dpr();
+  if (show.vertices){ gl.uniform1f(uS, (pick ? Math.max(dotPx, 5) : dotPx) * k); gl.bindVertexArray(pick ? aVpick : aVdot); if (pick) gl.depthMask(false);
+    gl.drawArrays(gl.POINTS, 0, nV); gl.depthMask(true); }                // vertex dots never hide a grid dot from the pick
+  if (show.grid && nG){ gl.bindVertexArray(pick ? aGpick : aGdot);
+    for (const [g0, gn, lv] of GRUNS){ const f = lv === 0 ? 1 : 0.6; gl.uniform1f(uS, (pick ? Math.max(dotPx*2*f, 6) : dotPx*1.9*f) * k); gl.drawArrays(gl.POINTS, g0, gn); } }
+  if (show.landmarks && LMN.length){ if (!pick) gl.disable(gl.DEPTH_TEST); gl.uniform1f(uS, (pick ? 12 : 8) * k); gl.bindVertexArray(pick ? aLpick : aLdot); gl.drawArrays(gl.POINTS, 0, LMN.length); gl.enable(gl.DEPTH_TEST); }   // shown through the mesh, picked only where visible
+  if (!pick && nSel){ gl.disable(gl.DEPTH_TEST); gl.uniform1f(uS, Math.max(dotPx*2.4, 8) * k); gl.bindVertexArray(aSel); gl.drawArrays(gl.POINTS, 0, nSel); gl.enable(gl.DEPTH_TEST); }
+  gl.bindVertexArray(null);
+}
+function hex(s){ if (s.startsWith("#")) { const n = parseInt(s.slice(1), 16); return [(n>>16&255)/255, (n>>8&255)/255, (n&255)/255]; } return [0.95,0.95,0.94]; }
+let raf = 0; function draw(){ if (!raf) raf = requestAnimationFrame(() => { raf = 0; frame(); }); }
+function frame(){ const w = Math.round(cv.clientWidth*dpr()), h = Math.round(cv.clientHeight*dpr()); if (cv.width !== w || cv.height !== h){ cv.width = w; cv.height = h; }
+  gl.viewport(0, 0, cv.width, cv.height); VW = viewM(); MVP = mul(projM(), VW); pass(false); pickDirty = true; labels(); }
+function renderPick(){ ensureFbo(); if (!pickDirty) return; gl.bindFramebuffer(gl.FRAMEBUFFER, fbo); gl.viewport(0, 0, fboW, fboH); pass(true); gl.bindFramebuffer(gl.FRAMEBUFFER, null); pickDirty = false; }
+function readIds(x0, y0, x1, y1){ renderPick(); const k = dpr(); let ax = Math.max(0, Math.floor(Math.min(x0,x1)*k)), bx = Math.min(fboW-1, Math.ceil(Math.max(x0,x1)*k));
+  let ay = Math.max(0, Math.floor(Math.min(y0,y1)*k)), by = Math.min(fboH-1, Math.ceil(Math.max(y0,y1)*k)); const w = bx-ax+1, h = by-ay+1; if (w <= 0 || h <= 0) return {w:0,h:0,ids:[]};
+  const px = new Uint8Array(4*w*h); gl.bindFramebuffer(gl.FRAMEBUFFER, fbo); gl.readPixels(ax, fboH-1-by, w, h, gl.RGBA, gl.UNSIGNED_BYTE, px); gl.bindFramebuffer(gl.FRAMEBUFFER, null);
+  const ids = new Int32Array(w*h); for (let i = 0; i < w*h; i++) ids[i] = px[4*i] | (px[4*i+1] << 8) | (px[4*i+2] << 16); return {w, h, ids}; }
+function idToItem(id){ if (id >= OFF_L) return {k: "l", i: id - OFF_L}; if (id >= OFF_V) return {k: "v", i: id - OFF_V}; if (id >= OFF_G) return {k: "g", i: id - OFF_G}; return null; }
+function posOf(it){ return it.k === "g" ? [GP[3*it.i],GP[3*it.i+1],GP[3*it.i+2]] : it.k === "v" ? [V[3*it.i],V[3*it.i+1],V[3*it.i+2]] : LMP[it.i]; }
+function pickAt(x, y){ const r = 7, R = readIds(x-r, y-r, x+r, y+r), seen = new Set(); let best = null, bd = 1e9;
+  for (const id of R.ids){ if (!id || seen.has(id)) continue; seen.add(id); const it = idToItem(id); if (!it) continue; const s = toScreen(posOf(it)); if (!s) continue;
+    const d = Math.hypot(s[0]-x, s[1]-y) + (it.k === "l" ? 0 : it.k === "g" ? 4 : 8); if (d < bd){ bd = d; best = it; } }   // the visible dot nearest the click; landmark, then grid dot, then vertex
+  return best; }
+// labels
+const LABS = document.getElementById("labels");
+function labels(){ LABS.innerHTML = ""; if (!show.labels) return; const add = (p, txt, cls, col) => { const s = toScreen(p); if (!s) return; const d = document.createElement("div"); d.className = "lab " + cls; d.textContent = txt; d.style.left = s[0] + "px"; d.style.top = s[1] + "px"; if (col) d.style.color = col; LABS.appendChild(d); };
+  if (show.axes){ ["x","y","z"].forEach((a, i) => { const e = [0,0,0]; e[i] = AXL*1.04; add(e, `${a.toUpperCase()} ${AXN[a]}`, "ax", ["#c0392b","#27ae60","#2471a3"][i]); });
+    for (const [p, t] of TICKS) add(p, t, "tk"); }
+  if (show.landmarks) LMN.forEach((n, i) => add(LMP[i], n, "lm")); }
+// ---------------------------------------------------------------------------------------------- selection
+const same = (a, b) => a.k === b.k && a.i === b.i;
+function setSel(s){ sel = s; const P = [], C = []; for (const it of sel){ const q = itemInfo(it).xyz; P.push(...q); C.push(1.0, 0.48, 0.1); }
+  nSel = sel.length; gl.bindBuffer(gl.ARRAY_BUFFER, bS); gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(P.length ? P : [0,0,0]), gl.DYNAMIC_DRAW);
+  gl.bindBuffer(gl.ARRAY_BUFFER, bSC); gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(C.length ? C : [0,0,0]), gl.DYNAMIC_DRAW); listSel(); draw(); }
+const history = []; function commit(s){ history.push(sel.slice()); if (history.length > 100) history.shift(); setSel(s); }
+function listSel(){ const ul = document.getElementById("sel"); ul.innerHTML = ""; document.getElementById("count").textContent = sel.length ? `(${sel.length})` : "";
+  sel.forEach((it, n) => { const f = itemInfo(it); const li = document.createElement("li");
+    li.innerHTML = `<span class="n">${n+1}</span><span>${f.addr}<br><span class="k">${f.kind} &middot; at (${f.xyz.map(v => v.toFixed(2)).join(", ")})</span></span><span class="x" title="remove">&times;</span>`;
+    li.querySelector(".x").onclick = () => commit(sel.filter((_, k) => k !== n)); ul.appendChild(li); });
+  document.getElementById("out").value = sel.length ? copyText() : ""; }
+function copyText(){ const head = `# ${PART} | ${I.source} | definition ${I.definitions_file}#${I.definition} (sha1 ${I.definition_sha1}) | cm; X ${AXN.x}, Y ${AXN.y}, Z ${AXN.z}${I.side === "R" ? " (mirrored frame)" : ""}`;
+  const lines = sel.map((it, n) => { const f = itemInfo(it); return `${n+1}. ${f.addr}   | ${f.kind} at (${f.xyz.map(f2).join(",")})${f.extra}`; });
+  return [head, ...lines].join("\n"); }
+function run(){ const g = sel.filter(it => it.k === "g"); if (g.length < 2) { msg("Pick two grid dots (blue) on one grid line first."); return; }
+  const a = g[g.length-2].i, b = g[g.length-1].i; let best = null;
+  for (const ln of LINES){ const ring = ln.length > 2 && ln[0] === ln[ln.length-1], L = ring ? ln.slice(0, -1) : ln; const ia = L.indexOf(a), ib = L.indexOf(b); if (ia < 0 || ib < 0) continue;
+    let path; if (!ring) path = ia <= ib ? L.slice(ia, ib+1) : L.slice(ib, ia+1).reverse();
+    else { const n = L.length, fw = (ib - ia + n) % n, bw = (ia - ib + n) % n; path = []; if (fw <= bw) for (let k = 0; k <= fw; k++) path.push(L[(ia+k)%n]); else for (let k = 0; k <= bw; k++) path.push(L[(ia-k+n)%n]); }
+    if (!best || path.length < best.length) best = path; }
+  if (!best){ msg("Those two grid dots are not on one grid line."); return; }
+  const keep = sel.filter(it => !(it.k === "g" && (it.i === a || it.i === b))); commit(keep.concat(best.map(i => ({k: "g", i})))); msg(`Run of ${best.length} grid points added.`); }
+let msgT = 0; function msg(t){ const m = document.getElementById("msg"); m.textContent = t; clearTimeout(msgT); msgT = setTimeout(() => m.textContent = "", 4000); }
+async function copy(){ const t = copyText(); const ta = document.getElementById("out"); ta.value = t; if (!sel.length){ msg("Nothing picked yet."); return; }
+  try { await navigator.clipboard.writeText(t); msg(`Copied ${sel.length} picks.`); }
+  catch (e) { ta.focus(); ta.select(); try { document.execCommand("copy"); msg(`Copied ${sel.length} picks.`); } catch (e2) { msg("Select the text below and copy it (Ctrl+C)."); } } }
+// ---------------------------------------------------------------------------------------------- input
+const ptrs = new Map(); let drag = null, boxMode = false; const boxEl = document.getElementById("box"), tipEl = document.getElementById("tip");
+cv.addEventListener("contextmenu", e => e.preventDefault());
+cv.addEventListener("pointerdown", e => { cv.setPointerCapture(e.pointerId); ptrs.set(e.pointerId, [e.offsetX, e.offsetY]); tipEl.style.display = "none";
+  const mode = (boxMode || e.ctrlKey || e.metaKey || e.altKey) && e.button === 0 ? "box" : (e.button === 2 || e.shiftKey && e.button !== 0 || e.button === 1 ? "pan" : "orbit");
+  drag = {mode, x0: e.offsetX, y0: e.offsetY, x: e.offsetX, y: e.offsetY, moved: 0, shift: e.shiftKey, pinch: null}; });
+cv.addEventListener("pointermove", e => { if (!drag){ hover(e); return; } const prev = ptrs.get(e.pointerId); if (!prev) return; ptrs.set(e.pointerId, [e.offsetX, e.offsetY]);
+  if (ptrs.size === 2){ const [p, q] = [...ptrs.values()], dd = Math.hypot(p[0]-q[0], p[1]-q[1]), mx = (p[0]+q[0])/2, my = (p[1]+q[1])/2;
+    if (drag.pinch){ cam.d *= drag.pinch.d / dd; panBy(mx - drag.pinch.mx, my - drag.pinch.my); } drag.pinch = {d: dd, mx, my}; drag.moved = 99; draw(); return; }
+  const dx = e.offsetX - drag.x, dy = e.offsetY - drag.y; drag.x = e.offsetX; drag.y = e.offsetY; drag.moved += Math.abs(dx) + Math.abs(dy);
+  if (drag.mode === "box"){ Object.assign(boxEl.style, {display: "block", left: Math.min(drag.x0, drag.x) + "px", top: Math.min(drag.y0, drag.y) + "px", width: Math.abs(drag.x - drag.x0) + "px", height: Math.abs(drag.y - drag.y0) + "px"}); return; }
+  if (drag.mode === "orbit" && !(drag.shift && drag.moved > 3)){ cam.yaw -= dx*0.008; cam.pitch = Math.max(-1.55, Math.min(1.55, cam.pitch + dy*0.008)); }
+  else panBy(dx, dy); draw(); });
+function panBy(dx, dy){ const k = 2*cam.d*Math.tan(cam.fov/2)/cv.clientHeight, x = [VW[0],VW[4],VW[8]], y = [VW[1],VW[5],VW[9]]; for (let a = 0; a < 3; a++) cam.t[a] += (-dx*x[a] + dy*y[a])*k; }
+cv.addEventListener("pointerup", e => { ptrs.delete(e.pointerId); if (!drag) return; const d = drag; if (ptrs.size) return; drag = null;
+  if (d.mode === "box"){ boxEl.style.display = "none"; if (d.moved < 4) return; const R = readIds(d.x0, d.y0, d.x, d.y); const seen = new Set(); const add = [];
+    for (const id of R.ids){ if (id && !seen.has(id)){ seen.add(id); const it = idToItem(id); if (it && !sel.some(s => same(s, it))) add.push(it); } }
+    add.sort((a, b) => a.k === b.k ? a.i - b.i : (a.k < b.k ? -1 : 1)); commit(sel.concat(add)); msg(`${add.length} dots added from the box.`); return; }
+  if (d.moved < 4 && e.button === 0){ const it = pickAt(e.offsetX, e.offsetY); if (!it){ if (!e.shiftKey) commit([]); return; }
+    if (e.shiftKey){ const k = sel.findIndex(s => same(s, it)); commit(k >= 0 ? sel.filter((_, j) => j !== k) : sel.concat([it])); } else commit([it]); } });
+cv.addEventListener("pointercancel", e => { ptrs.delete(e.pointerId); drag = null; boxEl.style.display = "none"; });
+cv.addEventListener("wheel", e => { e.preventDefault(); cam.d *= Math.exp(e.deltaY*0.0012); draw(); }, {passive: false});
+let hoverT = 0; function hover(e){ if (e.pointerType === "touch") return; cancelAnimationFrame(hoverT); hoverT = requestAnimationFrame(() => { const it = pickAt(e.offsetX, e.offsetY);
+  if (!it){ tipEl.style.display = "none"; return; } const f = itemInfo(it); tipEl.textContent = `${f.addr}  (${f.xyz.map(v => v.toFixed(2)).join(", ")})`;
+  tipEl.style.left = Math.min(e.offsetX + 14, cv.clientWidth - tipEl.offsetWidth - 6) + "px"; tipEl.style.top = (e.offsetY + 14) + "px"; tipEl.style.display = "block"; }); }
+cv.addEventListener("pointerleave", () => tipEl.style.display = "none");
+// ---------------------------------------------------------------------------------------------- panel
+document.getElementById("title").textContent = PART;
+document.getElementById("subtitle").textContent = `${I.source} · ${I.counts.vertices.toLocaleString()} vertices · ${nG} grid points (${I.skin ? "skin: " + I.skin.charts.map(c => c.name).join(", ") : AK + " address"})`;
+const VIEWS = {"Front (+Z)": [0, 0], "Lateral (+X)": [Math.PI/2, 0], "Top (+Y)": [0, 1.55], "Back (-Z)": [Math.PI, 0], "Medial (-X)": [-Math.PI/2, 0], "Bottom (-Y)": [0, -1.55], "Oblique": [0.6, 0.35]};
+for (const k in VIEWS){ const b = document.createElement("button"); b.textContent = k; b.onclick = () => { [cam.yaw, cam.pitch] = VIEWS[k]; draw(); }; document.getElementById("views").appendChild(b); }
+document.getElementById("ortho").onclick = e => { cam.ortho = !cam.ortho; e.target.classList.toggle("on", cam.ortho); draw(); };
+document.getElementById("reset").onclick = () => { Object.assign(cam, {t: CEN.slice(), d: fitD(), yaw: 0.6, pitch: 0.35}); draw(); };
+document.getElementById("theme").onclick = () => { const r = document.documentElement, dark = getComputedStyle(r).getPropertyValue("--bg").trim() === "#18181b"; r.setAttribute("data-theme", dark ? "light" : "dark"); draw(); };
+const LAYN = {mesh: "Mesh", vertices: "Vertex dots", grid: "Grid dots", lines: "Grid lines", axes: "Axes", landmarks: "Landmarks", overlays: "Outlines", labels: "Labels"};
+for (const k in LAYN){ if ((k === "grid" || k === "lines") && !nG) continue; if (k === "overlays" && !nOv) continue;
+  const l = document.createElement("label"); l.innerHTML = `<input type="checkbox" ${show[k] ? "checked" : ""}> ${LAYN[k]}`; l.querySelector("input").onchange = e => { show[k] = e.target.checked; draw(); }; document.getElementById("layers").appendChild(l); }
+const csel = document.getElementById("colour"); for (const k in MODES){ const o = document.createElement("option"); o.textContent = k; csel.appendChild(o); }
+csel.onchange = () => setColour(csel.value); document.getElementById("dot").oninput = e => { dotPx = +e.target.value; draw(); };
+document.getElementById("copy").onclick = copy; document.getElementById("clear").onclick = () => commit([]); document.getElementById("run").onclick = run;
+document.getElementById("undo").onclick = () => { if (history.length) setSel(history.pop()); };
+document.getElementById("boxmode").onclick = e => { boxMode = !boxMode; e.target.classList.toggle("on", boxMode); msg(boxMode ? "Box mode: drag to pick every visible dot inside." : ""); };
+window.addEventListener("keydown", e => { if (e.target.tagName === "TEXTAREA" || e.ctrlKey || e.metaKey) return; const k = e.key.toLowerCase();
+  if (k === "f") { [cam.yaw, cam.pitch] = VIEWS["Front (+Z)"]; draw(); } else if (k === "l") { [cam.yaw, cam.pitch] = VIEWS["Lateral (+X)"]; draw(); }
+  else if (k === "t") { [cam.yaw, cam.pitch] = VIEWS["Top (+Y)"]; draw(); } else if (k === "o") document.getElementById("ortho").click(); else if (k === "r") run(); else if (k === "c") copy();
+  else if (k === "escape") commit([]); });
+// frame + measures
+const fr = I.frame; document.getElementById("frame").innerHTML =
+  `Origin: <b>${I.frame && I.landmark_definitions ? Object.keys(I.landmarks_cm).find(n => I.landmarks_cm[n].every(v => Math.abs(v) < 1e-6)) || "" : ""}</b> &middot; ${I.handedness}<br>` +
+  (I.skin ? `Addresses: ${Object.entries(I.skin.syntax).map(([k, v]) => `<code>${v}</code>`).join("<br>")}<br>` +
+     `${I.skin.vertices_with_address.toLocaleString()} of ${I.skin.vertices.toLocaleString()} vertices have an address (round trip within ${I.skin.round_trip_tol_cm} cm)` +
+     (I.skin.grid_spacing && I.skin.grid_spacing.ratio ? `; grid segments on the skin ${I.skin.grid_spacing.ratio.min}-${I.skin.grid_spacing.ratio.max} x their step (median ${I.skin.grid_spacing.ratio.p50})` : "") + `<br>`
+   : `Address: <code>${I.address.syntax}</code><br>${I.address.vertices_with_address.toLocaleString()} of ${I.address.vertices.toLocaleString()} vertices have a ${AK} address (round trip within ${I.address.round_trip_tol_cm} cm)<br>`) +
+  `Landmarks (cm): ` + LMN.map((n, i) => `${n} (${LMP[i].map(v => v.toFixed(2)).join(", ")})`).join("; ") +
+  `<br>Built ${I.built} from ${I.job || ""}; definition ${I.definitions_file}#${I.definition}`;
+function mrow(k, m){ if (m.error) return `<tr><td>${k}</td><td>${m.error}</td></tr>`;
+  if ("value" in m) return `<tr><td title="${(m.definition || "") + (m.source ? " | " + m.source : "")}">${k}</td><td>${m.value} ${m.unit}</td></tr>`;
+  let s = ""; for (const a of ["x","y","z"]) if (m[a] && m[a].width !== undefined) s += `${a} ${m[a].width}${m[a].min !== undefined ? ` (${m[a].min}..${m[a].max})` : ""}<br>`;
+  if (m.area_projected_cm2) s += `area ${m.area_projected_cm2} cm²<br>`; if (m.toward_x_deg !== undefined) s += `toward X ${m.toward_x_deg}°, toward Z ${m.toward_z_deg}°`;
+  for (const n in m) if (m[n] && m[n].s_cm !== undefined) s += `${n}: ${m[n].girth_tape_cm ?? "-"} cm at s ${m[n].s_cm}<br>`;
+  return `<tr><td title="${(m.definition || "") + (m.source ? " | " + m.source : "")}">${k}</td><td>${s}</td></tr>`; }
+document.getElementById("measures").innerHTML = `<table class="m">${Object.entries(I.measures).map(([k, m]) => mrow(k, m)).join("")}</table><div class="help">Hover a name for its definition. Full numbers: ${PART}.json</div>`;
+let fitted = false; new ResizeObserver(() => { if (!fitted && cv.clientHeight > 0){ cam.d = fitD(); fitted = true; } draw(); }).observe(cv);
+const COL0 = OBJ ? "parts" : (FIELDS.above_wall_cm ? "above_wall_cm" : "clay"); setColour(COL0); csel.value = COL0;
+if (OBJ){ const box = document.getElementById("parts"); document.getElementById("partsbox").style.display = "block"; document.getElementById("pcount").textContent = `(${OBJ.parts.length})`;
+  OBJ.parts.forEach((pp, k) => { const d = document.createElement("div"); d.className = "prow";
+    d.innerHTML = `<span class="sw" style="background:rgb(${pp.colour.map(v => Math.round(v*255)).join(",")})"></span><span>${pp.name}</span>${pp.page ? `<a href="${pp.page}" target="_blank" rel="noopener">open</a>` : ""}`;
+    d.onclick = e => { if (e.target.tagName === "A") return; const vs = []; for (let i = 0; i < nV; i++) if (OBJ.VP[i] === k) vs.push(i);
+      let c = [0,0,0]; for (const i of vs){ c[0] += V[3*i]; c[1] += V[3*i+1]; c[2] += V[3*i+2]; } if (vs.length){ cam.t = c.map(v => v / vs.length); draw(); } msg(`${pp.name}: ${pp.word || pp.kind}${pp.addressed !== undefined ? ", " + pp.addressed + " % of its vertices addressed" : ""}`); };
+    box.appendChild(d); }); }
+setSel([]);
+// self-test (open with #selftest): picks through the real id buffer, a run, the copy text; results in <pre id="selftest">
+if (location.hash === "#selftest") setTimeout(() => { const out = []; frame(); cam.yaw = 0; cam.pitch = 0; frame();
+  const r = {}; try {
+    // the grid point nearest the screen centre that is visible: click at its projection, expect that grid point back
+    let gi = -1, bz = -1e9; for (let i = 0; i < nG; i++){ const s = toScreen([GP[3*i],GP[3*i+1],GP[3*i+2]]); if (!s) continue; const d = Math.hypot(s[0]-cv.clientWidth/2, s[1]-cv.clientHeight/2); if (d < 40 && GP[3*i+2] > bz){ bz = GP[3*i+2]; gi = i; } }   // the front-most grid dot near the centre (camera on +Z)
+    show.landmarks = false; frame(); const s = toScreen([GP[3*gi],GP[3*gi+1],GP[3*gi+2]]); const it = pickAt(s[0], s[1]); show.landmarks = true; r.grid_pick = {want: GN[gi], got: it ? itemInfo(it).addr : null, ok: !!it && it.k === "g" && it.i === gi};
+    // a vertex: hide the grid, click a vertex dot near the centre, expect a vertex whose screen position is within 3 px
+    // a vertex: hide the grid, take a VISIBLE vertex from the id buffer near the centre, click its projection, expect it back
+    show.grid = false; show.landmarks = false; const vis0 = show.vertices; show.vertices = true; frame();   // (L1: the object page hides vertex dots)
+    let W0 = readIds(cv.clientWidth/2+15, cv.clientHeight/2+15, cv.clientWidth/2+25, cv.clientHeight/2+25), vid0 = Array.from(W0.ids).find(id => id >= OFF_V && id < OFF_L);
+    if (vid0 === undefined){ W0 = readIds(cv.clientWidth/2-80, cv.clientHeight/2-80, cv.clientWidth/2+80, cv.clientHeight/2+80); vid0 = Array.from(W0.ids).find(id => id >= OFF_V && id < OFF_L); } const v0 = idToItem(vid0); const q = toScreen(posOf(v0)); const iv = pickAt(q[0], q[1]);
+    r.vertex_pick = {want: itemInfo(v0).addr, got: iv ? itemInfo(iv).addr : null, ok: !!iv && same(iv, v0)}; show.landmarks = true; show.vertices = vis0;
+    show.grid = true; frame();
+    // run: the first grid line with >= 5 points, its 1st and 5th point
+    const ln = LINES.find(l => l.length >= 5 && l[0] !== l[l.length-1]); setSel([{k:"g", i: ln[0]}, {k:"g", i: ln[4]}]); run();
+    r.run = {n: sel.length, want: 5, ok: sel.length === 5 && sel.every((t, k) => t.i === ln[k])};
+    r.copy_text = copyText(); r.webgl = gl.getParameter(gl.VERSION);
+    const wide = [...document.querySelectorAll("aside *")].filter(e => e.getBoundingClientRect().right > window.innerWidth + 1).map(e => e.tagName + "." + (e.id || e.className) + ":" + Math.round(e.getBoundingClientRect().right));
+    r.layout = {inner: window.innerWidth, scroll: document.documentElement.scrollWidth, aside: document.querySelector("aside").getBoundingClientRect().width, wide: wide.slice(0, 8)};
+  } catch (e) { r.error = String(e.stack || e); }
+  const pre = document.createElement("pre"); pre.id = "selftest"; pre.textContent = JSON.stringify(r, null, 1); document.body.appendChild(pre); }, 300);
+</script>
+</body>
+</html>

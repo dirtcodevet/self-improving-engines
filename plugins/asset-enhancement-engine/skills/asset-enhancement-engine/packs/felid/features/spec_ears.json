@@ -1,0 +1,3615 @@
+{
+ "_what": "FEATURE SPEC: EARS of case cat1 (Phase 2, Stage 3 'features as structure', criterion C6b + the ear line of structure_inventory.json + the coat-depth clamp the skin inset needs at the ear tip and the pocket flap). A builder brief, NOT geometry: every number carries source + confidence (engine-grounding G2), evidence ranked photo > constraints > Tripo reference (stated uncertainty) > cited anatomy > estimate (G3). Tripo artefacts are never copied as anatomy.",
+ "brief": "ears (fresh builder agent, Phase 2 prep, 2026-10-18)",
+ "criteria": {
+  "C6b": "Henry's pocket built as a real SKIN FOLD: doubled skin flap at the lower lateral margin with an OPEN slot between its layers; helix curl and conch built too. Probe P1-P3 below.",
+  "C4": "inventory line head/L3_features[11]: cupped shell, curled rim (helix), Henry's pocket as a fold, conch at the base, furnishings. 'the pocket reads as a cup/flap, not a notch' (person 2026-10-17).",
+  "C3/C3b": "skin = envelope inset by the coat depth; at the ear tip and the pocket lip the summed depths exceed the envelope's thickness -> clamp (coat_depth_limits). Probe P4.",
+  "C5": "positions: photo where it sees (pocket presence, its height on the lateral outline, the outline step); else Phase 1 SOUND numbers +-0.5 mm; the L pocket free edge re-measured here (REVIEW_ears B2)."
+ },
+ "status": "spec - nothing built; re-measure done on Tripo with exact sections (see tool_record); photo read by eye at 8x with pixel ticks",
+ "units_and_frames": {
+  "head_frame": "mm, x = cat's LEFT, y = back, z = up; partition.head_local(world) * 1000",
+  "ear_frame": "per ear from tripo_rebuild/layers/ears_base_<L|R>.npz (origin, axis, front): h = mm along the axis from the origin, lateral = EarFrame.l (away from the midline), front = EarFrame.w; sections are planes perpendicular to the axis (as ears_pocket.py). Origin uncertainty 1.0-1.2 mm in the base plane, 0.1 mm along the axis (REVIEW_ears S1): h is a robust datum, in-plane positions carry +-1.2 mm when re-expressed in a rebuilt frame - compare in head mm instead.",
+  "sides": "L = cat's left (+x, image RIGHT in ref.jpg); R = cat's right (image left)"
+ },
+ "sources": {
+  "imaios_cmp": {
+   "cite": "IMAIOS vet-Anatomy, 'Cutaneous marginal pouch'",
+   "url": "https://www.imaios.cn/en/vet-anatomy/anatomical-structures/cutaneous-marginal-pouch-11107451932",
+   "says": "a cutaneous fold forming a small pouch on the antitragic border in the carnivore; only its rostral wall is supported by cartilage",
+   "grade": "A (page read)"
+  },
+  "wikipedia_hp": {
+   "cite": "Wikipedia, 'Henry's pocket' (cites August 2009 Consultations in Feline Internal Medicine 6:319-321; Cole 2010 Vet Dermatol; Neuber & Nuttall 2017)",
+   "url": "https://en.wikipedia.org/wiki/Henry%27s_pocket",
+   "says": "a fold of skin forming an open pouch on the lower posterior part of the external ear, at the approximate location of the human antitragus; particularly noticeable on the domestic cat; no size given",
+   "grade": "A (page read; secondary)"
+  },
+  "uberon_cmp": {
+   "cite": "Uberon UBERON:0012305 (via ZFIN ontology browser)",
+   "url": "https://www.zfin.org/action/ontology/term/UBERON:0012305",
+   "says": "fold of skin at the caudal border of the auricle",
+   "grade": "B (search-result summary only)"
+  },
+  "lanz_wood_2005": {
+   "cite": "Lanz O.I., Wood B.C. (2004/2005) Surgery of the ear and pinna. Vet Clin North Am Small Anim Pract 34(2)",
+   "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC7118988",
+   "says": "auricular cartilage is elastic and thin at the apex and then rolls into a semitube at the base; the pinna is covered with skin on both sides, closely attached to the perichondrium; the free edge of the auricular cartilage is called the helix; the antitragus is a thin cartilaginous plate caudal to the tragus; no thickness numbers",
+   "grade": "A (page read; dog-and-cat surgical review)"
+  },
+  "wikivet_pinna": {
+   "cite": "WikiVet pinna entry (revision diff pages)",
+   "url": "https://en.wikivet.net/Special:MobileDiff/164815",
+   "says": "skin on both sides, more tightly on the medial/concave side than the convex side; hair on the convex side like the body, on the concave side variable; medial and lateral crus of the helix at the opening of the external ear canal",
+   "grade": "B (search-result summary only)"
+  },
+  "kumar_2016": {
+   "cite": "Kumar & Roman-Auerhahn, Anatomy of the Canine and Feline Ear (Veterian Key 2016) - already in references/cat-hair-streams.md",
+   "url": "https://veteriankey.com/anatomy-of-the-canine-and-feline-ear/",
+   "says": "the external ear canal of the cat is devoid of hairs",
+   "grade": "A (via cat-hair-streams.md)"
+  },
+  "mivart_1881": {
+   "cite": "Mivart 1881, The Cat, ch. II s.1 (via references/cat-hair-streams.md)",
+   "says": "the deep cavity of each ear is directed forwards and outwards; long hairs inside each ear and sometimes on its tip",
+   "grade": "A (via cat-hair-streams.md)"
+  },
+  "no_thickness_found": {
+   "says": "Searched (text only): feline pinna thickness, auricular cartilage thickness, cat skin thickness by region (incl. Zanna et al. 2017 Can J Vet Res 81:292 - ultrasound, abstract ranks neck thickest / abdomen thinnest, no pinna value read). NO cited mm value for cat pinna, cartilage or pouch-flap thickness was found; every tissue thickness below is an ESTIMATE, flagged.",
+   "url": "https://agris.fao.org/search/ar/records/65df74890f3e94b9e5d892d3"
+  },
+  "phase1": {
+   "cite": "tripo_rebuild/layers/ears.json, ears_pocket.json, ears_sections.json; REVIEW_ears.md; PHASE1_SUMMARY.md",
+   "says": "SOUND: R pocket, the 12.2 mm maximum depth, base front/back-medial, mid-height sections. NOT SOUND: L pocket flap top h -5.5..-2.75 (B2), R tip sections h 33-39 and L h 5 (B1), tip point (B3 +-1.5 L / +-0.8 R), near-base widths under tilt (B4), front-crease points (B5 +-0.9), origin (S1)"
+  }
+ },
+ "photo_evidence": {
+  "image": "cases/cat1/ref.jpg 1728x1152, ~0.27 mm/px at the head; read by eye in 8x crops with 10 px ticks (scratch pocketL.png / pocketR.png); positions +-2 px",
+  "pocket_seen": "YES, both ears (J2: the photo is primary for presence and placement). Each lower LATERAL margin shows the flap's lateral outline continuing below the end of the upper rim, with a PINK slot interior visible from the front between the flap and the furred conch/antitragus region - an open pouch facing forward-laterally, i.e. a fold, not a notch.",
+  "L_cat_left_image_right": {
+   "notch_rim_end_px": [
+    845,
+    221
+   ],
+   "flap_lateral_outline_px": [
+    [
+     846,
+     222
+    ],
+    [
+     843,
+     250
+    ]
+   ],
+   "pink_slot_interior_px": "x 836-846 at y 222-235 narrowing to a 2-4 px sliver by y ~248",
+   "flap_merges_into_cheek_fur_y_px": [
+    255,
+    262
+   ],
+   "ear_tip_px": [
+    843,
+    134
+   ]
+  },
+  "R_cat_right_image_left": {
+   "notch_rim_end_px": [
+    565,
+    216
+   ],
+   "flap_lateral_outline_px": [
+    [
+     565,
+     217
+    ],
+    [
+     567,
+     255
+    ]
+   ],
+   "pink_slot_interior_px": "x 565-576 at y 220-230 narrowing to x 566-570 by y 245-250",
+   "flap_merges_into_cheek_fur_y_px": [
+    255,
+    262
+   ],
+   "ear_tip_px": [
+    570,
+    129
+   ]
+  },
+  "derived": {
+   "pocket_top_fraction_of_lateral_outline_from_tip": {
+    "L": 0.68,
+    "R": 0.67,
+    "uncertainty": "+-0.03 (junction with the cheek fur +-5 px)",
+    "confidence": "medium"
+   },
+   "opening_length_on_outline_mm": {
+    "L": 7.8,
+    "R": 9.5,
+    "note": "29 / 35 px x 0.27, photo plane, foreshortening of the 37-39 deg outward-facing ear not removed",
+    "confidence": "low"
+   },
+   "outline_step_at_notch_mm": {
+    "value": [
+     0.5,
+     0.8
+    ],
+    "note": "flap outline stands 2-3 px lateral of the rim end above it; independent agreement with Phase 1's silhouette outline notch 0.49 (L) / 0.54 (R) mm",
+    "confidence": "medium"
+   },
+   "helix_margin_line_mm": {
+    "value": [
+     0.5,
+     0.8
+    ],
+    "note": "pale bright margin line 2-3 px wide along both medial rims and the upper lateral rims - read as a rolled/rounded margin catching light",
+    "confidence": "low"
+   },
+   "tip_hairs": "a few fine hairs beyond the tip outline on both ears; no ear-tip tuft (C14: tufts only if seen -> none)",
+   "furnishings": "long pale hairs from the medial inner margin sweeping across the pink inner surface, both ears (C14 owner: Stage 5)",
+   "ear_edge_fringe": "coat.json photo_fringe: ears 0.68 mm 10-90 % edge width (the sharpest edge in the photo, = optics floor) -> fur standoff at the ear OUTLINE is at most ~0.7 mm"
+  },
+  "camera_note": "cases/cat1/camera_frozen.json is canonicalized to the Rodin body axis; its registration to the Tripo frame is not established in this spec, so the photo numbers above are image-space and ratio checks, not projected 3-D positions"
+ },
+ "anatomy": {
+  "henrys_pocket": {
+   "what": "cutaneous marginal pouch (saccus cutaneus marginalis): a fold of skin forming an open pouch on the antitragic (lower caudal/lateral) border of the pinna",
+   "sources": [
+    "imaios_cmp",
+    "wikipedia_hp",
+    "uberon_cmp"
+   ],
+   "confidence": "high"
+  },
+  "walls": {
+   "rostral_medial_wall": "cartilage-supported (the antitragic cartilage, a thin plate)",
+   "caudal_lateral_wall_FLAP": "skin only - a duplicature (two skin layers back to back, NO cartilage); its free edge is where the outer skin turns back into the inner skin",
+   "sources": [
+    "imaios_cmp",
+    "lanz_wood_2005"
+   ],
+   "confidence": "high (that the flap is skin-only); thickness ESTIMATE"
+  },
+  "size_relative_to_pinna": {
+   "value": "slot 7.0 (L) / 7.5 (R) mm along the ear axis, up to 12.2 / 11.8 mm deep, on an ear 41.5 / 40.0 mm tall above its base plane -> ~17-19 % of the ear's height, at its lowest third",
+   "source": "Tripo reference (Phase 1 + this re-measure) and the photo's 0.67-0.68 outline fraction; no cited anatomical size found",
+   "confidence": "medium"
+  },
+  "flap_thickness_tissue_mm": {
+   "value_at_free_edge": 0.6,
+   "range": [
+    0.5,
+    1.0
+   ],
+   "basis": "ESTIMATE: two skin layers with no cartilage (imaios_cmp); no cited feline skin thickness found (sources.no_thickness_found). Tripo's envelope lip (which includes the outer face's fur) is 1.0 / 1.04 mm (p50 L/R) at 0.5 mm below the free edge - an upper bound.",
+   "confidence": "low"
+  },
+  "pinna_plate_tissue_mm": {
+   "apex_and_margins": [
+    0.5,
+    0.8
+   ],
+   "mid_pinna": [
+    1.0,
+    1.5
+   ],
+   "basis": "ESTIMATE: 'thin at the apex' (lanz_wood_2005), skin on both sides of an elastic cartilage plate; no mm value found",
+   "confidence": "low"
+  },
+  "helix": {
+   "what": "the free edge of the auricular cartilage (lanz_wood_2005); medial and lateral crura at the canal opening (wikivet_pinna)",
+   "confidence": "high (existence) / low (curl size)"
+  },
+  "conch": {
+   "what": "the cartilage rolls into a semitube at the base (lanz_wood_2005), the deep cavity directed forwards and outwards (mivart_1881), leading to a HAIRLESS external canal (kumar_2016)",
+   "confidence": "high (form) / estimate (size)"
+  }
+ },
+ "reference_numbers": {
+  "use_as_is_phase1_SOUND": {
+   "pocket_R": "all of layers/ears_pocket.json ears.R.slot (re-confirmed here: the free edge IS the hull-bridge end at every R slot height h -3.75..+3.75, so the re-measure reproduces every R slot number exactly)",
+   "pocket_max_depth_mm": {
+    "L": 12.2,
+    "R": 11.84,
+    "pm": "12.06-12.27 / 11.69-11.92 over +-1 steps",
+    "at_h_mm": {
+     "L": 0.25,
+     "R": 0.75
+    }
+   },
+   "base_front_and_back_medial": "layers/ears.json base loop points classed junction (front crease +-0.9 mm p90 per B5, not the stated 0.24-0.34)",
+   "mid_height_sections": "layers/ears_sections.json h ~10-32 (L) / 10-32 (R); near-base h <= 10 carry +-0.6 mm under a 3 deg axis tilt (B4)"
+  },
+  "do_not_use_without_remeasure": [
+   "L pocket flap_top_line h -5.5..-2.75 (B2) -> REPLACED by pocket_sections_L below",
+   "R sections h 33-35, 37-39 and L h 5 (B1: landmark swap) - thickness up to 1.34 mm, width ~0.56 mm off",
+   "tip point (B3): definition-dependent +-1.5 mm (L) / +-0.8 mm (R)",
+   "front-crease base points at their stated +-0.24/0.34 (B5: really +-0.9 p90)",
+   "ear-frame origin coordinates without +-1.2 mm (S1)"
+  ],
+  "pocket_L_remeasured": {
+   "summary": {
+    "slot_h_range_mm": [
+     -5.5,
+     1.5
+    ],
+    "slot_length_along_axis_mm": 7.0,
+    "n_sections": 29,
+    "slot_depth_max_mm": 12.2,
+    "depth_max_at_h_mm": 0.25,
+    "slot_depth_p50_mm": 10.58,
+    "wall_gap_50pct_mm_p10_p50_p90": [
+     1.61,
+     2.21,
+     4.85
+    ],
+    "wall_gap_90pct_mm_p10_p50_p90": [
+     0.45,
+     1.16,
+     2.74
+    ],
+    "wall_gap_min_mm_p10_p50_p90": [
+     0.53,
+     1.17,
+     2.86
+    ],
+    "envelope_lip_thickness_mm_p10_p50_p90": {
+     "0.5": [
+      0.69,
+      1.0,
+      1.3
+     ],
+     "1.0": [
+      1.3,
+      1.53,
+      1.68
+     ],
+     "2.0": [
+      2.19,
+      2.31,
+      2.62
+     ],
+     "3.0": [
+      3.1,
+      3.22,
+      3.58
+     ]
+    },
+    "floor_above_base_plane_mm_lo_hi": [
+     -8.37,
+     0.96
+    ],
+    "floor_at_deepest_head_mm": [
+     41.47,
+     7.08,
+     24.53
+    ],
+    "free_edge_at_deepest_head_mm": [
+     49.76,
+     -0.63,
+     18.42
+    ],
+    "mouth_direction_head_at_deepest": [
+     0.418,
+     -0.814,
+     -0.404
+    ],
+    "free_edge_line_max_step_mm": 0.5,
+    "free_edge_line_p50_step_mm": 0.27
+   },
+   "method": "free edge = walking the exact section's lateral chain from the slot floor toward the lateral hull-bridge end, the running maximum of the level along the mouth direction at the first point where the level has fallen 0.3 mm below it (+-1 step 0.15 / 0.6 mm); if it never falls back the free edge is the bridge end. This is REVIEW_ears B2's fix ('first local maximum toward the mouth').",
+   "agreement_with_independent_reviewer_r7": {
+    "h_-5.5": [
+     3.7,
+     3.69
+    ],
+    "h_-4.25": [
+     4.71,
+     4.71
+    ],
+    "h_-4.0": [
+     6.61,
+     6.61
+    ],
+    "h_-3.0": [
+     8.8,
+     8.79
+    ],
+    "note": "[this re-measure, REVIEW_ears B2 table] slot depth below the free edge, mm - agree to 0.01 mm"
+   },
+   "what_changed_vs_phase1": "depths at h -5.5..-2.75 drop from 6.45/6.35/6.27/6.38/6.30/6.16/7.81/8.56/8.69/8.97/9.18/9.40 to 3.70/3.91/4.10/4.47/4.62/4.71/6.61/7.58/7.91/8.39/8.80/9.24; the flap-top line is now continuous (max step 0.50 mm, was a 6.7 mm jump at h -2.75 -> -2.5); the slot's extent by the aspect > 2 convention is UNCHANGED (h -5.5..+1.5, 7.0 mm; -5.25 at delta 0.3 where h -5.5 only turns at 0.15); wall gap at half depth p50 2.87 -> 2.21 mm; narrowest gap p50 unchanged 1.17 mm; max depth unchanged 12.2 mm. A floor step at h -4.25 -> -4.0 (depth 4.71 -> 6.61, narrowest gap 0.74 -> 0.26) divides a shallow lower slot (3.7-4.7 mm deep) from the main slot (6.6-12.2 mm).",
+   "uncertainty": {
+    "depth": "+-0.5 mm (exact sections; reviewer agreement 0.01 mm; delta +-1 step moves only h -5.5)",
+    "lower_end": "h -5.5 (delta 0.15) / -5.25 (delta 0.3); a builder may also read the floor step at -4.0 as the main slot's start",
+    "upper_end": "convention (aspect > 2), +-1 step per Phase 1: aspect 1.5 -> +4.5",
+    "free_edge_position": "+-0.5 mm in the section (mesh edge ~0.47 mm)"
+   },
+   "confidence": "medium-high (Tripo reference; the photo confirms presence and height, not depth)"
+  },
+  "pocket_R": {
+   "summary": {
+    "slot_h_range_mm": [
+     -3.75,
+     3.75
+    ],
+    "slot_length_along_axis_mm": 7.5,
+    "n_sections": 31,
+    "slot_depth_max_mm": 11.84,
+    "depth_max_at_h_mm": 0.75,
+    "slot_depth_p50_mm": 11.04,
+    "wall_gap_50pct_mm_p10_p50_p90": [
+     2.0,
+     2.92,
+     5.17
+    ],
+    "wall_gap_90pct_mm_p10_p50_p90": [
+     0.29,
+     1.24,
+     1.79
+    ],
+    "wall_gap_min_mm_p10_p50_p90": [
+     0.32,
+     1.28,
+     1.83
+    ],
+    "envelope_lip_thickness_mm_p10_p50_p90": {
+     "0.5": [
+      0.95,
+      1.04,
+      1.24
+     ],
+     "1.0": [
+      1.55,
+      1.69,
+      1.89
+     ],
+     "2.0": [
+      2.62,
+      2.81,
+      2.96
+     ],
+     "3.0": [
+      3.63,
+      3.77,
+      4.0
+     ]
+    },
+    "floor_above_base_plane_mm_lo_hi": [
+     -7.54,
+     3.06
+    ],
+    "floor_at_deepest_head_mm": [
+     -40.79,
+     6.56,
+     23.64
+    ],
+    "free_edge_at_deepest_head_mm": [
+     -48.09,
+     -1.22,
+     17.72
+    ],
+    "mouth_direction_head_at_deepest": [
+     -0.42,
+     -0.797,
+     -0.435
+    ],
+    "free_edge_line_max_step_mm": 0.6,
+    "free_edge_line_p50_step_mm": 0.3
+   },
+   "confidence": "medium-high (Phase 1 SOUND, reproduced)"
+  },
+  "flap_below_slot_R": "below the R slot (h -6.0..-4.5) the same free-edge rule finds the flap's free edge at ear-frame lateral 15.8-16.3, front 19.5-19.7 mm with 2.7-4.1 mm of depth below it (Phase 1 measured 4.2-4.8 below the outer bulge there): the R flap continues ~2 mm below the slot as on L (LOG_ears E7: the flap's lowest tip is an island at -6 mm, gone at -7)."
+ },
+ "structure": {
+  "shell": {
+   "what": "cupped pinna: a thin elastic plate (apex 0.5-0.8, mid 1.0-1.5 mm tissue, ESTIMATE) with skin on both faces; back (convex) skin = envelope inset by ear_back; rims on the envelope outline (the photo sees the outline)",
+   "open_decision": "D1"
+  },
+  "helix": {
+   "what": "rolled free margin along the lateral and medial rims; strongest at the medial crus near the base, fading to a plain rounded edge ~10 mm below the tip",
+   "radius_mm": {
+    "value": [
+     0.5,
+     0.9
+    ],
+    "source": "photo margin line 2-3 px (low) + estimate"
+   },
+   "curl_angle_deg": {
+    "base": 90,
+    "mid": 45,
+    "tip_10mm": 0,
+    "source": "ESTIMATE (no cited value)"
+   },
+   "rims_reference": "tripo_rebuild/layers/ears_rims_<sd>.npz lateral_rim / medial_rim, trusted at h 6-32; R h >= 33 re-derive by continuity (B1)"
+  },
+  "conch": {
+   "what": "the base rolls into a semitube (lanz_wood_2005) whose floor leads to a hairless canal opening (kumar_2016), opening forwards and outwards (mivart_1881)",
+   "canal_opening_diameter_mm": {
+    "value": [
+     4,
+     6
+    ],
+    "source": "ESTIMATE (no feline value found; not visible in the photo)"
+   },
+   "visible_in_photo": "no - build as structure for C4, check only in clay"
+  },
+  "henrys_pocket": {
+   "what": "doubled-skin FLAP on the lower lateral margin, open SLOT between the flap's inner skin and the cartilage-backed (antitragic) wall, mouth opening forward-laterally-down (head dir L [0.418, -0.814, -0.404] / R [-0.42, -0.797, -0.435] at the deepest section), floor a U-turn of skin (radius = half the narrowest gap, >= 0.25 mm)",
+   "slot_interior": "FURLESS pink skin (photo: pink inside both pockets) -> coat depth 0 on both slot walls and the floor (add furless zone 'pocket_slot' to coat.json; the current inner_ear_pink rule (gradient . front > 0.3) does not cover the slot's lateral/medial-facing walls)",
+   "flap_outer_face": "ear-back fur (coat.json ear_back), clamped toward the free edge (coat_depth_limits.flap)",
+   "extent": {
+    "L": "slot h -5.5..+1.5 (flap island to ~-6)",
+    "R": "slot h -3.75..+3.75, flap edge to h -6.0"
+   }
+  },
+  "furnishings": "C14 / Stage 5 (not this spec): attachment zone = inner medial margin and the conch's lateral bay; the canal hairless; the slot interior sparse-to-none"
+ },
+ "coat_depth_limits": {
+  "why": "the v1 skin inset retracted the ear tips ~2 mm: ear_back (0.9 typ) + ear_inner (1.5 typ) = 2.4 mm exceeds the envelope's thickness within ~1.5-2 mm of the apex; the pocket lip is the same failure mode (its envelope is only ~1 mm thick 0.5 mm below the free edge)",
+  "rule": "per wall: D = d_face1 + d_face2 (coat depths at the wall's two envelope faces); D_max(p) = max(0, T_env(p) - t_tissue(p)); scale = smin(1, D_max / D; k 0.05); each face depth *= scale. T_env(p) = local envelope wall thickness, two-sided ray from the face point along -normal to the opposite envelope face (exact raycast on a crop). t_tissue from anatomy (estimates above). Apply as a smooth field (C3b: no crease where the clamp starts; coat_check gradient limit X = 4 still holds).",
+  "tip": {
+   "envelope_thickness_vs_distance_below_tip_mm": {
+    "L": {
+     "0.25": 1.604,
+     "0.5": 1.929,
+     "1.0": 2.394,
+     "1.5": 2.732,
+     "2.0": 2.989,
+     "3.0": 3.431,
+     "4.0": 3.776,
+     "6.0": 4.39,
+     "8.0": 5.003,
+     "10.0": 5.644,
+     "15.0": 6.766,
+     "20.0": 7.941,
+     "25.0": 9.1
+    },
+    "R": {
+     "0.25": 1.382,
+     "0.5": 1.794,
+     "1.0": 2.314,
+     "1.5": 2.697,
+     "2.0": 3.044,
+     "3.0": 3.491,
+     "4.0": 3.969,
+     "6.0": 4.807,
+     "8.0": 5.673,
+     "10.0": 6.349,
+     "15.0": 7.567,
+     "20.0": 8.885,
+     "25.0": 9.841
+    }
+   },
+   "thickness_measure": "2 x area / perimeter of the exact Tripo section perpendicular to the ear axis (a thin-wall mean; local rim values are lower - use the local T_env in the build, this table for the probe)",
+   "tissue_at_apex_mm": 0.6,
+   "max_total_coat_depth_mm": {
+    "L": {
+     "0.25": 1.0,
+     "0.5": 1.33,
+     "1.0": 1.79,
+     "1.5": 2.13,
+     "2.0": 2.39,
+     "3.0": 2.83,
+     "4.0": 3.18
+    },
+    "R": {
+     "0.25": 0.78,
+     "0.5": 1.19,
+     "1.0": 1.71,
+     "1.5": 2.1,
+     "2.0": 2.44,
+     "3.0": 2.89,
+     "4.0": 3.37
+    }
+   },
+   "apex_requirement": "skin apex within 0.5 mm of the envelope apex along the ear axis (precision budget; photo ear-edge fringe 0.68 mm incl. optics says the coat at the outline is thin anyway): the skin section 0.5 mm below the envelope apex must be non-empty, i.e. total depth there <= 1.33 (L) / 1.19 (R) mm, about 0.6 mm per face; ramp up to the regional values by ~4 mm below the tip",
+   "geometry_note": "side apex angle ~57-59 deg (REVIEW_ears S3): an uncapped inset of D total retracts a wedge apex by ~D / (2 sin 29 deg) ~ 1.0 x D - 2.4 mm reproduces the observed ~2 mm"
+  },
+  "flap": {
+   "envelope_lip_thickness_mm_p10_p50_p90": {
+    "L": {
+     "0.5": [
+      0.69,
+      1.0,
+      1.3
+     ],
+     "1.0": [
+      1.3,
+      1.53,
+      1.68
+     ],
+     "2.0": [
+      2.19,
+      2.31,
+      2.62
+     ],
+     "3.0": [
+      3.1,
+      3.22,
+      3.58
+     ]
+    },
+    "R": {
+     "0.5": [
+      0.95,
+      1.04,
+      1.24
+     ],
+     "1.0": [
+      1.55,
+      1.69,
+      1.89
+     ],
+     "2.0": [
+      2.62,
+      2.81,
+      2.96
+     ],
+     "3.0": [
+      3.63,
+      3.77,
+      4.0
+     ]
+    },
+    "keys": "mm below the free edge"
+   },
+   "tissue_mm": "0.6 at the free edge (doubled skin, ESTIMATE), joining the ear wall at the floor",
+   "slot_faces": "depth 0 (furless) - the slot keeps Tripo's walls, so its depth and gaps transfer to the skin unchanged",
+   "max_outer_face_depth_mm": {
+    "0.0": 0.0,
+    "0.5": 0.4,
+    "1.0": 0.9,
+    "2.0": 1.5,
+    "3.0": 1.5,
+    "basis": "p10 of the envelope lip (L, the thinner) minus 0.6 mm tissue, capped at coat.json ear_back max 1.5"
+   },
+   "requirement": "the free edge on the skin stays within 0.5 mm of the envelope's free edge, and the flap never thins below 0.5 mm"
+  }
+ },
+ "sdf_recipe": {
+  "convention": "f < 0 inside tissue; ear frame mm; min = union, max = intersection; NO smoothing operator may act inside the slot (its blend radius is forced to 0 within 0.5 mm of the Slot volume)",
+  "S1_skin_base": "E_skin(p) = E_env(p) + d'(p): the envelope SDF inset by the CLAMPED coat depth (coat_depth_limits.rule); d' = 0 on furless zones incl. 'pocket_slot'",
+  "S2_slot_air": "Slot(p): per section h (plane perpendicular to the axis) local coords a = depth below the free-edge level along -m(h) and b = signed offset across the slot from its midline c(h, a). Midline and half-gap from the tables (free edge, floor, gap at 50 / 90 % depth, narrowest gap), linearly interpolated in a and h. slot2D = |b - c(h,a)| - g(h,a)/2 for a < D(h) - r_f; distance to the floor disk of radius r_f = max(0.25, gap_min/2) beyond; open on the mouth side (a < 0 extends 3 mm outward along +m). Sweep over h in the slot range; below the lower end D(h) -> 0 over 0.5 mm; above the upper end no cap (the slot opens continuously into the conch's lateral bay - LOG_ears E22).",
+  "S3_carve": "E_pk = max(E_skin, -Slot(p)) - a HARD max, so the slot is air by construction",
+  "S4_flap_shell": "Flap(p) = max(|Sigma(p)| - t_flap(a)/2, Bound(p)). Sigma = signed distance to the flap MID-SHEET: in each section the curve parallel to the slot's lateral wall at t_flap(a)/2 lateral of it, from the free edge (a = 0) to the floor level (a = D) where it roots into the ear wall. t_flap(a) = clamp(T_lip_env(a) - d_outer'(a), 0.6, T_lip_env(a)). |Sigma| - t/2 makes the free edge a ROUNDED U-turn of radius t_flap(0)/2 ~ 0.3 mm: the outer skin turning back into the inner skin (the free edge's definition). Bound clips the sheet to a >= 0 and to the flap's h extent (L -6.0..slot top; R -6.0..slot top).",
+  "S5_assemble": "E_ear = smin(max(E_pk, -FlapZone(p)), Flap(p); k_eff) where FlapZone = the tissue lateral of the slot midline within the pocket's h range (replaced by the explicit shell) and k_eff = 0.4 mm * clamp((Slot(p) - 0.5) / 0.5, 0, 1) - the blend joins the flap's root to the outer ear surface but cannot reach into the slot",
+  "S6_helix": "Tube(p) = |p - rim_in(s)| - r_h(s), rim_in = the rim polyline moved r_h toward the concave (front) side and rotated about the rim tangent by the curl angle; margin = smin(plate, Tube; k 0.3) with the tube's outermost point kept ON the envelope outline (the photo sees the outline); r_h 0.5-0.9 mm, curl 90 deg at the base -> 0 at 10 mm below the tip",
+  "S7_conch": "semitube at the base (inner radius from the base sections' front concavity, ~9.7 mm deep at h 5 per ears_sections - a SOUND near-base number +-0.6 mm under tilt) narrowing to a 4-6 mm canal opening on its floor, a blind tube >= 8 mm deep, hairless; not visible in the photo (clay check only)"
+ },
+ "probes": {
+  "P1_pocket_section": {
+   "what": "C6b's geometric probe: a section through the pocket shows TWO skin layers (the flap) and an OPEN slot of depth D +- tol",
+   "how": "for each ear and each h in the slot range at 0.25 mm: exact plane section of the BUILT skin perpendicular to the ear axis (paws_lib.plane_section on a crop of faces within 30 mm of the pocket centre), lateral chain (lateral > 0), deepest air-side hull notch (ears_lib.deepest_below_hull), free edge by the running-max rule (delta 0.3 mm). Then on the line across the slot at 50 % depth (perpendicular to the mouth direction, in the section plane) the crossing sequence from the conch side outward must read tissue -> AIR (slot) -> tissue (flap, both faces skin) -> AIR (outside the ear).",
+   "pass": {
+    "two_layers": "the crossing sequence above at >= 90 % of the slot heights and at every height within 2 mm of the deepest",
+    "open": "narrowest wall gap >= 0.25 mm at levels >= 10 % above the floor, and the slot midline at 50 % depth is outside the tissue (SDF > 0)",
+    "depth": "slot depth below the free edge = the table value +-0.5 mm per height (L h -5.5..-2.75 from pocket_sections_L, the rest Phase 1); max depth 12.2 +-0.5 (L) / 11.84 +-0.5 (R)",
+    "extent": "aspect > 2 run within one step (0.25 mm) of L -5.5..+1.5 / R -3.75..+3.75, or within the stated +-1 step",
+    "flap": "skin lip thickness 0.5 mm below the free edge in [0.5, 1.4] mm; free edge within 0.5 mm of the envelope's"
+   },
+   "planted_failures": [
+    "a solid lump: the slot filled with tissue (crossing sequence fails, slot midline inside tissue)",
+    "a slot closed by fill: smooth union with k = 1.5 mm across the slot at 50 % depth (narrowest gap < 0.25)",
+    "the floor raised 1.0 mm (depth fails by > 0.5)",
+    "the flap fused to the conch wall over its top 2 mm (crossing sequence fails at those heights)",
+    "a zero-thickness flap sheet (lip < 0.5 mm; manifold check C2 fails)",
+    "Phase 1's L flap top used as the free edge (depth +2.8 mm at h -5.5..-2.75 - the B2 error)"
+   ],
+   "status": "build (A10: prove on each planted failure before use)"
+  },
+  "P2_pocket_photo": {
+   "what": "the pocket reads as a fold in the photo camera: in a clay or pigment render through the registered camera, the lateral outline shows the flap's outline step 0.5-0.8 mm at 0.67-0.68 of the outline height from the tip, and the slot's interior is visible from the front",
+   "planted_failures": [
+    "pocket absent (no step, no visible slot)",
+    "pocket 3 mm too high"
+   ],
+   "status": "build (needs the Tripo->camera registration, see photo_evidence.camera_note)"
+  },
+  "P3_reads_as_fold_not_notch": {
+   "what": "person's check (structure_inventory): clay render, three views, the pocket reads as a cup/flap, not a notch",
+   "status": "person (M2)"
+  },
+  "P4_tip_and_lip_retraction": {
+   "what": "the skin apex within 0.5 mm of the envelope apex along the ear axis (both ears); the skin section 0.5 mm below the envelope apex non-empty; the flap free edge within 0.5 mm",
+   "planted_failures": [
+    "the v1 inset (ear_back 0.9 + ear_inner 1.5 unclamped): apex retracts ~2 mm",
+    "flap outer face inset 1.5 mm to the free edge: the lip vanishes / the free edge drops > 0.5 mm"
+   ],
+   "status": "build"
+  },
+  "P5_helix": {
+   "what": "at h 10, 20, 30 (L; R 10, 20, 30) the rim's section shows a rolled margin: the outline turns >= the curl angle within 2 r_h of the rim, tube radius in [0.4, 1.0] mm; the rim stays on the envelope outline +-0.5 mm",
+   "planted_failures": [
+    "a plain cut edge (no curl)",
+    "the rim pulled 1 mm inside the outline"
+   ],
+   "status": "build"
+  },
+  "P6_conch": {
+   "what": "a section through the base shows the semitube and a hairless opening leading to a blind canal >= 8 mm; zero hair roots inside the canal (C14)",
+   "planted_failures": [
+    "a flat conch floor (no opening)",
+    "hair rooted in the canal"
+   ],
+   "status": "build"
+  }
+ },
+ "open_decisions": [
+  {
+   "id": "D1",
+   "for": "orchestrator -> person (it touches the APPROVED C3 wording 'inner ear sits ON the envelope')",
+   "finding": "Tripo's ear is a SOLID WEDGE, not a cupped plate: mean wall (2A/P of exact sections) 7.9 / 8.9 mm at 20 mm below the tip and 9.1 / 9.8 at 25 mm (L / R); the conch floor 14.6 / 15.6 mm thick at h 10 (LOG_ears E20). Cited anatomy: an elastic cartilage plate thin at the apex, rolling into a semitube at the base, with skin on both faces (lanz_wood_2005). The photo sees the outline, the rims and the pink inner surface's shading - not the cup's depth.",
+   "options": {
+    "A_C3_literal": "inner pink skin ON Tripo's front surface: the ear stays a solid ~8-15 mm wedge (a Tripo artefact kept as anatomy)",
+    "B_anatomy": "thin cupped plate: back skin = envelope inset by ear_back; front skin = the back skin offset by the plate thickness (1.0-1.5 mm mid, ESTIMATE); rims and outline stay on the envelope; the cup deepens behind Tripo's front surface by up to ~6-7 mm at mid-height; the pocket recipe is unchanged (its slot walls stay on the envelope)"
+   },
+   "recommendation": "B (anatomy; the photo cannot see the depth, so Tripo's depth is unsupported invention), pending the person's approval; the pocket and tip probes hold in either option"
+  },
+  {
+   "id": "D2",
+   "for": "coat.json owner",
+   "finding": "the slot interior needs its own furless zone ('pocket_slot'); inner_ear_pink's gradient test misses the slot's lateral/medial-facing walls"
+  },
+  {
+   "id": "D3",
+   "for": "orchestrator",
+   "finding": "this re-measure is a scratch tool (%TEMP%/p2prep_ears/flap_edge.py); record it in engine/log/TOOLMAKING.md (this brief could write only this file). REVIEW_ears B2's other fixes (split runs at floor/edge steps, a P5 plant at the lowest slot section) are folded into probe P1's planted failures."
+  }
+ ],
+ "tables": {
+  "pocket_sections_L": [
+   {
+    "h_mm": -5.5,
+    "in_slot": true,
+    "source": "remeasured_p2prep_free_edge",
+    "free_edge_head_mm": [
+     45.94,
+     -0.89,
+     13.74
+    ],
+    "floor_head_mm": [
+     42.47,
+     -0.55,
+     15.65
+    ],
+    "free_edge_ear_lat_front_mm": [
+     13.31,
+     17.87
+    ],
+    "slot_depth_below_free_edge_mm": 3.699,
+    "phase1_reported_depth_mm": 6.453,
+    "edge_is_hull_bridge_end": false,
+    "wall_gap_50pct_mm": 1.638,
+    "wall_gap_90pct_mm": 0.444,
+    "wall_gap_min_mm": 0.485,
+    "envelope_lip_thickness_mm_at_below_edge": {
+     "0.5": 0.686,
+     "1.0": 1.337,
+     "2.0": 2.307,
+     "3.0": 3.248
+    },
+    "floor_above_base_plane_mm": -8.37,
+    "free_edge_above_base_plane_mm": -8.45,
+    "mouth_direction_head": [
+     0.753,
+     -0.435,
+     -0.495
+    ]
+   },
+   {
+    "h_mm": -5.25,
+    "in_slot": true,
+    "source": "remeasured_p2prep_free_edge",
+    "free_edge_head_mm": [
+     46.1,
+     -0.87,
+     13.95
+    ],
+    "floor_head_mm": [
+     42.48,
+     -0.38,
+     15.97
+    ],
+    "free_edge_ear_lat_front_mm": [
+     13.38,
+     17.81
+    ],
+    "slot_depth_below_free_edge_mm": 3.908,
+    "phase1_reported_depth_mm": 6.353,
+    "edge_is_hull_bridge_end": false,
+    "wall_gap_50pct_mm": 1.74,
+    "wall_gap_90pct_mm": 0.636,
+    "wall_gap_min_mm": 0.742,
+    "envelope_lip_thickness_mm_at_below_edge": {
+     "0.5": 0.668,
+     "1.0": 1.307,
+     "2.0": 2.233,
+     "3.0": 3.172
+    },
+    "floor_above_base_plane_mm": -8.07,
+    "free_edge_above_base_plane_mm": -8.19,
+    "mouth_direction_head": [
+     0.745,
+     -0.448,
+     -0.494
+    ]
+   },
+   {
+    "h_mm": -5.0,
+    "in_slot": true,
+    "source": "remeasured_p2prep_free_edge",
+    "free_edge_head_mm": [
+     46.25,
+     -0.85,
+     14.16
+    ],
+    "floor_head_mm": [
+     42.75,
+     0.23,
+     16.25
+    ],
+    "free_edge_ear_lat_front_mm": [
+     13.44,
+     17.76
+    ],
+    "slot_depth_below_free_edge_mm": 4.104,
+    "phase1_reported_depth_mm": 6.267,
+    "edge_is_hull_bridge_end": false,
+    "wall_gap_50pct_mm": 1.796,
+    "wall_gap_90pct_mm": 0.454,
+    "wall_gap_min_mm": 0.853,
+    "envelope_lip_thickness_mm_at_below_edge": {
+     "0.5": 0.687,
+     "1.0": 1.341,
+     "2.0": 2.201,
+     "3.0": 3.114
+    },
+    "floor_above_base_plane_mm": -7.65,
+    "free_edge_above_base_plane_mm": -7.93,
+    "mouth_direction_head": [
+     0.737,
+     -0.464,
+     -0.493
+    ]
+   },
+   {
+    "h_mm": -4.75,
+    "in_slot": true,
+    "source": "remeasured_p2prep_free_edge",
+    "free_edge_head_mm": [
+     46.4,
+     -0.83,
+     14.38
+    ],
+    "floor_head_mm": [
+     42.68,
+     0.52,
+     16.64
+    ],
+    "free_edge_ear_lat_front_mm": [
+     13.49,
+     17.71
+    ],
+    "slot_depth_below_free_edge_mm": 4.466,
+    "phase1_reported_depth_mm": 6.378,
+    "edge_is_hull_bridge_end": false,
+    "wall_gap_50pct_mm": 1.817,
+    "wall_gap_90pct_mm": 0.538,
+    "wall_gap_min_mm": 0.542,
+    "envelope_lip_thickness_mm_at_below_edge": {
+     "0.5": 0.657,
+     "1.0": 1.354,
+     "2.0": 2.171,
+     "3.0": 3.077
+    },
+    "floor_above_base_plane_mm": -7.31,
+    "free_edge_above_base_plane_mm": -7.67,
+    "mouth_direction_head": [
+     0.728,
+     -0.478,
+     -0.491
+    ]
+   },
+   {
+    "h_mm": -4.5,
+    "in_slot": true,
+    "source": "remeasured_p2prep_free_edge",
+    "free_edge_head_mm": [
+     46.64,
+     -0.68,
+     14.57
+    ],
+    "floor_head_mm": [
+     42.82,
+     0.79,
+     16.92
+    ],
+    "free_edge_ear_lat_front_mm": [
+     13.68,
+     17.57
+    ],
+    "slot_depth_below_free_edge_mm": 4.62,
+    "phase1_reported_depth_mm": 6.301,
+    "edge_is_hull_bridge_end": false,
+    "wall_gap_50pct_mm": 1.883,
+    "wall_gap_90pct_mm": 0.568,
+    "wall_gap_min_mm": 0.828,
+    "envelope_lip_thickness_mm_at_below_edge": {
+     "0.5": 0.761,
+     "1.0": 1.487,
+     "2.0": 2.219,
+     "3.0": 3.085
+    },
+    "floor_above_base_plane_mm": -6.98,
+    "free_edge_above_base_plane_mm": -7.37,
+    "mouth_direction_head": [
+     0.719,
+     -0.492,
+     -0.49
+    ]
+   },
+   {
+    "h_mm": -4.25,
+    "in_slot": true,
+    "source": "remeasured_p2prep_free_edge",
+    "free_edge_head_mm": [
+     46.86,
+     -0.58,
+     14.77
+    ],
+    "floor_head_mm": [
+     42.91,
+     0.88,
+     17.18
+    ],
+    "free_edge_ear_lat_front_mm": [
+     13.83,
+     17.46
+    ],
+    "slot_depth_below_free_edge_mm": 4.715,
+    "phase1_reported_depth_mm": 6.158,
+    "edge_is_hull_bridge_end": false,
+    "wall_gap_50pct_mm": 1.898,
+    "wall_gap_90pct_mm": 0.611,
+    "wall_gap_min_mm": 0.737,
+    "envelope_lip_thickness_mm_at_below_edge": {
+     "0.5": 0.851,
+     "1.0": 1.557,
+     "2.0": 2.256,
+     "3.0": 3.102
+    },
+    "floor_above_base_plane_mm": -6.7,
+    "free_edge_above_base_plane_mm": -7.09,
+    "mouth_direction_head": [
+     0.708,
+     -0.51,
+     -0.488
+    ]
+   },
+   {
+    "h_mm": -4.0,
+    "in_slot": true,
+    "source": "remeasured_p2prep_free_edge",
+    "free_edge_head_mm": [
+     47.03,
+     -0.57,
+     14.97
+    ],
+    "floor_head_mm": [
+     42.45,
+     2.96,
+     18.18
+    ],
+    "free_edge_ear_lat_front_mm": [
+     13.91,
+     17.43
+    ],
+    "slot_depth_below_free_edge_mm": 6.606,
+    "phase1_reported_depth_mm": 7.814,
+    "edge_is_hull_bridge_end": false,
+    "wall_gap_50pct_mm": 1.363,
+    "wall_gap_90pct_mm": 0.247,
+    "wall_gap_min_mm": 0.263,
+    "envelope_lip_thickness_mm_at_below_edge": {
+     "0.5": 0.912,
+     "1.0": 1.558,
+     "2.0": 2.247,
+     "3.0": 3.104
+    },
+    "floor_above_base_plane_mm": -5.87,
+    "free_edge_above_base_plane_mm": -6.83,
+    "mouth_direction_head": [
+     0.698,
+     -0.526,
+     -0.486
+    ]
+   },
+   {
+    "h_mm": -3.75,
+    "in_slot": true,
+    "source": "remeasured_p2prep_free_edge",
+    "free_edge_head_mm": [
+     47.18,
+     -0.57,
+     15.18
+    ],
+    "floor_head_mm": [
+     42.17,
+     3.82,
+     18.81
+    ],
+    "free_edge_ear_lat_front_mm": [
+     13.95,
+     17.4
+    ],
+    "slot_depth_below_free_edge_mm": 7.581,
+    "phase1_reported_depth_mm": 8.562,
+    "edge_is_hull_bridge_end": false,
+    "wall_gap_50pct_mm": 1.211,
+    "wall_gap_90pct_mm": 0.171,
+    "wall_gap_min_mm": 0.227,
+    "envelope_lip_thickness_mm_at_below_edge": {
+     "0.5": 0.925,
+     "1.0": 1.53,
+     "2.0": 2.231,
+     "3.0": 3.099
+    },
+    "floor_above_base_plane_mm": -5.38,
+    "free_edge_above_base_plane_mm": -6.58,
+    "mouth_direction_head": [
+     0.686,
+     -0.544,
+     -0.484
+    ]
+   },
+   {
+    "h_mm": -3.5,
+    "in_slot": true,
+    "source": "remeasured_p2prep_free_edge",
+    "free_edge_head_mm": [
+     47.32,
+     -0.58,
+     15.39
+    ],
+    "floor_head_mm": [
+     42.26,
+     4.23,
+     19.14
+    ],
+    "free_edge_ear_lat_front_mm": [
+     14.0,
+     17.37
+    ],
+    "slot_depth_below_free_edge_mm": 7.911,
+    "phase1_reported_depth_mm": 8.691,
+    "edge_is_hull_bridge_end": false,
+    "wall_gap_50pct_mm": 1.489,
+    "wall_gap_90pct_mm": 0.648,
+    "wall_gap_min_mm": 0.647,
+    "envelope_lip_thickness_mm_at_below_edge": {
+     "0.5": 0.972,
+     "1.0": 1.49,
+     "2.0": 2.213,
+     "3.0": 3.098
+    },
+    "floor_above_base_plane_mm": -5.01,
+    "free_edge_above_base_plane_mm": -6.33,
+    "mouth_direction_head": [
+     0.675,
+     -0.559,
+     -0.482
+    ]
+   },
+   {
+    "h_mm": -3.25,
+    "in_slot": true,
+    "source": "remeasured_p2prep_free_edge",
+    "free_edge_head_mm": [
+     47.46,
+     -0.6,
+     15.6
+    ],
+    "floor_head_mm": [
+     42.12,
+     4.53,
+     19.57
+    ],
+    "free_edge_ear_lat_front_mm": [
+     14.03,
+     17.35
+    ],
+    "slot_depth_below_free_edge_mm": 8.392,
+    "phase1_reported_depth_mm": 8.973,
+    "edge_is_hull_bridge_end": false,
+    "wall_gap_50pct_mm": 2.057,
+    "wall_gap_90pct_mm": 0.804,
+    "wall_gap_min_mm": 1.011,
+    "envelope_lip_thickness_mm_at_below_edge": {
+     "0.5": 1.005,
+     "1.0": 1.469,
+     "2.0": 2.191,
+     "3.0": 3.098
+    },
+    "floor_above_base_plane_mm": -4.68,
+    "free_edge_above_base_plane_mm": -6.08,
+    "mouth_direction_head": [
+     0.664,
+     -0.574,
+     -0.479
+    ]
+   },
+   {
+    "h_mm": -3.0,
+    "in_slot": true,
+    "source": "remeasured_p2prep_free_edge",
+    "free_edge_head_mm": [
+     47.83,
+     -0.31,
+     15.76
+    ],
+    "floor_head_mm": [
+     41.99,
+     4.73,
+     19.98
+    ],
+    "free_edge_ear_lat_front_mm": [
+     14.4,
+     17.12
+    ],
+    "slot_depth_below_free_edge_mm": 8.796,
+    "phase1_reported_depth_mm": 9.176,
+    "edge_is_hull_bridge_end": false,
+    "wall_gap_50pct_mm": 2.086,
+    "wall_gap_90pct_mm": 0.791,
+    "wall_gap_min_mm": 0.825,
+    "envelope_lip_thickness_mm_at_below_edge": {
+     "0.5": 1.389,
+     "1.0": 1.751,
+     "2.0": 2.362,
+     "3.0": 3.22
+    },
+    "floor_above_base_plane_mm": -4.37,
+    "free_edge_above_base_plane_mm": -5.74,
+    "mouth_direction_head": [
+     0.653,
+     -0.589,
+     -0.477
+    ]
+   },
+   {
+    "h_mm": -2.75,
+    "in_slot": true,
+    "source": "remeasured_p2prep_free_edge",
+    "free_edge_head_mm": [
+     47.99,
+     -0.36,
+     15.96
+    ],
+    "floor_head_mm": [
+     42.04,
+     5.19,
+     20.34
+    ],
+    "free_edge_ear_lat_front_mm": [
+     14.44,
+     17.13
+    ],
+    "slot_depth_below_free_edge_mm": 9.239,
+    "phase1_reported_depth_mm": 9.396,
+    "edge_is_hull_bridge_end": false,
+    "wall_gap_50pct_mm": 2.136,
+    "wall_gap_90pct_mm": 0.88,
+    "wall_gap_min_mm": 0.904,
+    "envelope_lip_thickness_mm_at_below_edge": {
+     "0.5": 1.356,
+     "1.0": 1.706,
+     "2.0": 2.346,
+     "3.0": 3.22
+    },
+    "floor_above_base_plane_mm": -3.98,
+    "free_edge_above_base_plane_mm": -5.5,
+    "mouth_direction_head": [
+     0.642,
+     -0.603,
+     -0.474
+    ]
+   },
+   {
+    "h_mm": -2.5,
+    "in_slot": true,
+    "source": "phase1_sound",
+    "free_edge_head_mm": [
+     47.91,
+     -0.68,
+     16.21
+    ],
+    "floor_head_mm": [
+     41.89,
+     5.39,
+     20.75
+    ],
+    "free_edge_ear_lat_front_mm": [
+     14.16,
+     17.33
+    ],
+    "slot_depth_below_free_edge_mm": 9.68,
+    "phase1_reported_depth_mm": 9.68,
+    "edge_is_hull_bridge_end": true,
+    "wall_gap_50pct_mm": 2.169,
+    "wall_gap_90pct_mm": 0.967,
+    "wall_gap_min_mm": 1.092,
+    "envelope_lip_thickness_mm_at_below_edge": {
+     "0.5": 1.0,
+     "1.0": 1.394,
+     "2.0": 2.174,
+     "3.0": 3.111
+    },
+    "floor_above_base_plane_mm": -3.67,
+    "free_edge_above_base_plane_mm": -5.34,
+    "mouth_direction_head": [
+     0.628,
+     -0.62,
+     -0.471
+    ]
+   },
+   {
+    "h_mm": -2.25,
+    "in_slot": true,
+    "source": "phase1_sound",
+    "free_edge_head_mm": [
+     48.29,
+     -0.44,
+     16.35
+    ],
+    "floor_head_mm": [
+     42.03,
+     5.85,
+     21.07
+    ],
+    "free_edge_ear_lat_front_mm": [
+     14.52,
+     17.16
+    ],
+    "slot_depth_below_free_edge_mm": 10.053,
+    "phase1_reported_depth_mm": 10.053,
+    "edge_is_hull_bridge_end": true,
+    "wall_gap_50pct_mm": 2.213,
+    "wall_gap_90pct_mm": 1.021,
+    "wall_gap_min_mm": 1.089,
+    "envelope_lip_thickness_mm_at_below_edge": {
+     "0.5": 1.324,
+     "1.0": 1.629,
+     "2.0": 2.346,
+     "3.0": 3.239
+    },
+    "floor_above_base_plane_mm": -3.29,
+    "free_edge_above_base_plane_mm": -5.02,
+    "mouth_direction_head": [
+     0.609,
+     -0.642,
+     -0.466
+    ]
+   },
+   {
+    "h_mm": -2.0,
+    "in_slot": true,
+    "source": "phase1_sound",
+    "free_edge_head_mm": [
+     48.44,
+     -0.48,
+     16.55
+    ],
+    "floor_head_mm": [
+     41.78,
+     6.08,
+     21.54
+    ],
+    "free_edge_ear_lat_front_mm": [
+     14.56,
+     17.16
+    ],
+    "slot_depth_below_free_edge_mm": 10.578,
+    "phase1_reported_depth_mm": 10.578,
+    "edge_is_hull_bridge_end": true,
+    "wall_gap_50pct_mm": 2.207,
+    "wall_gap_90pct_mm": 1.157,
+    "wall_gap_min_mm": 1.167,
+    "envelope_lip_thickness_mm_at_below_edge": {
+     "0.5": 1.292,
+     "1.0": 1.599,
+     "2.0": 2.357,
+     "3.0": 3.254
+    },
+    "floor_above_base_plane_mm": -2.98,
+    "free_edge_above_base_plane_mm": -4.77,
+    "mouth_direction_head": [
+     0.59,
+     -0.663,
+     -0.461
+    ]
+   },
+   {
+    "h_mm": -1.75,
+    "in_slot": true,
+    "source": "phase1_sound",
+    "free_edge_head_mm": [
+     48.61,
+     -0.49,
+     16.75
+    ],
+    "floor_head_mm": [
+     41.57,
+     6.3,
+     21.99
+    ],
+    "free_edge_ear_lat_front_mm": [
+     14.63,
+     17.14
+    ],
+    "slot_depth_below_free_edge_mm": 11.041,
+    "phase1_reported_depth_mm": 11.041,
+    "edge_is_hull_bridge_end": true,
+    "wall_gap_50pct_mm": 2.229,
+    "wall_gap_90pct_mm": 1.331,
+    "wall_gap_min_mm": 1.332,
+    "envelope_lip_thickness_mm_at_below_edge": {
+     "0.5": 1.281,
+     "1.0": 1.598,
+     "2.0": 2.379,
+     "3.0": 3.285
+    },
+    "floor_above_base_plane_mm": -2.66,
+    "free_edge_above_base_plane_mm": -4.52,
+    "mouth_direction_head": [
+     0.571,
+     -0.684,
+     -0.455
+    ]
+   },
+   {
+    "h_mm": -1.5,
+    "in_slot": true,
+    "source": "phase1_sound",
+    "free_edge_head_mm": [
+     48.44,
+     -0.85,
+     17.05
+    ],
+    "floor_head_mm": [
+     41.43,
+     6.48,
+     22.39
+    ],
+    "free_edge_ear_lat_front_mm": [
+     14.25,
+     17.33
+    ],
+    "slot_depth_below_free_edge_mm": 11.414,
+    "phase1_reported_depth_mm": 11.414,
+    "edge_is_hull_bridge_end": true,
+    "wall_gap_50pct_mm": 3.03,
+    "wall_gap_90pct_mm": 1.499,
+    "wall_gap_min_mm": 1.629,
+    "envelope_lip_thickness_mm_at_below_edge": {
+     "0.5": 0.855,
+     "1.0": 1.251,
+     "2.0": 2.173,
+     "3.0": 3.14
+    },
+    "floor_above_base_plane_mm": -2.36,
+    "free_edge_above_base_plane_mm": -4.37,
+    "mouth_direction_head": [
+     0.551,
+     -0.703,
+     -0.449
+    ]
+   },
+   {
+    "h_mm": -1.25,
+    "in_slot": true,
+    "source": "phase1_sound",
+    "free_edge_head_mm": [
+     48.66,
+     -0.83,
+     17.22
+    ],
+    "floor_head_mm": [
+     41.35,
+     6.63,
+     22.76
+    ],
+    "free_edge_ear_lat_front_mm": [
+     14.37,
+     17.31
+    ],
+    "slot_depth_below_free_edge_mm": 11.725,
+    "phase1_reported_depth_mm": 11.725,
+    "edge_is_hull_bridge_end": true,
+    "wall_gap_50pct_mm": 3.196,
+    "wall_gap_90pct_mm": 1.658,
+    "wall_gap_min_mm": 1.703,
+    "envelope_lip_thickness_mm_at_below_edge": {
+     "0.5": 0.895,
+     "1.0": 1.279,
+     "2.0": 2.217,
+     "3.0": 3.184
+    },
+    "floor_above_base_plane_mm": -2.06,
+    "free_edge_above_base_plane_mm": -4.11,
+    "mouth_direction_head": [
+     0.531,
+     -0.722,
+     -0.443
+    ]
+   },
+   {
+    "h_mm": -1.0,
+    "in_slot": true,
+    "source": "phase1_sound",
+    "free_edge_head_mm": [
+     48.83,
+     -0.84,
+     17.42
+    ],
+    "floor_head_mm": [
+     41.31,
+     6.73,
+     23.09
+    ],
+    "free_edge_ear_lat_front_mm": [
+     14.45,
+     17.29
+    ],
+    "slot_depth_below_free_edge_mm": 11.923,
+    "phase1_reported_depth_mm": 11.923,
+    "edge_is_hull_bridge_end": true,
+    "wall_gap_50pct_mm": 3.265,
+    "wall_gap_90pct_mm": 1.814,
+    "wall_gap_min_mm": 1.971,
+    "envelope_lip_thickness_mm_at_below_edge": {
+     "0.5": 0.859,
+     "1.0": 1.283,
+     "2.0": 2.25,
+     "3.0": 3.221
+    },
+    "floor_above_base_plane_mm": -1.78,
+    "free_edge_above_base_plane_mm": -3.86,
+    "mouth_direction_head": [
+     0.511,
+     -0.74,
+     -0.437
+    ]
+   },
+   {
+    "h_mm": -0.75,
+    "in_slot": true,
+    "source": "phase1_sound",
+    "free_edge_head_mm": [
+     48.99,
+     -0.84,
+     17.62
+    ],
+    "floor_head_mm": [
+     41.3,
+     6.81,
+     23.4
+    ],
+    "free_edge_ear_lat_front_mm": [
+     14.51,
+     17.26
+    ],
+    "slot_depth_below_free_edge_mm": 12.058,
+    "phase1_reported_depth_mm": 12.058,
+    "edge_is_hull_bridge_end": true,
+    "wall_gap_50pct_mm": 3.326,
+    "wall_gap_90pct_mm": 1.983,
+    "wall_gap_min_mm": 2.017,
+    "envelope_lip_thickness_mm_at_below_edge": {
+     "0.5": 0.841,
+     "1.0": 1.298,
+     "2.0": 2.277,
+     "3.0": 3.253
+    },
+    "floor_above_base_plane_mm": -1.51,
+    "free_edge_above_base_plane_mm": -3.6,
+    "mouth_direction_head": [
+     0.491,
+     -0.758,
+     -0.43
+    ]
+   },
+   {
+    "h_mm": -0.5,
+    "in_slot": true,
+    "source": "phase1_sound",
+    "free_edge_head_mm": [
+     49.27,
+     -0.73,
+     17.79
+    ],
+    "floor_head_mm": [
+     41.28,
+     6.86,
+     23.71
+    ],
+    "free_edge_ear_lat_front_mm": [
+     14.73,
+     17.17
+    ],
+    "slot_depth_below_free_edge_mm": 12.153,
+    "phase1_reported_depth_mm": 12.153,
+    "edge_is_hull_bridge_end": true,
+    "wall_gap_50pct_mm": 4.312,
+    "wall_gap_90pct_mm": 2.162,
+    "wall_gap_min_mm": 2.379,
+    "envelope_lip_thickness_mm_at_below_edge": {
+     "0.5": 0.973,
+     "1.0": 1.441,
+     "2.0": 2.391,
+     "3.0": 3.357
+    },
+    "floor_above_base_plane_mm": -1.24,
+    "free_edge_above_base_plane_mm": -3.32,
+    "mouth_direction_head": [
+     0.473,
+     -0.772,
+     -0.424
+    ]
+   },
+   {
+    "h_mm": -0.25,
+    "in_slot": true,
+    "source": "phase1_sound",
+    "free_edge_head_mm": [
+     49.48,
+     -0.66,
+     17.98
+    ],
+    "floor_head_mm": [
+     41.22,
+     6.85,
+     24.03
+    ],
+    "free_edge_ear_lat_front_mm": [
+     14.86,
+     17.1
+    ],
+    "slot_depth_below_free_edge_mm": 12.186,
+    "phase1_reported_depth_mm": 12.186,
+    "edge_is_hull_bridge_end": true,
+    "wall_gap_50pct_mm": 4.512,
+    "wall_gap_90pct_mm": 2.415,
+    "wall_gap_min_mm": 2.444,
+    "envelope_lip_thickness_mm_at_below_edge": {
+     "0.5": 1.029,
+     "1.0": 1.529,
+     "2.0": 2.47,
+     "3.0": 3.428
+    },
+    "floor_above_base_plane_mm": -0.99,
+    "free_edge_above_base_plane_mm": -3.04,
+    "mouth_direction_head": [
+     0.454,
+     -0.787,
+     -0.417
+    ]
+   },
+   {
+    "h_mm": 0.0,
+    "in_slot": true,
+    "source": "phase1_sound",
+    "free_edge_head_mm": [
+     49.61,
+     -0.65,
+     18.2
+    ],
+    "floor_head_mm": [
+     41.41,
+     7.02,
+     24.25
+    ],
+    "free_edge_ear_lat_front_mm": [
+     14.89,
+     17.04
+    ],
+    "slot_depth_below_free_edge_mm": 12.202,
+    "phase1_reported_depth_mm": 12.202,
+    "edge_is_hull_bridge_end": true,
+    "wall_gap_50pct_mm": 4.644,
+    "wall_gap_90pct_mm": 2.391,
+    "wall_gap_min_mm": 2.401,
+    "envelope_lip_thickness_mm_at_below_edge": {
+     "0.5": 1.003,
+     "1.0": 1.543,
+     "2.0": 2.494,
+     "3.0": 3.446
+    },
+    "floor_above_base_plane_mm": -0.69,
+    "free_edge_above_base_plane_mm": -2.79,
+    "mouth_direction_head": [
+     0.436,
+     -0.8,
+     -0.411
+    ]
+   },
+   {
+    "h_mm": 0.25,
+    "in_slot": true,
+    "source": "phase1_sound",
+    "free_edge_head_mm": [
+     49.76,
+     -0.63,
+     18.42
+    ],
+    "floor_head_mm": [
+     41.47,
+     7.08,
+     24.53
+    ],
+    "free_edge_ear_lat_front_mm": [
+     14.95,
+     16.99
+    ],
+    "slot_depth_below_free_edge_mm": 12.204,
+    "phase1_reported_depth_mm": 12.204,
+    "edge_is_hull_bridge_end": true,
+    "wall_gap_50pct_mm": 4.711,
+    "wall_gap_90pct_mm": 2.525,
+    "wall_gap_min_mm": 2.646,
+    "envelope_lip_thickness_mm_at_below_edge": {
+     "0.5": 1.027,
+     "1.0": 1.566,
+     "2.0": 2.544,
+     "3.0": 3.486
+    },
+    "floor_above_base_plane_mm": -0.42,
+    "free_edge_above_base_plane_mm": -2.52,
+    "mouth_direction_head": [
+     0.418,
+     -0.814,
+     -0.404
+    ]
+   },
+   {
+    "h_mm": 0.5,
+    "in_slot": true,
+    "source": "phase1_sound",
+    "free_edge_head_mm": [
+     49.95,
+     -0.58,
+     18.62
+    ],
+    "floor_head_mm": [
+     41.6,
+     7.17,
+     24.77
+    ],
+    "free_edge_ear_lat_front_mm": [
+     15.05,
+     16.92
+    ],
+    "slot_depth_below_free_edge_mm": 12.154,
+    "phase1_reported_depth_mm": 12.154,
+    "edge_is_hull_bridge_end": true,
+    "wall_gap_50pct_mm": 4.763,
+    "wall_gap_90pct_mm": 2.599,
+    "wall_gap_min_mm": 2.779,
+    "envelope_lip_thickness_mm_at_below_edge": {
+     "0.5": 1.098,
+     "1.0": 1.616,
+     "2.0": 2.629,
+     "3.0": 3.568
+    },
+    "floor_above_base_plane_mm": -0.14,
+    "free_edge_above_base_plane_mm": -2.26,
+    "mouth_direction_head": [
+     0.395,
+     -0.829,
+     -0.396
+    ]
+   },
+   {
+    "h_mm": 0.75,
+    "in_slot": true,
+    "source": "phase1_sound",
+    "free_edge_head_mm": [
+     50.17,
+     -0.48,
+     18.81
+    ],
+    "floor_head_mm": [
+     41.68,
+     7.22,
+     25.02
+    ],
+    "free_edge_ear_lat_front_mm": [
+     15.21,
+     16.82
+    ],
+    "slot_depth_below_free_edge_mm": 12.077,
+    "phase1_reported_depth_mm": 12.077,
+    "edge_is_hull_bridge_end": true,
+    "wall_gap_50pct_mm": 4.831,
+    "wall_gap_90pct_mm": 2.73,
+    "wall_gap_min_mm": 2.857,
+    "envelope_lip_thickness_mm_at_below_edge": {
+     "0.5": 1.24,
+     "1.0": 1.743,
+     "2.0": 2.735,
+     "3.0": 3.691
+    },
+    "floor_above_base_plane_mm": 0.13,
+    "free_edge_above_base_plane_mm": -1.97,
+    "mouth_direction_head": [
+     0.375,
+     -0.842,
+     -0.388
+    ]
+   },
+   {
+    "h_mm": 1.0,
+    "in_slot": true,
+    "source": "phase1_sound",
+    "free_edge_head_mm": [
+     50.05,
+     -0.59,
+     19.14
+    ],
+    "floor_head_mm": [
+     41.74,
+     7.25,
+     25.29
+    ],
+    "free_edge_ear_lat_front_mm": [
+     14.94,
+     16.78
+    ],
+    "slot_depth_below_free_edge_mm": 11.952,
+    "phase1_reported_depth_mm": 11.952,
+    "edge_is_hull_bridge_end": true,
+    "wall_gap_50pct_mm": 4.948,
+    "wall_gap_90pct_mm": 2.9,
+    "wall_gap_min_mm": 2.905,
+    "envelope_lip_thickness_mm_at_below_edge": {
+     "0.5": 1.018,
+     "1.0": 1.536,
+     "2.0": 2.549,
+     "3.0": 3.56
+    },
+    "floor_above_base_plane_mm": 0.39,
+    "free_edge_above_base_plane_mm": -1.75,
+    "mouth_direction_head": [
+     0.349,
+     -0.857,
+     -0.378
+    ]
+   },
+   {
+    "h_mm": 1.25,
+    "in_slot": true,
+    "source": "phase1_sound",
+    "free_edge_head_mm": [
+     50.21,
+     -0.53,
+     19.36
+    ],
+    "floor_head_mm": [
+     42.03,
+     7.41,
+     25.46
+    ],
+    "free_edge_ear_lat_front_mm": [
+     15.03,
+     16.69
+    ],
+    "slot_depth_below_free_edge_mm": 11.862,
+    "phase1_reported_depth_mm": 11.862,
+    "edge_is_hull_bridge_end": true,
+    "wall_gap_50pct_mm": 5.701,
+    "wall_gap_90pct_mm": 2.785,
+    "wall_gap_min_mm": 2.876,
+    "envelope_lip_thickness_mm_at_below_edge": {
+     "0.5": 1.092,
+     "1.0": 1.612,
+     "2.0": 2.619,
+     "3.0": 3.614
+    },
+    "floor_above_base_plane_mm": 0.69,
+    "free_edge_above_base_plane_mm": -1.48,
+    "mouth_direction_head": [
+     0.331,
+     -0.868,
+     -0.371
+    ]
+   },
+   {
+    "h_mm": 1.5,
+    "in_slot": true,
+    "source": "phase1_sound",
+    "free_edge_head_mm": [
+     50.38,
+     -0.46,
+     19.57
+    ],
+    "floor_head_mm": [
+     42.08,
+     7.44,
+     25.73
+    ],
+    "free_edge_ear_lat_front_mm": [
+     15.12,
+     16.6
+    ],
+    "slot_depth_below_free_edge_mm": 11.85,
+    "phase1_reported_depth_mm": 11.85,
+    "edge_is_hull_bridge_end": true,
+    "wall_gap_50pct_mm": 5.833,
+    "wall_gap_90pct_mm": 2.88,
+    "wall_gap_min_mm": 2.938,
+    "envelope_lip_thickness_mm_at_below_edge": {
+     "0.5": 1.138,
+     "1.0": 1.672,
+     "2.0": 2.671,
+     "3.0": 3.664
+    },
+    "floor_above_base_plane_mm": 0.96,
+    "free_edge_above_base_plane_mm": -1.21,
+    "mouth_direction_head": [
+     0.326,
+     -0.871,
+     -0.369
+    ]
+   },
+   {
+    "h_mm": 1.75,
+    "in_slot": false,
+    "source": "phase1_sound",
+    "free_edge_head_mm": [
+     50.5,
+     -0.4,
+     19.81
+    ],
+    "floor_head_mm": [
+     42.14,
+     7.48,
+     25.99
+    ],
+    "free_edge_ear_lat_front_mm": [
+     15.15,
+     16.49
+    ],
+    "slot_depth_below_free_edge_mm": 11.809,
+    "phase1_reported_depth_mm": 11.809,
+    "edge_is_hull_bridge_end": true,
+    "wall_gap_50pct_mm": 5.98,
+    "wall_gap_90pct_mm": 2.979,
+    "wall_gap_min_mm": 3.08,
+    "envelope_lip_thickness_mm_at_below_edge": {
+     "0.5": 1.153,
+     "1.0": 1.703,
+     "2.0": 2.712,
+     "3.0": 3.692
+    },
+    "floor_above_base_plane_mm": 1.22,
+    "free_edge_above_base_plane_mm": -0.93,
+    "mouth_direction_head": [
+     0.319,
+     -0.874,
+     -0.366
+    ]
+   },
+   {
+    "h_mm": 2.0,
+    "in_slot": false,
+    "source": "phase1_sound",
+    "free_edge_head_mm": [
+     50.58,
+     -0.34,
+     20.07
+    ],
+    "floor_head_mm": [
+     42.2,
+     7.51,
+     26.25
+    ],
+    "free_edge_ear_lat_front_mm": [
+     15.15,
+     16.37
+    ],
+    "slot_depth_below_free_edge_mm": 11.803,
+    "phase1_reported_depth_mm": 11.803,
+    "edge_is_hull_bridge_end": true,
+    "wall_gap_50pct_mm": 6.1,
+    "wall_gap_90pct_mm": 3.036,
+    "wall_gap_min_mm": 3.292,
+    "envelope_lip_thickness_mm_at_below_edge": {
+     "0.5": 1.138,
+     "1.0": 1.69,
+     "2.0": 2.714,
+     "3.0": 3.685
+    },
+    "floor_above_base_plane_mm": 1.48,
+    "free_edge_above_base_plane_mm": -0.66,
+    "mouth_direction_head": [
+     0.32,
+     -0.874,
+     -0.366
+    ]
+   },
+   {
+    "h_mm": 2.25,
+    "in_slot": false,
+    "source": "phase1_sound",
+    "free_edge_head_mm": [
+     50.67,
+     -0.28,
+     20.32
+    ],
+    "floor_head_mm": [
+     42.25,
+     7.53,
+     26.52
+    ],
+    "free_edge_ear_lat_front_mm": [
+     15.15,
+     16.26
+    ],
+    "slot_depth_below_free_edge_mm": 11.72,
+    "phase1_reported_depth_mm": 11.72,
+    "edge_is_hull_bridge_end": true,
+    "wall_gap_50pct_mm": 6.24,
+    "wall_gap_90pct_mm": 3.15,
+    "wall_gap_min_mm": 3.202,
+    "envelope_lip_thickness_mm_at_below_edge": {
+     "0.5": 1.134,
+     "1.0": 1.697,
+     "2.0": 2.724,
+     "3.0": 3.707
+    },
+    "floor_above_base_plane_mm": 1.74,
+    "free_edge_above_base_plane_mm": -0.4,
+    "mouth_direction_head": [
+     0.309,
+     -0.879,
+     -0.362
+    ]
+   },
+   {
+    "h_mm": 2.5,
+    "in_slot": false,
+    "source": "phase1_sound",
+    "free_edge_head_mm": [
+     50.78,
+     -0.18,
+     20.58
+    ],
+    "floor_head_mm": [
+     42.29,
+     7.56,
+     26.8
+    ],
+    "free_edge_ear_lat_front_mm": [
+     15.19,
+     16.1
+    ],
+    "slot_depth_below_free_edge_mm": 11.663,
+    "phase1_reported_depth_mm": 11.663,
+    "edge_is_hull_bridge_end": true,
+    "wall_gap_50pct_mm": 6.424,
+    "wall_gap_90pct_mm": 3.246,
+    "wall_gap_min_mm": 3.635,
+    "envelope_lip_thickness_mm_at_below_edge": {
+     "0.5": 1.19,
+     "1.0": 1.717,
+     "2.0": 2.761,
+     "3.0": 3.737
+    },
+    "floor_above_base_plane_mm": 2.0,
+    "free_edge_above_base_plane_mm": -0.11,
+    "mouth_direction_head": [
+     0.307,
+     -0.881,
+     -0.361
+    ]
+   }
+  ],
+  "pocket_sections_R": [
+   {
+    "h_mm": -6.0,
+    "in_slot": false,
+    "source": "remeasured_p2prep_free_edge",
+    "free_edge_head_mm": [
+     -46.05,
+     -0.58,
+     11.13
+    ],
+    "floor_head_mm": [
+     -42.75,
+     -3.16,
+     12.15
+    ],
+    "free_edge_ear_lat_front_mm": [
+     16.27,
+     19.5
+    ],
+    "slot_depth_below_free_edge_mm": 2.673,
+    "phase1_reported_depth_mm": 4.785,
+    "edge_is_hull_bridge_end": false,
+    "wall_gap_50pct_mm": 1.967,
+    "wall_gap_90pct_mm": 0.675,
+    "wall_gap_min_mm": 0.951,
+    "envelope_lip_thickness_mm_at_below_edge": {
+     "0.5": 1.348,
+     "1.0": 1.98,
+     "2.0": 3.087,
+     "3.0": null
+    },
+    "floor_above_base_plane_mm": -10.57,
+    "free_edge_above_base_plane_mm": -9.74,
+    "mouth_direction_head": [
+     -0.835,
+     -0.232,
+     -0.498
+    ]
+   },
+   {
+    "h_mm": -5.75,
+    "in_slot": false,
+    "source": "remeasured_p2prep_free_edge",
+    "free_edge_head_mm": [
+     -46.02,
+     -0.75,
+     11.39
+    ],
+    "floor_head_mm": [
+     -42.34,
+     -3.84,
+     12.47
+    ],
+    "free_edge_ear_lat_front_mm": [
+     16.08,
+     19.55
+    ],
+    "slot_depth_below_free_edge_mm": 2.769,
+    "phase1_reported_depth_mm": 4.474,
+    "edge_is_hull_bridge_end": false,
+    "wall_gap_50pct_mm": 2.641,
+    "wall_gap_90pct_mm": 1.45,
+    "wall_gap_min_mm": 1.528,
+    "envelope_lip_thickness_mm_at_below_edge": {
+     "0.5": 1.295,
+     "1.0": 1.885,
+     "2.0": 2.95,
+     "3.0": null
+    },
+    "floor_above_base_plane_mm": -10.54,
+    "free_edge_above_base_plane_mm": -9.54,
+    "mouth_direction_head": [
+     -0.825,
+     -0.261,
+     -0.501
+    ]
+   },
+   {
+    "h_mm": -5.5,
+    "in_slot": false,
+    "source": "remeasured_p2prep_free_edge",
+    "free_edge_head_mm": [
+     -46.12,
+     -0.72,
+     11.63
+    ],
+    "floor_head_mm": [
+     -42.06,
+     -3.67,
+     12.95
+    ],
+    "free_edge_ear_lat_front_mm": [
+     16.1,
+     19.46
+    ],
+    "slot_depth_below_free_edge_mm": 3.272,
+    "phase1_reported_depth_mm": 4.719,
+    "edge_is_hull_bridge_end": false,
+    "wall_gap_50pct_mm": 2.684,
+    "wall_gap_90pct_mm": 1.116,
+    "wall_gap_min_mm": 1.349,
+    "envelope_lip_thickness_mm_at_below_edge": {
+     "0.5": 1.326,
+     "1.0": 1.873,
+     "2.0": 2.875,
+     "3.0": 4.3
+    },
+    "floor_above_base_plane_mm": -10.22,
+    "free_edge_above_base_plane_mm": -9.28,
+    "mouth_direction_head": [
+     -0.828,
+     -0.254,
+     -0.5
+    ]
+   },
+   {
+    "h_mm": -5.25,
+    "in_slot": false,
+    "source": "remeasured_p2prep_free_edge",
+    "free_edge_head_mm": [
+     -46.14,
+     -1.02,
+     11.83
+    ],
+    "floor_head_mm": [
+     -42.05,
+     -3.0,
+     13.43
+    ],
+    "free_edge_ear_lat_front_mm": [
+     15.94,
+     19.66
+    ],
+    "slot_depth_below_free_edge_mm": 3.527,
+    "phase1_reported_depth_mm": 4.432,
+    "edge_is_hull_bridge_end": false,
+    "wall_gap_50pct_mm": 2.371,
+    "wall_gap_90pct_mm": 0.619,
+    "wall_gap_min_mm": 0.764,
+    "envelope_lip_thickness_mm_at_below_edge": {
+     "0.5": 1.078,
+     "1.0": 1.65,
+     "2.0": 2.693,
+     "3.0": 3.923
+    },
+    "floor_above_base_plane_mm": -9.74,
+    "free_edge_above_base_plane_mm": -9.12,
+    "mouth_direction_head": [
+     -0.81,
+     -0.299,
+     -0.504
+    ]
+   },
+   {
+    "h_mm": -5.0,
+    "in_slot": false,
+    "source": "remeasured_p2prep_free_edge",
+    "free_edge_head_mm": [
+     -46.23,
+     -1.1,
+     12.05
+    ],
+    "floor_head_mm": [
+     -42.03,
+     -2.66,
+     13.82
+    ],
+    "free_edge_ear_lat_front_mm": [
+     15.91,
+     19.67
+    ],
+    "slot_depth_below_free_edge_mm": 3.821,
+    "phase1_reported_depth_mm": 4.501,
+    "edge_is_hull_bridge_end": false,
+    "wall_gap_50pct_mm": 2.329,
+    "wall_gap_90pct_mm": 0.565,
+    "wall_gap_min_mm": 0.665,
+    "envelope_lip_thickness_mm_at_below_edge": {
+     "0.5": 0.977,
+     "1.0": 1.537,
+     "2.0": 2.589,
+     "3.0": 3.707
+    },
+    "floor_above_base_plane_mm": -9.37,
+    "free_edge_above_base_plane_mm": -8.89,
+    "mouth_direction_head": [
+     -0.809,
+     -0.302,
+     -0.504
+    ]
+   },
+   {
+    "h_mm": -4.75,
+    "in_slot": false,
+    "source": "remeasured_p2prep_free_edge",
+    "free_edge_head_mm": [
+     -46.31,
+     -1.13,
+     12.3
+    ],
+    "floor_head_mm": [
+     -41.9,
+     -2.57,
+     14.2
+    ],
+    "free_edge_ear_lat_front_mm": [
+     15.87,
+     19.63
+    ],
+    "slot_depth_below_free_edge_mm": 4.066,
+    "phase1_reported_depth_mm": 4.563,
+    "edge_is_hull_bridge_end": false,
+    "wall_gap_50pct_mm": 2.45,
+    "wall_gap_90pct_mm": 0.693,
+    "wall_gap_min_mm": 0.752,
+    "envelope_lip_thickness_mm_at_below_edge": {
+     "0.5": 0.949,
+     "1.0": 1.492,
+     "2.0": 2.538,
+     "3.0": 3.603
+    },
+    "floor_above_base_plane_mm": -9.08,
+    "free_edge_above_base_plane_mm": -8.64,
+    "mouth_direction_head": [
+     -0.805,
+     -0.311,
+     -0.504
+    ]
+   },
+   {
+    "h_mm": -4.5,
+    "in_slot": false,
+    "source": "remeasured_p2prep_free_edge",
+    "free_edge_head_mm": [
+     -46.38,
+     -1.14,
+     12.55
+    ],
+    "floor_head_mm": [
+     -41.87,
+     -2.3,
+     14.58
+    ],
+    "free_edge_ear_lat_front_mm": [
+     15.84,
+     19.57
+    ],
+    "slot_depth_below_free_edge_mm": 4.126,
+    "phase1_reported_depth_mm": 4.166,
+    "edge_is_hull_bridge_end": false,
+    "wall_gap_50pct_mm": 2.435,
+    "wall_gap_90pct_mm": 0.66,
+    "wall_gap_min_mm": 0.689,
+    "envelope_lip_thickness_mm_at_below_edge": {
+     "0.5": 0.969,
+     "1.0": 1.516,
+     "2.0": 2.582,
+     "3.0": 3.642
+    },
+    "floor_above_base_plane_mm": -8.73,
+    "free_edge_above_base_plane_mm": -8.39,
+    "mouth_direction_head": [
+     -0.781,
+     -0.366,
+     -0.506
+    ]
+   },
+   {
+    "h_mm": -4.25,
+    "in_slot": false,
+    "source": "phase1_sound",
+    "free_edge_head_mm": [
+     -46.43,
+     -1.15,
+     12.81
+    ],
+    "floor_head_mm": [
+     -41.92,
+     -1.73,
+     15.0
+    ],
+    "free_edge_ear_lat_front_mm": [
+     15.8,
+     19.49
+    ],
+    "slot_depth_below_free_edge_mm": 4.335,
+    "phase1_reported_depth_mm": 4.335,
+    "edge_is_hull_bridge_end": true,
+    "wall_gap_50pct_mm": 2.329,
+    "wall_gap_90pct_mm": 0.449,
+    "wall_gap_min_mm": 0.595,
+    "envelope_lip_thickness_mm_at_below_edge": {
+     "0.5": 0.974,
+     "1.0": 1.539,
+     "2.0": 2.605,
+     "3.0": 3.645
+    },
+    "floor_above_base_plane_mm": -8.29,
+    "free_edge_above_base_plane_mm": -8.14,
+    "mouth_direction_head": [
+     -0.766,
+     -0.397,
+     -0.507
+    ]
+   },
+   {
+    "h_mm": -4.0,
+    "in_slot": false,
+    "source": "phase1_sound",
+    "free_edge_head_mm": [
+     -46.47,
+     -1.14,
+     13.08
+    ],
+    "floor_head_mm": [
+     -41.83,
+     -1.26,
+     15.46
+    ],
+    "free_edge_ear_lat_front_mm": [
+     15.74,
+     19.39
+    ],
+    "slot_depth_below_free_edge_mm": 4.66,
+    "phase1_reported_depth_mm": 4.66,
+    "edge_is_hull_bridge_end": true,
+    "wall_gap_50pct_mm": 2.339,
+    "wall_gap_90pct_mm": 0.401,
+    "wall_gap_min_mm": 0.517,
+    "envelope_lip_thickness_mm_at_below_edge": {
+     "0.5": 0.998,
+     "1.0": 1.553,
+     "2.0": 2.613,
+     "3.0": 3.632
+    },
+    "floor_above_base_plane_mm": -7.87,
+    "free_edge_above_base_plane_mm": -7.88,
+    "mouth_direction_head": [
+     -0.754,
+     -0.417,
+     -0.507
+    ]
+   },
+   {
+    "h_mm": -3.75,
+    "in_slot": true,
+    "source": "phase1_sound",
+    "free_edge_head_mm": [
+     -46.39,
+     -1.43,
+     13.33
+    ],
+    "floor_head_mm": [
+     -41.75,
+     -1.04,
+     15.86
+    ],
+    "free_edge_ear_lat_front_mm": [
+     15.47,
+     19.54
+    ],
+    "slot_depth_below_free_edge_mm": 4.88,
+    "phase1_reported_depth_mm": 4.88,
+    "edge_is_hull_bridge_end": true,
+    "wall_gap_50pct_mm": 2.352,
+    "wall_gap_90pct_mm": 0.477,
+    "wall_gap_min_mm": 0.512,
+    "envelope_lip_thickness_mm_at_below_edge": {
+     "0.5": 0.742,
+     "1.0": 1.331,
+     "2.0": 2.425,
+     "3.0": 3.455
+    },
+    "floor_above_base_plane_mm": -7.54,
+    "free_edge_above_base_plane_mm": -7.72,
+    "mouth_direction_head": [
+     -0.739,
+     -0.445,
+     -0.506
+    ]
+   },
+   {
+    "h_mm": -3.5,
+    "in_slot": true,
+    "source": "phase1_sound",
+    "free_edge_head_mm": [
+     -46.68,
+     -1.19,
+     13.54
+    ],
+    "floor_head_mm": [
+     -41.47,
+     -0.9,
+     16.33
+    ],
+    "free_edge_ear_lat_front_mm": [
+     15.74,
+     19.31
+    ],
+    "slot_depth_below_free_edge_mm": 5.301,
+    "phase1_reported_depth_mm": 5.301,
+    "edge_is_hull_bridge_end": true,
+    "wall_gap_50pct_mm": 2.59,
+    "wall_gap_90pct_mm": 0.627,
+    "wall_gap_min_mm": 0.644,
+    "envelope_lip_thickness_mm_at_below_edge": {
+     "0.5": 0.982,
+     "1.0": 1.569,
+     "2.0": 2.633,
+     "3.0": 3.634
+    },
+    "floor_above_base_plane_mm": -7.23,
+    "free_edge_above_base_plane_mm": -7.38,
+    "mouth_direction_head": [
+     -0.72,
+     -0.476,
+     -0.505
+    ]
+   },
+   {
+    "h_mm": -3.25,
+    "in_slot": true,
+    "source": "phase1_sound",
+    "free_edge_head_mm": [
+     -46.81,
+     -1.23,
+     13.75
+    ],
+    "floor_head_mm": [
+     -40.99,
+     0.76,
+     17.32
+    ],
+    "free_edge_ear_lat_front_mm": [
+     15.76,
+     19.3
+    ],
+    "slot_depth_below_free_edge_mm": 6.882,
+    "phase1_reported_depth_mm": 6.882,
+    "edge_is_hull_bridge_end": true,
+    "wall_gap_50pct_mm": 2.055,
+    "wall_gap_90pct_mm": 0.199,
+    "wall_gap_min_mm": 0.199,
+    "envelope_lip_thickness_mm_at_below_edge": {
+     "0.5": 0.977,
+     "1.0": 1.576,
+     "2.0": 2.638,
+     "3.0": 3.639
+    },
+    "floor_above_base_plane_mm": -6.42,
+    "free_edge_above_base_plane_mm": -7.14,
+    "mouth_direction_head": [
+     -0.701,
+     -0.506,
+     -0.503
+    ]
+   },
+   {
+    "h_mm": -3.0,
+    "in_slot": true,
+    "source": "phase1_sound",
+    "free_edge_head_mm": [
+     -47.03,
+     -1.11,
+     13.96
+    ],
+    "floor_head_mm": [
+     -41.0,
+     1.35,
+     17.77
+    ],
+    "free_edge_ear_lat_front_mm": [
+     15.92,
+     19.17
+    ],
+    "slot_depth_below_free_edge_mm": 7.332,
+    "phase1_reported_depth_mm": 7.332,
+    "edge_is_hull_bridge_end": true,
+    "wall_gap_50pct_mm": 2.02,
+    "wall_gap_90pct_mm": 0.287,
+    "wall_gap_min_mm": 0.32,
+    "envelope_lip_thickness_mm_at_below_edge": {
+     "0.5": 1.148,
+     "1.0": 1.73,
+     "2.0": 2.769,
+     "3.0": 3.758
+    },
+    "floor_above_base_plane_mm": -5.96,
+    "free_edge_above_base_plane_mm": -6.84,
+    "mouth_direction_head": [
+     -0.682,
+     -0.533,
+     -0.5
+    ]
+   },
+   {
+    "h_mm": -2.75,
+    "in_slot": true,
+    "source": "phase1_sound",
+    "free_edge_head_mm": [
+     -47.22,
+     -0.89,
+     14.21
+    ],
+    "floor_head_mm": [
+     -41.01,
+     1.75,
+     18.16
+    ],
+    "free_edge_ear_lat_front_mm": [
+     16.08,
+     18.93
+    ],
+    "slot_depth_below_free_edge_mm": 7.581,
+    "phase1_reported_depth_mm": 7.581,
+    "edge_is_hull_bridge_end": true,
+    "wall_gap_50pct_mm": 2.0,
+    "wall_gap_90pct_mm": 0.296,
+    "wall_gap_min_mm": 0.387,
+    "envelope_lip_thickness_mm_at_below_edge": {
+     "0.5": 1.471,
+     "1.0": 1.983,
+     "2.0": 2.964,
+     "3.0": 3.907
+    },
+    "floor_above_base_plane_mm": -5.57,
+    "free_edge_above_base_plane_mm": -6.51,
+    "mouth_direction_head": [
+     -0.669,
+     -0.552,
+     -0.498
+    ]
+   },
+   {
+    "h_mm": -2.5,
+    "in_slot": true,
+    "source": "phase1_sound",
+    "free_edge_head_mm": [
+     -46.95,
+     -1.31,
+     14.52
+    ],
+    "floor_head_mm": [
+     -40.99,
+     2.27,
+     18.6
+    ],
+    "free_edge_ear_lat_front_mm": [
+     15.58,
+     19.13
+    ],
+    "slot_depth_below_free_edge_mm": 7.976,
+    "phase1_reported_depth_mm": 7.976,
+    "edge_is_hull_bridge_end": true,
+    "wall_gap_50pct_mm": 1.971,
+    "wall_gap_90pct_mm": 0.27,
+    "wall_gap_min_mm": 0.278,
+    "envelope_lip_thickness_mm_at_below_edge": {
+     "0.5": 1.001,
+     "1.0": 1.548,
+     "2.0": 2.595,
+     "3.0": 3.598
+    },
+    "floor_above_base_plane_mm": -5.14,
+    "free_edge_above_base_plane_mm": -6.4,
+    "mouth_direction_head": [
+     -0.656,
+     -0.569,
+     -0.496
+    ]
+   },
+   {
+    "h_mm": -2.25,
+    "in_slot": true,
+    "source": "phase1_sound",
+    "free_edge_head_mm": [
+     -47.03,
+     -1.38,
+     14.75
+    ],
+    "floor_head_mm": [
+     -40.95,
+     2.69,
+     19.02
+    ],
+    "free_edge_ear_lat_front_mm": [
+     15.55,
+     19.12
+    ],
+    "slot_depth_below_free_edge_mm": 8.394,
+    "phase1_reported_depth_mm": 8.394,
+    "edge_is_hull_bridge_end": true,
+    "wall_gap_50pct_mm": 1.955,
+    "wall_gap_90pct_mm": 0.289,
+    "wall_gap_min_mm": 0.355,
+    "envelope_lip_thickness_mm_at_below_edge": {
+     "0.5": 0.949,
+     "1.0": 1.5,
+     "2.0": 2.57,
+     "3.0": 3.582
+    },
+    "floor_above_base_plane_mm": -4.74,
+    "free_edge_above_base_plane_mm": -6.16,
+    "mouth_direction_head": [
+     -0.639,
+     -0.59,
+     -0.493
+    ]
+   },
+   {
+    "h_mm": -2.0,
+    "in_slot": true,
+    "source": "phase1_sound",
+    "free_edge_head_mm": [
+     -47.19,
+     -1.37,
+     14.96
+    ],
+    "floor_head_mm": [
+     -40.94,
+     3.09,
+     19.43
+    ],
+    "free_edge_ear_lat_front_mm": [
+     15.62,
+     19.08
+    ],
+    "slot_depth_below_free_edge_mm": 8.803,
+    "phase1_reported_depth_mm": 8.803,
+    "edge_is_hull_bridge_end": true,
+    "wall_gap_50pct_mm": 1.97,
+    "wall_gap_90pct_mm": 0.312,
+    "wall_gap_min_mm": 0.315,
+    "envelope_lip_thickness_mm_at_below_edge": {
+     "0.5": 0.966,
+     "1.0": 1.529,
+     "2.0": 2.617,
+     "3.0": 3.633
+    },
+    "floor_above_base_plane_mm": -4.35,
+    "free_edge_above_base_plane_mm": -5.9,
+    "mouth_direction_head": [
+     -0.619,
+     -0.614,
+     -0.489
+    ]
+   },
+   {
+    "h_mm": -1.75,
+    "in_slot": true,
+    "source": "phase1_sound",
+    "free_edge_head_mm": [
+     -47.35,
+     -1.36,
+     15.17
+    ],
+    "floor_head_mm": [
+     -40.92,
+     3.41,
+     19.82
+    ],
+    "free_edge_ear_lat_front_mm": [
+     15.68,
+     19.02
+    ],
+    "slot_depth_below_free_edge_mm": 9.144,
+    "phase1_reported_depth_mm": 9.144,
+    "edge_is_hull_bridge_end": true,
+    "wall_gap_50pct_mm": 2.034,
+    "wall_gap_90pct_mm": 0.365,
+    "wall_gap_min_mm": 0.391,
+    "envelope_lip_thickness_mm_at_below_edge": {
+     "0.5": 0.963,
+     "1.0": 1.561,
+     "2.0": 2.667,
+     "3.0": 3.688
+    },
+    "floor_above_base_plane_mm": -3.99,
+    "free_edge_above_base_plane_mm": -5.64,
+    "mouth_direction_head": [
+     -0.6,
+     -0.636,
+     -0.485
+    ]
+   },
+   {
+    "h_mm": -1.5,
+    "in_slot": true,
+    "source": "phase1_sound",
+    "free_edge_head_mm": [
+     -47.72,
+     -1.07,
+     15.35
+    ],
+    "floor_head_mm": [
+     -40.96,
+     3.72,
+     20.17
+    ],
+    "free_edge_ear_lat_front_mm": [
+     16.05,
+     18.78
+    ],
+    "slot_depth_below_free_edge_mm": 9.392,
+    "phase1_reported_depth_mm": 9.392,
+    "edge_is_hull_bridge_end": true,
+    "wall_gap_50pct_mm": 2.193,
+    "wall_gap_90pct_mm": 0.471,
+    "wall_gap_min_mm": 0.546,
+    "envelope_lip_thickness_mm_at_below_edge": {
+     "0.5": 1.293,
+     "1.0": 1.902,
+     "2.0": 2.975,
+     "3.0": 3.975
+    },
+    "floor_above_base_plane_mm": -3.63,
+    "free_edge_above_base_plane_mm": -5.29,
+    "mouth_direction_head": [
+     -0.581,
+     -0.656,
+     -0.481
+    ]
+   },
+   {
+    "h_mm": -1.25,
+    "in_slot": true,
+    "source": "phase1_sound",
+    "free_edge_head_mm": [
+     -47.74,
+     -1.08,
+     15.62
+    ],
+    "floor_head_mm": [
+     -40.93,
+     4.1,
+     20.58
+    ],
+    "free_edge_ear_lat_front_mm": [
+     15.97,
+     18.7
+    ],
+    "slot_depth_below_free_edge_mm": 9.694,
+    "phase1_reported_depth_mm": 9.694,
+    "edge_is_hull_bridge_end": true,
+    "wall_gap_50pct_mm": 2.42,
+    "wall_gap_90pct_mm": 0.58,
+    "wall_gap_min_mm": 0.609,
+    "envelope_lip_thickness_mm_at_below_edge": {
+     "0.5": 1.244,
+     "1.0": 1.887,
+     "2.0": 2.958,
+     "3.0": 3.973
+    },
+    "floor_above_base_plane_mm": -3.25,
+    "free_edge_above_base_plane_mm": -5.04,
+    "mouth_direction_head": [
+     -0.565,
+     -0.673,
+     -0.477
+    ]
+   },
+   {
+    "h_mm": -1.0,
+    "in_slot": true,
+    "source": "phase1_sound",
+    "free_edge_head_mm": [
+     -47.61,
+     -1.11,
+     15.97
+    ],
+    "floor_head_mm": [
+     -40.8,
+     4.68,
+     21.1
+    ],
+    "free_edge_ear_lat_front_mm": [
+     15.72,
+     18.57
+    ],
+    "slot_depth_below_free_edge_mm": 10.163,
+    "phase1_reported_depth_mm": 10.163,
+    "edge_is_hull_bridge_end": true,
+    "wall_gap_50pct_mm": 2.381,
+    "wall_gap_90pct_mm": 0.582,
+    "wall_gap_min_mm": 0.594,
+    "envelope_lip_thickness_mm_at_below_edge": {
+     "0.5": 1.18,
+     "1.0": 1.813,
+     "2.0": 2.867,
+     "3.0": 3.854
+    },
+    "floor_above_base_plane_mm": -2.79,
+    "free_edge_above_base_plane_mm": -4.79,
+    "mouth_direction_head": [
+     -0.55,
+     -0.688,
+     -0.473
+    ]
+   },
+   {
+    "h_mm": -0.75,
+    "in_slot": true,
+    "source": "phase1_sound",
+    "free_edge_head_mm": [
+     -47.55,
+     -1.12,
+     16.29
+    ],
+    "floor_head_mm": [
+     -40.62,
+     5.21,
+     21.62
+    ],
+    "free_edge_ear_lat_front_mm": [
+     15.55,
+     18.45
+    ],
+    "slot_depth_below_free_edge_mm": 10.667,
+    "phase1_reported_depth_mm": 10.667,
+    "edge_is_hull_bridge_end": true,
+    "wall_gap_50pct_mm": 2.289,
+    "wall_gap_90pct_mm": 0.577,
+    "wall_gap_min_mm": 0.577,
+    "envelope_lip_thickness_mm_at_below_edge": {
+     "0.5": 1.171,
+     "1.0": 1.777,
+     "2.0": 2.814,
+     "3.0": 3.758
+    },
+    "floor_above_base_plane_mm": -2.36,
+    "free_edge_above_base_plane_mm": -4.54,
+    "mouth_direction_head": [
+     -0.537,
+     -0.7,
+     -0.47
+    ]
+   },
+   {
+    "h_mm": -0.5,
+    "in_slot": true,
+    "source": "phase1_sound",
+    "free_edge_head_mm": [
+     -47.6,
+     -1.13,
+     16.55
+    ],
+    "floor_head_mm": [
+     -40.45,
+     5.61,
+     22.11
+    ],
+    "free_edge_ear_lat_front_mm": [
+     15.5,
+     18.37
+    ],
+    "slot_depth_below_free_edge_mm": 11.126,
+    "phase1_reported_depth_mm": 11.126,
+    "edge_is_hull_bridge_end": true,
+    "wall_gap_50pct_mm": 2.266,
+    "wall_gap_90pct_mm": 0.792,
+    "wall_gap_min_mm": 0.795,
+    "envelope_lip_thickness_mm_at_below_edge": {
+     "0.5": 1.173,
+     "1.0": 1.763,
+     "2.0": 2.817,
+     "3.0": 3.731
+    },
+    "floor_above_base_plane_mm": -1.97,
+    "free_edge_above_base_plane_mm": -4.28,
+    "mouth_direction_head": [
+     -0.519,
+     -0.717,
+     -0.465
+    ]
+   },
+   {
+    "h_mm": -0.25,
+    "in_slot": true,
+    "source": "phase1_sound",
+    "free_edge_head_mm": [
+     -47.66,
+     -1.13,
+     16.81
+    ],
+    "floor_head_mm": [
+     -40.4,
+     5.78,
+     22.47
+    ],
+    "free_edge_ear_lat_front_mm": [
+     15.46,
+     18.29
+    ],
+    "slot_depth_below_free_edge_mm": 11.308,
+    "phase1_reported_depth_mm": 11.308,
+    "edge_is_hull_bridge_end": true,
+    "wall_gap_50pct_mm": 2.311,
+    "wall_gap_90pct_mm": 1.166,
+    "wall_gap_min_mm": 1.254,
+    "envelope_lip_thickness_mm_at_below_edge": {
+     "0.5": 1.177,
+     "1.0": 1.736,
+     "2.0": 2.815,
+     "3.0": 3.714
+    },
+    "floor_above_base_plane_mm": -1.65,
+    "free_edge_above_base_plane_mm": -4.03,
+    "mouth_direction_head": [
+     -0.5,
+     -0.734,
+     -0.46
+    ]
+   },
+   {
+    "h_mm": 0.0,
+    "in_slot": true,
+    "source": "phase1_sound",
+    "free_edge_head_mm": [
+     -47.76,
+     -1.18,
+     17.03
+    ],
+    "floor_head_mm": [
+     -40.5,
+     6.03,
+     22.77
+    ],
+    "free_edge_ear_lat_front_mm": [
+     15.45,
+     18.28
+    ],
+    "slot_depth_below_free_edge_mm": 11.495,
+    "phase1_reported_depth_mm": 11.495,
+    "edge_is_hull_bridge_end": true,
+    "wall_gap_50pct_mm": 2.925,
+    "wall_gap_90pct_mm": 1.239,
+    "wall_gap_min_mm": 1.336,
+    "envelope_lip_thickness_mm_at_below_edge": {
+     "0.5": 1.122,
+     "1.0": 1.691,
+     "2.0": 2.795,
+     "3.0": 3.713
+    },
+    "floor_above_base_plane_mm": -1.31,
+    "free_edge_above_base_plane_mm": -3.79,
+    "mouth_direction_head": [
+     -0.477,
+     -0.753,
+     -0.453
+    ]
+   },
+   {
+    "h_mm": 0.25,
+    "in_slot": true,
+    "source": "phase1_sound",
+    "free_edge_head_mm": [
+     -47.87,
+     -1.23,
+     17.25
+    ],
+    "floor_head_mm": [
+     -40.6,
+     6.25,
+     23.07
+    ],
+    "free_edge_ear_lat_front_mm": [
+     15.45,
+     18.27
+    ],
+    "slot_depth_below_free_edge_mm": 11.678,
+    "phase1_reported_depth_mm": 11.678,
+    "edge_is_hull_bridge_end": true,
+    "wall_gap_50pct_mm": 3.018,
+    "wall_gap_90pct_mm": 1.269,
+    "wall_gap_min_mm": 1.282,
+    "envelope_lip_thickness_mm_at_below_edge": {
+     "0.5": 1.058,
+     "1.0": 1.63,
+     "2.0": 2.765,
+     "3.0": 3.707
+    },
+    "floor_above_base_plane_mm": -0.98,
+    "free_edge_above_base_plane_mm": -3.55,
+    "mouth_direction_head": [
+     -0.458,
+     -0.769,
+     -0.447
+    ]
+   },
+   {
+    "h_mm": 0.5,
+    "in_slot": true,
+    "source": "phase1_sound",
+    "free_edge_head_mm": [
+     -48.04,
+     -1.23,
+     17.46
+    ],
+    "floor_head_mm": [
+     -40.56,
+     6.32,
+     23.4
+    ],
+    "free_edge_ear_lat_front_mm": [
+     15.52,
+     18.23
+    ],
+    "slot_depth_below_free_edge_mm": 11.806,
+    "phase1_reported_depth_mm": 11.806,
+    "edge_is_hull_bridge_end": true,
+    "wall_gap_50pct_mm": 3.12,
+    "wall_gap_90pct_mm": 1.393,
+    "wall_gap_min_mm": 1.589,
+    "envelope_lip_thickness_mm_at_below_edge": {
+     "0.5": 1.06,
+     "1.0": 1.632,
+     "2.0": 2.786,
+     "3.0": 3.767
+    },
+    "floor_above_base_plane_mm": -0.7,
+    "free_edge_above_base_plane_mm": -3.29,
+    "mouth_direction_head": [
+     -0.439,
+     -0.783,
+     -0.441
+    ]
+   },
+   {
+    "h_mm": 0.75,
+    "in_slot": true,
+    "source": "phase1_sound",
+    "free_edge_head_mm": [
+     -48.09,
+     -1.22,
+     17.72
+    ],
+    "floor_head_mm": [
+     -40.79,
+     6.56,
+     23.64
+    ],
+    "free_edge_ear_lat_front_mm": [
+     15.48,
+     18.14
+    ],
+    "slot_depth_below_free_edge_mm": 11.837,
+    "phase1_reported_depth_mm": 11.837,
+    "edge_is_hull_bridge_end": true,
+    "wall_gap_50pct_mm": 3.224,
+    "wall_gap_90pct_mm": 1.349,
+    "wall_gap_min_mm": 1.581,
+    "envelope_lip_thickness_mm_at_below_edge": {
+     "0.5": 0.992,
+     "1.0": 1.619,
+     "2.0": 2.764,
+     "3.0": 3.774
+    },
+    "floor_above_base_plane_mm": -0.37,
+    "free_edge_above_base_plane_mm": -3.03,
+    "mouth_direction_head": [
+     -0.42,
+     -0.797,
+     -0.435
+    ]
+   },
+   {
+    "h_mm": 1.0,
+    "in_slot": true,
+    "source": "phase1_sound",
+    "free_edge_head_mm": [
+     -48.16,
+     -1.18,
+     17.99
+    ],
+    "floor_head_mm": [
+     -40.8,
+     6.62,
+     23.94
+    ],
+    "free_edge_ear_lat_front_mm": [
+     15.47,
+     18.02
+    ],
+    "slot_depth_below_free_edge_mm": 11.834,
+    "phase1_reported_depth_mm": 11.834,
+    "edge_is_hull_bridge_end": true,
+    "wall_gap_50pct_mm": 3.891,
+    "wall_gap_90pct_mm": 1.463,
+    "wall_gap_min_mm": 1.583,
+    "envelope_lip_thickness_mm_at_below_edge": {
+     "0.5": 0.95,
+     "1.0": 1.664,
+     "2.0": 2.76,
+     "3.0": 3.803
+    },
+    "floor_above_base_plane_mm": -0.09,
+    "free_edge_above_base_plane_mm": -2.76,
+    "mouth_direction_head": [
+     -0.404,
+     -0.807,
+     -0.43
+    ]
+   },
+   {
+    "h_mm": 1.25,
+    "in_slot": true,
+    "source": "phase1_sound",
+    "free_edge_head_mm": [
+     -48.12,
+     -1.19,
+     18.3
+    ],
+    "floor_head_mm": [
+     -40.93,
+     6.74,
+     24.19
+    ],
+    "free_edge_ear_lat_front_mm": [
+     15.32,
+     17.9
+    ],
+    "slot_depth_below_free_edge_mm": 11.769,
+    "phase1_reported_depth_mm": 11.769,
+    "edge_is_hull_bridge_end": true,
+    "wall_gap_50pct_mm": 4.139,
+    "wall_gap_90pct_mm": 1.503,
+    "wall_gap_min_mm": 1.756,
+    "envelope_lip_thickness_mm_at_below_edge": {
+     "0.5": 0.888,
+     "1.0": 1.569,
+     "2.0": 2.687,
+     "3.0": 3.745
+    },
+    "floor_above_base_plane_mm": 0.21,
+    "free_edge_above_base_plane_mm": -2.51,
+    "mouth_direction_head": [
+     -0.388,
+     -0.818,
+     -0.424
+    ]
+   },
+   {
+    "h_mm": 1.5,
+    "in_slot": true,
+    "source": "phase1_sound",
+    "free_edge_head_mm": [
+     -48.19,
+     -1.14,
+     18.56
+    ],
+    "floor_head_mm": [
+     -41.1,
+     6.86,
+     24.43
+    ],
+    "free_edge_ear_lat_front_mm": [
+     15.3,
+     17.78
+    ],
+    "slot_depth_below_free_edge_mm": 11.708,
+    "phase1_reported_depth_mm": 11.708,
+    "edge_is_hull_bridge_end": true,
+    "wall_gap_50pct_mm": 4.203,
+    "wall_gap_90pct_mm": 1.527,
+    "wall_gap_min_mm": 1.536,
+    "envelope_lip_thickness_mm_at_below_edge": {
+     "0.5": 0.937,
+     "1.0": 1.588,
+     "2.0": 2.724,
+     "3.0": 3.766
+    },
+    "floor_above_base_plane_mm": 0.5,
+    "free_edge_above_base_plane_mm": -2.23,
+    "mouth_direction_head": [
+     -0.371,
+     -0.829,
+     -0.418
+    ]
+   },
+   {
+    "h_mm": 1.75,
+    "in_slot": true,
+    "source": "phase1_sound",
+    "free_edge_head_mm": [
+     -48.4,
+     -1.1,
+     18.75
+    ],
+    "floor_head_mm": [
+     -41.18,
+     6.92,
+     24.69
+    ],
+    "free_edge_ear_lat_front_mm": [
+     15.44,
+     17.73
+    ],
+    "slot_depth_below_free_edge_mm": 11.703,
+    "phase1_reported_depth_mm": 11.703,
+    "edge_is_hull_bridge_end": true,
+    "wall_gap_50pct_mm": 4.291,
+    "wall_gap_90pct_mm": 1.646,
+    "wall_gap_min_mm": 1.822,
+    "envelope_lip_thickness_mm_at_below_edge": {
+     "0.5": 0.982,
+     "1.0": 1.671,
+     "2.0": 2.845,
+     "3.0": 3.894
+    },
+    "floor_above_base_plane_mm": 0.78,
+    "free_edge_above_base_plane_mm": -1.97,
+    "mouth_direction_head": [
+     -0.346,
+     -0.844,
+     -0.409
+    ]
+   },
+   {
+    "h_mm": 2.0,
+    "in_slot": true,
+    "source": "phase1_sound",
+    "free_edge_head_mm": [
+     -48.47,
+     -1.03,
+     19.02
+    ],
+    "floor_head_mm": [
+     -41.38,
+     7.06,
+     24.92
+    ],
+    "free_edge_ear_lat_front_mm": [
+     15.43,
+     17.58
+    ],
+    "slot_depth_below_free_edge_mm": 11.593,
+    "phase1_reported_depth_mm": 11.593,
+    "edge_is_hull_bridge_end": true,
+    "wall_gap_50pct_mm": 4.411,
+    "wall_gap_90pct_mm": 1.667,
+    "wall_gap_min_mm": 1.798,
+    "envelope_lip_thickness_mm_at_below_edge": {
+     "0.5": 1.041,
+     "1.0": 1.737,
+     "2.0": 2.918,
+     "3.0": 3.995
+    },
+    "floor_above_base_plane_mm": 1.08,
+    "free_edge_above_base_plane_mm": -1.69,
+    "mouth_direction_head": [
+     -0.323,
+     -0.857,
+     -0.401
+    ]
+   },
+   {
+    "h_mm": 2.25,
+    "in_slot": true,
+    "source": "phase1_sound",
+    "free_edge_head_mm": [
+     -48.77,
+     -0.83,
+     19.21
+    ],
+    "floor_head_mm": [
+     -41.57,
+     7.19,
+     25.14
+    ],
+    "free_edge_ear_lat_front_mm": [
+     15.69,
+     17.41
+    ],
+    "slot_depth_below_free_edge_mm": 11.471,
+    "phase1_reported_depth_mm": 11.471,
+    "edge_is_hull_bridge_end": true,
+    "wall_gap_50pct_mm": 4.719,
+    "wall_gap_90pct_mm": 1.701,
+    "wall_gap_min_mm": 1.752,
+    "envelope_lip_thickness_mm_at_below_edge": {
+     "0.5": 1.356,
+     "1.0": 2.026,
+     "2.0": 3.18,
+     "3.0": 4.275
+    },
+    "floor_above_base_plane_mm": 1.38,
+    "free_edge_above_base_plane_mm": -1.37,
+    "mouth_direction_head": [
+     -0.301,
+     -0.869,
+     -0.393
+    ]
+   },
+   {
+    "h_mm": 2.5,
+    "in_slot": true,
+    "source": "phase1_sound",
+    "free_edge_head_mm": [
+     -48.41,
+     -0.86,
+     19.69
+    ],
+    "floor_head_mm": [
+     -41.79,
+     7.31,
+     25.35
+    ],
+    "free_edge_ear_lat_front_mm": [
+     15.2,
+     17.17
+    ],
+    "slot_depth_below_free_edge_mm": 11.262,
+    "phase1_reported_depth_mm": 11.262,
+    "edge_is_hull_bridge_end": true,
+    "wall_gap_50pct_mm": 5.038,
+    "wall_gap_90pct_mm": 1.709,
+    "wall_gap_min_mm": 1.827,
+    "envelope_lip_thickness_mm_at_below_edge": {
+     "0.5": 1.098,
+     "1.0": 1.735,
+     "2.0": 2.904,
+     "3.0": 4.025
+    },
+    "floor_above_base_plane_mm": 1.68,
+    "free_edge_above_base_plane_mm": -1.12,
+    "mouth_direction_head": [
+     -0.289,
+     -0.875,
+     -0.388
+    ]
+   },
+   {
+    "h_mm": 2.75,
+    "in_slot": true,
+    "source": "phase1_sound",
+    "free_edge_head_mm": [
+     -48.42,
+     -0.79,
+     19.99
+    ],
+    "floor_head_mm": [
+     -42.02,
+     7.44,
+     25.55
+    ],
+    "free_edge_ear_lat_front_mm": [
+     15.13,
+     17.0
+    ],
+    "slot_depth_below_free_edge_mm": 11.177,
+    "phase1_reported_depth_mm": 11.177,
+    "edge_is_hull_bridge_end": true,
+    "wall_gap_50pct_mm": 5.115,
+    "wall_gap_90pct_mm": 1.723,
+    "wall_gap_min_mm": 1.728,
+    "envelope_lip_thickness_mm_at_below_edge": {
+     "0.5": 1.073,
+     "1.0": 1.73,
+     "2.0": 2.925,
+     "3.0": 4.017
+    },
+    "floor_above_base_plane_mm": 1.97,
+    "free_edge_above_base_plane_mm": -0.84,
+    "mouth_direction_head": [
+     -0.281,
+     -0.879,
+     -0.385
+    ]
+   },
+   {
+    "h_mm": 3.0,
+    "in_slot": true,
+    "source": "phase1_sound",
+    "free_edge_head_mm": [
+     -48.39,
+     -0.71,
+     20.31
+    ],
+    "floor_head_mm": [
+     -42.19,
+     7.54,
+     25.78
+    ],
+    "free_edge_ear_lat_front_mm": [
+     15.02,
+     16.8
+    ],
+    "slot_depth_below_free_edge_mm": 11.108,
+    "phase1_reported_depth_mm": 11.108,
+    "edge_is_hull_bridge_end": true,
+    "wall_gap_50pct_mm": 5.172,
+    "wall_gap_90pct_mm": 1.793,
+    "wall_gap_min_mm": 1.796,
+    "envelope_lip_thickness_mm_at_below_edge": {
+     "0.5": 1.029,
+     "1.0": 1.69,
+     "2.0": 2.889,
+     "3.0": 3.956
+    },
+    "floor_above_base_plane_mm": 2.26,
+    "free_edge_above_base_plane_mm": -0.55,
+    "mouth_direction_head": [
+     -0.284,
+     -0.878,
+     -0.386
+    ]
+   },
+   {
+    "h_mm": 3.25,
+    "in_slot": true,
+    "source": "phase1_sound",
+    "free_edge_head_mm": [
+     -48.36,
+     -0.58,
+     20.65
+    ],
+    "floor_head_mm": [
+     -41.96,
+     7.43,
+     26.17
+    ],
+    "free_edge_ear_lat_front_mm": [
+     14.93,
+     16.56
+    ],
+    "slot_depth_below_free_edge_mm": 11.039,
+    "phase1_reported_depth_mm": 11.039,
+    "edge_is_hull_bridge_end": true,
+    "wall_gap_50pct_mm": 5.233,
+    "wall_gap_90pct_mm": 2.287,
+    "wall_gap_min_mm": 2.317,
+    "envelope_lip_thickness_mm_at_below_edge": {
+     "0.5": 1.031,
+     "1.0": 1.678,
+     "2.0": 2.838,
+     "3.0": 3.894
+    },
+    "floor_above_base_plane_mm": 2.49,
+    "free_edge_above_base_plane_mm": -0.25,
+    "mouth_direction_head": [
+     -0.296,
+     -0.871,
+     -0.391
+    ]
+   },
+   {
+    "h_mm": 3.5,
+    "in_slot": true,
+    "source": "phase1_sound",
+    "free_edge_head_mm": [
+     -48.39,
+     -0.49,
+     20.95
+    ],
+    "floor_head_mm": [
+     -42.11,
+     7.52,
+     26.4
+    ],
+    "free_edge_ear_lat_front_mm": [
+     14.88,
+     16.37
+    ],
+    "slot_depth_below_free_edge_mm": 10.955,
+    "phase1_reported_depth_mm": 10.955,
+    "edge_is_hull_bridge_end": true,
+    "wall_gap_50pct_mm": 5.308,
+    "wall_gap_90pct_mm": 2.413,
+    "wall_gap_min_mm": 2.423,
+    "envelope_lip_thickness_mm_at_below_edge": {
+     "0.5": 1.031,
+     "1.0": 1.7,
+     "2.0": 2.838,
+     "3.0": 3.892
+    },
+    "floor_above_base_plane_mm": 2.77,
+    "free_edge_above_base_plane_mm": 0.04,
+    "mouth_direction_head": [
+     -0.292,
+     -0.874,
+     -0.389
+    ]
+   },
+   {
+    "h_mm": 3.75,
+    "in_slot": true,
+    "source": "phase1_sound",
+    "free_edge_head_mm": [
+     -48.5,
+     -0.35,
+     21.23
+    ],
+    "floor_head_mm": [
+     -42.27,
+     7.61,
+     26.63
+    ],
+    "free_edge_ear_lat_front_mm": [
+     14.93,
+     16.16
+    ],
+    "slot_depth_below_free_edge_mm": 10.876,
+    "phase1_reported_depth_mm": 10.876,
+    "edge_is_hull_bridge_end": true,
+    "wall_gap_50pct_mm": 5.393,
+    "wall_gap_90pct_mm": 2.527,
+    "wall_gap_min_mm": 2.55,
+    "envelope_lip_thickness_mm_at_below_edge": {
+     "0.5": 1.12,
+     "1.0": 1.794,
+     "2.0": 2.898,
+     "3.0": 3.938
+    },
+    "floor_above_base_plane_mm": 3.06,
+    "free_edge_above_base_plane_mm": 0.34,
+    "mouth_direction_head": [
+     -0.293,
+     -0.873,
+     -0.389
+    ]
+   },
+   {
+    "h_mm": 4.0,
+    "in_slot": false,
+    "source": "phase1_sound",
+    "free_edge_head_mm": [
+     -48.45,
+     -0.17,
+     21.59
+    ],
+    "floor_head_mm": [
+     -42.43,
+     7.69,
+     26.86
+    ],
+    "free_edge_ear_lat_front_mm": [
+     14.83,
+     15.86
+    ],
+    "slot_depth_below_free_edge_mm": 10.711,
+    "phase1_reported_depth_mm": 10.711,
+    "edge_is_hull_bridge_end": true,
+    "wall_gap_50pct_mm": 5.406,
+    "wall_gap_90pct_mm": 2.619,
+    "wall_gap_min_mm": 2.629,
+    "envelope_lip_thickness_mm_at_below_edge": {
+     "0.5": 1.173,
+     "1.0": 1.799,
+     "2.0": 2.879,
+     "3.0": 3.897
+    },
+    "floor_above_base_plane_mm": 3.34,
+    "free_edge_above_base_plane_mm": 0.66,
+    "mouth_direction_head": [
+     -0.3,
+     -0.87,
+     -0.392
+    ]
+   },
+   {
+    "h_mm": 4.25,
+    "in_slot": false,
+    "source": "phase1_sound",
+    "free_edge_head_mm": [
+     -48.31,
+     0.03,
+     22.01
+    ],
+    "floor_head_mm": [
+     -42.29,
+     7.62,
+     27.2
+    ],
+    "free_edge_ear_lat_front_mm": [
+     14.63,
+     15.5
+    ],
+    "slot_depth_below_free_edge_mm": 10.53,
+    "phase1_reported_depth_mm": 10.53,
+    "edge_is_hull_bridge_end": true,
+    "wall_gap_50pct_mm": 5.396,
+    "wall_gap_90pct_mm": 2.945,
+    "wall_gap_min_mm": 2.965,
+    "envelope_lip_thickness_mm_at_below_edge": {
+     "0.5": 1.139,
+     "1.0": 1.705,
+     "2.0": 2.772,
+     "3.0": 3.737
+    },
+    "floor_above_base_plane_mm": 3.57,
+    "free_edge_above_base_plane_mm": 0.98,
+    "mouth_direction_head": [
+     -0.321,
+     -0.859,
+     -0.4
+    ]
+   },
+   {
+    "h_mm": 4.5,
+    "in_slot": false,
+    "source": "phase1_sound",
+    "free_edge_head_mm": [
+     -48.0,
+     0.12,
+     22.48
+    ],
+    "floor_head_mm": [
+     -42.33,
+     7.65,
+     27.48
+    ],
+    "free_edge_ear_lat_front_mm": [
+     14.23,
+     15.16
+    ],
+    "slot_depth_below_free_edge_mm": 10.311,
+    "phase1_reported_depth_mm": 10.311,
+    "edge_is_hull_bridge_end": true,
+    "wall_gap_50pct_mm": 5.331,
+    "wall_gap_90pct_mm": 2.999,
+    "wall_gap_min_mm": 3.109,
+    "envelope_lip_thickness_mm_at_below_edge": {
+     "0.5": 0.89,
+     "1.0": 1.476,
+     "2.0": 2.538,
+     "3.0": 3.481
+    },
+    "floor_above_base_plane_mm": 3.84,
+    "free_edge_above_base_plane_mm": 1.27,
+    "mouth_direction_head": [
+     -0.332,
+     -0.852,
+     -0.404
+    ]
+   },
+   {
+    "h_mm": 4.75,
+    "in_slot": false,
+    "source": "phase1_sound",
+    "free_edge_head_mm": [
+     -48.08,
+     0.51,
+     22.83
+    ],
+    "floor_head_mm": [
+     -42.38,
+     7.66,
+     27.75
+    ],
+    "free_edge_ear_lat_front_mm": [
+     14.32,
+     14.71
+    ],
+    "slot_depth_below_free_edge_mm": 10.048,
+    "phase1_reported_depth_mm": 10.048,
+    "edge_is_hull_bridge_end": true,
+    "wall_gap_50pct_mm": 5.239,
+    "wall_gap_90pct_mm": 2.894,
+    "wall_gap_min_mm": 3.056,
+    "envelope_lip_thickness_mm_at_below_edge": {
+     "0.5": 1.076,
+     "1.0": 1.622,
+     "2.0": 2.581,
+     "3.0": 3.439
+    },
+    "floor_above_base_plane_mm": 4.1,
+    "free_edge_above_base_plane_mm": 1.66,
+    "mouth_direction_head": [
+     -0.353,
+     -0.84,
+     -0.412
+    ]
+   }
+  ],
+  "note": "every 0.25 mm in h over the slot +-; source per row ('phase1_sound' = the free edge is the hull-bridge end and Phase 1's number is reproduced; 'remeasured_p2prep_free_edge' = REPLACES Phase 1's flap top). envelope_lip_thickness = distance from the flap's inner face at s mm below the free edge to its outer face, on the Tripo ENVELOPE (fur included on the outer face)."
+ },
+ "tool_record": {
+  "tool": "%TEMP%/p2prep_ears/flap_edge.py (scratch) + make_spec.py",
+  "reasoning": "B2 says the L 'flap top' is the outer bulge; the free edge is where the flap's outer skin turns back into its inner skin, so walking floor -> mouth the level along the mouth direction must stop rising there. A running maximum with a fall-back tolerance (0.3 mm, ~0.6 x mesh edge; +-1 step 0.15 / 0.6) finds it without a smoothing scale; when no fall-back exists the hull-bridge end is the free edge, so the rule reduces to Phase 1 wherever Phase 1 was right (all of R, L above -2.5) - a built-in regression check.",
+  "checks_done": [
+   "reproduces Phase 1 R slot numbers exactly (free edge = bridge end at every R slot height)",
+   "reproduces REVIEW_ears r7 L depths to 0.01 mm at h -5.5 / -4.25 / -4.0 / -3.0",
+   "L free-edge line continuous after the fix (max step 0.50 mm vs Phase 1's 6.7 mm jump)"
+  ],
+  "limits": [
+   "delta 0.3 misses the turn at L h -5.5 (it turns at 0.15): the lowest section is delta-sensitive",
+   "rows with depth < 1.5 mm (floor ripples at L h -5.75, -7.5, -7.75) dropped as below-slot",
+   "lip thickness = point-to-polyline distance, a wedge's local thickness, fur included"
+  ],
+  "memory_and_inputs": "one tripo_welded.npz load + faces within 60 mm of each ear origin (130 k / 133 k faces), exact plane sections only; ~13 s per run; peak well under 1 GB; free memory checked >= 3 GB before each run",
+  "inputs": [
+   "tripo_rebuild/tripo_welded.npz",
+   "tripo_rebuild/layers/ears_base_<L|R>.npz",
+   "tripo_rebuild/ears_pocket.py (notch_at, seg_dist - unchanged)",
+   "tripo_rebuild/paws_lib.py, ears_lib.py, ears_sections.py, partition.py, mesh_source.py (unchanged)",
+   "cases/cat1/ref.jpg"
+  ]
+ }
+}

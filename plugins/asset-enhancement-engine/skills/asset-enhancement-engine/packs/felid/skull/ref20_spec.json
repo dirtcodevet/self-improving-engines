@@ -1,0 +1,58 @@
+{
+ "_what": "Reference skull 20 (Hauskatze_Schaedel_PP_noBG.jpg, CC BY-SA 4.0, Auge=mit): three of its six views -> a visual hull (tools/view_hull.py). Seeds of see-through holes PICKED on the overlay (G4).",
+ "image": "cases/cat1/references/20_Hauskatze_Schaedel_PP_noBG.jpg",
+ "length_mm": 89.4,
+ "length_src": "Ramos et al. 2021 (CT, n=37) mean; the reference skull is scaled to it, the case later scales the whole skull",
+ "length_axis": "y",
+ "segment": {
+  "warm_min": 6,
+  "value_min": 60
+ },
+ "views": {
+  "lateral": {
+   "bbox": [
+    1440,
+    135,
+    1250,
+    700
+   ],
+   "right": "-y",
+   "down": "-z"
+  },
+  "dorsal": {
+   "bbox": [
+    1440,
+    960,
+    1220,
+    890
+   ],
+   "right": "-y",
+   "down": "-x",
+   "level": "pca",
+   "keep_holes": [
+    [
+     2029,
+     1053
+    ],
+    [
+     2024,
+     1753
+    ]
+   ],
+   "keep_holes_why": "the openings between each zygomatic arch and the braincase (temporal fossa seen from above): white/shadow seen THROUGH the skull; every other hole is a highlight on bone (filled)",
+   "close_px": 15,
+   "close_why": "R4c: bright nasal bone at the rostral edge was segmented as background -> fragmented runs at y -44..-30 that faked see-through gaps; a 15 px (~1.1 mm) close merges them"
+  },
+  "front": {
+   "bbox": [
+    175,
+    140,
+    830,
+    690
+   ],
+   "right": "+x",
+   "down": "-z"
+  }
+ },
+ "loft_rejected": "R4c: the rounded view-loft (loft through silhouette extents, clipped by the hull) made a beehive with curtains; the skull is built from parts (tools/skull_build.py) and the hull only clips and measures"
+}

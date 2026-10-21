@@ -1,0 +1,1550 @@
+{
+ "_what": "sha256 of every packaged copy, the project-relative file it was copied from, and that original's sha256 (they differ by the publish rules' rewrites only). Paths are relative; the project folder itself is not recorded.",
+ "files": {
+  "plugins/recursive-improvement/skills/recursive-improvement/flags.json": {
+   "source": "skills/recursive-improvement/flags.json",
+   "sha256": "0821a0af38db258b378de1dfc27751d496eb1302112135743a467399f853b3fe",
+   "source_sha256": "0821a0af38db258b378de1dfc27751d496eb1302112135743a467399f853b3fe"
+  },
+  "plugins/recursive-improvement/skills/recursive-improvement/references/additions.md": {
+   "source": "skills/recursive-improvement/references/additions.md",
+   "sha256": "45afc3ef2fbf3b17baeefd7d80ee2660c9f6aeaee23118a10709f8a31c733109",
+   "source_sha256": "e5ffb07b91f9ba0c44b04f75fd7d7fc62437e71ede221c487ff48bd91d7399b2"
+  },
+  "plugins/recursive-improvement/skills/recursive-improvement/SKILL.md": {
+   "source": "skills/recursive-improvement/SKILL.md",
+   "sha256": "8582a30c2e5afc1ffe56f0c9229c20637f48c21e31ce0b03bcb0dddf30c90e03",
+   "source_sha256": "8582a30c2e5afc1ffe56f0c9229c20637f48c21e31ce0b03bcb0dddf30c90e03"
+  },
+  "plugins/recursive-improvement/skills/recursive-improvement/SKILL.original.md": {
+   "source": "skills/recursive-improvement/SKILL.original.md",
+   "sha256": "8a3eb64e9b311a734026895569af903a8344d91ff4f33360ddfd1f9d530b5220",
+   "source_sha256": "8a3eb64e9b311a734026895569af903a8344d91ff4f33360ddfd1f9d530b5220"
+  },
+  "plugins/engine-grounding/skills/engine-grounding/flags.json": {
+   "source": "skills/engine-grounding/flags.json",
+   "sha256": "8636d376476d522e7ee00740f69eb7b9a3bcdaf8435ef2fddd9b620351dc3b6d",
+   "source_sha256": "8636d376476d522e7ee00740f69eb7b9a3bcdaf8435ef2fddd9b620351dc3b6d"
+  },
+  "plugins/engine-grounding/skills/engine-grounding/flags.original.json": {
+   "source": "skills/engine-grounding/flags.original.json",
+   "sha256": "f656bcdc005574c0f02e166851ee8a7c49fb5d414d6be4932c396aa30130469e",
+   "source_sha256": "f656bcdc005574c0f02e166851ee8a7c49fb5d414d6be4932c396aa30130469e"
+  },
+  "plugins/engine-grounding/skills/engine-grounding/references/source-map.md": {
+   "source": "skills/engine-grounding/references/source-map.md",
+   "sha256": "4ff04e4e5799b32ba2d4e97d6f4b7f48da4ee819460dd839ef7b7e7a5de9e50d",
+   "source_sha256": "be78942f7248924dad3cd62742bdd1f091aa4a431217a4926842d563bb47437a"
+  },
+  "plugins/engine-grounding/skills/engine-grounding/SKILL.md": {
+   "source": "skills/engine-grounding/SKILL.md",
+   "sha256": "24125e1e278b3adb3d3d23c5e3d75cf786bc0777bf0e299478c1883cbf8d811a",
+   "source_sha256": "41fef9b2b27d13b9c0330d8af8db48b8ab47ef57619b4303ee29ff698fd5a261"
+  },
+  "plugins/engine-grounding/skills/engine-grounding/SKILL.original.md": {
+   "source": "skills/engine-grounding/SKILL.original.md",
+   "sha256": "89ac369f64549f8de77725d69babe42dc8111c4957f1c134f79b90ee5afe29d5",
+   "source_sha256": "89ac369f64549f8de77725d69babe42dc8111c4957f1c134f79b90ee5afe29d5"
+  },
+  "plugins/asset-enhancement-engine/skills/asset-enhancement-engine/checks/cat_decisions.py": {
+   "source": "engine/checks/cat_decisions.py",
+   "sha256": "b06ebf7827ff55a01bd094f9f44649eac52cc252a4882c243bc7fc26c9874b78",
+   "source_sha256": "b06ebf7827ff55a01bd094f9f44649eac52cc252a4882c243bc7fc26c9874b78"
+  },
+  "plugins/asset-enhancement-engine/skills/asset-enhancement-engine/checks/checks.py": {
+   "source": "engine/checks/checks.py",
+   "sha256": "095c8810603721e1be2132c8215e9e5e6ee5e8b26ac9874b2baf67df016ee651",
+   "source_sha256": "095c8810603721e1be2132c8215e9e5e6ee5e8b26ac9874b2baf67df016ee651"
+  },
+  "plugins/asset-enhancement-engine/skills/asset-enhancement-engine/checks/coat_check.py": {
+   "source": "engine/checks/coat_check.py",
+   "sha256": "327d37b8380d025fba384fbe427d858d19c5474004ef6429b303da59757bea9d",
+   "source_sha256": "327d37b8380d025fba384fbe427d858d19c5474004ef6429b303da59757bea9d"
+  },
+  "plugins/asset-enhancement-engine/skills/asset-enhancement-engine/checks/ear_hair_check.py": {
+   "source": "engine/checks/ear_hair_check.py",
+   "sha256": "e91f8c70b32ae843c32ecd6f826ae61017537965a3203fff8d7fc403dd2f88fd",
+   "source_sha256": "e91f8c70b32ae843c32ecd6f826ae61017537965a3203fff8d7fc403dd2f88fd"
+  },
+  "plugins/asset-enhancement-engine/skills/asset-enhancement-engine/checks/folds.py": {
+   "source": "engine/checks/folds.py",
+   "sha256": "bf65199bb07d241b7f96f505809b7bb9072352114b12783c2a52e3ad89c66cac",
+   "source_sha256": "bf65199bb07d241b7f96f505809b7bb9072352114b12783c2a52e3ad89c66cac"
+  },
+  "plugins/asset-enhancement-engine/skills/asset-enhancement-engine/checks/frame_checks.py": {
+   "source": "engine/checks/frame_checks.py",
+   "sha256": "e4e8c2cd5c2fd965c9cf3d8bb12dec6012f4e6968f987ce0ee913e72f3bebea5",
+   "source_sha256": "e4e8c2cd5c2fd965c9cf3d8bb12dec6012f4e6968f987ce0ee913e72f3bebea5"
+  },
+  "plugins/asset-enhancement-engine/skills/asset-enhancement-engine/checks/inventory_check.py": {
+   "source": "engine/checks/inventory_check.py",
+   "sha256": "ba91b39d504798bb204ab8d20c54a95d77e0c41658453ba2fd27af9c2a31055b",
+   "source_sha256": "ba91b39d504798bb204ab8d20c54a95d77e0c41658453ba2fd27af9c2a31055b"
+  },
+  "plugins/asset-enhancement-engine/skills/asset-enhancement-engine/checks/lipline.py": {
+   "source": "engine/checks/lipline.py",
+   "sha256": "758d6cbd881f692f810ecf3db01216f09f490504599294298d918f43f1cfe127",
+   "source_sha256": "758d6cbd881f692f810ecf3db01216f09f490504599294298d918f43f1cfe127"
+  },
+  "plugins/asset-enhancement-engine/skills/asset-enhancement-engine/checks/mouth_checks_v3b.py": {
+   "source": "engine/checks/mouth_checks_v3b.py",
+   "sha256": "e6f7fc7358393faf6b7cd59c44199234a0474372d8bf77ded05b78cd4f2a6493",
+   "source_sha256": "e6f7fc7358393faf6b7cd59c44199234a0474372d8bf77ded05b78cd4f2a6493"
+  },
+  "plugins/asset-enhancement-engine/skills/asset-enhancement-engine/checks/multiview.py": {
+   "source": "engine/checks/multiview.py",
+   "sha256": "6635c31d7066deac2a29abbf87af61ddcd8979412ebc4ae182907835b7378a98",
+   "source_sha256": "6635c31d7066deac2a29abbf87af61ddcd8979412ebc4ae182907835b7378a98"
+  },
+  "plugins/asset-enhancement-engine/skills/asset-enhancement-engine/checks/naturalness.py": {
+   "source": "engine/checks/naturalness.py",
+   "sha256": "774152f27f54f33f3a747377e7147d133247ebaecbd34ef73ca24ff1df6684fc",
+   "source_sha256": "774152f27f54f33f3a747377e7147d133247ebaecbd34ef73ca24ff1df6684fc"
+  },
+  "plugins/asset-enhancement-engine/skills/asset-enhancement-engine/checks/nose_checks_v3b.py": {
+   "source": "engine/checks/nose_checks_v3b.py",
+   "sha256": "866ed16c31c6526ba370c5325c2cbdd5edb6a08a03e9d6e1def9cc34ef356b08",
+   "source_sha256": "866ed16c31c6526ba370c5325c2cbdd5edb6a08a03e9d6e1def9cc34ef356b08"
+  },
+  "plugins/asset-enhancement-engine/skills/asset-enhancement-engine/checks/object_checks.py": {
+   "source": "engine/checks/object_checks.py",
+   "sha256": "11ddc28944061c555d14277d795e15b8d8ad8efda5405ca252c4b129e991abeb",
+   "source_sha256": "11ddc28944061c555d14277d795e15b8d8ad8efda5405ca252c4b129e991abeb"
+  },
+  "plugins/asset-enhancement-engine/skills/asset-enhancement-engine/checks/object_checks_prove.py": {
+   "source": "engine/checks/object_checks_prove.py",
+   "sha256": "9e6b3ef701ac587ef0e6471605954688705d442e5bedacd3b86db1ebef96dae2",
+   "source_sha256": "9e6b3ef701ac587ef0e6471605954688705d442e5bedacd3b86db1ebef96dae2"
+  },
+  "plugins/asset-enhancement-engine/skills/asset-enhancement-engine/checks/paws_checks.py": {
+   "source": "engine/checks/paws_checks.py",
+   "sha256": "d465bc3838e985290614b01dbf674ee1c214b6b5c3a6a4a198fb31bc378d66a1",
+   "source_sha256": "d465bc3838e985290614b01dbf674ee1c214b6b5c3a6a4a198fb31bc378d66a1"
+  },
+  "plugins/asset-enhancement-engine/skills/asset-enhancement-engine/checks/pigment_check.py": {
+   "source": "engine/checks/pigment_check.py",
+   "sha256": "f67b456c297fa68f780b333e5f74ecbdbc67c4a7ffa4528c7e51e3106472a351",
+   "source_sha256": "f67b456c297fa68f780b333e5f74ecbdbc67c4a7ffa4528c7e51e3106472a351"
+  },
+  "plugins/asset-enhancement-engine/skills/asset-enhancement-engine/checks/priors.py": {
+   "source": "engine/checks/priors.py",
+   "sha256": "0a956bd2f0fcce90bf01f71f97b3badc74e68e2e6f0c2b1a5ed401d789332972",
+   "source_sha256": "0a956bd2f0fcce90bf01f71f97b3badc74e68e2e6f0c2b1a5ed401d789332972"
+  },
+  "plugins/asset-enhancement-engine/skills/asset-enhancement-engine/checks/proportion_priors.json": {
+   "source": "engine/checks/proportion_priors.json",
+   "sha256": "bd82db9e355197af80eadbba3e530d279de83e4d61b622218740940da48a8870",
+   "source_sha256": "bd82db9e355197af80eadbba3e530d279de83e4d61b622218740940da48a8870"
+  },
+  "plugins/asset-enhancement-engine/skills/asset-enhancement-engine/checks/prove_cat_decisions.py": {
+   "source": "engine/checks/prove_cat_decisions.py",
+   "sha256": "74de953d1c785f8bea16721854295156de32383832fdc99fc8e91c176c56786d",
+   "source_sha256": "74de953d1c785f8bea16721854295156de32383832fdc99fc8e91c176c56786d"
+  },
+  "plugins/asset-enhancement-engine/skills/asset-enhancement-engine/checks/prove_ear_hair_check.py": {
+   "source": "engine/checks/prove_ear_hair_check.py",
+   "sha256": "172ad8185878ec322c4ba048b249e36536ffe41928df8ab87714150b1764a14d",
+   "source_sha256": "172ad8185878ec322c4ba048b249e36536ffe41928df8ab87714150b1764a14d"
+  },
+  "plugins/asset-enhancement-engine/skills/asset-enhancement-engine/checks/prove_inventory_check.py": {
+   "source": "engine/checks/prove_inventory_check.py",
+   "sha256": "9a0a25b7287a3dba572d647c19984c1bcfa43264b49fe2ccdb8908171e8b58b2",
+   "source_sha256": "9a0a25b7287a3dba572d647c19984c1bcfa43264b49fe2ccdb8908171e8b58b2"
+  },
+  "plugins/asset-enhancement-engine/skills/asset-enhancement-engine/checks/prove_pigment_check.py": {
+   "source": "engine/checks/prove_pigment_check.py",
+   "sha256": "4e2ada84d92142a714ca0ee4a88309f6d7e6309bc3bce2d6242cbb1b7a4c4a9b",
+   "source_sha256": "4e2ada84d92142a714ca0ee4a88309f6d7e6309bc3bce2d6242cbb1b7a4c4a9b"
+  },
+  "plugins/asset-enhancement-engine/skills/asset-enhancement-engine/checks/ridge_check.py": {
+   "source": "engine/checks/ridge_check.py",
+   "sha256": "dc8d352012ab13c5ed9ccd389837629c7746e16c35aaea54c49eb53bd4068395",
+   "source_sha256": "dc8d352012ab13c5ed9ccd389837629c7746e16c35aaea54c49eb53bd4068395"
+  },
+  "plugins/asset-enhancement-engine/skills/asset-enhancement-engine/checks/seam_checks.py": {
+   "source": "engine/checks/seam_checks.py",
+   "sha256": "9d4fbc02c6a68fd4d028c74c9030f33b8e4625baf5f1db297b98779a10348872",
+   "source_sha256": "9d4fbc02c6a68fd4d028c74c9030f33b8e4625baf5f1db297b98779a10348872"
+  },
+  "plugins/asset-enhancement-engine/skills/asset-enhancement-engine/checks/seams.py": {
+   "source": "engine/checks/seams.py",
+   "sha256": "ff6e78e5ef97c13ac05dc4296c753661fbd9d77f4ef52b699f9e5c79fdeb1f5e",
+   "source_sha256": "ff6e78e5ef97c13ac05dc4296c753661fbd9d77f4ef52b699f9e5c79fdeb1f5e"
+  },
+  "plugins/asset-enhancement-engine/skills/asset-enhancement-engine/checks/section_check.py": {
+   "source": "engine/checks/section_check.py",
+   "sha256": "3fd0adcaaf2967bc04f00d1faf9eb8f5f3d1f4e349fc17969c6f320f155a5fba",
+   "source_sha256": "3fd0adcaaf2967bc04f00d1faf9eb8f5f3d1f4e349fc17969c6f320f155a5fba"
+  },
+  "plugins/asset-enhancement-engine/skills/asset-enhancement-engine/checks/skin_checks.py": {
+   "source": "engine/checks/skin_checks.py",
+   "sha256": "7f1bc5f749a527a311d8a9b15314131162c82df9d0cadfaed7b22db6bd9a2a08",
+   "source_sha256": "7f1bc5f749a527a311d8a9b15314131162c82df9d0cadfaed7b22db6bd9a2a08"
+  },
+  "plugins/asset-enhancement-engine/skills/asset-enhancement-engine/checks/skin_checks_prove.py": {
+   "source": "engine/checks/skin_checks_prove.py",
+   "sha256": "5e33f4278db180af3f0e571268bb237df5f15d205cbd23fc1a4a987ad701d819",
+   "source_sha256": "5e33f4278db180af3f0e571268bb237df5f15d205cbd23fc1a4a987ad701d819"
+  },
+  "plugins/asset-enhancement-engine/skills/asset-enhancement-engine/checks/skin_smooth_checks.py": {
+   "source": "engine/checks/skin_smooth_checks.py",
+   "sha256": "d99f7d5769b496e18a49b26feac071a719259a7d6b7cc5903d6079ecbb592bdc",
+   "source_sha256": "d99f7d5769b496e18a49b26feac071a719259a7d6b7cc5903d6079ecbb592bdc"
+  },
+  "plugins/asset-enhancement-engine/skills/asset-enhancement-engine/checks/studio_photo_checks.py": {
+   "source": "engine/checks/studio_photo_checks.py",
+   "sha256": "7b4351c1910eec640578ed1fc7d0d451f531440f4be438c4b3a4ca98ed17a9f5",
+   "source_sha256": "7b4351c1910eec640578ed1fc7d0d451f531440f4be438c4b3a4ca98ed17a9f5"
+  },
+  "plugins/asset-enhancement-engine/skills/asset-enhancement-engine/checks/whisker_check.py": {
+   "source": "engine/checks/whisker_check.py",
+   "sha256": "db20765bf548d4afdc7c46ced42d73c4709035509130f4d393c335687e01706a",
+   "source_sha256": "db20765bf548d4afdc7c46ced42d73c4709035509130f4d393c335687e01706a"
+  },
+  "plugins/asset-enhancement-engine/skills/asset-enhancement-engine/flags.json": {
+   "source": "engine/flags.json",
+   "sha256": "1cab156666d7cb239bc6e153f220869da2dc54f2ee648c93e275f3c1a958dac3",
+   "source_sha256": "1cab156666d7cb239bc6e153f220869da2dc54f2ee648c93e275f3c1a958dac3"
+  },
+  "plugins/asset-enhancement-engine/skills/asset-enhancement-engine/flags.pre_lessons_2026-10-18.json": {
+   "source": "engine/flags.pre_lessons_2026-10-18.json",
+   "sha256": "46152ea31648074c7889d2657f94ab6690d25d80730c8f3375ab2134bffe4048",
+   "source_sha256": "46152ea31648074c7889d2657f94ab6690d25d80730c8f3375ab2134bffe4048"
+  },
+  "plugins/asset-enhancement-engine/skills/asset-enhancement-engine/log/METHOD.md": {
+   "source": "engine/log/METHOD.md",
+   "sha256": "95ef4bccdfb8d6897c5e6effdf2ec224e3083f8e0d3d203e97eeeb08c0b23f97",
+   "source_sha256": "cea41a1bbf4aefb4b0d5ab106ad33b452bcf03f6cdc0e381d1216c073ad432aa"
+  },
+  "plugins/asset-enhancement-engine/skills/asset-enhancement-engine/log/TOOLMAKING.md": {
+   "source": "engine/log/TOOLMAKING.md",
+   "sha256": "01c5691ed94be17642dd3ab128e352bc92af74906af2c5a50d876a5f52303120",
+   "source_sha256": "01c5691ed94be17642dd3ab128e352bc92af74906af2c5a50d876a5f52303120"
+  },
+  "plugins/asset-enhancement-engine/skills/asset-enhancement-engine/loop/__init__.py": {
+   "source": "engine/loop/__init__.py",
+   "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+   "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "plugins/asset-enhancement-engine/skills/asset-enhancement-engine/loop/catalogue.py": {
+   "source": "engine/loop/catalogue.py",
+   "sha256": "c38524da0a7308737a8d075317bd162ef09967a3de64d3d63410dbf1e967f200",
+   "source_sha256": "c38524da0a7308737a8d075317bd162ef09967a3de64d3d63410dbf1e967f200"
+  },
+  "plugins/asset-enhancement-engine/skills/asset-enhancement-engine/loop/core.py": {
+   "source": "engine/loop/core.py",
+   "sha256": "324423bc605395648cda0780ad3e65ab8e210fdeeaefe71874bab3b7497afdc8",
+   "source_sha256": "324423bc605395648cda0780ad3e65ab8e210fdeeaefe71874bab3b7497afdc8"
+  },
+  "plugins/asset-enhancement-engine/skills/asset-enhancement-engine/loop/job.py": {
+   "source": "engine/loop/job.py",
+   "sha256": "f3b515da7109474e362a66ce718d915df6750e5b94646645e0b12c910f25b7d8",
+   "source_sha256": "f3b515da7109474e362a66ce718d915df6750e5b94646645e0b12c910f25b7d8"
+  },
+  "plugins/asset-enhancement-engine/skills/asset-enhancement-engine/loop/lib/__init__.py": {
+   "source": "engine/loop/lib/__init__.py",
+   "sha256": "ac490afa791eb24cf7fc4ca664fd516a34b920baafdba89284ef214bc30d2df7",
+   "source_sha256": "ac490afa791eb24cf7fc4ca664fd516a34b920baafdba89284ef214bc30d2df7"
+  },
+  "plugins/asset-enhancement-engine/skills/asset-enhancement-engine/loop/lib/generic.py": {
+   "source": "engine/loop/lib/generic.py",
+   "sha256": "88854986d951dfe25883697785dec6a9631ddf3d31da7fcb79f34f9ca7787372",
+   "source_sha256": "88854986d951dfe25883697785dec6a9631ddf3d31da7fcb79f34f9ca7787372"
+  },
+  "plugins/asset-enhancement-engine/skills/asset-enhancement-engine/loop/pack_io.py": {
+   "source": "engine/loop/pack_io.py",
+   "sha256": "343174cb85dbb1c14f0b6d4dbe2f440798fa752a0071fd16d3fda43f72ad02bb",
+   "source_sha256": "343174cb85dbb1c14f0b6d4dbe2f440798fa752a0071fd16d3fda43f72ad02bb"
+  },
+  "plugins/asset-enhancement-engine/skills/asset-enhancement-engine/loop/recipe.py": {
+   "source": "engine/loop/recipe.py",
+   "sha256": "5840f7d109eb6eeffa3e143e330672f31ef3bb447dcf53a3c9a15e08f5afc1dc",
+   "source_sha256": "5840f7d109eb6eeffa3e143e330672f31ef3bb447dcf53a3c9a15e08f5afc1dc"
+  },
+  "plugins/asset-enhancement-engine/skills/asset-enhancement-engine/loop/region.py": {
+   "source": "engine/loop/region.py",
+   "sha256": "430c7462d5dd0dd8590f15bf2af74af38dda33ac5c4e88621dfd197e672dac2c",
+   "source_sha256": "430c7462d5dd0dd8590f15bf2af74af38dda33ac5c4e88621dfd197e672dac2c"
+  },
+  "plugins/asset-enhancement-engine/skills/asset-enhancement-engine/loop/relief.py": {
+   "source": "engine/loop/relief.py",
+   "sha256": "ad7935dcb43fc62a8d11d33f26d81bed63ae28c167b6cd0bc7af6d6d2afde479",
+   "source_sha256": "ad7935dcb43fc62a8d11d33f26d81bed63ae28c167b6cd0bc7af6d6d2afde479"
+  },
+  "plugins/asset-enhancement-engine/skills/asset-enhancement-engine/loop/rigstate.py": {
+   "source": "engine/loop/rigstate.py",
+   "sha256": "f7f16a37ab663f171588866bd2443821433e2819c7c6b9cd5a9663adf99379e4",
+   "source_sha256": "f7f16a37ab663f171588866bd2443821433e2819c7c6b9cd5a9663adf99379e4"
+  },
+  "plugins/asset-enhancement-engine/skills/asset-enhancement-engine/loop/shape.py": {
+   "source": "engine/loop/shape.py",
+   "sha256": "52bdc0d13f977cd2d23cf4c03bea324721960c8fb00cef7d0d70b3d797e7d02d",
+   "source_sha256": "52bdc0d13f977cd2d23cf4c03bea324721960c8fb00cef7d0d70b3d797e7d02d"
+  },
+  "plugins/asset-enhancement-engine/skills/asset-enhancement-engine/loop/test_region.py": {
+   "source": "engine/loop/test_region.py",
+   "sha256": "1140f47a68fa31d4ad648b665a13e49f7cb5a191541d7ff593223d227fe3ee36",
+   "source_sha256": "1140f47a68fa31d4ad648b665a13e49f7cb5a191541d7ff593223d227fe3ee36"
+  },
+  "plugins/asset-enhancement-engine/skills/asset-enhancement-engine/loop/test_relief.py": {
+   "source": "engine/loop/test_relief.py",
+   "sha256": "2ab538f16fd1156f6674eca713816c2326a1b61a8fb886c0efe324ffce6aa461",
+   "source_sha256": "2ab538f16fd1156f6674eca713816c2326a1b61a8fb886c0efe324ffce6aa461"
+  },
+  "plugins/asset-enhancement-engine/skills/asset-enhancement-engine/loop/test_shape.py": {
+   "source": "engine/loop/test_shape.py",
+   "sha256": "441718ec29fc85d3806a7fb3f23ac70a2057962fa5a7cf855464c3e427cb2d4e",
+   "source_sha256": "441718ec29fc85d3806a7fb3f23ac70a2057962fa5a7cf855464c3e427cb2d4e"
+  },
+  "plugins/asset-enhancement-engine/skills/asset-enhancement-engine/packs/creature/language.json": {
+   "source": "engine/packs/creature/language.json",
+   "sha256": "a39a8751838f38455279f35906fde81882f7425267ee1b72abf28913b93ac1fc",
+   "source_sha256": "a39a8751838f38455279f35906fde81882f7425267ee1b72abf28913b93ac1fc"
+  },
+  "plugins/asset-enhancement-engine/skills/asset-enhancement-engine/packs/felid/coat.json": {
+   "source": "engine/packs/felid/coat.json",
+   "sha256": "61ecf85fc67dc16d741291a5374cd87ab867950eaf746e139e24fe45fa102fdb",
+   "source_sha256": "61ecf85fc67dc16d741291a5374cd87ab867950eaf746e139e24fe45fa102fdb"
+  },
+  "plugins/asset-enhancement-engine/skills/asset-enhancement-engine/packs/felid/coat_field.py": {
+   "source": "engine/packs/felid/coat_field.py",
+   "sha256": "4046f002e7bc12e7a7d377ff127bc1cec6f0ddc6e101cecaee3bb9594257f2d1",
+   "source_sha256": "4046f002e7bc12e7a7d377ff127bc1cec6f0ddc6e101cecaee3bb9594257f2d1"
+  },
+  "plugins/asset-enhancement-engine/skills/asset-enhancement-engine/packs/felid/coat_field_v3b.py": {
+   "source": "engine/packs/felid/coat_field_v3b.py",
+   "sha256": "807ef0d9ee0e5217c9e593ad44e6b942bd43e196859294994fa04a59433966be",
+   "source_sha256": "807ef0d9ee0e5217c9e593ad44e6b942bd43e196859294994fa04a59433966be"
+  },
+  "plugins/asset-enhancement-engine/skills/asset-enhancement-engine/packs/felid/features/check_ears.json": {
+   "source": "engine/packs/felid/features/check_ears.json",
+   "sha256": "832cf8aa63885732e26a39b774a2788ca6bd7ac89997727cd5c9c5bda741ba5b",
+   "source_sha256": "832cf8aa63885732e26a39b774a2788ca6bd7ac89997727cd5c9c5bda741ba5b"
+  },
+  "plugins/asset-enhancement-engine/skills/asset-enhancement-engine/packs/felid/features/check_eyes.json": {
+   "source": "engine/packs/felid/features/check_eyes.json",
+   "sha256": "fa4a980b2f02ceddc54bce887d724e86ea50db8190860a5749dda817bc59950d",
+   "source_sha256": "fa4a980b2f02ceddc54bce887d724e86ea50db8190860a5749dda817bc59950d"
+  },
+  "plugins/asset-enhancement-engine/skills/asset-enhancement-engine/packs/felid/features/check_hair.json": {
+   "source": "engine/packs/felid/features/check_hair.json",
+   "sha256": "ec347963c1b07d9b27786289249817367555cf1b6e28a403aaa7db8ec4aa8329",
+   "source_sha256": "ec347963c1b07d9b27786289249817367555cf1b6e28a403aaa7db8ec4aa8329"
+  },
+  "plugins/asset-enhancement-engine/skills/asset-enhancement-engine/packs/felid/features/check_mouth.json": {
+   "source": "engine/packs/felid/features/check_mouth.json",
+   "sha256": "ac304c3b557f643f09ec3674199e2fe42ea132f4985653a53086a6a3521261cb",
+   "source_sha256": "2fc4120fcf2ee73aff5cf53e88c7eb8acfbe14a2e0154fbaff016164d8d7dcb4"
+  },
+  "plugins/asset-enhancement-engine/skills/asset-enhancement-engine/packs/felid/features/check_nose.json": {
+   "source": "engine/packs/felid/features/check_nose.json",
+   "sha256": "8683f09a6e64b37bedbd894da5e35247a7238dcf00692a769adc7a8f3a1a5cae",
+   "source_sha256": "8683f09a6e64b37bedbd894da5e35247a7238dcf00692a769adc7a8f3a1a5cae"
+  },
+  "plugins/asset-enhancement-engine/skills/asset-enhancement-engine/packs/felid/features/check_pigment.json": {
+   "source": "engine/packs/felid/features/check_pigment.json",
+   "sha256": "35133e2c8869fff7d3b75cdbd0c5f586dd68d96ab7d8d87fee840a128bea4f0e",
+   "source_sha256": "35133e2c8869fff7d3b75cdbd0c5f586dd68d96ab7d8d87fee840a128bea4f0e"
+  },
+  "plugins/asset-enhancement-engine/skills/asset-enhancement-engine/packs/felid/features/feat_ears.py": {
+   "source": "engine/packs/felid/features/feat_ears.py",
+   "sha256": "189bda11c4b1c6a9b380871fab13b5521772cce4981b463d9c460c9b5c6c9419",
+   "source_sha256": "189bda11c4b1c6a9b380871fab13b5521772cce4981b463d9c460c9b5c6c9419"
+  },
+  "plugins/asset-enhancement-engine/skills/asset-enhancement-engine/packs/felid/features/feat_ears_v3.py": {
+   "source": "engine/packs/felid/features/feat_ears_v3.py",
+   "sha256": "4d6e73da1e14666823aa5bc7b17daa29c88455949334f55715cbce64d9ebce80",
+   "source_sha256": "4d6e73da1e14666823aa5bc7b17daa29c88455949334f55715cbce64d9ebce80"
+  },
+  "plugins/asset-enhancement-engine/skills/asset-enhancement-engine/packs/felid/features/feat_ears_v3b.py": {
+   "source": "engine/packs/felid/features/feat_ears_v3b.py",
+   "sha256": "fac952dc707825f58cc334e72a1bbca2d51b58f8ede218a1ffc80924088084e8",
+   "source_sha256": "fac952dc707825f58cc334e72a1bbca2d51b58f8ede218a1ffc80924088084e8"
+  },
+  "plugins/asset-enhancement-engine/skills/asset-enhancement-engine/packs/felid/features/feat_eyes.py": {
+   "source": "engine/packs/felid/features/feat_eyes.py",
+   "sha256": "d44f93803bd4061ce90b15c115140240f88b0de38af68789c090a739a81e79f2",
+   "source_sha256": "d44f93803bd4061ce90b15c115140240f88b0de38af68789c090a739a81e79f2"
+  },
+  "plugins/asset-enhancement-engine/skills/asset-enhancement-engine/packs/felid/features/feat_eyes_v3.py": {
+   "source": "engine/packs/felid/features/feat_eyes_v3.py",
+   "sha256": "f2cc1f48e12fc1f96e1e300fcd653e68428295e627b6440ce035e804906d49f8",
+   "source_sha256": "f2cc1f48e12fc1f96e1e300fcd653e68428295e627b6440ce035e804906d49f8"
+  },
+  "plugins/asset-enhancement-engine/skills/asset-enhancement-engine/packs/felid/features/feat_mouth.py": {
+   "source": "engine/packs/felid/features/feat_mouth.py",
+   "sha256": "828384fda642a06fa9c6790c7f88d60c7b209641b7f7586abf638290a5faccdf",
+   "source_sha256": "828384fda642a06fa9c6790c7f88d60c7b209641b7f7586abf638290a5faccdf"
+  },
+  "plugins/asset-enhancement-engine/skills/asset-enhancement-engine/packs/felid/features/feat_mouth_geom.json": {
+   "source": "engine/packs/felid/features/feat_mouth_geom.json",
+   "sha256": "f16c3d17e3b4c150f3c4a6b50e009a1d9b6a0910e4db4d5311a71b7e1df6181e",
+   "source_sha256": "f16c3d17e3b4c150f3c4a6b50e009a1d9b6a0910e4db4d5311a71b7e1df6181e"
+  },
+  "plugins/asset-enhancement-engine/skills/asset-enhancement-engine/packs/felid/features/feat_mouth_v3.py": {
+   "source": "engine/packs/felid/features/feat_mouth_v3.py",
+   "sha256": "ceb2486fd52b937072d5bbe5c44249748c08db05ff161083c53f3c560277f5df",
+   "source_sha256": "ceb2486fd52b937072d5bbe5c44249748c08db05ff161083c53f3c560277f5df"
+  },
+  "plugins/asset-enhancement-engine/skills/asset-enhancement-engine/packs/felid/features/feat_mouth_v3b.py": {
+   "source": "engine/packs/felid/features/feat_mouth_v3b.py",
+   "sha256": "2418aab24c071f07252417711b1bb902b171683fc54ec914441ae40cc4b1d957",
+   "source_sha256": "2418aab24c071f07252417711b1bb902b171683fc54ec914441ae40cc4b1d957"
+  },
+  "plugins/asset-enhancement-engine/skills/asset-enhancement-engine/packs/felid/features/feat_nose.py": {
+   "source": "engine/packs/felid/features/feat_nose.py",
+   "sha256": "55cf2c3076d2049eaede9100823df0c77317c083c379709278aac1263566929b",
+   "source_sha256": "55cf2c3076d2049eaede9100823df0c77317c083c379709278aac1263566929b"
+  },
+  "plugins/asset-enhancement-engine/skills/asset-enhancement-engine/packs/felid/features/feat_nose_v3.py": {
+   "source": "engine/packs/felid/features/feat_nose_v3.py",
+   "sha256": "0c6b4fd8850e3f23daa5cb4184ae4877e1f303ffb291d9d75fa7d51226538457",
+   "source_sha256": "0c6b4fd8850e3f23daa5cb4184ae4877e1f303ffb291d9d75fa7d51226538457"
+  },
+  "plugins/asset-enhancement-engine/skills/asset-enhancement-engine/packs/felid/features/feat_nose_v3b.py": {
+   "source": "engine/packs/felid/features/feat_nose_v3b.py",
+   "sha256": "715163d7967a9c37278f68e1b1d990aac6ad8c04f2e7b3c69a943917e04bec91",
+   "source_sha256": "715163d7967a9c37278f68e1b1d990aac6ad8c04f2e7b3c69a943917e04bec91"
+  },
+  "plugins/asset-enhancement-engine/skills/asset-enhancement-engine/packs/felid/features/feat_oral_v3b.py": {
+   "source": "engine/packs/felid/features/feat_oral_v3b.py",
+   "sha256": "3bc3be910efafc21c4a7e3718bb199581f9eeb473540080269b1af12a738956b",
+   "source_sha256": "3bc3be910efafc21c4a7e3718bb199581f9eeb473540080269b1af12a738956b"
+  },
+  "plugins/asset-enhancement-engine/skills/asset-enhancement-engine/packs/felid/features/feat_paws_v3.py": {
+   "source": "engine/packs/felid/features/feat_paws_v3.py",
+   "sha256": "5c194a84c12fa2c5fc4d0adba054220e683d0b9f72498a80f40d46109c7acc39",
+   "source_sha256": "5c194a84c12fa2c5fc4d0adba054220e683d0b9f72498a80f40d46109c7acc39"
+  },
+  "plugins/asset-enhancement-engine/skills/asset-enhancement-engine/packs/felid/features/result_hair.json": {
+   "source": "engine/packs/felid/features/result_hair.json",
+   "sha256": "92d551701fb0cd8a0e3800ca0e793c0b188c7ac4816b90fd3e31e6ce355e7758",
+   "source_sha256": "2754289769b07b31b2925462977898a177336b4436ee175a9f6f3fdcca3037dd"
+  },
+  "plugins/asset-enhancement-engine/skills/asset-enhancement-engine/packs/felid/features/result_pigment.json": {
+   "source": "engine/packs/felid/features/result_pigment.json",
+   "sha256": "e640ad1d58a559c0a42642c048fd8af226dc44b4b5e750dbd502a60c53c76226",
+   "source_sha256": "fc9ef2f5664854de44e6e6220d92d6e36db1d91151e92492c34f0f4f22edd555"
+  },
+  "plugins/asset-enhancement-engine/skills/asset-enhancement-engine/packs/felid/features/spec_ears.json": {
+   "source": "engine/packs/felid/features/spec_ears.json",
+   "sha256": "83adcc2242c4f8779c98ad9006672ad74e5ebec9586cc052f46f5eec24de8bb9",
+   "source_sha256": "83adcc2242c4f8779c98ad9006672ad74e5ebec9586cc052f46f5eec24de8bb9"
+  },
+  "plugins/asset-enhancement-engine/skills/asset-enhancement-engine/packs/felid/features/spec_eyes.json": {
+   "source": "engine/packs/felid/features/spec_eyes.json",
+   "sha256": "142f1a7936779c7b2c843ec0d1989143bd8d15868fd5afce216b3be382e23888",
+   "source_sha256": "142f1a7936779c7b2c843ec0d1989143bd8d15868fd5afce216b3be382e23888"
+  },
+  "plugins/asset-enhancement-engine/skills/asset-enhancement-engine/packs/felid/features/spec_eyes_v3.json": {
+   "source": "engine/packs/felid/features/spec_eyes_v3.json",
+   "sha256": "396790c3ec2bd0817a9ccb89e91f789f659d9d7cd5850ab5e5f2e5b3102903f1",
+   "source_sha256": "396790c3ec2bd0817a9ccb89e91f789f659d9d7cd5850ab5e5f2e5b3102903f1"
+  },
+  "plugins/asset-enhancement-engine/skills/asset-enhancement-engine/packs/felid/features/spec_mouth.json": {
+   "source": "engine/packs/felid/features/spec_mouth.json",
+   "sha256": "57491d699eab484ee25845b57b70c4884ba5dfb2cc91e79badf7f4c82a517fff",
+   "source_sha256": "57491d699eab484ee25845b57b70c4884ba5dfb2cc91e79badf7f4c82a517fff"
+  },
+  "plugins/asset-enhancement-engine/skills/asset-enhancement-engine/packs/felid/features/spec_mouth_v3b.json": {
+   "source": "engine/packs/felid/features/spec_mouth_v3b.json",
+   "sha256": "6fb5f5d688ee19a2464b5b40a342ba70af44e6f34d889a946c9b8461e20cdf38",
+   "source_sha256": "6fb5f5d688ee19a2464b5b40a342ba70af44e6f34d889a946c9b8461e20cdf38"
+  },
+  "plugins/asset-enhancement-engine/skills/asset-enhancement-engine/packs/felid/features/spec_nose.json": {
+   "source": "engine/packs/felid/features/spec_nose.json",
+   "sha256": "23cb6dcfe72d5e6bea35afdb3c08cff4ba2d05a17c68860123e79c7fe2d06d61",
+   "source_sha256": "23cb6dcfe72d5e6bea35afdb3c08cff4ba2d05a17c68860123e79c7fe2d06d61"
+  },
+  "plugins/asset-enhancement-engine/skills/asset-enhancement-engine/packs/felid/features/spec_nose_v3b.json": {
+   "source": "engine/packs/felid/features/spec_nose_v3b.json",
+   "sha256": "cd363bcfd60381a47a448d3db527d09c2881c2271f71bf7f69027ab422b8e4fb",
+   "source_sha256": "cd363bcfd60381a47a448d3db527d09c2881c2271f71bf7f69027ab422b8e4fb"
+  },
+  "plugins/asset-enhancement-engine/skills/asset-enhancement-engine/packs/felid/features/spec_paws_v3.json": {
+   "source": "engine/packs/felid/features/spec_paws_v3.json",
+   "sha256": "9f38812fd12f786fa764e1bd41f64bb6eb4502a25ffd32eaffd34674f6def3b3",
+   "source_sha256": "9f38812fd12f786fa764e1bd41f64bb6eb4502a25ffd32eaffd34674f6def3b3"
+  },
+  "plugins/asset-enhancement-engine/skills/asset-enhancement-engine/packs/felid/follicle_palette_cat1.json": {
+   "source": "engine/packs/felid/follicle_palette_cat1.json",
+   "sha256": "b8571a9ea8d786d8cdee7e75d4e6c9ec608913c452fb832568ef2169fdccf073",
+   "source_sha256": "b8571a9ea8d786d8cdee7e75d4e6c9ec608913c452fb832568ef2169fdccf073"
+  },
+  "plugins/asset-enhancement-engine/skills/asset-enhancement-engine/packs/felid/frame_template.json": {
+   "source": "engine/packs/felid/frame_template.json",
+   "sha256": "d3434df71838e7f14545730fdd5a8482972b6c8cbf9d6a7acd77bb10c721ffdb",
+   "source_sha256": "d3434df71838e7f14545730fdd5a8482972b6c8cbf9d6a7acd77bb10c721ffdb"
+  },
+  "plugins/asset-enhancement-engine/skills/asset-enhancement-engine/packs/felid/fur_plan.md": {
+   "source": "engine/packs/felid/fur_plan.md",
+   "sha256": "11c6abc38a64c3c31d34ba8a369029b4c18ec553e9b46873482d1bbdc71cdeba",
+   "source_sha256": "11c6abc38a64c3c31d34ba8a369029b4c18ec553e9b46873482d1bbdc71cdeba"
+  },
+  "plugins/asset-enhancement-engine/skills/asset-enhancement-engine/packs/felid/fur_plan_v3.md": {
+   "source": "engine/packs/felid/fur_plan_v3.md",
+   "sha256": "7024d2a11032602e32b86e97290ec43e0750da23c2d874459a65f48a3be7c133",
+   "source_sha256": "7024d2a11032602e32b86e97290ec43e0750da23c2d874459a65f48a3be7c133"
+  },
+  "plugins/asset-enhancement-engine/skills/asset-enhancement-engine/packs/felid/fur_v3_counts.json": {
+   "source": "engine/packs/felid/fur_v3_counts.json",
+   "sha256": "ad13efb840921e136ef8c36d93bf2add48154d0a65d1c48319104cc92b45b36b",
+   "source_sha256": "ad13efb840921e136ef8c36d93bf2add48154d0a65d1c48319104cc92b45b36b"
+  },
+  "plugins/asset-enhancement-engine/skills/asset-enhancement-engine/packs/felid/owners_v3.json": {
+   "source": "engine/packs/felid/owners_v3.json",
+   "sha256": "b717be817f0aad4b4f41dd7ed93cd17cc011460d82b4ae45fc20458d1cebd041",
+   "source_sha256": "b717be817f0aad4b4f41dd7ed93cd17cc011460d82b4ae45fc20458d1cebd041"
+  },
+  "plugins/asset-enhancement-engine/skills/asset-enhancement-engine/packs/felid/skull/clay/ref20_skull_front.png": {
+   "source": "engine/packs/felid/skull/clay/ref20_skull_front.png",
+   "sha256": "2f3a890e2268d9630b64e5aa60e099f7f8a5bda2409950459473f3219e311fe2",
+   "source_sha256": "2f3a890e2268d9630b64e5aa60e099f7f8a5bda2409950459473f3219e311fe2"
+  },
+  "plugins/asset-enhancement-engine/skills/asset-enhancement-engine/packs/felid/skull/clay/ref20_skull_sheet.png": {
+   "source": "engine/packs/felid/skull/clay/ref20_skull_sheet.png",
+   "sha256": "702594fff68d1ba7cc714471115833526cf88db6212fc5596a2d967fac30c5f1",
+   "source_sha256": "702594fff68d1ba7cc714471115833526cf88db6212fc5596a2d967fac30c5f1"
+  },
+  "plugins/asset-enhancement-engine/skills/asset-enhancement-engine/packs/felid/skull/clay/ref20_skull_side.png": {
+   "source": "engine/packs/felid/skull/clay/ref20_skull_side.png",
+   "sha256": "f3b17cfbd3cd987e76661f8856f42a05a77438a71d759d09107bf7614127fbbf",
+   "source_sha256": "f3b17cfbd3cd987e76661f8856f42a05a77438a71d759d09107bf7614127fbbf"
+  },
+  "plugins/asset-enhancement-engine/skills/asset-enhancement-engine/packs/felid/skull/clay/ref20_skull_three_quarter.png": {
+   "source": "engine/packs/felid/skull/clay/ref20_skull_three_quarter.png",
+   "sha256": "99e49f2c8698d9a4763572d19b1cd118dcb49cee68f72890b9993fd4a28d7ca5",
+   "source_sha256": "99e49f2c8698d9a4763572d19b1cd118dcb49cee68f72890b9993fd4a28d7ca5"
+  },
+  "plugins/asset-enhancement-engine/skills/asset-enhancement-engine/packs/felid/skull/clay/ref20_skull_top.png": {
+   "source": "engine/packs/felid/skull/clay/ref20_skull_top.png",
+   "sha256": "a2db6e25f548ffc7fc369151993ccc0588b6e75daccb763f69356534ea2bc7e5",
+   "source_sha256": "a2db6e25f548ffc7fc369151993ccc0588b6e75daccb763f69356534ea2bc7e5"
+  },
+  "plugins/asset-enhancement-engine/skills/asset-enhancement-engine/packs/felid/skull/clay/skull_front.png": {
+   "source": "engine/packs/felid/skull/clay/skull_front.png",
+   "sha256": "d46120940c68112d79df61e8afa02917cbab5090da6fa9844cc447c370416a1f",
+   "source_sha256": "d46120940c68112d79df61e8afa02917cbab5090da6fa9844cc447c370416a1f"
+  },
+  "plugins/asset-enhancement-engine/skills/asset-enhancement-engine/packs/felid/skull/clay/skull_sheet.png": {
+   "source": "engine/packs/felid/skull/clay/skull_sheet.png",
+   "sha256": "ca5b008c935a4383c4836454d4b58d690641693c0cc6d6eb74bdbaed26e3bcb2",
+   "source_sha256": "ca5b008c935a4383c4836454d4b58d690641693c0cc6d6eb74bdbaed26e3bcb2"
+  },
+  "plugins/asset-enhancement-engine/skills/asset-enhancement-engine/packs/felid/skull/clay/skull_side.png": {
+   "source": "engine/packs/felid/skull/clay/skull_side.png",
+   "sha256": "9c32c4caf77d20cb9f6a3e92dd216a9dd8aa0159145dcadba6fb17699db1b82d",
+   "source_sha256": "9c32c4caf77d20cb9f6a3e92dd216a9dd8aa0159145dcadba6fb17699db1b82d"
+  },
+  "plugins/asset-enhancement-engine/skills/asset-enhancement-engine/packs/felid/skull/clay/skull_three_quarter.png": {
+   "source": "engine/packs/felid/skull/clay/skull_three_quarter.png",
+   "sha256": "16ae80ca6cf41a01ae8d89abbdcb393f067f3475a38d71b3bd65e4701ec8300b",
+   "source_sha256": "16ae80ca6cf41a01ae8d89abbdcb393f067f3475a38d71b3bd65e4701ec8300b"
+  },
+  "plugins/asset-enhancement-engine/skills/asset-enhancement-engine/packs/felid/skull/clay/skull_top.png": {
+   "source": "engine/packs/felid/skull/clay/skull_top.png",
+   "sha256": "cd314472bd7a146e34a459aab9946c49520788b032a107da638950f7ffd6c846",
+   "source_sha256": "cd314472bd7a146e34a459aab9946c49520788b032a107da638950f7ffd6c846"
+  },
+  "plugins/asset-enhancement-engine/skills/asset-enhancement-engine/packs/felid/skull/ref20_hull.npz": {
+   "source": "engine/packs/felid/skull/ref20_hull.npz",
+   "sha256": "d068b074b4c3223be291101faa8b2e16d34a61b6423e8e534b217f955b405e49",
+   "source_sha256": "d068b074b4c3223be291101faa8b2e16d34a61b6423e8e534b217f955b405e49"
+  },
+  "plugins/asset-enhancement-engine/skills/asset-enhancement-engine/packs/felid/skull/ref20_hull.ply": {
+   "source": "engine/packs/felid/skull/ref20_hull.ply",
+   "sha256": "13f1497c52ef5d2e2ed99a8eeb3e2ba36e26010f1985cdb5fcd5cb4cd7d7c727",
+   "source_sha256": "13f1497c52ef5d2e2ed99a8eeb3e2ba36e26010f1985cdb5fcd5cb4cd7d7c727"
+  },
+  "plugins/asset-enhancement-engine/skills/asset-enhancement-engine/packs/felid/skull/ref20_hull_report.json": {
+   "source": "engine/packs/felid/skull/ref20_hull_report.json",
+   "sha256": "4e5349a3796409947ee6106746d635e732e13d30a51b8c889c520d9386af594f",
+   "source_sha256": "4e5349a3796409947ee6106746d635e732e13d30a51b8c889c520d9386af594f"
+  },
+  "plugins/asset-enhancement-engine/skills/asset-enhancement-engine/packs/felid/skull/ref20_hull_views.png": {
+   "source": "engine/packs/felid/skull/ref20_hull_views.png",
+   "sha256": "2333490ba01f4349bdf931fb386f292bae30c9c2774d0bbd9a36e175109032ff",
+   "source_sha256": "2333490ba01f4349bdf931fb386f292bae30c9c2774d0bbd9a36e175109032ff"
+  },
+  "plugins/asset-enhancement-engine/skills/asset-enhancement-engine/packs/felid/skull/ref20_picks.json": {
+   "source": "engine/packs/felid/skull/ref20_picks.json",
+   "sha256": "127d3557a72929cc7566db99d23f70702ebe2b9b803bc627c57a49a56963338d",
+   "source_sha256": "127d3557a72929cc7566db99d23f70702ebe2b9b803bc627c57a49a56963338d"
+  },
+  "plugins/asset-enhancement-engine/skills/asset-enhancement-engine/packs/felid/skull/ref20_sections.json": {
+   "source": "engine/packs/felid/skull/ref20_sections.json",
+   "sha256": "45bec241c37193d994dee1e3d3198c6b8a14db623dafd241210837f89c4d87cb",
+   "source_sha256": "45bec241c37193d994dee1e3d3198c6b8a14db623dafd241210837f89c4d87cb"
+  },
+  "plugins/asset-enhancement-engine/skills/asset-enhancement-engine/packs/felid/skull/ref20_skull.npz": {
+   "source": "engine/packs/felid/skull/ref20_skull.npz",
+   "sha256": "46bdc2cb41da23e229f9b3fcffd2a0c9126937c503e51422809efc0602eb3b08",
+   "source_sha256": "46bdc2cb41da23e229f9b3fcffd2a0c9126937c503e51422809efc0602eb3b08"
+  },
+  "plugins/asset-enhancement-engine/skills/asset-enhancement-engine/packs/felid/skull/ref20_skull.ply": {
+   "source": "engine/packs/felid/skull/ref20_skull.ply",
+   "sha256": "8422f4a5b33e59bca8553ed2128160c115f7cbf0231d2df84f0627777f4cafac",
+   "source_sha256": "8422f4a5b33e59bca8553ed2128160c115f7cbf0231d2df84f0627777f4cafac"
+  },
+  "plugins/asset-enhancement-engine/skills/asset-enhancement-engine/packs/felid/skull/ref20_skull_report.json": {
+   "source": "engine/packs/felid/skull/ref20_skull_report.json",
+   "sha256": "6d193dda3ff9b901e0fdf10df1fcd6f6b55f0098eee1c5299c4c0a0a9e168de8",
+   "source_sha256": "6d193dda3ff9b901e0fdf10df1fcd6f6b55f0098eee1c5299c4c0a0a9e168de8"
+  },
+  "plugins/asset-enhancement-engine/skills/asset-enhancement-engine/packs/felid/skull/ref20_skull_views.png": {
+   "source": "engine/packs/felid/skull/ref20_skull_views.png",
+   "sha256": "ec565ec04e55f3658c181d624b8384da3778ab61c40da7840f12aa5f4a00a32d",
+   "source_sha256": "ec565ec04e55f3658c181d624b8384da3778ab61c40da7840f12aa5f4a00a32d"
+  },
+  "plugins/asset-enhancement-engine/skills/asset-enhancement-engine/packs/felid/skull/ref20_spec.json": {
+   "source": "engine/packs/felid/skull/ref20_spec.json",
+   "sha256": "8a26db7705155e9f74bfbacfac7ebf4210c60e6a3432dad727eb285bed12c93d",
+   "source_sha256": "8a26db7705155e9f74bfbacfac7ebf4210c60e6a3432dad727eb285bed12c93d"
+  },
+  "plugins/asset-enhancement-engine/skills/asset-enhancement-engine/packs/felid/skull/skull.npz": {
+   "source": "engine/packs/felid/skull/skull.npz",
+   "sha256": "c65377537c1f1fcb9e1351a4f93eded447d74ece956b85e55393d64fb371289e",
+   "source_sha256": "c65377537c1f1fcb9e1351a4f93eded447d74ece956b85e55393d64fb371289e"
+  },
+  "plugins/asset-enhancement-engine/skills/asset-enhancement-engine/packs/felid/skull/skull_aperture_check.png": {
+   "source": "engine/packs/felid/skull/skull_aperture_check.png",
+   "sha256": "e426b098a75aa3a9b8c144de8f67731cd8cbb2b03c4f93ef0da7c7c954f68a77",
+   "source_sha256": "e426b098a75aa3a9b8c144de8f67731cd8cbb2b03c4f93ef0da7c7c954f68a77"
+  },
+  "plugins/asset-enhancement-engine/skills/asset-enhancement-engine/packs/felid/skull/skull_cranium.ply": {
+   "source": "engine/packs/felid/skull/skull_cranium.ply",
+   "sha256": "bd081869d634ee284977a3a819b1599660845f6355ae746c82ee9a14f87d5f64",
+   "source_sha256": "bd081869d634ee284977a3a819b1599660845f6355ae746c82ee9a14f87d5f64"
+  },
+  "plugins/asset-enhancement-engine/skills/asset-enhancement-engine/packs/felid/skull/skull_iou_dorsal.png": {
+   "source": "engine/packs/felid/skull/skull_iou_dorsal.png",
+   "sha256": "04e5ed063a13e9eb1de7fbf0f659f6033828bb80dad4290c2ead63fa15015e88",
+   "source_sha256": "04e5ed063a13e9eb1de7fbf0f659f6033828bb80dad4290c2ead63fa15015e88"
+  },
+  "plugins/asset-enhancement-engine/skills/asset-enhancement-engine/packs/felid/skull/skull_iou_front.png": {
+   "source": "engine/packs/felid/skull/skull_iou_front.png",
+   "sha256": "97ab19458c2b4abc0b0d226dea40b3ff0ac47cf2e99e45cc3780547882b7d163",
+   "source_sha256": "97ab19458c2b4abc0b0d226dea40b3ff0ac47cf2e99e45cc3780547882b7d163"
+  },
+  "plugins/asset-enhancement-engine/skills/asset-enhancement-engine/packs/felid/skull/skull_iou_lateral.png": {
+   "source": "engine/packs/felid/skull/skull_iou_lateral.png",
+   "sha256": "5a6b0bbe00fc124a6649cc288667744e54a70c3872ae3a8c08a9f5e024a9616c",
+   "source_sha256": "5a6b0bbe00fc124a6649cc288667744e54a70c3872ae3a8c08a9f5e024a9616c"
+  },
+  "plugins/asset-enhancement-engine/skills/asset-enhancement-engine/packs/felid/skull/skull_landmarks.json": {
+   "source": "engine/packs/felid/skull/skull_landmarks.json",
+   "sha256": "b7da16adf6e5fd840c6a8d2f3c4757d3ff209f0b0ae601edbc61d19b6dd0f2ed",
+   "source_sha256": "b7da16adf6e5fd840c6a8d2f3c4757d3ff209f0b0ae601edbc61d19b6dd0f2ed"
+  },
+  "plugins/asset-enhancement-engine/skills/asset-enhancement-engine/packs/felid/skull/skull_mandible.ply": {
+   "source": "engine/packs/felid/skull/skull_mandible.ply",
+   "sha256": "a4ac7ca50664a38c750de9dc24af23baff4c5227999188e6f9e72cf42f0466f8",
+   "source_sha256": "a4ac7ca50664a38c750de9dc24af23baff4c5227999188e6f9e72cf42f0466f8"
+  },
+  "plugins/asset-enhancement-engine/skills/asset-enhancement-engine/packs/felid/skull/skull_report.json": {
+   "source": "engine/packs/felid/skull/skull_report.json",
+   "sha256": "b109753784abc01e4311362f78bbe6b58cc1d37ac6d5b1d3c8cff09bc13dbe8a",
+   "source_sha256": "b109753784abc01e4311362f78bbe6b58cc1d37ac6d5b1d3c8cff09bc13dbe8a"
+  },
+  "plugins/asset-enhancement-engine/skills/asset-enhancement-engine/packs/felid/structure_inventory.json": {
+   "source": "engine/packs/felid/structure_inventory.json",
+   "sha256": "a03145165a44115dceb94aa7e97830b819a49388ad9695f300216454ec34a6f8",
+   "source_sha256": "a03145165a44115dceb94aa7e97830b819a49388ad9695f300216454ec34a6f8"
+  },
+  "plugins/asset-enhancement-engine/skills/asset-enhancement-engine/packs/generic/language.json": {
+   "source": "engine/packs/generic/language.json",
+   "sha256": "95bdaa180841156e6293a674f75eea2fb74f180effd7659a0fc292056f90d1a4",
+   "source_sha256": "95bdaa180841156e6293a674f75eea2fb74f180effd7659a0fc292056f90d1a4"
+  },
+  "plugins/asset-enhancement-engine/skills/asset-enhancement-engine/packs/human/anatomy_torso.json": {
+   "source": "engine/packs/human/anatomy_torso.json",
+   "sha256": "c66b04afc6e7f1ab0ea474094c69d2a8a98da7fa4110a325c251f4600e9a811f",
+   "source_sha256": "52f7fc0573eb47a4306eaeb954734921b5e8de576bdadf4d90240cad2380fe76"
+  },
+  "plugins/asset-enhancement-engine/skills/asset-enhancement-engine/packs/human/findings.md": {
+   "source": "engine/packs/human/findings.md",
+   "sha256": "7b15ed743dfcf7f27251dea657c24ec23241a7060bfdef85787c580f3c953787",
+   "source_sha256": "7b15ed743dfcf7f27251dea657c24ec23241a7060bfdef85787c580f3c953787"
+  },
+  "plugins/asset-enhancement-engine/skills/asset-enhancement-engine/packs/human/mh_base.npz": {
+   "source": "engine/packs/human/mh_base.npz",
+   "sha256": "a4c06c7599200fdd7b9e022fd235a3ae3618a535a70814c6708aea6574b7f738",
+   "source_sha256": "a4c06c7599200fdd7b9e022fd235a3ae3618a535a70814c6708aea6574b7f738"
+  },
+  "plugins/asset-enhancement-engine/skills/asset-enhancement-engine/packs/human/mh_targets_body.npz": {
+   "source": "engine/packs/human/mh_targets_body.npz",
+   "sha256": "de581439b0af5fb2d0be1c878533a363fbe58244f8e144db16bccf4318beca9b",
+   "source_sha256": "de581439b0af5fb2d0be1c878533a363fbe58244f8e144db16bccf4318beca9b"
+  },
+  "plugins/asset-enhancement-engine/skills/asset-enhancement-engine/packs/human/mh_template_proof.json": {
+   "source": "engine/packs/human/mh_template_proof.json",
+   "sha256": "bcb3f30f7dc1321b7bd2ffd9e36c419a75425a21f54ca6f5e316816d57beed40",
+   "source_sha256": "bcb3f30f7dc1321b7bd2ffd9e36c419a75425a21f54ca6f5e316816d57beed40"
+  },
+  "plugins/asset-enhancement-engine/skills/asset-enhancement-engine/packs/human/mh_template_report.json": {
+   "source": "engine/packs/human/mh_template_report.json",
+   "sha256": "6febb00309c41559440ce9ff8392168514f6787a701a81cab6bf93db84af246a",
+   "source_sha256": "546d878d10675280f9c86b583801116a2505928856314d06a3f955994475166e"
+  },
+  "plugins/asset-enhancement-engine/skills/asset-enhancement-engine/packs/human/nac_female.json": {
+   "source": "engine/packs/human/nac_female.json",
+   "sha256": "55c4f401e4d1af66c79745572f1fe8d3877bdaa118aba794c4933c3aada56ae8",
+   "source_sha256": "55c4f401e4d1af66c79745572f1fe8d3877bdaa118aba794c4933c3aada56ae8"
+  },
+  "plugins/asset-enhancement-engine/skills/asset-enhancement-engine/packs/human/part_frames.json": {
+   "source": "engine/packs/human/part_frames.json",
+   "sha256": "725205ede9d13799dd7626551f68603beab4d9107c7f50bcfc8f456f0b6b7c61",
+   "source_sha256": "725205ede9d13799dd7626551f68603beab4d9107c7f50bcfc8f456f0b6b7c61"
+  },
+  "plugins/asset-enhancement-engine/skills/asset-enhancement-engine/packs/human/references/arm_axilla_lateral_torso.md": {
+   "source": "engine/packs/human/references/arm_axilla_lateral_torso.md",
+   "sha256": "e99afe2551c28bb6e0ddc7d9bdd66958cb864692f5fb56cd02b13e3a886d8780",
+   "source_sha256": "e99afe2551c28bb6e0ddc7d9bdd66958cb864692f5fb56cd02b13e3a886d8780"
+  },
+  "plugins/asset-enhancement-engine/skills/asset-enhancement-engine/packs/human/references/back_sagittal_profile.md": {
+   "source": "engine/packs/human/references/back_sagittal_profile.md",
+   "sha256": "6d9a2f14547dcb9e84a74845bf0129184dc344b9b18d7b2975596ecbecf05505",
+   "source_sha256": "6d9a2f14547dcb9e84a74845bf0129184dc344b9b18d7b2975596ecbecf05505"
+  },
+  "plugins/asset-enhancement-engine/skills/asset-enhancement-engine/packs/human/references/breast_cup_size.md": {
+   "source": "engine/packs/human/references/breast_cup_size.md",
+   "sha256": "d8e10ea05a1431e84a1bbf6bef6c8979ff80bd3f6f95b50b3b199a749f8dff93",
+   "source_sha256": "d8e10ea05a1431e84a1bbf6bef6c8979ff80bd3f6f95b50b3b199a749f8dff93"
+  },
+  "plugins/asset-enhancement-engine/skills/asset-enhancement-engine/packs/human/references/breast_nac_form.md": {
+   "source": "engine/packs/human/references/breast_nac_form.md",
+   "sha256": "d3240a8d23a47a19ae0a0b08467c1ba057fb1d9fee1069c4d4dae8cc66356096",
+   "source_sha256": "d3240a8d23a47a19ae0a0b08467c1ba057fb1d9fee1069c4d4dae8cc66356096"
+  },
+  "plugins/asset-enhancement-engine/skills/asset-enhancement-engine/packs/human/references/eye.md": {
+   "source": "engine/packs/human/references/eye.md",
+   "sha256": "f52915bbfdf366fd0bbaee4282a581fe3d51dac7944c3d05c18ca17dbbba168c",
+   "source_sha256": "f52915bbfdf366fd0bbaee4282a581fe3d51dac7944c3d05c18ca17dbbba168c"
+  },
+  "plugins/asset-enhancement-engine/skills/asset-enhancement-engine/packs/human/references/foot.md": {
+   "source": "engine/packs/human/references/foot.md",
+   "sha256": "f25fffac6bfe875f0ac60704108aea674e487876b8b2298f57a8c954e1fafee5",
+   "source_sha256": "f25fffac6bfe875f0ac60704108aea674e487876b8b2298f57a8c954e1fafee5"
+  },
+  "plugins/asset-enhancement-engine/skills/asset-enhancement-engine/packs/human/references/genital_anatomy.md": {
+   "source": "engine/packs/human/references/genital_anatomy.md",
+   "sha256": "2bbc4bc9de8c72115949072fbd28977760cc97a62c0956b9e8d62d0ed3722bd3",
+   "source_sha256": "2bbc4bc9de8c72115949072fbd28977760cc97a62c0956b9e8d62d0ed3722bd3"
+  },
+  "plugins/asset-enhancement-engine/skills/asset-enhancement-engine/packs/human/references/hair.md": {
+   "source": "engine/packs/human/references/hair.md",
+   "sha256": "039de6af68b342ff1c076f52ba23211124d9ab09ce8f2ee0ad043eaf24b069e6",
+   "source_sha256": "493227db13944d64b3604f870f0709c829eeb2076b095d24afacbe7f2b5b27a5"
+  },
+  "plugins/asset-enhancement-engine/skills/asset-enhancement-engine/packs/human/references/hand.md": {
+   "source": "engine/packs/human/references/hand.md",
+   "sha256": "c0947ba5bec0fb63bc14fd4bbaffe12304ca747524092d149cdc86501947b8d5",
+   "source_sha256": "c0947ba5bec0fb63bc14fd4bbaffe12304ca747524092d149cdc86501947b8d5"
+  },
+  "plugins/asset-enhancement-engine/skills/asset-enhancement-engine/packs/human/references/head_face.md": {
+   "source": "engine/packs/human/references/head_face.md",
+   "sha256": "74c3ce9cf4daddbff37e8d8b08c49a7d1c8daf1b6c2ac3d7d224cdb1b990b68d",
+   "source_sha256": "74c3ce9cf4daddbff37e8d8b08c49a7d1c8daf1b6c2ac3d7d224cdb1b990b68d"
+  },
+  "plugins/asset-enhancement-engine/skills/asset-enhancement-engine/packs/human/references/mouth_teeth_tongue.md": {
+   "source": "engine/packs/human/references/mouth_teeth_tongue.md",
+   "sha256": "9c1dbbbeb77f30a261c354c9495c0d0d92ed309fd5caa0f0c0820b7f8b70804b",
+   "source_sha256": "9c1dbbbeb77f30a261c354c9495c0d0d92ed309fd5caa0f0c0820b7f8b70804b"
+  },
+  "plugins/asset-enhancement-engine/skills/asset-enhancement-engine/packs/human/references/musculature.md": {
+   "source": "engine/packs/human/references/musculature.md",
+   "sha256": "38b195c413034ab2033c953b13a56c5aba46ed566abc2a1c8e9b4d9a7ff695cb",
+   "source_sha256": "38b195c413034ab2033c953b13a56c5aba46ed566abc2a1c8e9b4d9a7ff695cb"
+  },
+  "plugins/asset-enhancement-engine/skills/asset-enhancement-engine/packs/human/references/performance_budget.md": {
+   "source": "engine/packs/human/references/performance_budget.md",
+   "sha256": "f9cc7284be9c119b7219b0f527027edfb884fac09e9121c8197c15bbec83843a",
+   "source_sha256": "f9cc7284be9c119b7219b0f527027edfb884fac09e9121c8197c15bbec83843a"
+  },
+  "plugins/asset-enhancement-engine/skills/asset-enhancement-engine/packs/human/references/RESEARCH_TEMPLATE.md": {
+   "source": "engine/packs/human/references/RESEARCH_TEMPLATE.md",
+   "sha256": "fed6c7271de111365ac9c1a2bef5990cd6b771e86e8ec6ce05708b4111c9d8b9",
+   "source_sha256": "fed6c7271de111365ac9c1a2bef5990cd6b771e86e8ec6ce05708b4111c9d8b9"
+  },
+  "plugins/asset-enhancement-engine/skills/asset-enhancement-engine/packs/human/references/scapula_girdle_motion.md": {
+   "source": "engine/packs/human/references/scapula_girdle_motion.md",
+   "sha256": "5feac5b57d1ec6826b92be8d4aa5545f80f3930ba859d208ee58a73ff192c619",
+   "source_sha256": "5feac5b57d1ec6826b92be8d4aa5545f80f3930ba859d208ee58a73ff192c619"
+  },
+  "plugins/asset-enhancement-engine/skills/asset-enhancement-engine/packs/human/references/shoulder_axilla_motion.md": {
+   "source": "engine/packs/human/references/shoulder_axilla_motion.md",
+   "sha256": "840759c04f362998e1321d243a40db3823e0d234efc03371e04ebb20e3d3a7ee",
+   "source_sha256": "840759c04f362998e1321d243a40db3823e0d234efc03371e04ebb20e3d3a7ee"
+  },
+  "plugins/asset-enhancement-engine/skills/asset-enhancement-engine/packs/human/references/skeleton.md": {
+   "source": "engine/packs/human/references/skeleton.md",
+   "sha256": "4da624097379b641c5494aee99535f9ba6a6f5b9c16b46a83ff58b98488e176b",
+   "source_sha256": "4da624097379b641c5494aee99535f9ba6a6f5b9c16b46a83ff58b98488e176b"
+  },
+  "plugins/asset-enhancement-engine/skills/asset-enhancement-engine/packs/human/references/skin_microrelief_breast.md": {
+   "source": "engine/packs/human/references/skin_microrelief_breast.md",
+   "sha256": "97efafb93c165d586b8d47523fe2eabaafe76288942e4cc8b980d529a84680f0",
+   "source_sha256": "97efafb93c165d586b8d47523fe2eabaafe76288942e4cc8b980d529a84680f0"
+  },
+  "plugins/asset-enhancement-engine/skills/asset-enhancement-engine/packs/human/references/soft_tissue_mechanics.md": {
+   "source": "engine/packs/human/references/soft_tissue_mechanics.md",
+   "sha256": "928b1f7bbb59e7f5756981ed6fa6682495f3516b979018b7bbb0d3fa02b52f79",
+   "source_sha256": "928b1f7bbb59e7f5756981ed6fa6682495f3516b979018b7bbb0d3fa02b52f79"
+  },
+  "plugins/asset-enhancement-engine/skills/asset-enhancement-engine/packs/masonry/language.json": {
+   "source": "engine/packs/masonry/language.json",
+   "sha256": "d916e6de2a291bec71b6fc115ca3e55e6468968a15c970e730ccad43a5ee3da4",
+   "source_sha256": "d916e6de2a291bec71b6fc115ca3e55e6468968a15c970e730ccad43a5ee3da4"
+  },
+  "plugins/asset-enhancement-engine/skills/asset-enhancement-engine/packs/rock/rock.json": {
+   "source": "engine/packs/rock/rock.json",
+   "sha256": "4dfadd750652b8ceabfed6c96d9d20367cebdddd21cbc45afcba798ed02ce6e4",
+   "source_sha256": "4dfadd750652b8ceabfed6c96d9d20367cebdddd21cbc45afcba798ed02ce6e4"
+  },
+  "plugins/asset-enhancement-engine/skills/asset-enhancement-engine/priors.json": {
+   "source": "engine/priors.json",
+   "sha256": "adf5ee350b96262502fd2c82f5451cd9886a65d2a454512f991933b9face94f1",
+   "source_sha256": "adf5ee350b96262502fd2c82f5451cd9886a65d2a454512f991933b9face94f1"
+  },
+  "plugins/asset-enhancement-engine/skills/asset-enhancement-engine/references/ai-reference-tools.md": {
+   "source": "engine/references/ai-reference-tools.md",
+   "sha256": "a486f455269e9801d552bdffef443936811ef36e88e87962fbf7aab96dfba309",
+   "source_sha256": "a486f455269e9801d552bdffef443936811ef36e88e87962fbf7aab96dfba309"
+  },
+  "plugins/asset-enhancement-engine/skills/asset-enhancement-engine/references/blender-gotchas.md": {
+   "source": "engine/references/blender-gotchas.md",
+   "sha256": "8a63d5136ebd161e03e4d9952d02442e5226cd634acd43d57042555c332d5ab6",
+   "source_sha256": "8a63d5136ebd161e03e4d9952d02442e5226cd634acd43d57042555c332d5ab6"
+  },
+  "plugins/asset-enhancement-engine/skills/asset-enhancement-engine/references/builder-primer.md": {
+   "source": "engine/references/builder-primer.md",
+   "sha256": "5065bdfe97f764b7176b3ae42162aa1d5934570d7303a383f4b395d9c37704e2",
+   "source_sha256": "a8321b0e57e0cf1a75ac01604d2d1cd72549570c97c8fe6b140f267da45fa193"
+  },
+  "plugins/asset-enhancement-engine/skills/asset-enhancement-engine/references/cat-anatomy.md": {
+   "source": "engine/references/cat-anatomy.md",
+   "sha256": "f952df71a534d8d51bcd7bcfa3ba6ddcb04e233399da6ed9039fce0e38db8651",
+   "source_sha256": "f952df71a534d8d51bcd7bcfa3ba6ddcb04e233399da6ed9039fce0e38db8651"
+  },
+  "plugins/asset-enhancement-engine/skills/asset-enhancement-engine/references/cat-hair-streams.md": {
+   "source": "engine/references/cat-hair-streams.md",
+   "sha256": "852c070555265fc051ac1c67cce65ec01c23044e94ce2cf6b75de41fa04ce4db",
+   "source_sha256": "852c070555265fc051ac1c67cce65ec01c23044e94ce2cf6b75de41fa04ce4db"
+  },
+  "plugins/asset-enhancement-engine/skills/asset-enhancement-engine/references/cat-skeleton-muscle.md": {
+   "source": "engine/references/cat-skeleton-muscle.md",
+   "sha256": "cf92604f270a1c2daefcce67d18f51f51beac50a2ad506e39b3e849c25b476f0",
+   "source_sha256": "cf92604f270a1c2daefcce67d18f51f51beac50a2ad506e39b3e849c25b476f0"
+  },
+  "plugins/asset-enhancement-engine/skills/asset-enhancement-engine/references/cat-standing-posture.md": {
+   "source": "engine/references/cat-standing-posture.md",
+   "sha256": "7c073c9dc284dab528a74179e2c70061ca4c2f53228bad5f6731864f9dab4199",
+   "source_sha256": "b8bc96eac96414a61c1c71875ee27fe9450d2b6d35b39033707bd36aba355f62"
+  },
+  "plugins/asset-enhancement-engine/skills/asset-enhancement-engine/references/follicle-palette.md": {
+   "source": "engine/references/follicle-palette.md",
+   "sha256": "ceab4675f4763df9fd47022dfcc2fae7d99b73b74b761be766beeb66ede4e9fb",
+   "source_sha256": "ceab4675f4763df9fd47022dfcc2fae7d99b73b74b761be766beeb66ede4e9fb"
+  },
+  "plugins/asset-enhancement-engine/skills/asset-enhancement-engine/references/generative-reference.md": {
+   "source": "engine/references/generative-reference.md",
+   "sha256": "76c400a0515e5bb032d6616800e1f97539818fbcf74eb45ff9ce757a1a7900af",
+   "source_sha256": "76c400a0515e5bb032d6616800e1f97539818fbcf74eb45ff9ce757a1a7900af"
+  },
+  "plugins/asset-enhancement-engine/skills/asset-enhancement-engine/references/illustrations/L1_skeleton_card_spine_limbs.jpg": {
+   "source": "engine/references/illustrations/L1_skeleton_card_spine_limbs.jpg",
+   "sha256": "1ebcbc66d571016b7e32daaf53f12bc75da71adf77bbdf771368d5de17767504",
+   "source_sha256": "1ebcbc66d571016b7e32daaf53f12bc75da71adf77bbdf771368d5de17767504"
+  },
+  "plugins/asset-enhancement-engine/skills/asset-enhancement-engine/references/illustrations/L1_skeleton_in_body_lateral_dorsal.jpg": {
+   "source": "engine/references/illustrations/L1_skeleton_in_body_lateral_dorsal.jpg",
+   "sha256": "b483f49b71706a873cd77c2d421eee222a604af4bee238fa202418b18caad529",
+   "source_sha256": "b483f49b71706a873cd77c2d421eee222a604af4bee238fa202418b18caad529"
+  },
+  "plugins/asset-enhancement-engine/skills/asset-enhancement-engine/references/illustrations/L2_muscles_lateral_dorsal_cranial_SHAPES_ONLY.jpg": {
+   "source": "engine/references/illustrations/L2_muscles_lateral_dorsal_cranial_SHAPES_ONLY.jpg",
+   "sha256": "5f6eb8df0be43fca22bccaceda0f039d70e46323e0ae28a20ab864233744b254",
+   "source_sha256": "5f6eb8df0be43fca22bccaceda0f039d70e46323e0ae28a20ab864233744b254"
+  },
+  "plugins/asset-enhancement-engine/skills/asset-enhancement-engine/references/illustrations/L2_muscles_layers_regional.jpg": {
+   "source": "engine/references/illustrations/L2_muscles_layers_regional.jpg",
+   "sha256": "151876061a6e66d9a608b51e968be9abc660c3ce5ddaaa921a3bff9466492adf",
+   "source_sha256": "151876061a6e66d9a608b51e968be9abc660c3ce5ddaaa921a3bff9466492adf"
+  },
+  "plugins/asset-enhancement-engine/skills/asset-enhancement-engine/references/illustrations/L3_face_eye_third_eyelid.jpg": {
+   "source": "engine/references/illustrations/L3_face_eye_third_eyelid.jpg",
+   "sha256": "5626c4e050c194c9bfb23851a946c790c15baa7158faf99f50f78319433303fa",
+   "source_sha256": "5626c4e050c194c9bfb23851a946c790c15baa7158faf99f50f78319433303fa"
+  },
+  "plugins/asset-enhancement-engine/skills/asset-enhancement-engine/references/illustrations/L3_face_structure_frontal_side.jpg": {
+   "source": "engine/references/illustrations/L3_face_structure_frontal_side.jpg",
+   "sha256": "44caed661569be33efb79b81c5e7b4e5e01cb9923d1a930f810d5d8ef9afc532",
+   "source_sha256": "44caed661569be33efb79b81c5e7b4e5e01cb9923d1a930f810d5d8ef9afc532"
+  },
+  "plugins/asset-enhancement-engine/skills/asset-enhancement-engine/references/illustrations/L3_paws_from_five_panel.jpg": {
+   "source": "engine/references/illustrations/L3_paws_from_five_panel.jpg",
+   "sha256": "5764aadefeab0c7c61ca9db07e27f34b198462afe85332570b4320ad44335173",
+   "source_sha256": "5764aadefeab0c7c61ca9db07e27f34b198462afe85332570b4320ad44335173"
+  },
+  "plugins/asset-enhancement-engine/skills/asset-enhancement-engine/references/illustrations/README.md": {
+   "source": "engine/references/illustrations/README.md",
+   "sha256": "922ab1493ee0caa9f418c6da84f8b6e52c73303471c0a7d19a5377b3227231f8",
+   "source_sha256": "922ab1493ee0caa9f418c6da84f8b6e52c73303471c0a7d19a5377b3227231f8"
+  },
+  "plugins/asset-enhancement-engine/skills/asset-enhancement-engine/references/layered-build.md": {
+   "source": "engine/references/layered-build.md",
+   "sha256": "1778eb16ff9c0a51b1ce0bb2d3b51831e328823b6831191616fc4ae01d746d72",
+   "source_sha256": "1778eb16ff9c0a51b1ce0bb2d3b51831e328823b6831191616fc4ae01d746d72"
+  },
+  "plugins/asset-enhancement-engine/skills/asset-enhancement-engine/references/target-loop.md": {
+   "source": "engine/references/target-loop.md",
+   "sha256": "ea6516c002c61dca5505f76e334cb792d5a51b8099a6064b9619ac3840536a3b",
+   "source_sha256": "ea6516c002c61dca5505f76e334cb792d5a51b8099a6064b9619ac3840536a3b"
+  },
+  "plugins/asset-enhancement-engine/skills/asset-enhancement-engine/review/clay_sheet.py": {
+   "source": "engine/review/clay_sheet.py",
+   "sha256": "7becb249d9e9c4f4d3177d8f8b9badddea7c2c79ed1585c109517af903557b81",
+   "source_sha256": "7becb249d9e9c4f4d3177d8f8b9badddea7c2c79ed1585c109517af903557b81"
+  },
+  "plugins/asset-enhancement-engine/skills/asset-enhancement-engine/review/compare_features.py": {
+   "source": "engine/review/compare_features.py",
+   "sha256": "e7ad70b1883d52d9302c59de13115960cd246324ac757d26103aa5bd1eeead2a",
+   "source_sha256": "e7ad70b1883d52d9302c59de13115960cd246324ac757d26103aa5bd1eeead2a"
+  },
+  "plugins/asset-enhancement-engine/skills/asset-enhancement-engine/review/compare_regions.py": {
+   "source": "engine/review/compare_regions.py",
+   "sha256": "63f7a1f4e2c372128f0c539c6e11aa81f019862f241f46f28a71f33fb14d5edd",
+   "source_sha256": "63f7a1f4e2c372128f0c539c6e11aa81f019862f241f46f28a71f33fb14d5edd"
+  },
+  "plugins/asset-enhancement-engine/skills/asset-enhancement-engine/review/crop_render.py": {
+   "source": "engine/review/crop_render.py",
+   "sha256": "72546b6820f2138d201e40ff04398045e845115ec3053352cd232c40016c2ab6",
+   "source_sha256": "72546b6820f2138d201e40ff04398045e845115ec3053352cd232c40016c2ab6"
+  },
+  "plugins/asset-enhancement-engine/skills/asset-enhancement-engine/review/ear_crops.py": {
+   "source": "engine/review/ear_crops.py",
+   "sha256": "9a47ecd58cd725933ac42cd65bac472be7029cadc38b8a854ef9083f94c23dcd",
+   "source_sha256": "9a47ecd58cd725933ac42cd65bac472be7029cadc38b8a854ef9083f94c23dcd"
+  },
+  "plugins/asset-enhancement-engine/skills/asset-enhancement-engine/review/ear_lab.sh": {
+   "source": "engine/review/ear_lab.sh",
+   "sha256": "2688a4b7d7246fb3e9dc9486613d072a696595dc25d898750b75ec12334ed853",
+   "source_sha256": "2688a4b7d7246fb3e9dc9486613d072a696595dc25d898750b75ec12334ed853"
+  },
+  "plugins/asset-enhancement-engine/skills/asset-enhancement-engine/review/fairness.py": {
+   "source": "engine/review/fairness.py",
+   "sha256": "e2973c3abee3e5e6d68966efbac023bdbee734fe5ce3b266175dc28cbe32151f",
+   "source_sha256": "e2973c3abee3e5e6d68966efbac023bdbee734fe5ce3b266175dc28cbe32151f"
+  },
+  "plugins/asset-enhancement-engine/skills/asset-enhancement-engine/review/flow_marks_check.py": {
+   "source": "engine/review/flow_marks_check.py",
+   "sha256": "a5560da517d8f3254177d0ac8ba08cc9fe5e04f327c8ecb79c81bdc353a2132e",
+   "source_sha256": "a5560da517d8f3254177d0ac8ba08cc9fe5e04f327c8ecb79c81bdc353a2132e"
+  },
+  "plugins/asset-enhancement-engine/skills/asset-enhancement-engine/review/frame_fit_selftest.py": {
+   "source": "engine/review/frame_fit_selftest.py",
+   "sha256": "c2b521025312eaa012b11ae8be1f88b55b3cbf45a4d2c6af77bb5a6a982925fa",
+   "source_sha256": "c2b521025312eaa012b11ae8be1f88b55b3cbf45a4d2c6af77bb5a6a982925fa"
+  },
+  "plugins/asset-enhancement-engine/skills/asset-enhancement-engine/review/fur_swatch.py": {
+   "source": "engine/review/fur_swatch.py",
+   "sha256": "89bfe9c35ad3ddb72974d3c685c7b51cdd5ae75cb611070b651466a93306effb",
+   "source_sha256": "89bfe9c35ad3ddb72974d3c685c7b51cdd5ae75cb611070b651466a93306effb"
+  },
+  "plugins/asset-enhancement-engine/skills/asset-enhancement-engine/review/fur_swatch_score.py": {
+   "source": "engine/review/fur_swatch_score.py",
+   "sha256": "ed07e1c6426a98eb57ce0953bd25609eaffa7154b612f8a96969a49b4b538bef",
+   "source_sha256": "ed07e1c6426a98eb57ce0953bd25609eaffa7154b612f8a96969a49b4b538bef"
+  },
+  "plugins/asset-enhancement-engine/skills/asset-enhancement-engine/review/glb_info.py": {
+   "source": "engine/review/glb_info.py",
+   "sha256": "a3608b3959ce812624a4adfc214fe029ef7b24348d56c4285005896807b0d6ae",
+   "source_sha256": "a3608b3959ce812624a4adfc214fe029ef7b24348d56c4285005896807b0d6ae"
+  },
+  "plugins/asset-enhancement-engine/skills/asset-enhancement-engine/review/hair_lab.sh": {
+   "source": "engine/review/hair_lab.sh",
+   "sha256": "12da7ab16cfaa917d274024b06e7f18b5cfcfea5de69bc205ebc5e8764fcafdd",
+   "source_sha256": "12da7ab16cfaa917d274024b06e7f18b5cfcfea5de69bc205ebc5e8764fcafdd"
+  },
+  "plugins/asset-enhancement-engine/skills/asset-enhancement-engine/review/head_ortho.py": {
+   "source": "engine/review/head_ortho.py",
+   "sha256": "8633ac6d2344fac7ff9c5ad67709b877d16224acea0f85b009f7bb4cf87d9a5f",
+   "source_sha256": "8633ac6d2344fac7ff9c5ad67709b877d16224acea0f85b009f7bb4cf87d9a5f"
+  },
+  "plugins/asset-enhancement-engine/skills/asset-enhancement-engine/review/head_outline.py": {
+   "source": "engine/review/head_outline.py",
+   "sha256": "68e5968db1c5bf50a50b62da174264c076e0ccecea1ea058d7e53866588919ab",
+   "source_sha256": "68e5968db1c5bf50a50b62da174264c076e0ccecea1ea058d7e53866588919ab"
+  },
+  "plugins/asset-enhancement-engine/skills/asset-enhancement-engine/review/junction_sweep.py": {
+   "source": "engine/review/junction_sweep.py",
+   "sha256": "a6ded37ea04caeb8f652a09960055aafda2cf4ec20c8a523f3e8efd322cdef26",
+   "source_sha256": "a6ded37ea04caeb8f652a09960055aafda2cf4ec20c8a523f3e8efd322cdef26"
+  },
+  "plugins/asset-enhancement-engine/skills/asset-enhancement-engine/review/project_mask.py": {
+   "source": "engine/review/project_mask.py",
+   "sha256": "02e6a1e4efebb8f1eaf852c6b9de6196cb8879d46c0f4851311a8b700affd66c",
+   "source_sha256": "02e6a1e4efebb8f1eaf852c6b9de6196cb8879d46c0f4851311a8b700affd66c"
+  },
+  "plugins/asset-enhancement-engine/skills/asset-enhancement-engine/review/review.sh": {
+   "source": "engine/review/review.sh",
+   "sha256": "18364a54a1dba8353e2602434fcda41f21d184fe0869dcad4565cb85a6c7ce31",
+   "source_sha256": "18364a54a1dba8353e2602434fcda41f21d184fe0869dcad4565cb85a6c7ce31"
+  },
+  "plugins/asset-enhancement-engine/skills/asset-enhancement-engine/review/REVIEWER.md": {
+   "source": "engine/review/REVIEWER.md",
+   "sha256": "808b3a9375cb74dd2edf4fd98e2557d85dd223ec06af3e57923d149c1530c57d",
+   "source_sha256": "808b3a9375cb74dd2edf4fd98e2557d85dd223ec06af3e57923d149c1530c57d"
+  },
+  "plugins/asset-enhancement-engine/skills/asset-enhancement-engine/review/sdf_views.py": {
+   "source": "engine/review/sdf_views.py",
+   "sha256": "1be570d62a142db91e4ef96a037925aa042bb33af9cfc97f1e35fc934d8129af",
+   "source_sha256": "1be570d62a142db91e4ef96a037925aa042bb33af9cfc97f1e35fc934d8129af"
+  },
+  "plugins/asset-enhancement-engine/skills/asset-enhancement-engine/review/seams.py": {
+   "source": "engine/review/seams.py",
+   "sha256": "ff6e78e5ef97c13ac05dc4296c753661fbd9d77f4ef52b699f9e5c79fdeb1f5e",
+   "source_sha256": "ff6e78e5ef97c13ac05dc4296c753661fbd9d77f4ef52b699f9e5c79fdeb1f5e"
+  },
+  "plugins/asset-enhancement-engine/skills/asset-enhancement-engine/review/side_check.py": {
+   "source": "engine/review/side_check.py",
+   "sha256": "a0297fcbcff04d7d8faf7215c55c82e389a4364d4b2660eb934b8fea70d45b27",
+   "source_sha256": "a0297fcbcff04d7d8faf7215c55c82e389a4364d4b2660eb934b8fea70d45b27"
+  },
+  "plugins/asset-enhancement-engine/skills/asset-enhancement-engine/review/trace_photo.py": {
+   "source": "engine/review/trace_photo.py",
+   "sha256": "c153eb4e52fba8dd5571460df3e57b423122a289cb371f453db3588f93ed81bf",
+   "source_sha256": "c153eb4e52fba8dd5571460df3e57b423122a289cb371f453db3588f93ed81bf"
+  },
+  "plugins/asset-enhancement-engine/skills/asset-enhancement-engine/review/zebra_views.py": {
+   "source": "engine/review/zebra_views.py",
+   "sha256": "0e5b0db99381c4523b9f5f44dbf88116ae786dd9c10fe78a2b2e2639ce4ba058",
+   "source_sha256": "0e5b0db99381c4523b9f5f44dbf88116ae786dd9c10fe78a2b2e2639ce4ba058"
+  },
+  "plugins/asset-enhancement-engine/skills/asset-enhancement-engine/SKILL.md": {
+   "source": "engine/SKILL.md",
+   "sha256": "628a18fafaef95c54a282293bdb37e4910a99b4bc7e01fb3b5d0c6dc90c3fc5c",
+   "source_sha256": "acf959d4d89a932a4973bd9ace159ecd8cc2cd3e5aaeef45066cf2d254aea815"
+  },
+  "plugins/asset-enhancement-engine/skills/asset-enhancement-engine/SKILL.pre_lessons_2026-10-18.md": {
+   "source": "engine/SKILL.pre_lessons_2026-10-18.md",
+   "sha256": "9b28130bd68713aa6c69bd1ec952a7e6510d90cff116419a77c48e4b24f49b17",
+   "source_sha256": "519d61cbcb7dc4b247e9efec5890b754467276bb2ed80058a440d4b8b538fcb4"
+  },
+  "plugins/asset-enhancement-engine/skills/asset-enhancement-engine/tools/accessories.py": {
+   "source": "engine/tools/accessories.py",
+   "sha256": "522beff7efdd1c236bb5ef5c1b94a5fd7cfdd95f0c718322b011ba3297ec4830",
+   "source_sha256": "522beff7efdd1c236bb5ef5c1b94a5fd7cfdd95f0c718322b011ba3297ec4830"
+  },
+  "plugins/asset-enhancement-engine/skills/asset-enhancement-engine/tools/anim_check.py": {
+   "source": "engine/tools/anim_check.py",
+   "sha256": "47b0e0b598820ae546f585f11a5a742fb372c965808d1248f585fce627fc67c7",
+   "source_sha256": "47b0e0b598820ae546f585f11a5a742fb372c965808d1248f585fce627fc67c7"
+  },
+  "plugins/asset-enhancement-engine/skills/asset-enhancement-engine/tools/anim_idle.py": {
+   "source": "engine/tools/anim_idle.py",
+   "sha256": "0fbde97e980750b0fd9923eb1951140619d308ac15da4868bc9ed79038c97efc",
+   "source_sha256": "0fbde97e980750b0fd9923eb1951140619d308ac15da4868bc9ed79038c97efc"
+  },
+  "plugins/asset-enhancement-engine/skills/asset-enhancement-engine/tools/attr_view.py": {
+   "source": "engine/tools/attr_view.py",
+   "sha256": "0bf359c23eb2ad9a23e29ece9b700ab11a3e539ccf69e539c59dd8cf0ef1534b",
+   "source_sha256": "0bf359c23eb2ad9a23e29ece9b700ab11a3e539ccf69e539c59dd8cf0ef1534b"
+  },
+  "plugins/asset-enhancement-engine/skills/asset-enhancement-engine/tools/backdrop_mask.py": {
+   "source": "engine/tools/backdrop_mask.py",
+   "sha256": "ba96c4e0594ab66c28066b72bb79eda7280b16930fe276b150f74d4650bba334",
+   "source_sha256": "ba96c4e0594ab66c28066b72bb79eda7280b16930fe276b150f74d4650bba334"
+  },
+  "plugins/asset-enhancement-engine/skills/asset-enhancement-engine/tools/bl_export_mesh.py": {
+   "source": "engine/tools/bl_export_mesh.py",
+   "sha256": "fee62d14177a6d2d0d2ba1e0c90d1ad12aa3213d0aa519725d038c644c66af1a",
+   "source_sha256": "fee62d14177a6d2d0d2ba1e0c90d1ad12aa3213d0aa519725d038c644c66af1a"
+  },
+  "plugins/asset-enhancement-engine/skills/asset-enhancement-engine/tools/bl_export_posed.py": {
+   "source": "engine/tools/bl_export_posed.py",
+   "sha256": "6b584581e84712ee11ebd01cfbe5bf833181c0c961422a82c463efa9f2ee84d2",
+   "source_sha256": "6b584581e84712ee11ebd01cfbe5bf833181c0c961422a82c463efa9f2ee84d2"
+  },
+  "plugins/asset-enhancement-engine/skills/asset-enhancement-engine/tools/bl_export_scene.py": {
+   "source": "engine/tools/bl_export_scene.py",
+   "sha256": "af0f7e53aed5c5b3e7f83f0c868b37610e39544544dcc3233695ab3ea9e92b53",
+   "source_sha256": "af0f7e53aed5c5b3e7f83f0c868b37610e39544544dcc3233695ab3ea9e92b53"
+  },
+  "plugins/asset-enhancement-engine/skills/asset-enhancement-engine/tools/blender_second.py": {
+   "source": "engine/tools/blender_second.py",
+   "sha256": "1acee957a792b65174a3e266f16ca588e28fd59db2bfbd033c4c8c27c2700964",
+   "source_sha256": "1acee957a792b65174a3e266f16ca588e28fd59db2bfbd033c4c8c27c2700964"
+  },
+  "plugins/asset-enhancement-engine/skills/asset-enhancement-engine/tools/blueprint_compare.py": {
+   "source": "engine/tools/blueprint_compare.py",
+   "sha256": "9186b6e24ca5301aec6b48648c35dcabf16465c3932c3785beae48d7c20508fd",
+   "source_sha256": "9186b6e24ca5301aec6b48648c35dcabf16465c3932c3785beae48d7c20508fd"
+  },
+  "plugins/asset-enhancement-engine/skills/asset-enhancement-engine/tools/blueprint_setup.py": {
+   "source": "engine/tools/blueprint_setup.py",
+   "sha256": "2aa3a803b3058f55c2dabeca62ad6e1fdc492be211b528c9e38fe01763b61b9c",
+   "source_sha256": "2aa3a803b3058f55c2dabeca62ad6e1fdc492be211b528c9e38fe01763b61b9c"
+  },
+  "plugins/asset-enhancement-engine/skills/asset-enhancement-engine/tools/bmcp.py": {
+   "source": "engine/tools/bmcp.py",
+   "sha256": "ec4fc302f9edc71cfd8b68e9141337051dfbf1f43b0e69fc3b2e4ea06483803c",
+   "source_sha256": "ec4fc302f9edc71cfd8b68e9141337051dfbf1f43b0e69fc3b2e4ea06483803c"
+  },
+  "plugins/asset-enhancement-engine/skills/asset-enhancement-engine/tools/body_measure.py": {
+   "source": "engine/tools/body_measure.py",
+   "sha256": "71fe7173d80370f9c7bed91e5a985eff8179f4d013cea7ba48e7516e31adad34",
+   "source_sha256": "71fe7173d80370f9c7bed91e5a985eff8179f4d013cea7ba48e7516e31adad34"
+  },
+  "plugins/asset-enhancement-engine/skills/asset-enhancement-engine/tools/build_all.sh": {
+   "source": "engine/tools/build_all.sh",
+   "sha256": "9abd324d35a5302459e0750392b98865f3ac43d5a977715be918f9b637727bb7",
+   "source_sha256": "9abd324d35a5302459e0750392b98865f3ac43d5a977715be918f9b637727bb7"
+  },
+  "plugins/asset-enhancement-engine/skills/asset-enhancement-engine/tools/build_base_torso.py": {
+   "source": "engine/tools/build_base_torso.py",
+   "sha256": "f07434d7ce6b25b0fd56190ec4f893edbca5e1eda0318727108f270fbc23e16d",
+   "source_sha256": "f07434d7ce6b25b0fd56190ec4f893edbca5e1eda0318727108f270fbc23e16d"
+  },
+  "plugins/asset-enhancement-engine/skills/asset-enhancement-engine/tools/checkpoint.py": {
+   "source": "engine/tools/checkpoint.py",
+   "sha256": "93c36cce22919b5ede6f1cda02117941dc96570b13428b04360878a09340d3e8",
+   "source_sha256": "93c36cce22919b5ede6f1cda02117941dc96570b13428b04360878a09340d3e8"
+  },
+  "plugins/asset-enhancement-engine/skills/asset-enhancement-engine/tools/class_template_fetch.py": {
+   "source": "engine/tools/class_template_fetch.py",
+   "sha256": "acb502cdb5109e3365f1f8be699dbc084b3e5832cf9b6186566a1646af79cd94",
+   "source_sha256": "acb502cdb5109e3365f1f8be699dbc084b3e5832cf9b6186566a1646af79cd94"
+  },
+  "plugins/asset-enhancement-engine/skills/asset-enhancement-engine/tools/class_template_npz.py": {
+   "source": "engine/tools/class_template_npz.py",
+   "sha256": "8a9796b265efb5199ea4054c52ee816946033e6a0b16b71c97ed3e9f62fae469",
+   "source_sha256": "8a9796b265efb5199ea4054c52ee816946033e6a0b16b71c97ed3e9f62fae469"
+  },
+  "plugins/asset-enhancement-engine/skills/asset-enhancement-engine/tools/class_template_proof.py": {
+   "source": "engine/tools/class_template_proof.py",
+   "sha256": "f1d6ae5252b0333aa390d0aa1ece1e1863213d647808d6ebc7a1f5b8f849c1c6",
+   "source_sha256": "f1d6ae5252b0333aa390d0aa1ece1e1863213d647808d6ebc7a1f5b8f849c1c6"
+  },
+  "plugins/asset-enhancement-engine/skills/asset-enhancement-engine/tools/compare.py": {
+   "source": "engine/tools/compare.py",
+   "sha256": "08a23ef0d4e68b6d5238af9b3cc09be7e68cecefacc25269d7d1ca8764db60a8",
+   "source_sha256": "08a23ef0d4e68b6d5238af9b3cc09be7e68cecefacc25269d7d1ca8764db60a8"
+  },
+  "plugins/asset-enhancement-engine/skills/asset-enhancement-engine/tools/contact_crease.py": {
+   "source": "engine/tools/contact_crease.py",
+   "sha256": "c03b2d0a3cbfcb2f7f756534cfb0c6563a10b76e7d8738029d5354dc197a5b6a",
+   "source_sha256": "c03b2d0a3cbfcb2f7f756534cfb0c6563a10b76e7d8738029d5354dc197a5b6a"
+  },
+  "plugins/asset-enhancement-engine/skills/asset-enhancement-engine/tools/cut_patches.py": {
+   "source": "engine/tools/cut_patches.py",
+   "sha256": "bf11d19284835e40e6e19592c8c1a18d6aad740c6aeba45c5735800453c39b4e",
+   "source_sha256": "bf11d19284835e40e6e19592c8c1a18d6aad740c6aeba45c5735800453c39b4e"
+  },
+  "plugins/asset-enhancement-engine/skills/asset-enhancement-engine/tools/cycle.sh": {
+   "source": "engine/tools/cycle.sh",
+   "sha256": "3236a369528d080bff5fd0d43c9a867a24b07e58d4aa06b72a8e303045607e61",
+   "source_sha256": "3236a369528d080bff5fd0d43c9a867a24b07e58d4aa06b72a8e303045607e61"
+  },
+  "plugins/asset-enhancement-engine/skills/asset-enhancement-engine/tools/diff_parts.py": {
+   "source": "engine/tools/diff_parts.py",
+   "sha256": "4ae2ebe588f8eca220045b27f056027acbeaf03a50e72e60511d443a50db1f9c",
+   "source_sha256": "4ae2ebe588f8eca220045b27f056027acbeaf03a50e72e60511d443a50db1f9c"
+  },
+  "plugins/asset-enhancement-engine/skills/asset-enhancement-engine/tools/eevee_outputs.py": {
+   "source": "engine/tools/eevee_outputs.py",
+   "sha256": "caad6f357619e6630e8edf9cbaf355b4a0b9d82811762cd68ad28380d409494a",
+   "source_sha256": "caad6f357619e6630e8edf9cbaf355b4a0b9d82811762cd68ad28380d409494a"
+  },
+  "plugins/asset-enhancement-engine/skills/asset-enhancement-engine/tools/face_views.py": {
+   "source": "engine/tools/face_views.py",
+   "sha256": "a8ac99c51eb90f10017f2d6b379c0e2921c6e71d1526a952d2638a19336f4c68",
+   "source_sha256": "a8ac99c51eb90f10017f2d6b379c0e2921c6e71d1526a952d2638a19336f4c68"
+  },
+  "plugins/asset-enhancement-engine/skills/asset-enhancement-engine/tools/facet_trace.py": {
+   "source": "engine/tools/facet_trace.py",
+   "sha256": "bddc363f57c935e535aaf7795132ac627ac29cbfa65c2e0bde1e42f6b1292d30",
+   "source_sha256": "bddc363f57c935e535aaf7795132ac627ac29cbfa65c2e0bde1e42f6b1292d30"
+  },
+  "plugins/asset-enhancement-engine/skills/asset-enhancement-engine/tools/feature_smooth.py": {
+   "source": "engine/tools/feature_smooth.py",
+   "sha256": "a9504f380a80443e7f2f276f53df81a08303258ddcbe64fe0a16d14ac299ac0b",
+   "source_sha256": "a9504f380a80443e7f2f276f53df81a08303258ddcbe64fe0a16d14ac299ac0b"
+  },
+  "plugins/asset-enhancement-engine/skills/asset-enhancement-engine/tools/fetch_refs.py": {
+   "source": "engine/tools/fetch_refs.py",
+   "sha256": "33e4f4ab3992b4dfbadcc6767896934f499973441a2d89a745eabb4f15149b47",
+   "source_sha256": "33e4f4ab3992b4dfbadcc6767896934f499973441a2d89a745eabb4f15149b47"
+  },
+  "plugins/asset-enhancement-engine/skills/asset-enhancement-engine/tools/field_probe.py": {
+   "source": "engine/tools/field_probe.py",
+   "sha256": "6ffc5fbfe5ac7c7e1bcdaee0be3dd58900708a73c8c0a703945b1b1c863f3a1e",
+   "source_sha256": "6ffc5fbfe5ac7c7e1bcdaee0be3dd58900708a73c8c0a703945b1b1c863f3a1e"
+  },
+  "plugins/asset-enhancement-engine/skills/asset-enhancement-engine/tools/fit_camera.py": {
+   "source": "engine/tools/fit_camera.py",
+   "sha256": "bb3ae49d7c520861b2cde5063e8d70618cf48a7f246bd4d436fd3e6cbda2decf",
+   "source_sha256": "bb3ae49d7c520861b2cde5063e8d70618cf48a7f246bd4d436fd3e6cbda2decf"
+  },
+  "plugins/asset-enhancement-engine/skills/asset-enhancement-engine/tools/fit_section.py": {
+   "source": "engine/tools/fit_section.py",
+   "sha256": "1b4a94135433f9f2bd5b3b3bdb164347ee759d16e881f9165bd729fec1da929c",
+   "source_sha256": "1b4a94135433f9f2bd5b3b3bdb164347ee759d16e881f9165bd729fec1da929c"
+  },
+  "plugins/asset-enhancement-engine/skills/asset-enhancement-engine/tools/fit_to_reference.py": {
+   "source": "engine/tools/fit_to_reference.py",
+   "sha256": "2b9b7b75c8ba65daa3f3eb79fc0f208debc7920a45ca69c47a5f129ebfdbf39d",
+   "source_sha256": "2b9b7b75c8ba65daa3f3eb79fc0f208debc7920a45ca69c47a5f129ebfdbf39d"
+  },
+  "plugins/asset-enhancement-engine/skills/asset-enhancement-engine/tools/fit_tracts.py": {
+   "source": "engine/tools/fit_tracts.py",
+   "sha256": "a393a2508dccb52e42d965c94eb5acefa890c6ee85919eca0309dada43bfaa46",
+   "source_sha256": "a393a2508dccb52e42d965c94eb5acefa890c6ee85919eca0309dada43bfaa46"
+  },
+  "plugins/asset-enhancement-engine/skills/asset-enhancement-engine/tools/frame.py": {
+   "source": "engine/tools/frame.py",
+   "sha256": "de3fd67ea4cc54ceeb87b1e7dcd24246ab32b2a964e68d9a5e4951fc6ccbac50",
+   "source_sha256": "de3fd67ea4cc54ceeb87b1e7dcd24246ab32b2a964e68d9a5e4951fc6ccbac50"
+  },
+  "plugins/asset-enhancement-engine/skills/asset-enhancement-engine/tools/frame_fit.py": {
+   "source": "engine/tools/frame_fit.py",
+   "sha256": "a12ba6654dc45447c22241734e151961fd33353b6f5c3b3670f6abad93891f41",
+   "source_sha256": "a12ba6654dc45447c22241734e151961fd33353b6f5c3b3670f6abad93891f41"
+  },
+  "plugins/asset-enhancement-engine/skills/asset-enhancement-engine/tools/frame_show.py": {
+   "source": "engine/tools/frame_show.py",
+   "sha256": "90ae78379701e8cc68b5159c90268a499a6ef23efbbf27584a7ac60ca7c25809",
+   "source_sha256": "90ae78379701e8cc68b5159c90268a499a6ef23efbbf27584a7ac60ca7c25809"
+  },
+  "plugins/asset-enhancement-engine/skills/asset-enhancement-engine/tools/grid_crop.py": {
+   "source": "engine/tools/grid_crop.py",
+   "sha256": "598243f58e277c76e9ccd6efdb699c6e87fe436cbbac9cbc7779c533e3029910",
+   "source_sha256": "598243f58e277c76e9ccd6efdb699c6e87fe436cbbac9cbc7779c533e3029910"
+  },
+  "plugins/asset-enhancement-engine/skills/asset-enhancement-engine/tools/groom.py": {
+   "source": "engine/tools/groom.py",
+   "sha256": "cd5059e95b4e7db7eca2b7a55775e4c3e1ca7286dc7039176020681ddb70a0aa",
+   "source_sha256": "cd5059e95b4e7db7eca2b7a55775e4c3e1ca7286dc7039176020681ddb70a0aa"
+  },
+  "plugins/asset-enhancement-engine/skills/asset-enhancement-engine/tools/hair_field.py": {
+   "source": "engine/tools/hair_field.py",
+   "sha256": "56e7b4e38d6bf1020cf7b429b983fb322122def25a3c1109a4c2fc3853209af5",
+   "source_sha256": "56e7b4e38d6bf1020cf7b429b983fb322122def25a3c1109a4c2fc3853209af5"
+  },
+  "plugins/asset-enhancement-engine/skills/asset-enhancement-engine/tools/hair_tracts.py": {
+   "source": "engine/tools/hair_tracts.py",
+   "sha256": "d0618a1fb358023a3b54f5f58c4ef68f62c875502b7a8f08ab32e562d918d2df",
+   "source_sha256": "d0618a1fb358023a3b54f5f58c4ef68f62c875502b7a8f08ab32e562d918d2df"
+  },
+  "plugins/asset-enhancement-engine/skills/asset-enhancement-engine/tools/heavy_lock.py": {
+   "source": "engine/tools/heavy_lock.py",
+   "sha256": "7b5b144b4973838ff4210ae64978e17e1dbe0e84c92707705ea5eff2b4e86ba3",
+   "source_sha256": "7b5b144b4973838ff4210ae64978e17e1dbe0e84c92707705ea5eff2b4e86ba3"
+  },
+  "plugins/asset-enhancement-engine/skills/asset-enhancement-engine/tools/import_mesh.py": {
+   "source": "engine/tools/import_mesh.py",
+   "sha256": "bcbf695408af99722248a1b155ca1e7bfb96c9f90ba77a8efc9d4ec7763c0335",
+   "source_sha256": "bcbf695408af99722248a1b155ca1e7bfb96c9f90ba77a8efc9d4ec7763c0335"
+  },
+  "plugins/asset-enhancement-engine/skills/asset-enhancement-engine/tools/lab_profile.py": {
+   "source": "engine/tools/lab_profile.py",
+   "sha256": "16ed15465907a208518571c8db811e8b3170b6d8bf154e1ddc603956ff97f060",
+   "source_sha256": "16ed15465907a208518571c8db811e8b3170b6d8bf154e1ddc603956ff97f060"
+  },
+  "plugins/asset-enhancement-engine/skills/asset-enhancement-engine/tools/lab_view.py": {
+   "source": "engine/tools/lab_view.py",
+   "sha256": "7cae560de5d67f31fdef5338c8fd78265cf71779772c3be463a50da52ea26935",
+   "source_sha256": "7cae560de5d67f31fdef5338c8fd78265cf71779772c3be463a50da52ea26935"
+  },
+  "plugins/asset-enhancement-engine/skills/asset-enhancement-engine/tools/language.py": {
+   "source": "engine/tools/language.py",
+   "sha256": "2055d4a6fc297dcb62449d3dae4490d48d1b2248eee4261bd8dcf5d3559b0017",
+   "source_sha256": "2055d4a6fc297dcb62449d3dae4490d48d1b2248eee4261bd8dcf5d3559b0017"
+  },
+  "plugins/asset-enhancement-engine/skills/asset-enhancement-engine/tools/light_match.py": {
+   "source": "engine/tools/light_match.py",
+   "sha256": "ca6d136c019c9a255c2c71e1a764ca145e5a3b60d29e33eeb68e6965ebab387c",
+   "source_sha256": "ca6d136c019c9a255c2c71e1a764ca145e5a3b60d29e33eeb68e6965ebab387c"
+  },
+  "plugins/asset-enhancement-engine/skills/asset-enhancement-engine/tools/line_map.py": {
+   "source": "engine/tools/line_map.py",
+   "sha256": "2baa5dacfa0186547ef9074635a94696a49df8c59bd23fff471193203db2d497",
+   "source_sha256": "2baa5dacfa0186547ef9074635a94696a49df8c59bd23fff471193203db2d497"
+  },
+  "plugins/asset-enhancement-engine/skills/asset-enhancement-engine/tools/lip_seal.py": {
+   "source": "engine/tools/lip_seal.py",
+   "sha256": "ef8fbd724c0776f73fd5a332680dbb97d4c23261d2a28a0fe6715c44a76399f0",
+   "source_sha256": "ef8fbd724c0776f73fd5a332680dbb97d4c23261d2a28a0fe6715c44a76399f0"
+  },
+  "plugins/asset-enhancement-engine/skills/asset-enhancement-engine/tools/materials.py": {
+   "source": "engine/tools/materials.py",
+   "sha256": "fa2e9a0ff2d6b798c374e67a2a31ad9403ed76a1deb52e93ef15ed68d6562f91",
+   "source_sha256": "fa2e9a0ff2d6b798c374e67a2a31ad9403ed76a1deb52e93ef15ed68d6562f91"
+  },
+  "plugins/asset-enhancement-engine/skills/asset-enhancement-engine/tools/mesh_check.py": {
+   "source": "engine/tools/mesh_check.py",
+   "sha256": "ac6de1620d6d15b43a1b387d12caa3c68d8abd06f253e4b6175108ce16f72cd5",
+   "source_sha256": "ac6de1620d6d15b43a1b387d12caa3c68d8abd06f253e4b6175108ce16f72cd5"
+  },
+  "plugins/asset-enhancement-engine/skills/asset-enhancement-engine/tools/mesh_cut.py": {
+   "source": "engine/tools/mesh_cut.py",
+   "sha256": "c18b03b87f5ab64922ca244e3255cd8f87b83a152d92ddcdd46043ea96edb93d",
+   "source_sha256": "c18b03b87f5ab64922ca244e3255cd8f87b83a152d92ddcdd46043ea96edb93d"
+  },
+  "plugins/asset-enhancement-engine/skills/asset-enhancement-engine/tools/mouth_geom.py": {
+   "source": "engine/tools/mouth_geom.py",
+   "sha256": "48c9c40a404df1804a163b59f6962fed8a0f4a5d0dfb3ef85a950ee220edd509",
+   "source_sha256": "48c9c40a404df1804a163b59f6962fed8a0f4a5d0dfb3ef85a950ee220edd509"
+  },
+  "plugins/asset-enhancement-engine/skills/asset-enhancement-engine/tools/mouth_open_check.py": {
+   "source": "engine/tools/mouth_open_check.py",
+   "sha256": "35b523ada2f366bfc1e6d6863de48e3cb3d6979cdedf48d4c049bdd81a243cfc",
+   "source_sha256": "35b523ada2f366bfc1e6d6863de48e3cb3d6979cdedf48d4c049bdd81a243cfc"
+  },
+  "plugins/asset-enhancement-engine/skills/asset-enhancement-engine/tools/oral_bake.py": {
+   "source": "engine/tools/oral_bake.py",
+   "sha256": "0ce1e0a3cdea7dd60ddb4e123f2bf64834b3462b057596bf6fd574a6dba69d97",
+   "source_sha256": "0ce1e0a3cdea7dd60ddb4e123f2bf64834b3462b057596bf6fd574a6dba69d97"
+  },
+  "plugins/asset-enhancement-engine/skills/asset-enhancement-engine/tools/outline_candidates.py": {
+   "source": "engine/tools/outline_candidates.py",
+   "sha256": "0922e7fcad962a9def6f807b820df13386ea26789c3ab7b84f68c5dcb298173e",
+   "source_sha256": "0922e7fcad962a9def6f807b820df13386ea26789c3ab7b84f68c5dcb298173e"
+  },
+  "plugins/asset-enhancement-engine/skills/asset-enhancement-engine/tools/part_frame.py": {
+   "source": "engine/tools/part_frame.py",
+   "sha256": "668dd88d7ecc18d412bb89ad76fb00864fa7b55c7c4ee0ce274ae3d45e8b5400",
+   "source_sha256": "668dd88d7ecc18d412bb89ad76fb00864fa7b55c7c4ee0ce274ae3d45e8b5400"
+  },
+  "plugins/asset-enhancement-engine/skills/asset-enhancement-engine/tools/part_frame_view.html": {
+   "source": "engine/tools/part_frame_view.html",
+   "sha256": "a9cb8e50e70fa41515577208df988b3b00e1554a6e233182c98de906fe098555",
+   "source_sha256": "a9cb8e50e70fa41515577208df988b3b00e1554a6e233182c98de906fe098555"
+  },
+  "plugins/asset-enhancement-engine/skills/asset-enhancement-engine/tools/part_lab.py": {
+   "source": "engine/tools/part_lab.py",
+   "sha256": "554e003787a81c8856f8eeebd7c1ada58ad65db497c191f09444728d73c3b2cd",
+   "source_sha256": "554e003787a81c8856f8eeebd7c1ada58ad65db497c191f09444728d73c3b2cd"
+  },
+  "plugins/asset-enhancement-engine/skills/asset-enhancement-engine/tools/photo_fit.py": {
+   "source": "engine/tools/photo_fit.py",
+   "sha256": "db396029373c37ac5962566317f6da7dc3f8f2d3466ff439c3eabe95c5ca4b98",
+   "source_sha256": "db396029373c37ac5962566317f6da7dc3f8f2d3466ff439c3eabe95c5ca4b98"
+  },
+  "plugins/asset-enhancement-engine/skills/asset-enhancement-engine/tools/photo_flow.py": {
+   "source": "engine/tools/photo_flow.py",
+   "sha256": "5b9685e9f2cc996c22e2c9aa627493ebd4f326035ef4efa157b27c21d62b46f5",
+   "source_sha256": "5b9685e9f2cc996c22e2c9aa627493ebd4f326035ef4efa157b27c21d62b46f5"
+  },
+  "plugins/asset-enhancement-engine/skills/asset-enhancement-engine/tools/photo_markings.py": {
+   "source": "engine/tools/photo_markings.py",
+   "sha256": "b6667b7f6d1e6b2a53643614162ae80638fea19fc461d2bb2545d35476749420",
+   "source_sha256": "b6667b7f6d1e6b2a53643614162ae80638fea19fc461d2bb2545d35476749420"
+  },
+  "plugins/asset-enhancement-engine/skills/asset-enhancement-engine/tools/plate_hollow.py": {
+   "source": "engine/tools/plate_hollow.py",
+   "sha256": "3ed69f28ea9ca08fd671fe431228969698e3d2b17c398efafc89f03267c1efcb",
+   "source_sha256": "3ed69f28ea9ca08fd671fe431228969698e3d2b17c398efafc89f03267c1efcb"
+  },
+  "plugins/asset-enhancement-engine/skills/asset-enhancement-engine/tools/pose_study.py": {
+   "source": "engine/tools/pose_study.py",
+   "sha256": "241ebc3546679158cd4f478564ab832e42bbd7f51be1b008c84bfb26cfe5fa70",
+   "source_sha256": "241ebc3546679158cd4f478564ab832e42bbd7f51be1b008c84bfb26cfe5fa70"
+  },
+  "plugins/asset-enhancement-engine/skills/asset-enhancement-engine/tools/pose_study_bl.py": {
+   "source": "engine/tools/pose_study_bl.py",
+   "sha256": "168c7bd2fa628bb841eb63473880d925703a36bb4492d45d839fabe88742c9f4",
+   "source_sha256": "168c7bd2fa628bb841eb63473880d925703a36bb4492d45d839fabe88742c9f4"
+  },
+  "plugins/asset-enhancement-engine/skills/asset-enhancement-engine/tools/pose_test.py": {
+   "source": "engine/tools/pose_test.py",
+   "sha256": "924efc57c6cd24d3257d6842bf80ecfa75295723651a7a91fd2ad8f91448d56a",
+   "source_sha256": "924efc57c6cd24d3257d6842bf80ecfa75295723651a7a91fd2ad8f91448d56a"
+  },
+  "plugins/asset-enhancement-engine/skills/asset-enhancement-engine/tools/posed_correctives.py": {
+   "source": "engine/tools/posed_correctives.py",
+   "sha256": "47071dee895ec2ebcc3c2c27d5b14e2b6f2d1e06a878de8301514bf4dbe54213",
+   "source_sha256": "47071dee895ec2ebcc3c2c27d5b14e2b6f2d1e06a878de8301514bf4dbe54213"
+  },
+  "plugins/asset-enhancement-engine/skills/asset-enhancement-engine/tools/preview_and_crops.py": {
+   "source": "engine/tools/preview_and_crops.py",
+   "sha256": "ec7fbcb67656499d1ac4cb0b79a3d6ef98cb2102f277436aa1eba5365f4bed2f",
+   "source_sha256": "ec7fbcb67656499d1ac4cb0b79a3d6ef98cb2102f277436aa1eba5365f4bed2f"
+  },
+  "plugins/asset-enhancement-engine/skills/asset-enhancement-engine/tools/preview_img.py": {
+   "source": "engine/tools/preview_img.py",
+   "sha256": "fa5e449de8e8bf63bf6c22d6df9bde18e32b25bb13a54d4f3d0285373634adbf",
+   "source_sha256": "fa5e449de8e8bf63bf6c22d6df9bde18e32b25bb13a54d4f3d0285373634adbf"
+  },
+  "plugins/asset-enhancement-engine/skills/asset-enhancement-engine/tools/probe.py": {
+   "source": "engine/tools/probe.py",
+   "sha256": "8544d0da868fae6a6fd0f6c5354a3ce7476b91111b676025c673341710b5e614",
+   "source_sha256": "8544d0da868fae6a6fd0f6c5354a3ce7476b91111b676025c673341710b5e614"
+  },
+  "plugins/asset-enhancement-engine/skills/asset-enhancement-engine/tools/production_mesh.py": {
+   "source": "engine/tools/production_mesh.py",
+   "sha256": "64424ee86dfb19b95fbeacfa46a1158ac729d54fc94ad0202246f3a918d1f17d",
+   "source_sha256": "64424ee86dfb19b95fbeacfa46a1158ac729d54fc94ad0202246f3a918d1f17d"
+  },
+  "plugins/asset-enhancement-engine/skills/asset-enhancement-engine/tools/records/cost_ledger.py": {
+   "source": "engine/tools/records/cost_ledger.py",
+   "sha256": "54f45374f7fea5461d4729818c25ffa2909504a60b3764a5a82e97f2cc9b24e6",
+   "source_sha256": "09c8e32314e57cd0103da9ee45212c33aff6fd5f4b039e4ac9b6e43060e77ace"
+  },
+  "plugins/asset-enhancement-engine/skills/asset-enhancement-engine/tools/records/transcript_record.py": {
+   "source": "engine/tools/records/transcript_record.py",
+   "sha256": "a89c8e11bcf9b0724e2a0ef464c785ef83374e9b465f7321fbb597c84d153beb",
+   "source_sha256": "4d8a1ac44b6e0d670b0b3475828edbdbd25bdae2f68bd9d0e0dc5c2679799df6"
+  },
+  "plugins/asset-enhancement-engine/skills/asset-enhancement-engine/tools/ref_align.py": {
+   "source": "engine/tools/ref_align.py",
+   "sha256": "70b1f240fe8199eebe4856a53695cbc6248ff0b6cc65dee8a2dfbeff701fc3a0",
+   "source_sha256": "70b1f240fe8199eebe4856a53695cbc6248ff0b6cc65dee8a2dfbeff701fc3a0"
+  },
+  "plugins/asset-enhancement-engine/skills/asset-enhancement-engine/tools/ref_mask.py": {
+   "source": "engine/tools/ref_mask.py",
+   "sha256": "cc7945f2b03ecec9aa09651c12075be89fc6e89c0ef873ef0cabd98ba712b082",
+   "source_sha256": "cc7945f2b03ecec9aa09651c12075be89fc6e89c0ef873ef0cabd98ba712b082"
+  },
+  "plugins/asset-enhancement-engine/skills/asset-enhancement-engine/tools/ref_measure.py": {
+   "source": "engine/tools/ref_measure.py",
+   "sha256": "c0cae173bccb19080341ab3f5948fff3cb44b0abc4cacccbacb3af98958fc940",
+   "source_sha256": "c0cae173bccb19080341ab3f5948fff3cb44b0abc4cacccbacb3af98958fc940"
+  },
+  "plugins/asset-enhancement-engine/skills/asset-enhancement-engine/tools/render_preview.py": {
+   "source": "engine/tools/render_preview.py",
+   "sha256": "7625a8b4b85818a914226640d554f4d44bc29ccdf864708eea4ac4e671b54af9",
+   "source_sha256": "7625a8b4b85818a914226640d554f4d44bc29ccdf864708eea4ac4e671b54af9"
+  },
+  "plugins/asset-enhancement-engine/skills/asset-enhancement-engine/tools/render_relief_bl.py": {
+   "source": "engine/tools/render_relief_bl.py",
+   "sha256": "1ba66a2a359e781359d9894157f6918b94660ca9e2cb5739110979bbe040bc1a",
+   "source_sha256": "1ba66a2a359e781359d9894157f6918b94660ca9e2cb5739110979bbe040bc1a"
+  },
+  "plugins/asset-enhancement-engine/skills/asset-enhancement-engine/tools/rig.py": {
+   "source": "engine/tools/rig.py",
+   "sha256": "2dfb2f5299d26fa0dd2a3ee224f63af6be70b356f91389784325268fed938f1d",
+   "source_sha256": "2dfb2f5299d26fa0dd2a3ee224f63af6be70b356f91389784325268fed938f1d"
+  },
+  "plugins/asset-enhancement-engine/skills/asset-enhancement-engine/tools/rodin_ref.py": {
+   "source": "engine/tools/rodin_ref.py",
+   "sha256": "b709089ad2181db3dd2f3cbf0ba3333fd4f3a8e52eb5a970e7d3a510c522209d",
+   "source_sha256": "b709089ad2181db3dd2f3cbf0ba3333fd4f3a8e52eb5a970e7d3a510c522209d"
+  },
+  "plugins/asset-enhancement-engine/skills/asset-enhancement-engine/tools/sdf_core.py": {
+   "source": "engine/tools/sdf_core.py",
+   "sha256": "859d0a9f024223505ab8ded4cc104aa7c1c9bb5d0028456864b2705c77216a1c",
+   "source_sha256": "859d0a9f024223505ab8ded4cc104aa7c1c9bb5d0028456864b2705c77216a1c"
+  },
+  "plugins/asset-enhancement-engine/skills/asset-enhancement-engine/tools/section_curvature.py": {
+   "source": "engine/tools/section_curvature.py",
+   "sha256": "1e5ed94cb8bb1f917b798379270ba4b648ed646de886f795f9044f579d629f58",
+   "source_sha256": "1e5ed94cb8bb1f917b798379270ba4b648ed646de886f795f9044f579d629f58"
+  },
+  "plugins/asset-enhancement-engine/skills/asset-enhancement-engine/tools/set_camera.py": {
+   "source": "engine/tools/set_camera.py",
+   "sha256": "6eb40cd9660f112b44dd4f0dd68243c2a4bc6d649bf5a38bd376695fc1c98c85",
+   "source_sha256": "6eb40cd9660f112b44dd4f0dd68243c2a4bc6d649bf5a38bd376695fc1c98c85"
+  },
+  "plugins/asset-enhancement-engine/skills/asset-enhancement-engine/tools/sfs_relief.py": {
+   "source": "engine/tools/sfs_relief.py",
+   "sha256": "4829a36296b86972965e199988a578a51d660be1835c0f9b0018603bd984b284",
+   "source_sha256": "4829a36296b86972965e199988a578a51d660be1835c0f9b0018603bd984b284"
+  },
+  "plugins/asset-enhancement-engine/skills/asset-enhancement-engine/tools/shading_albedo.py": {
+   "source": "engine/tools/shading_albedo.py",
+   "sha256": "88a035eb14581ff1bc9ed69a84ef352d02ea9a8accabc57da4b6a29d603ef8ae",
+   "source_sha256": "88a035eb14581ff1bc9ed69a84ef352d02ea9a8accabc57da4b6a29d603ef8ae"
+  },
+  "plugins/asset-enhancement-engine/skills/asset-enhancement-engine/tools/skin_feature.py": {
+   "source": "engine/tools/skin_feature.py",
+   "sha256": "167a826e1fc7d7eb3798a4db5685b608e69744a42c2720c76f1148d96cfa98d2",
+   "source_sha256": "167a826e1fc7d7eb3798a4db5685b608e69744a42c2720c76f1148d96cfa98d2"
+  },
+  "plugins/asset-enhancement-engine/skills/asset-enhancement-engine/tools/skull_build.py": {
+   "source": "engine/tools/skull_build.py",
+   "sha256": "5b4920ee1479722d726ca9e691ad799a7503618b0fbb47a64a49bc044024d55d",
+   "source_sha256": "5b4920ee1479722d726ca9e691ad799a7503618b0fbb47a64a49bc044024d55d"
+  },
+  "plugins/asset-enhancement-engine/skills/asset-enhancement-engine/tools/skull_fit_sections.py": {
+   "source": "engine/tools/skull_fit_sections.py",
+   "sha256": "24c0cbfd88e65b902ff6a91736c0b904065e9bab23342a7f89ccfe808ca92c1c",
+   "source_sha256": "24c0cbfd88e65b902ff6a91736c0b904065e9bab23342a7f89ccfe808ca92c1c"
+  },
+  "plugins/asset-enhancement-engine/skills/asset-enhancement-engine/tools/skull_place.py": {
+   "source": "engine/tools/skull_place.py",
+   "sha256": "a44001e06a71b4af0fe9b423827d079f60228ca8a554848f63b33e5c2643a74d",
+   "source_sha256": "a44001e06a71b4af0fe9b423827d079f60228ca8a554848f63b33e5c2643a74d"
+  },
+  "plugins/asset-enhancement-engine/skills/asset-enhancement-engine/tools/skull_show.py": {
+   "source": "engine/tools/skull_show.py",
+   "sha256": "247064502a4444140079dd72924ac5cc83e312453ee66029925b2b17151c461e",
+   "source_sha256": "247064502a4444140079dd72924ac5cc83e312453ee66029925b2b17151c461e"
+  },
+  "plugins/asset-enhancement-engine/skills/asset-enhancement-engine/tools/slice_loft.py": {
+   "source": "engine/tools/slice_loft.py",
+   "sha256": "515867037317a6920305f9a1189be82a572040bf336cd04e11c9c46f7893524a",
+   "source_sha256": "515867037317a6920305f9a1189be82a572040bf336cd04e11c9c46f7893524a"
+  },
+  "plugins/asset-enhancement-engine/skills/asset-enhancement-engine/tools/stack.py": {
+   "source": "engine/tools/stack.py",
+   "sha256": "d7dd1be4dd69b8c4d6c5efb1e5a10cc297878c753dc143763e651d901ffb7245",
+   "source_sha256": "d7dd1be4dd69b8c4d6c5efb1e5a10cc297878c753dc143763e651d901ffb7245"
+  },
+  "plugins/asset-enhancement-engine/skills/asset-enhancement-engine/tools/studio_photo_fit.py": {
+   "source": "engine/tools/studio_photo_fit.py",
+   "sha256": "df43ebbf102799455b719bb7299bca2bcd05414eae2759c55c2a64898703f5cb",
+   "source_sha256": "df43ebbf102799455b719bb7299bca2bcd05414eae2759c55c2a64898703f5cb"
+  },
+  "plugins/asset-enhancement-engine/skills/asset-enhancement-engine/tools/surface_analysis.py": {
+   "source": "engine/tools/surface_analysis.py",
+   "sha256": "f2054571a39156cfd0d2c9bd9063b03e88b86569285be3683b7d3163828c94c4",
+   "source_sha256": "f2054571a39156cfd0d2c9bd9063b03e88b86569285be3683b7d3163828c94c4"
+  },
+  "plugins/asset-enhancement-engine/skills/asset-enhancement-engine/tools/surface_fairing.py": {
+   "source": "engine/tools/surface_fairing.py",
+   "sha256": "03f8addcc7bc3ab14c5f57e5e1acfa22acd89e50d24bb7839d53c568f5310a68",
+   "source_sha256": "03f8addcc7bc3ab14c5f57e5e1acfa22acd89e50d24bb7839d53c568f5310a68"
+  },
+  "plugins/asset-enhancement-engine/skills/asset-enhancement-engine/tools/surface_scan.py": {
+   "source": "engine/tools/surface_scan.py",
+   "sha256": "1f4213dd19b3b5586a57670c2a95d48c8577cc2c2fdf5788d487c66506e14bda",
+   "source_sha256": "1f4213dd19b3b5586a57670c2a95d48c8577cc2c2fdf5788d487c66506e14bda"
+  },
+  "plugins/asset-enhancement-engine/skills/asset-enhancement-engine/tools/token_ledger.py": {
+   "source": "engine/tools/token_ledger.py",
+   "sha256": "4f99de83321cb7edbe56951b823e88bb76aca0646614fb45bdd0684d2dc4dbbb",
+   "source_sha256": "1729e987a1d6891c0a083913f381717fbe123bb17c2a49e1ab42838d545f7485"
+  },
+  "plugins/asset-enhancement-engine/skills/asset-enhancement-engine/tools/tone_match.py": {
+   "source": "engine/tools/tone_match.py",
+   "sha256": "a9442b6c0cc9c2eea3bfeaa1ffd600277eb2e7a6cfce88006cb863842734ff53",
+   "source_sha256": "a9442b6c0cc9c2eea3bfeaa1ffd600277eb2e7a6cfce88006cb863842734ff53"
+  },
+  "plugins/asset-enhancement-engine/skills/asset-enhancement-engine/tools/trellis_space.py": {
+   "source": "engine/tools/trellis_space.py",
+   "sha256": "e63e1ad013438660a19062a0c5e99ff52f672ba115c361011e29360a6eab8c13",
+   "source_sha256": "e63e1ad013438660a19062a0c5e99ff52f672ba115c361011e29360a6eab8c13"
+  },
+  "plugins/asset-enhancement-engine/skills/asset-enhancement-engine/tools/vendor.py": {
+   "source": "engine/tools/vendor.py",
+   "sha256": "0e96a8c3101bae4194b59ab3885a4dcc95c121c20a8003cd4f0661af5c433b19",
+   "source_sha256": "0e96a8c3101bae4194b59ab3885a4dcc95c121c20a8003cd4f0661af5c433b19"
+  },
+  "plugins/asset-enhancement-engine/skills/asset-enhancement-engine/tools/view_hull.py": {
+   "source": "engine/tools/view_hull.py",
+   "sha256": "6e00800a712f5b1dc203adc8b0626f16909552579d7501fe816f2b6c37be4902",
+   "source_sha256": "6e00800a712f5b1dc203adc8b0626f16909552579d7501fe816f2b6c37be4902"
+  },
+  "plugins/asset-enhancement-engine/skills/asset-enhancement-engine/tools/views.py": {
+   "source": "engine/tools/views.py",
+   "sha256": "f2971ecdeaf4faa40fec6f33b4b48d7b40825a6954265eb88fbcdf361efc27dd",
+   "source_sha256": "f2971ecdeaf4faa40fec6f33b4b48d7b40825a6954265eb88fbcdf361efc27dd"
+  },
+  "plugins/asset-enhancement-engine/skills/asset-enhancement-engine/tools/zbuffer_numba.py": {
+   "source": "engine/tools/zbuffer_numba.py",
+   "sha256": "76999144da48a250361c3043111f6dd7a429e31b94ac422c8f0c63ec653e0e96",
+   "source_sha256": "76999144da48a250361c3043111f6dd7a429e31b94ac422c8f0c63ec653e0e96"
+  }
+ }
+}

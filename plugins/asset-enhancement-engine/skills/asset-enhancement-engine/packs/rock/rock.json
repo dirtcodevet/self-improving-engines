@@ -1,0 +1,151 @@
+{
+ "what": "ROCK DOMAIN PACK (evidence rank 4, G3) for case rock1: what the rock most likely is, grain, mineral colours, fracture style, edge rounding, and loose-rock 3-D proportions for the UNSEEN back. Written 2026-10-18 by the rock-pack agent. Every value carries source + confidence (G2) and a status label: checked (a proven tool measured it), estimated (sourced or reasoned, not measured), unchecked.",
+ "status": "ESTIMATED overall. Photo measurements are in cases/rock1/pack_evidence/grain_probe.json (tool grain_probe.py; its self-test on planted textures passes on both sides; the held-out downscale test only PARTLY passes, see grain.photo_measured). Nothing here is a 3-D reference; the back stays LABELLED estimated (R6).",
+ "units": "mm unless stated; px = ref.jpg pixels (1728x1152); colours sRGB 0-255 as SEEN (lit, apparent), not albedo",
+ "confidence_scale": "high = measured on the photo with a proven tool, or a stable textbook definition; medium = cited source on this rock family, or a photo read by eye that several cues agree on; low = weak/vendor source, or a cited source on a different rock/setting; estimate = no source, reasoning only, flagged",
+ "scale_link": {
+  "value": "0.70 m largest horizontal extent (the person's decision, NOTES.md 2026-10-18) over a measured silhouette width of 1047 px -> 0.669 mm/px at the rock (ignores perspective: near and far parts differ by a few %)",
+  "source": "NOTES.md decision; pack_evidence/grain_probe.json silhouette_px (x 337-1384)",
+  "status": "estimated (silhouette by threshold L<205; the builder's R1 mask supersedes it)",
+  "caveat": "The real rock's size is unknown. Grain sizes are given two ways: (a) as photographed at the chosen 0.70 m scale, which is what the model must reproduce (R4); (b) the typical natural range for the rock type. A 0.70 m rock of this type would show grains of about 2-6 mm, and the photo at 0.70 m scale shows about 2.5-7 mm, so the chosen scale is plausible."
+ },
+
+ "identification": {
+  "what_i_see": [
+   "Uniformly speckled, medium grey overall, no layering across the whole body (photo, by eye)",
+   "Grains: black/dark grey (about 1/3 of area), white to pale grey (about 1/3), mid grey, and a minority of beige/buff grains; no pink or salmon grains (photo, by eye; k-means in pack_evidence/grain_probe.json gives 5 near-neutral clusters, all with a slight warm cast R-B = 6-8)",
+   "Equigranular-looking texture with no large phenocrysts (photo)",
+   "Angular, blocky body of near-planar faces meeting at sub-angular edges, with re-entrant notches where blocks step back (photo)",
+   "Faint parallel linear streaks on the upper right face (about x 1050-1150, y 200-350): a weak foliation, or fracture-surface ribs (photo, uncertain)"
+  ],
+  "best_reading": {
+   "value": "grey quartz-poor to intermediate plutonic rock: diorite / quartz diorite / granodiorite (salt-and-pepper grey granitoid)",
+   "confidence": "medium-low (0.5)",
+   "why": "White + black speckle with near-neutral grey overall and no pink K-feldspar fits diorite/granodiorite (white plagioclase + black hornblende/biotite). Granite is usually lighter and often pinkish from K-feldspar. Quartz content, the real separator, cannot be judged from a photo.",
+   "sources": [
+    {"url": "https://rockhounding.org/rockhounding-wiki/rocks-metals-minerals-crystals-gemstones/rocks/diorite", "says": "diorite: white to pale grey plagioclase + dark green to black hornblende give the salt-and-pepper look; <5 % visible quartz vs >20 % in granite/granodiorite", "quality": "hobbyist guide, low-medium"},
+    {"url": "https://pubs.usgs.gov/bul/1394h/report.pdf", "says": "granodiorite described as fine to medium grained and medium grey on fresh and weathered surfaces (one mapped body)", "quality": "USGS, medium (one locality)"},
+    {"url": "https://en.wikipedia.org/wiki/Pi%C3%A9gut-Pluviers_Granodiorite", "says": "a granodiorite grey on fresh surfaces, brownish-reddish stain where weathered", "quality": "medium (one pluton)"}
+   ]
+  },
+  "alternatives": [
+   {"value": "grey biotite granite", "confidence": "low (0.25)", "why": "same speckle; would usually show more clear quartz and some pinkish feldspar, none seen"},
+   {"value": "orthogneiss (granitic/dioritic gneiss)", "confidence": "low (0.15)", "why": "only cue is the faint streaking on one face; gneiss shows light/dark bands and aligned micas, which the rest of the body does not", "source": {"url": "https://rockhounding.org/rockhounding-wiki/rocks-metals-minerals-crystals-gemstones/rocks/gneiss", "says": "gneiss = distinct banding, parallel or wavy; uniformly speckled rock is more likely granite; small specimens may not show banding"}},
+   {"value": "other (gabbro is darker; arkose/greywacke)", "confidence": "low (0.10)"}
+  ],
+  "consequence_for_build": "All readings share the build-relevant traits: coarse granular speckle, blocky jointed fracture, granular rough faces. Default grain is ISOTROPIC (estimate); only if the lineation is confirmed (gneiss) add a weak directional anisotropy near the upper right face."
+ },
+
+ "grain": {
+  "classification_definitions": {
+   "value": {"fine_mm": "<1", "medium_mm": "1-5", "coarse_mm": ">5 (upper limit 30-50 by source)"},
+   "source": {"url": "https://faculty.uml.edu/Nelson_Eby/89.506/Assignments/Igneous%20Rock%20Textures.pdf", "says": "fine <1 mm, medium 1-5 mm (sugar to pea), coarse 5 mm-3 cm, very coarse >3 cm"},
+   "confidence": "high (stable textbook definitions)"
+  },
+  "natural_range_for_type_mm": {
+   "value": {"min": 1, "typical": 3, "max": 6},
+   "sources": [
+    {"url": "https://pubs.usgs.gov/bul/1394h/report.pdf", "says": "granodiorite mostly fine to medium grained"},
+    {"url": "https://linkeddata.pid.geoscience.gov.au/collections/sp/items/1840026?f=html", "says": "biotite blocky grains up to ~3 mm, hornblende up to ~2 mm in an Australian granodiorite sample (search summary)"},
+    {"url": "https://corpora.tika.apache.org/base/docs/govdocs1/590/590121.html", "says": "a granodiorite with roughly isometric grains 2-6 mm (search summary; not read in full)"}
+   ],
+   "confidence": "medium-low (locality-dependent; sources describe single intrusions)"
+  },
+  "photo_measured": {
+   "acf_len_px": {"front_block": 1.92, "right_face": 1.66, "left_face": 1.95, "lower_mid": 2.59},
+   "acf_len_mm_at_0.70m": {"min": 1.11, "max": 1.73},
+   "visible_grain_diameter_mm_at_0.70m": {"value": [2.5, 7.0], "typical": 4.0, "how": "grain diameter ~2-3 x the autocorrelation 1/e radius for a two-phase speckle, cross-read by eye (grains about 4-10 px)"},
+   "tool": "cases/rock1/pack_evidence/grain_probe.py -> grain_probe.json",
+   "proof": "A22 planted textures of known blob size: x0.5 -> measured x0.53, x2 -> x2.04 (both sides pass). A23 held-out: the photo downscaled x0.5 on crops fixed before the run gives ratios 0.58-0.68, NOT 0.5: at about 2 px the photo's grain sits near the pixel/JPEG resolution floor, so its finest grains are unresolved and the measured length is biased up by about 15-35 %.",
+   "status": "estimated (tool proven on planted data; on the photo it is resolution-limited, so read it as an upper bound at the fine end)",
+   "build_rule": "R4 compares the grain spectrum of render vs photo at the PHOTO's resolution: judge the texture through the same camera and pixel size, not by these mm values alone"
+  },
+  "relief_mm": {
+   "value": {"typical": 0.5, "range": [0.2, 1.5]},
+   "source": "estimate: granular fracture surfaces are rough at about grain scale (feldspar breaks on flat cleavage steps, quartz conchoidally), so relief ~0.1-0.4 grain diameter; the photo shows grains as colour spots with fine sparkle, not as deep pits",
+   "related_source": {"url": "https://www3.nd.edu/~cneal/planetearth/Lab-Mineral-ID/Fracture.html", "says": "granular fracture = surfaces produced by aggregated minerals, e.g. granite; uneven fracture = rough by minute elevations and depressions"},
+   "confidence": "estimate",
+   "build_rule": "Grain is mineral COLOUR plus this small relief (R4: never relief painted as colour)"
+  }
+ },
+
+ "mineral_colours": {
+  "note": "Apparent sRGB under the studio light, from k-means (k=5) on four interior 128 px crops of the big faces (grain_probe.json). Clusters mix minerals with shading; the mapping to minerals is by eye + source.",
+  "clusters_apparent": [
+   {"rgb": [68, 66, 60], "frac": 0.12, "mineral": "hornblende / biotite (black, dark green-black)", "confidence": "medium"},
+   {"rgb": [105, 104, 98], "frac": 0.24, "mineral": "mafic grains in light + shaded feldspar", "confidence": "low"},
+   {"rgb": [137, 136, 130], "frac": 0.27, "mineral": "grey plagioclase / quartz (translucent grey)", "confidence": "low"},
+   {"rgb": [169, 167, 161], "frac": 0.24, "mineral": "plagioclase (pale grey-white)", "confidence": "low"},
+   {"rgb": [205, 203, 197], "frac": 0.13, "mineral": "fresh white plagioclase, cleavage-face sparkle", "confidence": "medium"}
+  ],
+  "beige_grains": {"value": "a minority (by eye about 5 % of area) of buff/beige grains, approx sRGB (175,160,135)", "mineral": "weathered (sericitised or iron-stained) feldspar", "source": "photo by eye; weathering stain per https://en.wikipedia.org/wiki/Pi%C3%A9gut-Pluviers_Granodiorite", "confidence": "low; k-means at k=5 did not separate it, so the build should check it by region delta-E"},
+  "dark_fraction": {"value": [0.25, 0.40], "source": "photo clusters (the two dark clusters total ~0.36 incl. shading) vs a cited granodiorite dark-mineral share of 12-27 % (search summary)", "confidence": "low"},
+  "status": "measured on the photo (apparent colour); not albedo"
+ },
+
+ "fracture": {
+  "style": {
+   "value": "BLOCKY / jointed: bounded by near-planar joint and fracture faces meeting at sub-angular edges, with stepped re-entrant notches; surfaces GRANULAR-uneven at grain scale; NOT conchoidal",
+   "sources": [
+    {"url": "https://www3.nd.edu/~cneal/planetearth/Lab-Mineral-ID/Fracture.html", "says": "granite is the example of granular fracture"},
+    {"url": "https://en.wikipedia.org/wiki/Conchoidal_fracture", "says": "conchoidal fracture is smooth, curved, with concentric ripples; typical of materials without cleavage (glass, flint, quartz)"},
+    {"url": "https://en.wikipedia.org/wiki/Spheroidal_weathering", "says": "weathering of jointed bedrock proceeds along intersecting joints, so blocks are joint-bounded"},
+    {"url": "https://ar5iv.arxiv.org/html/1912.04628", "says": "Domokos et al. 2020 (PNAS): natural 3-D fragments average close to a cube; 556 weathered dolomite fragments mean 6.63 faces, 8.93 vertices"}
+   ],
+   "photo": "agrees: about 8-10 distinct planar facets visible, no curved shell-like faces",
+   "confidence": "medium-high"
+  },
+  "face_planarity": {
+   "value": "planar at macro scale; deviation from the best-fit plane about 0.5-1 % of face size from granular relief and slight warping (consistent with R2's 1 % bar)",
+   "source": "R2 constraint (ROUND0.md) + photo shading: each big face shows a near-uniform shade, i.e. a near-constant normal",
+   "confidence": "estimate (photo-consistent)"
+  },
+  "face_count": {
+   "value": {"convex_hull_faces_typical": 6.6, "convex_hull_vertices_typical": 8.9, "total_including_notches": [10, 16]},
+   "source": "https://ar5iv.arxiv.org/html/1912.04628 (Domokos et al. 2020; dolomite, a different rock, same fragmentation-geometry claim); notch count from the photo",
+   "confidence": "low-medium for this rock"
+  },
+  "edge_rounding": {
+   "class": {"value": "sub-angular on the Powers six-class scale (very angular, angular, sub-angular, sub-rounded, rounded, well rounded)", "source": {"url": "https://en.wikipedia.org/wiki/Roundness_(geology)", "says": "roundness = mean corner/edge radius over the radius of the largest inscribed sphere; the Powers chart has six classes"}, "confidence": "medium (photo read by eye)"},
+   "radius_mm_at_0.70m": {"value": {"min": 3, "typical": 7, "max": 15}, "how": "by eye on the photo: major ridges (e.g. front block top edge about x 700-900, y 400-450) spread their highlight over about 5-20 px -> 3-13 mm at 0.669 mm/px; larger at the outer corners, smaller on inner notch edges", "status": "estimated by eye, NOT tool-measured; the R2 ridge tracer should replace it"},
+   "roundness_ratio": {"value": "about 0.02-0.05 (edge radius / inscribed radius of about 0.25-0.3 m): edges are only eased, the body stays angular", "source": "derived from the two values above", "confidence": "estimate"},
+   "mechanism": {"value": "weathering attacks corners fastest, edges next, faces slowest, so corners round more than edges", "source": {"url": "https://en.wikipedia.org/wiki/Spheroidal_weathering", "says": "different weathering rates at corners, edges and faces of a joint block produce rounded cores"}, "confidence": "medium", "build_rule": "corner (vertex) radius >= edge radius, about 1.5-2x (estimate)"}
+  }
+ },
+
+ "proportions_unseen_back": {
+  "definitions": {
+   "value": "axes a >= b >= c (long, intermediate, short) of the smallest bounding box; Zingg classes split at b/a = 2/3 and c/b = 2/3 into equant, oblate (disc), bladed, prolate (rod); C40 = share of clasts with c/a <= 0.4 (slab-like)",
+   "sources": [
+    {"url": "https://en.wikipedia.org/wiki/Equidimensional_(geology)", "says": "Zingg factor R = 3/2; four classes equant/prolate/oblate/bladed"},
+    {"url": "https://arxiv.org/pdf/2303.05285", "says": "axis ratios c/b and b/a are the most established shape descriptors; Zingg's 2/3 cut-off is an arbitrary choice"},
+    {"url": "https://staffprofiles.bournemouth.ac.uk/display/journal-article/36667", "says": "Bennett et al. 1997: C40 = % of clasts with c/a <= 0.4; supraglacial (rockfall-sourced) clasts are angular"}
+   ],
+   "confidence": "high (definitions)"
+  },
+  "type_prior": {
+   "value": "a joint-bounded blocky granitoid fragment tends to be EQUANT to mildly bladed: b/a 0.65-0.9, c/a 0.45-0.75 (typical b/a 0.75, c/a 0.6)",
+   "source": "estimate, anchored on Domokos et al. 2020 (natural fragments average cube-like: https://ar5iv.arxiv.org/html/1912.04628) and joint-bounded granite blocks (https://en.wikipedia.org/wiki/Spheroidal_weathering). NO source found with measured c/a for loose granite boulders (searched rockfall, talus, armourstone; the armourstone standard EN 13383 only limits the share of pieces with length/thickness > 3: https://en.wikipedia.org/wiki/Armourstone)",
+   "confidence": "low"
+  },
+  "photo_constraint": {
+   "value": "visible width 1047 px (= 0.70 m); height above the contact about 880 px by eye (917 px incl. shadow is an upper bound) under an elevated camera; both left and right flanks recede, so the rock is not a thin slab facing the camera",
+   "source": "photo; grain_probe.json silhouette_px",
+   "confidence": "medium for 'not a slab', low for any number"
+  },
+  "recommended_for_build": {
+   "depth_over_width": {"value": 0.70, "range": [0.55, 0.90], "confidence": "estimate"},
+   "height_over_width": {"value": "take from the photo-fitted camera (R1), not from this pack"},
+   "min_thickness": {"value": ">= 15 % of the visible depth everywhere (R6); a jointed block has no slivers unless a flake, and none is visible"},
+   "back_style": {"value": "3-6 more near-planar facets continuing the visible joint-set orientations (the same 2-3 dominant face-normal families as the front, since joints come in parallel sets), 1-2 stepped notches, same edge radii and grain; NOT a mirror of the front (R6)", "source": "joint-set geometry + Domokos mean face count", "confidence": "estimate"},
+   "base": {"value": "a broad, flattish, possibly irregular underside resting on the plane where the contact shadow is darkest; a loose rock comes to rest on a face, not a corner", "confidence": "estimate (stable rest)"},
+   "status": "ESTIMATED - must be labelled so on the asset (R6; NOTES ruling: the back is estimated and LABELLED)"
+  }
+ },
+
+ "not_found": [
+  "A measured c/a or b/a distribution for loose granite/diorite boulders (Domokos 2020 gives axis ratios only as histograms, for dolomite/limestone/gypsum)",
+  "Numeric Powers class boundaries from a readable source (Powers 1953 is paywalled: https://archives.datapages.com/data/sepm/journals/v01-32/data/023/023002/0117.htm)",
+  "Any way to fix quartz content from a photo: the rock-type call stays medium-low confidence"
+ ]
+}

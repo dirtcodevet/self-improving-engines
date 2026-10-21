@@ -1,0 +1,623 @@
+{
+ "_what": "NOSE v3b feature SPEC (cat v3 round 2, ruling R-N; owner 'nose'). The person (13:15, NS1): \"there's also no nasal cavities and the line and shapes of the nose leather are basically all smoothed out rather than being present\". feat_nose_v3b.py reads EVERY number below from this file (one definition, M7). v2 (spec_nose.json) and v3 (feat_nose_v3.py V3_PARAMS) values not overridden here still stand. Each value: value, source, confidence, label (checked = measured this run; estimated = inferred; cited = from a named source).",
+ "frame": "head frame mm: x = cat's LEFT, y = back, z = up (partition.head_local(P_world)*1000). R = cat's right (x < 0), L = cat's left (x > 0).",
+ "photo": {
+  "file": "cases/cat1/ref.jpg (1728 x 1152), the photo feat_nose_v3 / spec_nose.json used (spec_nose.json inputs_read; photo_registration: camera_frozen.json + (+158.8, +11.8) px; 0.347 mm/px at the nose; the view looks DOWN ~14 deg)",
+  "registration_confidence": "medium-low (translation-only, ~1 mm; camera_tripo hold-out FAILED, so every photo->head number is ESTIMATED)",
+  "median_groove_measured": {
+   "method": "per photo row 372-403: luminance profile across cols 698-716 (0.05 px resampling), minimum near col 707, baseline = mean of the two shoulder maxima 0.8-4 px either side, FWHM of the dark line; row -> head z by linear interpolation of the spec's three registered anchors (row 381.5 -> z -11.3, 392.5 -> -16.3, 400.5 -> -19.3; extrapolated outside). Script: nose_checks_v3b.photo_groove().",
+   "onset": "relative contrast rises through 0.16 at row 376 (z ~ -8.8) to 0.47 at row 382 (z ~ -11.5); faint (0.02-0.08) above row 375",
+   "fwhm_px_leather_rows_376_388": "2.0-2.8 px (0.63-0.97 mm, p50 0.78 mm), PSF-limited (the photo's own edge blur is ~1.5 px), so the true groove is NARROWER: deconvolved sqrt(2.2^2 - 1.5^2) = 1.6 px = 0.56 mm",
+   "fwhm_px_stem_tip_rows_389_392": "3.4-5.0 px (1.2-1.7 mm): the leather tip meets the lip (leather/fur boundary darkens the row), not a wider groove",
+   "fwhm_px_lip_rows_393_401": "3.0-3.7 px (1.04-1.28 mm)",
+   "end": "row 402-403 (z ~ -19.9 .. -20.2): the line spreads into the Y junction (mouth owner's)",
+   "centre": "col 707.0 (rows 372-388), 706.0 (rows 389-401) -> x -0.2 (leather) and -0.5 (lip) after registration (spec_nose philtrum.x_midline, Y junction x)",
+   "label": "checked (photo measurement); z mapping estimated"
+  }
+ },
+ "anatomy_cited": {
+  "vestibule": "The nasal vestibule is the beginning of the nasal cavity; it is fixed and supported by the straight, alar and basal folds, which are cartilaginous rostral extensions of the dorsal and ventral nasal conchae; the alar fold closes the nostril laterally and the alar groove lies in the ventrolateral part of the opening (Diaz Martinez E. et al. 2024, The Bony Nasal Cavity and Paranasal Sinuses of Big Felids and Domestic Cat, Animals 14(17):2609, doi 10.3390/ani14172609, Introduction, Sec. 3.1, Fig. 4 legend item 7, Figs 16-18). Its folds are qualitative only there: NO feline vestibule length or cross-section was found (searched 2026-10-18).",
+  "ventral_concha": "The ventral nasal concha of the cat is short, feather-shaped, attached only to the maxilla and lies in the ROSTRAL half of the nasal cavity, continuous rostrally with the alar and basal folds (Diaz Martinez 2024, Sec. 3.1, Fig. 2; Sec. 3.3, Figs 14, 16-18). So the vestibule (skin-lined, no concha) ends where the alar fold becomes the concha.",
+  "passage": "The airway is continuous ~75 mm from the nasal planum to the nasopharynx in a cat (Kwak et al. 2024, cited in spec_nose.json vestibule.depth_source); the ventral nasal meatus (labelled on CT, Diaz Martinez 2024 Figs 21-22) runs caudally above the hard palate to the choanae.",
+  "nostril": "Carnivore nostril: a slit convex ventrally, its lateral narrow end raised into a comma running into a barely marked alar groove (IMAIOS vet-anatomy, nostril); the alar fold sits just inside the opening (cat-anatomy.md).",
+  "planum_surface": "The nasal planum is furless and divided into polygonal plaques ('cobblestones') by fine grooves; epidermis ~900 um, no glands (Strickland 1958, via engine/references/cat-anatomy.md). In mammalian rhinaria the pattern is a polygonal network of SHARP epidermal creases between domes, the creases lying over a network of stiff dermal blood vessels (Dagenais P., ..., Milinkovitch M.C. 2024, Mechanical positional information guides the self-organized development of a polygonal network of creases in the skin of mammalian noses, Current Biology, doi 10.1016/j.cub.2024.09.055; dog, cow, ferret). Cell size for the CAT: NOT published (cat-anatomy.md; searched again 2026-10-18: none found).",
+  "bony_aperture_class_model": "Pack skull (engine/packs/felid/skull/skull_landmarks.json): nasal aperture 16.11 x 13.63 mm on the 89.4 mm reference skull; this cat's skull scale 1.08 (cases/cat1/skull/skull_v1_place.json) -> 17.4 x 14.7 mm for BOTH nasal fossae with the septum. Used only as an upper bound for the passage size; the placement's nose residual is 8.17 mm, so the aperture's POSITION is not used (the skull chain is OPEN, TOOLMAKING section F)."
+ },
+ "region": {
+  "v3_box": {
+   "lo_mm": [
+    -13.5,
+    -77.5,
+    -23.0
+   ],
+   "hi_mm": [
+    13.5,
+    -55.0,
+    -1.5
+   ]
+  },
+  "passage_box": {
+   "lo_mm": [
+    -6.5,
+    -66.0,
+    -12.5
+   ],
+   "hi_mm": [
+    6.5,
+    -46.5,
+    1.5
+   ],
+   "source": "derived: the passage tube bbox (feat_nose_v3b.geometry_report) + >= 1.2 mm; y stops at -46.5, in front of the eye REGION (feat_eyes y >= -46.24)",
+   "label": "checked (arithmetic)"
+  },
+  "bounding_box": {
+   "lo_mm": [
+    -13.5,
+    -77.5,
+    -23.0
+   ],
+   "hi_mm": [
+    13.5,
+    -46.5,
+    1.5
+   ],
+   "note": "REGION (API) = bounding box of the two boxes; the edit changes only points inside v3_box UNION passage_box (REGION_BOXES)"
+  }
+ },
+ "params": {
+  "PASS_SEGS": {
+   "value": [
+    [
+     6.0,
+     0.25
+    ],
+    [
+     6.0,
+     0.45
+    ],
+    [
+     5.0,
+     0.6
+    ]
+   ],
+   "unit": "[length mm, rise dz/dy] after the v2 P2 (P1 = H + 2 T0, P2 = P1 + 3 unit(0,1,0.15) unchanged)",
+   "source": "R-N 'the passage continues back and up into the head'; rise derived from THIS head: the dorsal skin at x 0 rises from z 0.5 (y -65) to 12.8 (y -50), slope 0.82 (base field, checked); the passage climbs at ~0.3-0.7 of that so it stays between the bridge (>= 9 mm above) and the palate; length ends in front of the eye REGION",
+   "confidence": "low-medium",
+   "label": "estimated"
+  },
+  "LUMEN_S": {
+   "value": [
+    0,
+    3,
+    6,
+    12,
+    18,
+    23
+   ],
+   "source": "spec_nose stations (0-12) + v3b passage stations",
+   "confidence": "low",
+   "label": "estimated"
+  },
+  "LUMEN_A_R": {
+   "value": [
+    1.6,
+    1.2,
+    1.0,
+    0.95,
+    0.85,
+    0.7
+   ],
+   "source": "s 0-12 spec_nose lumen_section (photo core aperture + 'narrow airway ~2 x 1.4 mm', ESTIMATE); s 18-23 narrowing toward the blind end (the meatus is a narrow slit between the conchae; no feline number found)",
+   "confidence": "low",
+   "label": "estimated"
+  },
+  "LUMEN_B_R": {
+   "value": [
+    1.3,
+    0.8,
+    0.7,
+    0.65,
+    0.6,
+    0.5
+   ],
+   "source": "as LUMEN_A_R",
+   "confidence": "low",
+   "label": "estimated"
+  },
+  "LUMEN_A_L": {
+   "value": [
+    1.4,
+    1.2,
+    1.0,
+    0.95,
+    0.85,
+    0.7
+   ],
+   "source": "as LUMEN_A_R (L head aperture from the photo core, spec_nose)",
+   "confidence": "low",
+   "label": "estimated"
+  },
+  "LUMEN_B_L": {
+   "value": [
+    1.1,
+    0.8,
+    0.7,
+    0.65,
+    0.6,
+    0.5
+   ],
+   "source": "as LUMEN_A_R",
+   "confidence": "low",
+   "label": "estimated"
+  },
+  "D_VEST": {
+   "value": 5.0,
+   "unit": "mm",
+   "source": "vestibule depth = naris to the rostral end of the ventral concha (Diaz Martinez 2024: the alar fold is the concha's rostral extension); spec_nose places the alar fold s 0.5-6.0 and its vestibule_depth_ray probe asks 5.0 mm. No published feline length found -> ESTIMATE",
+   "confidence": "low",
+   "label": "estimated"
+  },
+  "CLEFT_IN": {
+   "value": 1.2,
+   "unit": "mm",
+   "source": "the comma slot drops 1.2 mm straight along n_in before it turns caudally (a clean rim wall at 0.10 mm; v3 used 1.2 then a ramp to s 1.5, which left the tail end a 1.4 mm trench: v3 N2 blind pixels located at the tail end, free depth 0.8 mm, checked this run); run 1 at 0.8 left a sliver of opening pixels along one slit edge that a straight probe could not leave (checked, ipmap)",
+   "confidence": "low",
+   "label": "estimated"
+  },
+  "CLEFT_S": {
+   "value": [
+    0.8,
+    4.5
+   ],
+   "unit": "mm of centreline s",
+   "source": "anatomy: the lateral slit of the comma leads caudally along the alar fold into the vestibule (Diaz Martinez 2024 Fig. 4: the alar fold closes the nostril laterally). Head stations join the lumen at s 0.8, tail stations at s 4.5 (linear in comma t), so every part of the comma opens into the passage",
+   "confidence": "low",
+   "label": "estimated"
+  },
+  "K_LUM_B": {
+   "value": 0.15,
+   "unit": "mm",
+   "source": "carve blend of the vestibule into the leather = the WING EDGE rounding; v2/v3 0.3 blurred the rim; 0.15 = 1.5 voxels at 0.10 mm (crisp, still sampled)",
+   "confidence": "low",
+   "label": "estimated"
+  },
+  "GROOVE_MED": {
+   "z": [
+    -8.4,
+    -9.2,
+    -10.5,
+    -12.5,
+    -14.3,
+    -15.6,
+    -16.3,
+    -17.5,
+    -19.3,
+    -20.1
+   ],
+   "depth": [
+    0.0,
+    0.12,
+    0.28,
+    0.32,
+    0.35,
+    0.4,
+    0.45,
+    0.6,
+    0.8,
+    0.0
+   ],
+   "fwhm": [
+    0.45,
+    0.5,
+    0.55,
+    0.55,
+    0.6,
+    0.8,
+    0.9,
+    1.0,
+    1.1,
+    1.2
+   ],
+   "x": [
+    -0.2,
+    -0.2,
+    -0.2,
+    -0.2,
+    -0.2,
+    -0.4,
+    -0.5,
+    -0.5,
+    -0.5,
+    -0.5
+   ],
+   "unit": "mm; depth = BUILT depth below the shoulders (quadratic fit 0.9-2.0 mm either side), fwhm = built full width at half depth",
+   "source": "PHOTO (median_groove_measured): onset z ~ -8.8, PSF-deconvolved width 0.56 mm on the leather, 1.0-1.3 mm on the lip, end ~ -19.9, centre col 707 -> 706; DEPTH: spec_nose philtrum stations 0.45 at z -16.3 and 0.80 at z -19.3 (circular-arc sections, low-medium); leather depth 0.28-0.35 ESTIMATED from the photo's relative contrast (0.47 at z -11.5 against 0.66 at the stem tip where the spec gives 0.45)",
+   "confidence": "low-medium (position, width), low (depth)",
+   "label": "estimated",
+   "role": "the BUILDER cut table (minus GROOVE_CUT_CORRECTION); the check reads GROOVE_MED_TARGET"
+  },
+  "COBBLE": {
+   "cell_mm": 0.65,
+   "crease_depth_mm": 0.045,
+   "crease_halfwidth_mm": 0.15,
+   "dome_mm": 0.012,
+   "fade_outline_mm": [
+    0.3,
+    0.8
+   ],
+   "fade_opening_mm": [
+    0.25,
+    0.6
+   ],
+   "source": "pattern: polygonal domes separated by SHARP creases (Strickland 1958 via cat-anatomy.md; Dagenais et al. 2024 Curr Biol doi 10.1016/j.cub.2024.09.055). CELL SIZE: no feline value published (searched) -> ESTIMATE 0.65 mm (range 0.4-1.0): the photo cannot resolve it (0.347 mm/px, Nyquist 0.69 mm, JPEG), and the 0.10 mm grid sets the floor: a crease must span >= 3 nodes (0.3 mm), so cells much below ~0.6 mm cannot be BUILT and belong to the shader (feat_nose_v3.leather_bump). Depth 0.05 mm: ESTIMATE (visible relief, far below D1's 0.2 mm). The relief is zero-mean over the leather, so the leather FORM does not move. Run 1 (dome 0.02 over 0.5 cell) read as bubbles in the AO render and stopped at the graft band: plates are now flat-topped (dome saturates at 0.3 of the cell) and the relief is applied AFTER the R1 graft, fading only at the outline and the openings",
+   "confidence": "low (size, depth), medium (pattern)",
+   "label": "estimated",
+   "plate_frac": 0.3
+  },
+  "CLEAN_H": {
+   "value": 0.25,
+   "unit": "mm, world axes",
+   "source": "the v2 PRE cores are a 0.5 mm WORLD grid; Keys-cubic of them rings at 2/mm in the leather top band (band 1.5-2.5/mm amplitude 0.0096-0.0113 mm on 3 vertical profiles, checked). A 3-tap binomial per world axis at h 0.25 has its zero at 2/mm: it cut that band to 0.0022-0.0028 mm and moved the surface <= 0.041 mm (checked, x -2/0/+2, z -2.5..-6.5)",
+   "confidence": "high (measured)",
+   "label": "checked"
+  },
+  "CLEAN_ZONE_MM": {
+   "value": [
+    1.0,
+    1.5
+   ],
+   "source": "the cleaning weight is 1 up to 1.0 mm OUTSIDE the leather outline and 0 at 1.5 mm (covers the approved top band where the ribs are)",
+   "confidence": "medium",
+   "label": "estimated"
+  },
+  "SLIT_KD": {
+   "value": 8,
+   "source": "k nearest cleft samples for min(d - r) (radius varies <= 0.3 mm/mm along the comma: k 8 keeps the union error < 0.003 mm, arithmetic)",
+   "confidence": "high",
+   "label": "checked (arithmetic)"
+  },
+  "RIDGE_KEEP": {
+   "value": 0.05,
+   "unit": "mm blend",
+   "source": "the alar fold is TISSUE inside the vestibule (Diaz Martinez 2024: the alar fold closes the nostril laterally); run 1 let the comma cleft carve it away (fold defect 0.10 at R s 1.5, checked in field slices), so the cleft is carved as smax(cleft, -ridge, 0.05): it passes the fold, never through it",
+   "confidence": "medium",
+   "label": "derived"
+  },
+  "ALAR_GROOVE": {
+   "depth_mm": 0.3,
+   "corner_end_mm": 0.25,
+   "fade_mm": 0.4,
+   "fwhm_mm": 0.5,
+   "source": "spec_nose alar_groove depth 0.3-0.5 / width 0.4-0.9 (IMAIOS 'barely marked alar groove'; low) and feat_nose_v3 CORNER_END 0.25 / CORNER_FADE 0.4 at the approved corner; built as a SURFACE depth along the whole path open_end -> tail_tip -> corner projected on the base surface (run 1: v3's two-piece groove read 0.09-0.13 mm at the tail-tip junction on BOTH v3 and v3b, checked)",
+   "confidence": "low (size), medium (path)",
+   "label": "estimated"
+  },
+  "BASE_VALLEY": {
+   "z": [
+    -9.8,
+    -10.05,
+    -10.3,
+    -10.55,
+    -10.8,
+    -11.05,
+    -11.3,
+    -11.55,
+    -11.8,
+    -12.05,
+    -12.3,
+    -12.55,
+    -12.8,
+    -13.05,
+    -13.3,
+    -13.55,
+    -13.8,
+    -14.05,
+    -14.3,
+    -14.55,
+    -14.8,
+    -15.05,
+    -15.3,
+    -15.55,
+    -15.8,
+    -16.05,
+    -16.3,
+    -16.55,
+    -16.8,
+    -17.05,
+    -17.3,
+    -17.55,
+    -17.8,
+    -18.05,
+    -18.3
+   ],
+   "depth": [
+    0.119,
+    0.119,
+    0.126,
+    0.148,
+    0.184,
+    0.227,
+    0.273,
+    0.311,
+    0.329,
+    0.329,
+    0.326,
+    0.319,
+    0.313,
+    0.31,
+    0.306,
+    0.308,
+    0.32,
+    0.343,
+    0.385,
+    0.436,
+    0.491,
+    0.54,
+    0.574,
+    0.584,
+    0.568,
+    0.531,
+    0.481,
+    0.42,
+    0.358,
+    0.318,
+    0.298,
+    0.283,
+    0.273,
+    0.276,
+    0.274
+   ],
+   "fwhm": [
+    1.712,
+    1.668,
+    1.56,
+    1.504,
+    1.436,
+    1.408,
+    1.348,
+    1.376,
+    1.336,
+    1.328,
+    1.264,
+    1.264,
+    1.22,
+    1.164,
+    1.124,
+    1.092,
+    1.06,
+    1.064,
+    1.116,
+    1.184,
+    1.268,
+    1.324,
+    1.344,
+    1.328,
+    1.272,
+    1.212,
+    1.168,
+    1.168,
+    1.204,
+    1.292,
+    1.436,
+    1.564,
+    1.66,
+    1.736,
+    1.78
+   ],
+   "x": [
+    0.2,
+    0.0,
+    -0.1,
+    -0.3,
+    -0.1,
+    -0.14,
+    -0.3,
+    -0.3,
+    -0.3,
+    -0.3,
+    -0.3,
+    -0.3,
+    -0.3,
+    -0.3,
+    -0.3,
+    -0.3,
+    -0.3,
+    -0.3,
+    -0.2,
+    -0.2,
+    -0.22,
+    -0.3,
+    -0.29,
+    -0.29,
+    -0.29,
+    -0.2,
+    -0.2,
+    -0.2,
+    -0.2,
+    -0.14,
+    -0.1,
+    -0.16,
+    -0.3,
+    -0.4,
+    -0.3
+   ],
+   "fade_mm": 0.5,
+   "unit": "mm; straight-edge depth / full width at half depth of the base's OWN midline valley, 5-point (1.25 mm) moving average",
+   "source": "MEASURED this run on feat_nose_v3b_plant_nolines.npz (the v3b build without the median groove and alar groove, 0.10 mm): the blurred Tripo groove is 0.12-0.58 mm deep and 1.06-1.71 mm wide. R-N: the lines are built by the owner, NOT inherited from the blurred Tripo field, so this valley is FILLED (biweight of the measured width) and the photo groove is cut into the filled surface. Run 1 cut on top of it and built 0.75 mm (p50) against the 0.3 mm target (checked).",
+   "confidence": "high (measured; the biweight fill shape is an approximation)",
+   "label": "checked",
+   "use": "BRIDGED (run 3): the valley band |x - xc| <= W, W = 0.5 fwhm + 0.6 mm, is replaced by a cubic Hermite bridge of the base field in x from its two sides (value and slope matched at both ends, so the join is C1 and the stem keeps its own convex section). Run 2 filled it with a biweight of the measured width: the shape mismatch left two 0.02-0.03 mm shoulders along the groove (NW located them at |x - xc| 1.3 mm; v3 and the no-lines plant read 0.005-0.015 there, checked).",
+   "bridge_margin_mm": 0.6
+  },
+  "GROOVE_CUT_CORRECTION": {
+   "z": [
+    -9.8,
+    -10.05,
+    -10.3,
+    -10.55,
+    -10.8,
+    -11.05,
+    -11.3,
+    -11.55,
+    -11.8,
+    -12.05,
+    -12.3,
+    -12.55,
+    -12.8,
+    -13.05,
+    -13.3,
+    -13.55,
+    -13.8,
+    -14.05,
+    -14.3,
+    -14.55,
+    -14.8,
+    -15.05,
+    -15.3,
+    -15.55,
+    -15.8,
+    -16.05,
+    -16.3,
+    -16.55,
+    -16.8,
+    -17.05,
+    -17.3,
+    -17.55,
+    -17.8,
+    -18.05,
+    -18.3
+   ],
+   "value": [
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.055,
+    0.06,
+    0.066,
+    0.066,
+    0.072,
+    0.076,
+    0.082,
+    0.075,
+    0.061,
+    0.052,
+    0.054,
+    0.066,
+    0.099,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.136,
+    0.121,
+    0.134,
+    0.171,
+    0.205,
+    0.209,
+    0.217,
+    0.217
+   ],
+   "unit": "mm subtracted from the GROOVE_MED depth before it is cut (floor 0.05 mm)",
+   "source": "MEASURED on the run-3 build (bridge on): built straight-edge depth minus the GROOVE_MED target, 5-point (1.25 mm) moving average, applied where > 0.05 mm; the Hermite bridge leaves 0.05-0.08 mm of Tripo's valley on the leather and 0.15-0.33 mm at the stem tip (z -14.5..-16.3, where the leather is too narrow to bridge wider) and on the lip (built = residue + cut, superposition, checked run 2: z -12 0.344 + 0.311 = 0.655 against 0.675) Not applied at the stem tip (z -14.5..-16.3): run 4 showed superposition fails where the leather ends (built 0.16 with an offset bottom at z -15.55/-15.8, checked), so the tip keeps the uncorrected cut",
+   "confidence": "medium (one calibration iteration)",
+   "label": "checked"
+  },
+  "GROOVE_MED_TARGET": {
+   "z": [
+    -8.4,
+    -9.2,
+    -10.5,
+    -12.5,
+    -14.3,
+    -14.7,
+    -15.2,
+    -15.6,
+    -16.1,
+    -16.5,
+    -17.5,
+    -19.3,
+    -20.1
+   ],
+   "depth": [
+    0.0,
+    0.12,
+    0.28,
+    0.32,
+    0.35,
+    0.5,
+    0.6,
+    0.65,
+    0.6,
+    0.55,
+    0.6,
+    0.8,
+    0.0
+   ],
+   "fwhm": [
+    0.45,
+    0.5,
+    0.55,
+    0.55,
+    0.6,
+    1.6,
+    1.5,
+    1.3,
+    1.0,
+    0.98,
+    1.0,
+    1.1,
+    1.2
+   ],
+   "x": [
+    -0.2,
+    -0.2,
+    -0.2,
+    -0.2,
+    -0.2,
+    -0.3,
+    -0.4,
+    -0.5,
+    -0.5,
+    -0.5,
+    -0.5,
+    -0.5,
+    -0.5
+   ],
+   "unit": "mm; what the LP check reads (straight-edge depth, full width at half depth)",
+   "source": "PHOTO as measured (median_groove_measured), each row PSF-deconvolved (sqrt(fwhm_px^2 - 1.5^2)): leather rows 376-388 0.5-0.6 mm; STEM TIP rows 389-392 (z -14.7..-16.1) 1.64 / 1.55 / 1.29 / 1.04 mm and the darkest relative contrast (0.52-0.66); lip rows 393-401 0.98-1.2 mm. Depth: spec_nose stations 0.45 (z -16.3 lip side) / 0.80 (z -19.3); leather 0.28-0.35 and stem tip 0.5-0.65 ESTIMATED from the relative contrast (leather 0.47 <-> ~0.3; tip 0.62-0.66 ~ lip 0.66 <-> 0.75). REVISION (stated): run 1-4 targets assumed the stem-tip widening was the leather/fur boundary and set 0.7-0.8 mm; the photo measurement itself says 1.0-1.6 mm there",
+   "confidence": "low-medium (width), low (depth)",
+   "label": "estimated"
+  }
+ },
+ "kept_from_v3": "comma stations, head/tail radii, bow (N1 PASS on v3), plug (dish fill), ala bulge, alar groove + corner leg with leg projection (D2 PASS on v3), R1 graft core with full-path tail exclusion, edit_zone, alar-fold ridge rule (v2, along the v3b centreline at s 0.5-6). v3's philtrum (Gaussian cut) and its base 'smooth' are REPLACED by the median groove and the CLEAN_H cleaning.",
+ "resolution": {
+  "region_mm": 0.15,
+  "leather_mm": 0.1,
+  "slit_band_mm": 0.1,
+  "why": "cobble creases 0.3 mm wide need >= 3 nodes; the comma tail 0.40 mm wide; A20 cap 0.15 elsewhere"
+ },
+ "checks": {
+  "file": "engine/checks/nose_checks_v3b.py",
+  "decisions_first": [
+   "D1 approved leather TOP EDGE within 0.2 mm of skin_v1_person_approved_leather_top.npz outside the tail-entry zones (cat_decisions.check_leather_top as written + the edge-only zone of feat_nose_v3 Tool lesson 1)",
+   "D2 nostril tails cut into the approved corners (cat_decisions.check_nostril_tails)",
+   "LIP form within 0.5 mm of feat_nose_v3's preview outside the fixed zones (median groove band, nostril edit zone)"
+  ],
+  "LP_lines_present": "median groove: straight-edge sections every 0.25 mm z -9.8..-18.5 against GROOVE_MED_TARGET; alar groove: sections across the D2 path (open_end -> tail_tip -> corner), straight edge and v1-relative inset, the larger; alar fold: polar sections of the vestibule at s 1.5 / 2.5 / 3.5",
+  "NW_no_artefact_wrinkles": "interior: local CUBIC fit residual (R 0.8 mm windows, outer leather sheet only, >= 0.8 mm inside the outline, outside line_zone) after subtracting declared_relief; top band: 1.5-6 / mm amplitude of vertical profiles x -4..4, z -2.5..-6.5. Marks from feat_nose_v3b_proofs.json (floor + plants)",
+  "IP_into_passage": "from every opening pixel (N1's opening, 0.6 mm below the plug envelope) a probe with at most ONE bend, every leg within 60 deg of the inward axis, travels >= D_VEST (5.0 mm) inside the cavity; >= 98 % of each half (head / tail) of each nostril"
+ },
+ "results": {
+  "checks": "tripo_rebuild/layers/feat_nose_v3b_checks.json",
+  "proofs": "tripo_rebuild/layers/feat_nose_v3b_proofs.json",
+  "preview": "tripo_rebuild/layers/feat_nose_v3b_preview.npz (0.10 mm)",
+  "views": "tripo_rebuild/layers/feat_nose_v3b_views.png"
+ }
+}

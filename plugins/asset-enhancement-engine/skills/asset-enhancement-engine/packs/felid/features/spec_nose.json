@@ -1,0 +1,904 @@
+{
+ "_what": "Phase 2 feature SPEC: NOSE (criteria C5, C6; inventory head/L3_features[0..4]: nose leather, nostrils into a nasal cavity, alar folds, leather/bridge crease, philtrum). Written by the fresh builder agent 'nose' 2026-10-18. A spec, not geometry: every value carries source + confidence (G2), evidence ranked photo > constraints > Tripo/Phase 1 > cited anatomy > estimate (G3). AMENDED by a second run of the same brief (same start epoch) to carry the orchestrator's directive of 2026-10-18: the person APPROVED the top edge of the nose leather on skin v1 - see approved_top_edge_FROZEN, which overrides anything below that would move it.",
+ "frame": "head frame mm: x = cat's LEFT, y = back, z = up (partition.head_local(P_world)*1000). R = cat's right (x < 0), L = cat's left (x > 0).",
+ "inputs_read": [
+  "engine/log/PHASE2_ROUND0.md",
+  "tripo_rebuild/PHASE1_SUMMARY.md",
+  "tripo_rebuild/REVIEW_nose.md (verdict + B1)",
+  "cases/cat1/ref.jpg (nose crop at x10)",
+  "cases/cat1/ref_points.json",
+  "cases/cat1/camera_frozen.json",
+  "tripo_rebuild/layers/nose.json, nose_basins.json, nose_overlay.json, eyes.json (iris centre for registration)",
+  "engine/packs/felid/structure_inventory.json, coat.json (muzzle depth, furless nose_leather ramp)",
+  "engine/references/cat-anatomy.md (Nose section)",
+  "tripo_rebuild/layers/skin_v1_person_approved_leather_top.npz (crop only, head frame via cat_fit14.json head C,R)"
+ ],
+ "not_from_tripo": [
+  "Tripo's nostrils are 2.15/2.31 mm blind dishes: NOT anatomy. Step 0 removes them; only their rim (outer extent) and opening normal are used.",
+  "Tripo's dish has no outer rim/ala: the ala is built from anatomy + photo.",
+  "Tripo's mouth is an open V-groove with no slit (REVIEW_mouth): the philtrum end is set from the photo, not from Tripo's groove.",
+  "No Tripo triangles, colours or textures in the asset (A12 target)."
+ ],
+ "photo_registration": {
+  "_what": "how photo pixels were tied to the head frame for this spec (and how the probes must do it)",
+  "method": "camera_frozen.json projection of world points (world = head_local^-1(L/1000) with cat_fit14.json head C,R), then a 2D translation of (+158.8, +11.8) px that centres the projected Phase 1 leather outline (nose.json leather['0']) on the photo leather bbox (x 684-729, y 363-392). The frozen camera's world is 'canonicalized with the Rodin body axis', i.e. offset from the Tripo world; rotation and scale are used as is.",
+  "checks": "independent landmarks after the shift: iris.L projects 4.1 px from ref_points eye.L; Phase 1 deepest nostril points land 2-3 px from the photo's dark-core centroids; projected leather bbox 47.6 x 31.9 px vs photo 45 x 29 px.",
+  "scale": "0.347 mm/px at the nose (camera 1.80 m from the nose, f = 5184 px). NOTE the brief's ~0.27 mm/px is the body-scale figure; at the nose it is 0.347.",
+  "view": "camera direction from the nose in the head frame (0.038, -0.971, 0.236): the photo looks DOWN on the face ~14 deg - vertical extents on forward-facing surfaces are foreshortened, philtrum (sloping back-down) by ~0.85x.",
+  "confidence": "medium (translation-only; ~1 mm)",
+  "second_run_check": "independent check: projecting the reference skin through camera_frozen.json puts the leather at px x 524-572, y 350-382 and the iris centres ~155-158 px left of ref_points (eye spacing 121 px vs photo 112 px) - the frozen camera is NOT registered to the Tripo/skin world; the translation above is a local patch. A similarity fitted on the approved leather top (16.5 mm over 43 px -> 0.384 mm/px, anchor px (706,364) = (x 0, z -4.9)) puts the photo dark-core centroids (lum<100) at (x -4.57, z -9.12) R and (4.61, -9.09) L: mirror-symmetric to 0.05 mm and within 0.45 mm of the head-disc centres below."
+ },
+ "approved_top_edge_FROZEN": {
+  "_what": "ORCHESTRATOR DIRECTIVE 2026-10-18, relaying the person: the top edge of the nose leather on skin v1 (where the leather meets the furred bridge) is 'the best of every model we have so far'. Nose edits must NOT move the upper half of the leather outline or its leather-to-bridge transition by more than ~0.2 mm. The rest of the nose (nostrils, wings, philtrum, lower leather) is NOT approved and is built per this spec. This block overrides every other part of the spec.",
+  "reference_file": "tripo_rebuild/layers/skin_v1_person_approved_leather_top.npz (keys v [world z-up m], f, n, depth_mm, island_*, meta; 1,273,145 verts, 2,546,290 faces; 0.5 mm voxel skin). Same size and mtime (04:43) as the v1 skin.npz - skin.npz is being REBUILT and must NOT be used as the reference.",
+  "to_head_frame": "L_mm = (v - C) @ R * 1000 with C, R = scratch_cat/cat_fit14.json['head'] (identical to partition.head_local; do not import partition.py in a probe - it loads vol/ears.npz)",
+  "crop": "|x| < 16, -80 < y < -55, -26 < z < 2 head-frame mm: 7,786 verts, 15,224 faces (keep faces with all 3 verts inside)",
+  "v1_measured_this_run": {
+   "leather": "depth_mm == 0 exactly on the leather (furless, on the envelope): 1,085 front verts, x -8.56..8.13, z -16.36..-4.61; widths z -6: 15.37, z -8: 16.29 mm (Phase 1 15.51 / 16.12 - within 0.2)",
+   "midline_transition_x0": [
+    {
+     "z": -5.0,
+     "y": -72.3,
+     "depth": 0.0
+    },
+    {
+     "z": -4.64,
+     "y": -71.96,
+     "depth": 0.22
+    },
+    {
+     "z": -4.21,
+     "y": -71.36,
+     "depth": 0.7
+    },
+    {
+     "z": -4.0,
+     "y": -71.02,
+     "depth": 0.97
+    },
+    {
+     "z": -3.48,
+     "y": -70.41,
+     "depth": 1.28
+    },
+    {
+     "z": -3.05,
+     "y": -70.08,
+     "depth": 1.33
+    },
+    {
+     "z": -2.0,
+     "y": -69.0,
+     "depth": 1.48
+    },
+    {
+     "z": 0.0,
+     "y": -66.4,
+     "depth": 1.84
+    }
+   ],
+   "ramp_width_along_arc_mm": "distance iso 0.05 -> iso 0.3 / 0.6 / 1.0: median 0.59 / 1.19 / 1.89 (p90 2.72 / 3.32 / 4.36)",
+   "reading": "the approved 'crease' is the coat-inset ramp: the furless leather stands proud of the haired bridge skin by the local coat depth over ~2 mm; there is NO separate valley. That is what must be kept."
+  },
+  "protected_arc": {
+   "definition": "iso-curve depth_mm = 0.05 on the reference crop (linear interpolation on mesh edges), keeping points with z >= -9.0 AND y <= -67.0: the front-facing upper half from the R lateral corner over the top to the L lateral corner. The same iso-curve continues at y > -67 where it wraps into Tripo's laterally open nostril notch: that part is NOT protected (nostril / comma-tail territory).",
+   "extent": "x -8.38 .. 7.97, z -7.67 .. -4.60; 141 raw iso points; polyline ~26.7 mm",
+   "points_head_mm_resampled_40_angle_bins": [
+    [
+     7.86,
+     -67.6,
+     -7.6
+    ],
+    [
+     7.65,
+     -68.83,
+     -7.04
+    ],
+    [
+     7.47,
+     -69.56,
+     -6.47
+    ],
+    [
+     7.19,
+     -70.12,
+     -6.02
+    ],
+    [
+     6.66,
+     -70.67,
+     -5.7
+    ],
+    [
+     6.39,
+     -70.87,
+     -5.37
+    ],
+    [
+     5.84,
+     -71.26,
+     -5.19
+    ],
+    [
+     5.43,
+     -71.55,
+     -5.17
+    ],
+    [
+     4.88,
+     -71.79,
+     -5.09
+    ],
+    [
+     4.17,
+     -72.0,
+     -4.91
+    ],
+    [
+     3.68,
+     -72.14,
+     -4.91
+    ],
+    [
+     3.25,
+     -72.25,
+     -5.04
+    ],
+    [
+     2.8,
+     -72.35,
+     -5.22
+    ],
+    [
+     2.23,
+     -72.38,
+     -5.26
+    ],
+    [
+     2.03,
+     -72.38,
+     -5.27
+    ],
+    [
+     1.63,
+     -72.37,
+     -5.25
+    ],
+    [
+     1.13,
+     -72.29,
+     -4.98
+    ],
+    [
+     0.94,
+     -72.27,
+     -4.91
+    ],
+    [
+     0.28,
+     -72.23,
+     -4.88
+    ],
+    [
+     -0.22,
+     -72.21,
+     -4.91
+    ],
+    [
+     -0.59,
+     -72.22,
+     -4.98
+    ],
+    [
+     -0.79,
+     -72.24,
+     -5.12
+    ],
+    [
+     -0.96,
+     -72.24,
+     -5.12
+    ],
+    [
+     -1.35,
+     -72.27,
+     -5.28
+    ],
+    [
+     -1.86,
+     -72.2,
+     -5.0
+    ],
+    [
+     -2.65,
+     -72.13,
+     -4.92
+    ],
+    [
+     -3.1,
+     -72.1,
+     -5.02
+    ],
+    [
+     -3.7,
+     -71.97,
+     -4.97
+    ],
+    [
+     -4.11,
+     -71.76,
+     -4.68
+    ],
+    [
+     -4.64,
+     -71.57,
+     -4.67
+    ],
+    [
+     -5.23,
+     -71.42,
+     -4.99
+    ],
+    [
+     -5.82,
+     -71.1,
+     -4.96
+    ],
+    [
+     -6.44,
+     -70.65,
+     -4.93
+    ],
+    [
+     -6.96,
+     -70.28,
+     -5.34
+    ],
+    [
+     -7.56,
+     -69.71,
+     -5.76
+    ],
+    [
+     -7.98,
+     -69.05,
+     -6.02
+    ],
+    [
+     -8.29,
+     -68.3,
+     -6.41
+    ],
+    [
+     -8.38,
+     -67.62,
+     -6.94
+    ]
+   ],
+   "also_protected": "the iso-curves depth 0.3 / 0.6 / 1.0 in the same sector (the transition ramp) and the skin surface in protected_band"
+  },
+  "protected_band": "reference crop vertices within 4.0 mm (3D) of the protected arc with z > -9.5 and y < -62: 1,320 verts (589 leather, 731 haired; depth 0 .. 1.44 mm)",
+  "clearance_of_planned_edits_mm": {
+   "phase1_rim_R_to_arc": 2.06,
+   "phase1_rim_L_to_arc": 1.44,
+   "comma_tail_tips": "in the excluded wrap region (y > -67), > 3 mm from the arc",
+   "ala_ellipsoids": ">= 2 (centre to arc minus largest radius)",
+   "philtrum_onset_z_-11.3": "> 4 below the arc",
+   "conflicts": "step 0's dish patch (rim dilated 1.0 mm) reaches 0.44 mm from the arc on L; every smooth blend (k) can leak; the first draft's step 4 crease valley sat INSIDE the band -> cancelled"
+  },
+  "rules": [
+   "R1 MASK: final d = lerp(d_ref, d_edit, w), w = smoothstep(0.6, 1.2, dist_to_band_core_mm); band_core = the protected arc dilated 0.5 mm toward the leather and out to the iso-1.0 curve + 0.5 mm on the haired side, z >= -9.0, y <= -67.0; d_ref = signed distance to the reference surface. Inside band_core the reference surface is kept exactly.",
+   "R2 BASE: run approved_top_edge_regression with the rebuilt skin.npz as 'built' before any nose edit. If it fails, graft the band from the reference (R1 with d_edit = the rebuilt skin) and REPORT the mismatch to the orchestrator - the nose builder never silently accepts a moved top edge from the skin rebuild.",
+   "R3 COAT: depth_mm in the band is copied from the reference (|delta| <= 0.2 mm) so the fur/leather boundary stays where the person approved it.",
+   "R4 step 0 dish patch uses rim dilation min(1.0, dist_rim_to_arc - 0.6) mm (L: 0.84 mm at its closest point); step 4 crease valley is CANCELLED."
+  ],
+  "source": "orchestrator message relaying the person (2026-10-18) + measurements on the reference file this run (scratch %TEMP%/p2prep_nose/v1_nose_crop.npz, arc_ref.npy)",
+  "confidence": "high (it is the reference itself; arc points carry the 0.5 mm voxel interpolation noise - see the probe's noise-floor proof)"
+ },
+ "parts": {
+  "nose_leather": {
+   "outline": "tripo_rebuild/layers/nose.json leather['0'].outline_head (sound, REVIEW_nose); widths at z -6/-8/-10/-12/-14 = 15.51/16.12/14.56/9.16/5.84 mm, +-1 Otsu step = leather['-1'] / ['+1']",
+   "photo_check": "photo leather (pink R-G > 20-25): widest 15.6-16.0 mm at px y 370-371; top px y 363-365; stem tip px y 391-392 (projected Phase 1 tip: 393.5) - agrees within 0.5 mm in width, the photo tip ~0.6 mm higher",
+   "surface": "furless: sits ON the envelope (C3), d = 0 inside the outline, coat.json furless.nose_leather ramp 1.5 mm. Dorsal margin bulges (IMAIOS nasal plane: 'bulging around the nostrils esp. dorsally'). Cobblestone cells = normal/displacement detail, sub-mm, not geometry (Strickland 1958 via cat-anatomy.md).",
+   "source": "Phase 1 (checked) + photo",
+   "confidence": "high (outline), medium (tip height)",
+   "approved_upper_half": "upper half (z >= -9, front-facing) = the reference file, see approved_top_edge_FROZEN",
+   "lower_half_note": "v1 measured on its 0.5 mm grid: z -12 x -5.55..3.25 (8.8 mm), z -14 x -3.93..0.72 (4.65 mm vs Phase 1 5.84) - the lower stem is narrower and leans to -x on v1, while the photo stem is centred on the midline (pink bottom px x 703-709). The lower half is NOT approved: Phase 1 + photo rule there; re-measure on the built skin."
+  },
+  "nostril_R": {
+   "frame": {
+    "_what": "local nostril frame, head-frame mm. n_in = Phase 1 best view axis into the head (= rim-plane normal, REVIEW_nose: opening normals are the stable quantity). e1 = rim long axis, pointing to the comma TAIL (lateral, caudal, dorsal). e2 = n_out x e1, dorsal.",
+    "rim_centroid": [
+     -6.0,
+     -67.6,
+     -9.43
+    ],
+    "n_in": [
+     0.74,
+     0.59,
+     0.33
+    ],
+    "e1_tail": [
+     -0.67,
+     0.69,
+     0.27
+    ],
+    "e2_dorsal": [
+     -0.07,
+     -0.42,
+     0.9
+    ],
+    "source": "tripo_rebuild/layers/nose_basins.json rim_head + best_view_axis_into_head (status checked, REVIEW_face2 + fix)",
+    "confidence": "medium (axis band 90 pct: x [6.0, 12.0], y [-20.0, -8.0] deg)"
+   },
+   "outer_extent_comma": {
+    "_what": "the whole comma as seen on the leather: open slit + its tail that runs on as the alar groove. Its OUTER EXTENT = the Phase 1 exact rim at overflow (anatomy agrees: IMAIOS carnivore nostril = slit with the lateral narrow end raised into a comma running into the alar groove; the photo's dark comma incl. its tail lands on the projected rim, see registration).",
+    "rim_polygon": "tripo_rebuild/layers/nose_basins.json[R].rim_head (106 pts)",
+    "opening_at_overflow_mm": [
+     8.59,
+     5.24
+    ],
+    "opening_area_mm2": 23.97,
+    "pca_long_x_short_mm": [
+     9.01,
+     4.9
+    ],
+    "head_tip": [
+     -2.88,
+     -70.35,
+     -11.44
+    ],
+    "tail_tip": [
+     -9.02,
+     -64.56,
+     -8.16
+    ],
+    "photo_projected_extent_mm": [
+     5.94,
+     5.5
+    ],
+    "photo_dark_extent_mm": "5.9 x 5.9 (lum<90, incl. the dorsolateral tail to px (684,367))",
+    "tolerance_mm": 0.5,
+    "source": "Phase 1 rims (measured) + photo (agrees in projection within ~2 px)",
+    "confidence": "medium"
+   },
+   "open_slit": {
+    "_what": "the true opening into the vestibule = comma HEAD (dorsomedial, rounded) + a tapering slit toward the tail; beyond the open part the tail continues as the closed alar groove.",
+    "head_disc_centre_H": [
+     -4.26,
+     -69.69,
+     -9.53
+    ],
+    "head_disc_radius_mm": 1.5,
+    "head_disc_source": "centre: fitted so its projection lands on the photo's darkest core centroid (R px (695.2,374.2), L (717.5,374.4); fit residual R 0.6 px, L 0.3 px) while staying >= 0.3 mm inside the Phase 1 rim; radius: photo dark core (lum<60) R 4.2 x 3.1 mm, L 2.4 x 1.7 mm projected, and Phase 1 basin widths at 25-50 pct depth R 4.7x3.6..3.5x2.6, L 4.4x3.7..3.3x3.0 mm",
+    "taper": "from the head disc, a slit along e1 whose half-width falls linearly from r_h to 0.3 mm at 70 pct of the rim length (open end below), lying on the dorsal half of the rim (centre line offset along e2 = half the head-disc offset)",
+    "open_end": [
+     -7.21,
+     -66.53,
+     -8.65
+    ],
+    "head_lip_round_mm": 0.3,
+    "confidence": "medium-low (photo sees the dark core but darkness also depends on lighting; R/L asymmetry agrees in direction with Phase 1 rims, R > L, but is larger in the photo; camera geometry does not explain it: R opening normal is 62 deg from the camera, L 57 deg)"
+   },
+   "vestibule": {
+    "_what": "the passage behind the slit: the nasal vestibule continues into the nasal cavity (not a dish). Built as an invagination of the one closed skin surface that bends from the lateral-facing opening to run caudally, so its blind end is never in line of sight and reads as a cavity.",
+    "centreline_polyline_head_mm": [
+     [
+      -4.26,
+      -69.69,
+      -9.53
+     ],
+     [
+      -3.31,
+      -68.15,
+      -8.67
+     ],
+     [
+      -3.31,
+      -65.19,
+      -8.23
+     ],
+     [
+      -3.31,
+      -58.22,
+      -7.53
+     ]
+    ],
+    "centreline_rule": "P0 = H; P1 = H + 2.0 mm * T0 with T0 = normalize(n_in * (0.5,1,1)) (medial component halved so the septum survives); P2 = P1 + 3.0 mm * normalize(0,1,0.15); P3 = P2 + 7.0 mm * normalize(0,1,0.10). Fit a C1 curve (centripetal Catmull-Rom or a cubic B-spline through the points) - total length ~12 mm.",
+    "T0": [
+     0.48,
+     0.77,
+     0.43
+    ],
+    "lumen_section": {
+     "_what": "ellipse perpendicular to the centreline, semi-axes (a along the projection of e1, b perpendicular); linear between stations; end = rounded cap (half-ellipsoid, length = a)",
+     "stations_s_mm": [
+      0,
+      3,
+      6,
+      12
+     ],
+     "a_mm": [
+      1.6,
+      1.2,
+      1.0,
+      1.0
+     ],
+     "b_mm": [
+      1.3,
+      0.8,
+      0.7,
+      0.7
+     ],
+     "source": "ESTIMATE (flagged): aperture from the photo core; caudal size = a narrow airway of ~2 x 1.4 mm (Phase 1 basin widths at 50 pct depth ~3 mm, narrowing); no published feline vestibule cross-section found",
+     "confidence": "low"
+    },
+    "depth_along_centreline_mm": 12.0,
+    "depth_source": "ANATOMY + ESTIMATE: the vestibule is 'the beginning of the nasal cavity' and its folds are rostral extensions of the conchae (Diaz Martinez et al. 2024, doi 10.3390/ani14172609); the airway is continuous ~75 mm from the nasal planum to the nasopharynx in a cat (Kwak et al. 2024, doi 10.3389/fvets.2024.1452002). 12 mm = vestibule + rostral cavity to roughly the bony aperture (estimate: nasal-bone tip ~12-14 mm behind the leather front, from skull_landmarks nasal_tip vs eye_seat scaled to the head frame - frames not registered, flagged). Visual requirement only needs >= 8 mm with the bend.",
+    "confidence": "medium for 'a passage, not a dish'; low for the exact length",
+    "clearances_mm": {
+     "septum_between_lumens_min": 2.0,
+     "to_outer_skin_min_except_own_opening": 1.5,
+     "to_mouth_or_lip_skin_min": 3.0
+    }
+   },
+   "alar_fold_inner": {
+    "_what": "the alar fold inside the vestibule: a cartilaginous ridge continuous with the ventral nasal concha, on the LATERAL-DORSAL wall, partly closing the vestibule laterally => the lumen is a crescent and from outside only a dark crescent shows (not a round hole).",
+    "ridge": "a tube of radius 0.6 mm running along the lumen's lateral-dorsal wall (direction = -(n_in x centreline tangent) blended 30 deg toward e2) from s = 0.5 to s = 6.0 mm; protrusion into the lumen p(s): 0 at s 0.5, 0.7 mm at s 1.5-3.5, 0 at s 6.0 (smoothstep ends); the lumen must stay open (min clear width 0.4 mm)",
+    "source": "ANATOMY: Diaz Martinez et al. 2024 (ventral nasal concha continuous rostrally with the alar and basal folds; 'the alar fold closes it laterally'); IMAIOS vet-anatomy (alar fold passes under the lamina of the alar cartilage on the lateral-dorsal wall of the nasal vestibule); felids: alar fold elongated and vertical in the domestic cat (same 2024 paper). Size = ESTIMATE.",
+    "confidence": "medium (position/shape), low (size)"
+   },
+   "ala_outer": {
+    "_what": "the nostril WING seen from outside: the rounded leather lobe bounding the slit ventrolaterally (the outer face of the alar fold), below the comma tail. Tripo has none (its dish 'opens outward without a rim', nose.json) - built from anatomy + photo.",
+    "ellipsoid_centre": [
+     -5.68,
+     -65.24,
+     -10.74
+    ],
+    "radii_mm_e1_e2_n": [
+     3.2,
+     1.5,
+     1.7
+    ],
+    "axes": "e1, e2, n_out",
+    "crown_proud_of_alar_groove_floor_mm": [
+     0.4,
+     0.9
+    ],
+    "source": "photo (pink lobe ventrolateral to the dark crescent, clearest on L at px x 722-728, y 372-380) + IMAIOS (nasal plane bulging around the nostrils); size ESTIMATE",
+    "confidence": "low"
+   },
+   "alar_groove": {
+    "_what": "the closed tail of the comma: a shallow groove from the slit's open end along e1 to the rim's tail tip at the leather's lateral corner ('barely marked alar groove', IMAIOS)",
+    "polyline_head_mm": [
+     [
+      -7.21,
+      -66.53,
+      -8.65
+     ],
+     [
+      -9.02,
+      -64.56,
+      -8.16
+     ]
+    ],
+    "depth_mm": [
+     0.3,
+     0.5
+    ],
+    "width_mm": [
+     0.4,
+     0.9
+    ],
+    "fade": "depth tapers to 0 over the last 1.0 mm at the tail tip",
+    "source": "anatomy (IMAIOS nostril) + photo tail (R dark to px (684,367); L faint to (730,368)); size ESTIMATE",
+    "confidence": "medium (path), low (size)"
+   }
+  },
+  "nostril_L": {
+   "frame": {
+    "_what": "local nostril frame, head-frame mm. n_in = Phase 1 best view axis into the head (= rim-plane normal, REVIEW_nose: opening normals are the stable quantity). e1 = rim long axis, pointing to the comma TAIL (lateral, caudal, dorsal). e2 = n_out x e1, dorsal.",
+    "rim_centroid": [
+     4.76,
+     -68.76,
+     -9.88
+    ],
+    "n_in": [
+     -0.71,
+     0.61,
+     0.35
+    ],
+    "e1_tail": [
+     0.7,
+     0.65,
+     0.3
+    ],
+    "e2_dorsal": [
+     0.04,
+     -0.46,
+     0.89
+    ],
+    "source": "tripo_rebuild/layers/nose_basins.json rim_head + best_view_axis_into_head (status checked, REVIEW_face2 + fix)",
+    "confidence": "medium (axis band 90 pct: x [-12.0, -4.0], y [-20.0, 0.0] deg)"
+   },
+   "outer_extent_comma": {
+    "_what": "the whole comma as seen on the leather: open slit + its tail that runs on as the alar groove. Its OUTER EXTENT = the Phase 1 exact rim at overflow (anatomy agrees: IMAIOS carnivore nostril = slit with the lateral narrow end raised into a comma running into the alar groove; the photo's dark comma incl. its tail lands on the projected rim, see registration).",
+    "rim_polygon": "tripo_rebuild/layers/nose_basins.json[L].rim_head (92 pts)",
+    "opening_at_overflow_mm": [
+     6.88,
+     5.13
+    ],
+    "opening_area_mm2": 22.47,
+    "pca_long_x_short_mm": [
+     7.2,
+     4.95
+    ],
+    "head_tip": [
+     2.31,
+     -70.96,
+     -11.02
+    ],
+    "tail_tip": [
+     7.37,
+     -66.24,
+     -9.02
+    ],
+    "photo_projected_extent_mm": [
+     5.22,
+     4.61
+    ],
+    "photo_dark_extent_mm": "2.8 x 2.1 core (lum<90) + a fainter tail (lum 130-180) to px (730,368) => ~5.5 mm wide",
+    "tolerance_mm": 0.5,
+    "source": "Phase 1 rims (measured) + photo (agrees in projection within ~2 px)",
+    "confidence": "medium"
+   },
+   "open_slit": {
+    "_what": "the true opening into the vestibule = comma HEAD (dorsomedial, rounded) + a tapering slit toward the tail; beyond the open part the tail continues as the closed alar groove.",
+    "head_disc_centre_H": [
+     3.56,
+     -70.47,
+     -9.33
+    ],
+    "head_disc_radius_mm": 1.3,
+    "head_disc_source": "centre: fitted so its projection lands on the photo's darkest core centroid (R px (695.2,374.2), L (717.5,374.4); fit residual R 0.6 px, L 0.3 px) while staying >= 0.3 mm inside the Phase 1 rim; radius: photo dark core (lum<60) R 4.2 x 3.1 mm, L 2.4 x 1.7 mm projected, and Phase 1 basin widths at 25-50 pct depth R 4.7x3.6..3.5x2.6, L 4.4x3.7..3.3x3.0 mm",
+    "taper": "from the head disc, a slit along e1 whose half-width falls linearly from r_h to 0.3 mm at 70 pct of the rim length (open end below), lying on the dorsal half of the rim (centre line offset along e2 = half the head-disc offset)",
+    "open_end": [
+     5.88,
+     -68.03,
+     -8.88
+    ],
+    "head_lip_round_mm": 0.3,
+    "confidence": "medium-low (photo sees the dark core but darkness also depends on lighting; R/L asymmetry agrees in direction with Phase 1 rims, R > L, but is larger in the photo; camera geometry does not explain it: R opening normal is 62 deg from the camera, L 57 deg)"
+   },
+   "vestibule": {
+    "_what": "the passage behind the slit: the nasal vestibule continues into the nasal cavity (not a dish). Built as an invagination of the one closed skin surface that bends from the lateral-facing opening to run caudally, so its blind end is never in line of sight and reads as a cavity.",
+    "centreline_polyline_head_mm": [
+     [
+      3.56,
+      -70.47,
+      -9.33
+     ],
+     [
+      2.66,
+      -68.92,
+      -8.45
+     ],
+     [
+      2.66,
+      -65.95,
+      -8.01
+     ],
+     [
+      2.66,
+      -58.98,
+      -7.31
+     ]
+    ],
+    "centreline_rule": "P0 = H; P1 = H + 2.0 mm * T0 with T0 = normalize(n_in * (0.5,1,1)) (medial component halved so the septum survives); P2 = P1 + 3.0 mm * normalize(0,1,0.15); P3 = P2 + 7.0 mm * normalize(0,1,0.10). Fit a C1 curve (centripetal Catmull-Rom or a cubic B-spline through the points) - total length ~12 mm.",
+    "T0": [
+     -0.45,
+     0.78,
+     0.44
+    ],
+    "lumen_section": {
+     "_what": "ellipse perpendicular to the centreline, semi-axes (a along the projection of e1, b perpendicular); linear between stations; end = rounded cap (half-ellipsoid, length = a)",
+     "stations_s_mm": [
+      0,
+      3,
+      6,
+      12
+     ],
+     "a_mm": [
+      1.4,
+      1.2,
+      1.0,
+      1.0
+     ],
+     "b_mm": [
+      1.1,
+      0.8,
+      0.7,
+      0.7
+     ],
+     "source": "ESTIMATE (flagged): aperture from the photo core; caudal size = a narrow airway of ~2 x 1.4 mm (Phase 1 basin widths at 50 pct depth ~3 mm, narrowing); no published feline vestibule cross-section found",
+     "confidence": "low"
+    },
+    "depth_along_centreline_mm": 12.0,
+    "depth_source": "ANATOMY + ESTIMATE: the vestibule is 'the beginning of the nasal cavity' and its folds are rostral extensions of the conchae (Diaz Martinez et al. 2024, doi 10.3390/ani14172609); the airway is continuous ~75 mm from the nasal planum to the nasopharynx in a cat (Kwak et al. 2024, doi 10.3389/fvets.2024.1452002). 12 mm = vestibule + rostral cavity to roughly the bony aperture (estimate: nasal-bone tip ~12-14 mm behind the leather front, from skull_landmarks nasal_tip vs eye_seat scaled to the head frame - frames not registered, flagged). Visual requirement only needs >= 8 mm with the bend.",
+    "confidence": "medium for 'a passage, not a dish'; low for the exact length",
+    "clearances_mm": {
+     "septum_between_lumens_min": 2.0,
+     "to_outer_skin_min_except_own_opening": 1.5,
+     "to_mouth_or_lip_skin_min": 3.0
+    }
+   },
+   "alar_fold_inner": {
+    "_what": "the alar fold inside the vestibule: a cartilaginous ridge continuous with the ventral nasal concha, on the LATERAL-DORSAL wall, partly closing the vestibule laterally => the lumen is a crescent and from outside only a dark crescent shows (not a round hole).",
+    "ridge": "a tube of radius 0.6 mm running along the lumen's lateral-dorsal wall (direction = -(n_in x centreline tangent) blended 30 deg toward e2) from s = 0.5 to s = 6.0 mm; protrusion into the lumen p(s): 0 at s 0.5, 0.7 mm at s 1.5-3.5, 0 at s 6.0 (smoothstep ends); the lumen must stay open (min clear width 0.4 mm)",
+    "source": "ANATOMY: Diaz Martinez et al. 2024 (ventral nasal concha continuous rostrally with the alar and basal folds; 'the alar fold closes it laterally'); IMAIOS vet-anatomy (alar fold passes under the lamina of the alar cartilage on the lateral-dorsal wall of the nasal vestibule); felids: alar fold elongated and vertical in the domestic cat (same 2024 paper). Size = ESTIMATE.",
+    "confidence": "medium (position/shape), low (size)"
+   },
+   "ala_outer": {
+    "_what": "the nostril WING seen from outside: the rounded leather lobe bounding the slit ventrolaterally (the outer face of the alar fold), below the comma tail. Tripo has none (its dish 'opens outward without a rim', nose.json) - built from anatomy + photo.",
+    "ellipsoid_centre": [
+     4.51,
+     -66.38,
+     -11.16
+    ],
+    "radii_mm_e1_e2_n": [
+     3.2,
+     1.5,
+     1.7
+    ],
+    "axes": "e1, e2, n_out",
+    "crown_proud_of_alar_groove_floor_mm": [
+     0.4,
+     0.9
+    ],
+    "source": "photo (pink lobe ventrolateral to the dark crescent, clearest on L at px x 722-728, y 372-380) + IMAIOS (nasal plane bulging around the nostrils); size ESTIMATE",
+    "confidence": "low"
+   },
+   "alar_groove": {
+    "_what": "the closed tail of the comma: a shallow groove from the slit's open end along e1 to the rim's tail tip at the leather's lateral corner ('barely marked alar groove', IMAIOS)",
+    "polyline_head_mm": [
+     [
+      5.88,
+      -68.03,
+      -8.88
+     ],
+     [
+      7.37,
+      -66.24,
+      -9.02
+     ]
+    ],
+    "depth_mm": [
+     0.3,
+     0.5
+    ],
+    "width_mm": [
+     0.4,
+     0.9
+    ],
+    "fade": "depth tapers to 0 over the last 1.0 mm at the tail tip",
+    "source": "anatomy (IMAIOS nostril) + photo tail (R dark to px (684,367); L faint to (730,368)); size ESTIMATE",
+    "confidence": "medium (path), low (size)"
+   }
+  },
+  "leather_bridge_crease": {
+   "_what": "where the raised furless planum meets the haired bridge and whisker-pad skin",
+   "status": "FROZEN = skin v1 (person-approved, see approved_top_edge_FROZEN). Not rebuilt. Upper half: the reference surface and its coat ramp are kept to 0.2 mm.",
+   "what_it_is_on_v1": "the coat-inset ramp: depth 0 -> 1.33 mm over ~2 mm at the midline (z -5.0 -> -3.05); no separate valley",
+   "lateral_and_lower_sides": "below z -9.0 and in the nostril wrap (y > -67) the boundary is not approved: it follows Phase 1 leather['0'] (+-0.5 mm) with the coat ramp from coat.json (furless nose_leather ramp 1.5 mm)",
+   "superseded_draft": "the first draft's valley (0.2-0.4 mm deep, 0.8 mm wide, 0.3-1.2 mm outside the outline) is cancelled: v1 does not have it and the photo shows no separate crease line (border crisp within ~1 px, fur overlaps it)",
+   "source": "the person's approval (via orchestrator) + reference file measurements",
+   "confidence": "high"
+  },
+  "philtrum": {
+   "_what": "midline groove from the lower leather down the upper lip to where the two upper-lip lobes part (the 'Y' junction); carnivore upper lip split by the philtrum into two lobes (IMAIOS upper lip; cat-anatomy.md)",
+   "x_midline_mm": -0.2,
+   "x_source": "Phase 1 philtrum x -0.21 (REVIEW_nose); photo groove at px x 706-707 = registered midline",
+   "onset_on_leather": {
+    "point_head_mm": [
+     -0.2,
+     -71.0,
+     -11.3
+    ],
+    "z_tol_mm": 0.7,
+    "source": "photo: the dark median line becomes distinct at px y 381-382 (lifted via the registered camera onto the leather front)",
+    "confidence": "medium"
+   },
+   "leather_tip": {
+    "point_head_mm": [
+     -0.94,
+     -69.72,
+     -16.3
+    ],
+    "source": "Phase 1 leather['0'] lowest point; photo tip is ~0.6 mm higher (px 391.5 vs 393.5)",
+    "confidence": "medium"
+   },
+   "end_Y_junction": {
+    "point_head_mm": [
+     -0.5,
+     -68.2,
+     -19.3
+    ],
+    "tol_mm": [
+     0.4,
+     0.8,
+     0.8
+    ],
+    "source": "PHOTO: darkest midline notch at px (706.5, 400.5) (column lum minimum 83 vs 116-120 above), lifted onto the Phase 1 midline chord (leather tip -> mouth midline (0,-66.29,-22.85)) at t = 0.45 via the registered camera",
+    "confidence": "medium-low (single view; lifted onto Tripo's surface)"
+   },
+   "length_mm": {
+    "on_leather": 5.0,
+    "leather_tip_to_Y_junction": 3.4,
+    "tol": 0.8,
+    "note": "photo-projected 8.5-9 px (2.9-3.1 mm) at ~0.85x foreshortening"
+   },
+   "section": {
+    "_what": "groove profile across the midline, cut as a circular arc: for full width w and depth h the cutter radius rho = (w^2/4 + h^2) / (2h), its centre rho - h above the skin along the skin normal",
+    "stations": [
+     "onset z -11.3",
+     "leather tip z -16.3",
+     "Y junction z -19.3"
+    ],
+    "width_mm": [
+     0.8,
+     1.2,
+     1.5
+    ],
+    "depth_mm": [
+     0.2,
+     0.45,
+     0.8
+    ],
+    "source": "photo FWHM of the dark line 4-7 px on the leather (1.4-2.4 mm incl. shading), 3-5 px below it (1.0-1.7 mm, fur parting); Phase 1 philtrum depth 0.87/0.56/0.27 mm at cav 0.3/0.5/0.7 (threshold-dependent, REVIEW_nose B1); Phase 1 mouth midline groove 0.80-0.97 mm (REVIEW_mouth) as the depth the groove reaches at the lip. Exact sizes ESTIMATE.",
+    "confidence": "low-medium"
+   },
+   "under_fur": "below the leather the groove is cut in the inset skin (muzzle coat 1.2 mm); fur PARTS along it (hair-stream boundary for Stage 5).",
+   "below_junction": "from the Y junction down, the two upper-lip lobes part and run laterally-down as the lip margins (photo: lateral lip shadow at px y 408-409 at |x| 4.5-6 mm). Owned by the MOUTH spec - handed over, not built here.",
+   "v1_baseline": "measured on the reference: leather sections z -11..-14 flat within 0.1 mm at the midline (no groove at 0.5 mm voxels); lip sections z -17..-21 show a broad 0.6-0.8 mm set-back over +-1.5 mm whose straight-edge depth over +-1.25 mm is ~0.2 mm -> v1/Tripo must FAIL the philtrum probe (real-data 'no groove' planted failure)"
+  }
+ },
+ "construction_sdf": {
+  "_what": "concrete recipe; SDF negative inside tissue, positive in air; all in head-frame mm",
+  "domain": "local narrow-band grid around the nose: x [-14, 14], y [-76, -50], z [-26, 0] at 0.08-0.10 mm (<= ~80 MB float32); blend into the skin with every edit >= 3 mm from the box faces; remesh (marching cubes or dual contouring) and stitch, or apply as an SDF edit on the skin's own field",
+  "ops": {
+   "smin(a,b,k)": "polynomial: h = max(k - |a-b|, 0)/k; min(a,b) - h*h*k/4",
+   "smax(a,b,k)": "-smin(-a,-b,k)",
+   "carve(d, cut, k)": "smax(d, -cut, k)",
+   "add(d, part, k)": "smin(d, part, k)"
+  },
+  "steps": [
+   "0. BASE: d0 = signed distance to the built skin (layers/skin.npz, built by the skin agent - read only), after R2: its protected band must match the person-approved reference to 0.2 mm, else it is grafted from the reference. REMOVE TRIPO'S DISHES: inside each Phase 1 rim dilated min(1.0, dist_to_protected_arc - 0.6) mm (R4), replace the surface by a thin-plate (biharmonic) patch fitted to skin samples in the ring rim+1.0..rim+3.0 mm; d0' = signed distance to the patched surface. Gate: no concavity > 0.05 mm remains under the rim.",
+   "1. ALA: d1 = add(d0', ellipsoid(ala_centre, radii, axes e1/e2/n_out), k 0.6) per side (ellipsoid SDF approx (|q/r| - 1) * min(r)).",
+   "2. ALAR GROOVE: d2 = carve(d1, tube(alar_groove polyline, radius 0.35, centre 0.15 mm below the d1 surface, radius tapering to 0 over the last 1 mm), k 0.2).",
+   "3. NOSTRIL + VESTIBULE: lumen = union of (a) the open slit = 2D comma SDF in the rim plane (head disc radius r_h at H, linear taper to half-width 0.3 at open_end) extruded from 1.5 mm OUTSIDE the surface (along n_out) to s = 0.5 mm inside, and (b) the swept variable ellipse along the centreline (stations above) with a rounded end cap; then lumen' = max(lumen, -ridge) where ridge = the alar-fold tube (protrusion p(s)). d3 = carve(d2, lumen', k 0.3). Round the slit lip with k = 0.3.",
+   "4. CREASE: CANCELLED (person-approved v1 top edge, approved_top_edge_FROZEN). Below z -9.0 and in the nostril wrap no valley is cut either (v1 has none; the coat ramp from the skin agent is the step).",
+   "5. PHILTRUM: d5 = carve(d4, swept circle along the philtrum curve onset -> leather tip -> Y junction (curve laid ON the d4 surface: project the three points + 0.5 mm samples onto it), cutter radius/centre per the section formula, linear between stations, ends faded over 0.8 mm), k 0.3.",
+   "5b. MASK (R1): d_final = lerp(d_ref, d5, w), w = smoothstep(0.6, 1.2, dist_to_band_core); every smin/smax blend radius k must end >= 0.6 mm from band_core. Then copy depth_mm from the reference in the band (R3).",
+   "6. VERIFY the surface is one closed manifold, no self-intersection (C2), then run every probe below."
+  ]
+ },
+ "probes": {
+  "_note": "geometric probes on the BUILT surface; each lists the planted failure it must catch (A10). Rays/sections use exact mesh raycasts and exact plane sections (Phase 1 kit). Photo probes use the registration above.",
+  "leather_outline": {
+   "test": "UPPER half (z >= -9.0, y <= -67): approved_top_edge_regression (0.2 mm vs the reference). LOWER half: furless boundary vs nose.json leather['0'] outline (two-sided distance) <= 0.5 mm; widths at z -10/-12/-14 within 0.5 mm of 14.56/9.16/5.84; projected bbox 45 x 29 px +-2 px",
+   "planted": "outline shifted 1 mm; leather scaled 10 pct"
+  },
+  "dish_removed": {
+   "test": "after step 0, under each rim the patched surface is convex/flat: max depth below the rim's straight-edge <= 0.05 mm",
+   "planted": "Tripo dish left in place (2.15/2.31 mm)"
+  },
+  "nostril_opening": {
+   "test": "section of the built surface by the rim plane moved 0.3 mm inward: exactly one comma-shaped hole loop per side; its e1 extent in [0.65, 0.80] x rim long (R 9.0, L 7.2 mm); short axis at the head 2 r_h +-0.4 mm; the loop lies inside the rim polygon dilated 0.5 mm; projected head centre within 2 px of the photo dark core",
+   "planted": "round hole; slit closed (no loop); opening 1 mm outside the rim"
+  },
+  "vestibule_depth_ray": {
+   "test": "from H, 50 rays in a 10 deg cone about T0: EVERY ray travels >= 5.0 mm before hitting skin (straight part P0->P1 + the lumen ahead). And along the centreline s 0..12: every sample is in air with clearance >= 0.3 mm.",
+   "planted": "Tripo blind dish (rays stop at 2.15/2.31 mm); passage closed half-way",
+   "baseline_on_v1": "measured on the reference (Tripo dish): free ray from the photo dark-core centroid (+-4.6, -69.45, -9.1) along the rim normal 1.41 (R) / 1.75 (L) mm; toward the centreline point 4 mm in 1.79 / 1.96 mm; along the photo camera direction 2.42 / 2.29 mm -> all fail the 5.0 mm threshold, as they must"
+  },
+  "vestibule_hidden_end": {
+   "test": "no straight segment from any point of the rim polygon lifted 1.0 mm along n_out to the end-cap centre (s = 12) is free of skin: the bottom is never in line of sight",
+   "planted": "a straight tube along n_in (bottom visible)"
+  },
+  "vestibule_clearances": {
+   "test": "min distance lumen R <-> lumen L >= 2.0 mm (septum); lumen wall to any outer skin farther than 2 mm from its own opening >= 1.5 mm; to lip/mouth skin >= 3.0 mm; skin stays one closed manifold",
+   "planted": "lumen poking through the bridge; the two lumens merged"
+  },
+  "alar_fold": {
+   "test": "lumen cross-sections at s = 1.5, 2.5, 3.5 mm: convexity defect (hull area - area)/hull area >= 0.15, the defect on the lateral-dorsal side (within 60 deg of the ridge direction); clear width >= 0.4 mm everywhere",
+   "planted": "convex elliptic lumen (no fold); fold closing the lumen"
+  },
+  "ala_outer": {
+   "test": "sections perpendicular to the alar groove at 3 stations: ala crown 0.4-0.9 mm proud of the groove floor; photo-lit render (frozen camera) dark-crescent area per side within +-35 pct of the photo (R 10.7 mm2, L 2.8 mm2 at lum<90)",
+   "planted": "no ala (Tripo's open dish); ala 2 mm proud"
+  },
+  "alar_groove": {
+   "test": "perpendicular sections every 0.5 mm from open_end to tail_tip: valley depth 0.2-0.5 mm, width 0.4-0.9 mm, no gap > 0.5 mm; projected path within 2 px of the photo tail (R to px (684,367), L to (730,368))",
+   "planted": "groove missing; groove 1 mm deep"
+  },
+  "crease": {
+   "test": "superseded by approved_top_edge_regression on the upper half; below z -9: rise haired skin -> leather = local coat depth +-0.4 mm within 2.0 mm, no undercut, no trench",
+   "planted": "flush border (no step); a 1 mm trench; any change to the upper half (caught by approved_top_edge_regression)"
+  },
+  "philtrum": {
+   "test": "horizontal sections every 0.5 mm from z -11.3 to z -19.3: one minimum within |x + 0.2| <= 0.4 mm; depth and half-depth width within +-0.2 / +-0.3 mm of the stations (linear between); continuous (no gap > 1 mm); projected groove within 2 px of the photo dark line (px x 706-707) for px y 382-400, end within 1.5 px of (706.5, 400.5)",
+   "planted": "groove shifted 1 mm sideways; groove missing below the leather; end at Tripo's z -22.85 (projects to px y 409.4)"
+  },
+  "approved_top_edge_regression": {
+   "test": [
+    "T1 ARC: extract iso depth 0.05 and 0.6 on the BUILT skin with the reference recipe and sector (z >= -9.0, y <= -67.0); two-sided nearest distance against the reference curves (dense, not the 40-bin resample): p95 <= 0.20 mm and max <= 0.30 mm in both directions; built arc x-extent within 0.2 mm of -8.38 / 7.97",
+    "T2 SURFACE: for every reference vertex in protected_band, exact point-to-triangle distance to the built surface (crop only) <= 0.20 mm p95 / 0.30 max; and the reverse for built vertices in the band",
+    "T3 COAT: built depth_mm interpolated at the band's reference vertices: |delta| <= 0.20 mm p95",
+    "T4 MIDLINE: x = 0 sagittal section, z -6.5 .. 0: y(z) within 0.20 mm of the reference section (take it from the file; the table above is rounded)"
+   ],
+   "noise_floor_proof_A10": "before the probe counts: run T1-T3 with the reference against itself re-tessellated (re-voxelised on a 0.25 mm-offset grid, or subdivided once): p95 must be <= 0.08 mm; if larger, the tolerance is 0.2 + floor and that is reported",
+   "planted": [
+    "the reference itself -> passes (0)",
+    "band offset 0.3 mm along normals -> T2 fails",
+    "leather top shrunk: arc moved 0.5 mm up (depth field shifted) -> T1 fails",
+    "the cancelled crease valley (0.3 mm deep, 0.75 mm outside the outline) -> T2 fails",
+    "a dish-patch / smin blend leaking 0.3 mm into the band -> T2 fails",
+    "coat ramp widened (depth halved at iso 0.6) -> T3 fails",
+    "a rebuilt skin.npz with a moved top edge used as base without R2 -> T1/T2 fail"
+   ],
+   "memory": "crop only (< 100 MB); never a full-mesh distance field",
+   "status": "build"
+  },
+  "vestibule_darkness_optional": {
+   "test": "from the photo dark-core centroid cast the camera ray to its first skin hit; at the hit, cosine-weighted hemisphere openness (128 rays, 15 mm reach, crop mesh) <= 0.30 (calibrate on the built model before it counts)",
+   "baseline_on_v1": "Tripo dish floor 0.555 (R) / 0.68 (L); flat leather 0.99",
+   "planted": "Tripo dish (fails); a straight wide tube with a lit floor"
+  }
+ },
+ "open": [
+  "APPROVED TOP EDGE vs SKIN REBUILD: the skin agent is rebuilding skin.npz now; if the new skin moves the upper leather edge or its coat ramp by > 0.2 mm, the nose build grafts the band from skin_v1_person_approved_leather_top.npz (R2), and the orchestrator decides whether the skin rebuild itself should keep it.",
+  "PHILTRUM END vs MOUTH: the photo puts the upper-lip Y junction at z ~ -19.3 (px y 400.5); Tripo's midline mouth groove is at z -22.85 (px 409.4); the photo's lateral lip shadow is at px y 408-409 for |x| 4.5-6 mm. The MOUTH spec must agree on the junction and the lip margins before either is built (photo wins where it sees, G3).",
+  "R/L nostril asymmetry: photo dark core R 5.3 vs L 1.6 mm2 (lum<60); Phase 1 rims R 24.0 vs L 22.5 mm2. Same direction, different size; lighting cannot be separated from geometry in one photo. Built per side as specified; the ala_outer photo-render probe decides.",
+  "Vestibule length (12 mm) and lumen size are estimates: no published feline vestibule dimensions found (searched: nostril width, vestibule, nasal cavity length). Skull pack landmarks are in an unregistered skull frame, so the bony aperture could not be placed in the head frame.",
+  "Photo registration is translation-only (frozen camera world is offset from the Tripo world); a proper camera<->head-frame transform would tighten every photo probe.",
+  "IMAIOS and Diaz Martinez 2024 differ in wording on which concha the alar fold continues (IMAIOS: ventral; the 2024 paper: ventral concha continuous with the alar and basal folds - consistent). Treated as ventral.",
+  "Comma tail vs approved corners: the photo's dark tail reaches the leather edge at the lateral corners (R px (684,367)); in the head frame that end lies in the wrap region (y > -67), outside the protected arc, so the tail can be built without touching the approved edge. If the person wants the tail to notch the approved corner itself, that is their call.",
+  "Camera registration: camera_frozen.json is not in the Tripo/skin world (projection 155-158 px off at the eyes and nose). All C5 photo-side checks and the Stage 4 pigment projection need a registered camera; the translation-only patch here is good to ~1 mm locally."
+ ],
+ "sources": [
+  {
+   "ref": "Diaz Martinez E. et al. 2024, The Bony Nasal Cavity and Paranasal Sinuses of Big Felids and Domestic Cat, Animals 14(17):2609, doi 10.3390/ani14172609",
+   "url": "https://pmc.ncbi.nlm.nih.gov/articles/11393894",
+   "says": "the nasal vestibule is the beginning of the nasal cavity; straight, alar and basal folds are cartilaginous rostral extensions of the conchae; the ventral nasal concha is continuous rostrally with the alar and basal folds; the alar fold closes it laterally; Fig. 4 labels the subnasal groove (philtrum); felid alar fold elongated and vertical in the domestic cat"
+  },
+  {
+   "ref": "IMAIOS vet-anatomy, ventral nasal concha / nostril / nasal plane / upper lip entries",
+   "url": "https://www.imaios.cn/en/vet-anatomy/anatomical-structures/ventral-nasal-concha-11078086052",
+   "says": "a cartilaginous process, the alar fold, passes under the lamina of the alar cartilage on the lateral-dorsal wall of the nasal vestibule; carnivore nostril a slit whose lateral end rises into a comma running into the alar groove (via cat-anatomy.md); upper lip crossed by a vertical furrow, the philtrum, larger than the lower lip in carnivores"
+  },
+  {
+   "ref": "IMAIOS vet-anatomy, upper lip",
+   "url": "https://www.imaios.cn/en/vet-anatomy/anatomical-structures/upper-lip-11073761600",
+   "says": "the upper lip is crossed in the middle by a vertical furrow, the philtrum; noticeably larger than the lower lip in carnivores"
+  },
+  {
+   "ref": "Kwak HH et al. 2024, Case report: ... nasopharyngeal stenosis in a cat, Front Vet Sci 11:1452002",
+   "url": "https://www.frontiersin.org/journals/veterinary-science/articles/10.3389/fvets.2024.1452002/full",
+   "says": "75 mm from the nasal planum to the stenotic area (nasopharynx); catheter passed along the ventral nasal canal - the nostril opens into a long continuous airway"
+  },
+  {
+   "ref": "engine/references/cat-anatomy.md (Nose; IMAIOS nasal plane & nostril, Strickland 1958, Ain Shams)",
+   "url": "local",
+   "says": "planum hairless, bulging around the nostrils esp. dorsally; carnivore slit convex ventrally, lateral narrow end raised into a horizontal comma running into a barely marked alar groove; alar fold just inside the opening -> the visible dark is a crescent; philtrum a shallow groove"
+  }
+ ],
+ "timing": {
+  "start_epoch": 1792324163,
+  "second_run_amendment": {
+   "start_epoch": 1792324163,
+   "end_epoch": 1792325187,
+   "minutes": 17.1,
+   "note": "same start epoch as the first run: two runs of this brief wrote this file; the second merged the approved-top-edge directive into the first's spec instead of overwriting it (first version backed up to %TEMP%/p2prep_nose/spec_nose_twin_backup.json)"
+  }
+ }
+}

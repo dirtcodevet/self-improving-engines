@@ -1,0 +1,22 @@
+name: Lesson
+description: Running an engine taught you something general
+labels: [lesson]
+body:
+  - type: textarea
+    id: lesson
+    attributes:
+      label: The lesson
+      description: One general rule or method, in your own words. Not a fact about one subject.
+    validations:
+      required: true
+  - type: textarea
+    id: evidence
+    attributes:
+      label: Evidence
+      description: What happened, what you measured, and what the lesson would have changed. Leave out private files, images and personal data.
+    validations:
+      required: true
+  - type: textarea
+    id: cost
+    attributes:
+      label: What it would forbid, and what it costs when wrong

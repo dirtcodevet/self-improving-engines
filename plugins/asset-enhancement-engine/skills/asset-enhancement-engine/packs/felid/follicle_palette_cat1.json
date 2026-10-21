@@ -1,0 +1,265 @@
+{
+ "what": "FOLLICLE PALETTE + MAP for case cat1 (E6; Phase 2 Stage 5 spec, written 2026-10-18 by the hair builder). Each TYPE fully defines the hairs its follicles grow (shape, taper, length, crimp, stiffness, colour along the shaft). The MAP says which types grow where, at what density and in which direction. Editing a type changes every hair of that type at the next groom. Read by the Stage 5 groom (fur_plan.md); checked by C8 C9 C10 C13 C14.",
+ "status": "SPEC (estimated). Nothing here is checked by a tool yet. Every value carries source + confidence (G2); evidence rank (G3): photo > constraints > Tripo/Phase 1 > cited anatomy > estimate.",
+ "units": "lengths mm, diameters um (micrometres), density hairs per mm2 of SKIN, angles deg, colours sRGB 0..1 as SEEN in the photo (apparent, lit) - Stage 4 tone match (tools/tone_match.py, light.json) turns them into albedo before render",
+ "frames": "head frame mm (x = cat's LEFT, y = back, z = up; tripo_rebuild partition.head_local x1000); body regions by coat.json rules",
+ "confidence_scale": "high = photo-measured or [A] source on cats; medium = [A] source, other region/breed or derived; low = [B]/[C] source or cross-species; estimate = no source, flagged",
+ "photo_scale": {
+  "value_mm_per_px": [0.35, 0.38],
+  "source": "photo + Phase 1: iris centres 112 px apart in ref_points.json (eye.R 651,309; eye.L 763,310) vs 42.7 mm between the eyes.json iris centres (x 19.83 / -22.84) -> 0.381 mm/px at the face; the frozen camera (lens 108 mm, 36 mm sensor, 1.81 m to the muzzle) gives 0.349 mm/px. coat.json's 0.27 mm/px is NOT used for the face (different reference; flagged for the orchestrator)",
+  "confidence": "medium (+-5 %)"
+ },
+
+ "types": {
+  "guard_white": {
+   "kind": "guard",
+   "what": "central primary hair of each follicle group; straight, stiff, carries the visible coat in white areas",
+   "base_diameter_um": {"typical": 47, "range": [40, 60], "source": "LeRoy et al. 2016 Jpn J Vet Dermatol 22:179 (DSH primary shaft 47 um, dermatoscopy + biopsy) [A] (cat-hair-streams.md)", "confidence": "medium (body site not stated; face hairs likely thinner - estimate x0.8 on the head)"},
+   "taper": {"profile": "uniform diameter to 0.70 L, then linear to the tip", "tip_to_base_ratio": 0.2, "source": "Gandolfi & Lyons 2012 / Gandolfi et al. 2013 Sci Rep 3:2000: guard hair 'long and straight ... of uniform diameter' [A]; tip fraction and ratio ESTIMATE", "confidence": "estimate (tip zone)"},
+   "length_mm": "per region from coat.json guard_mm (min/typical/max) x per-hair jitter U(0.85, 1.15)",
+   "crimp": {"amplitude_mm": 0.0, "note": "straight [A] Gandolfi 2013; WikiVet 'generally stiff and straight'"},
+   "stiffness": "high (clumping strength 0.55 default of groom.py; lie stays straight)",
+   "lift_deg": {"root": [20, 40], "tip_lie": [4, 14], "source": "groom.py v37 defaults tuned by the person's photo reviews; coat.json lie model 10-25 deg (ESTIMATE, no cited angle)", "confidence": "estimate"},
+   "colour_along_shaft": [{"t": 0.0, "srgb": [0.95, 0.94, 0.93]}, {"t": 1.0, "srgb": [0.96, 0.95, 0.94]}],
+   "colour_source": "photo: white flank/rump/nose-bridge sample sRGB (244,240,237)/(246,241,237)/(240,234,233) ~ 0.95; unpigmented white-spotting hair is white root to tip",
+   "follicle_depth_mm": {"value": 1.14, "sd": 0.21, "source": "LeRoy 2016 (DSH follicle depth) [A]"}
+  },
+  "guard_lilac_ground": {
+   "kind": "guard",
+   "what": "point-area guard hair between the lynx stripes (agouti, banded): pale root, light band, lilac tip",
+   "inherits": "guard_white (shape, taper, length, stiffness)",
+   "colour_along_shaft": [{"t": 0.0, "srgb": [0.90, 0.87, 0.90]}, {"t": 0.45, "srgb": [0.88, 0.84, 0.88]}, {"t": 0.70, "srgb": [0.76, 0.68, 0.78]}, {"t": 1.0, "srgb": [0.64, 0.55, 0.67]}],
+   "colour_source": "band ORDER: Kaelin et al. 2012 Science 337:1536 (light-background hairs have extensive light bands) [A] + CFA Abyssinian ('outer tip to be the darkest') [A]. COLOURS: cases/cat1/photo_markings.json MARK_RGB / MARK_DARK_RGB (photo-measured, engine v20b) [photo]; band positions ESTIMATE",
+   "confidence": "medium (order cited, colours photo, positions estimate)"
+  },
+  "guard_lilac_stripe": {
+   "kind": "guard",
+   "what": "hair of the dark lynx stripes (forehead, cheek bars) and tail rings: pigmented almost root to tip, little banding",
+   "inherits": "guard_white (shape, taper, length, stiffness)",
+   "colour_along_shaft": [{"t": 0.0, "srgb": [0.80, 0.74, 0.81]}, {"t": 0.25, "srgb": [0.66, 0.57, 0.68]}, {"t": 1.0, "srgb": [0.52, 0.44, 0.54]}],
+   "tail_override": [{"t": 0.0, "srgb": [0.78, 0.72, 0.77]}, {"t": 0.25, "srgb": [0.62, 0.54, 0.60]}, {"t": 1.0, "srgb": [0.50, 0.42, 0.48]}],
+   "colour_source": "Kaelin 2012: dark-stripe hairs 'have little or no banding' [A]. Photo samples: forehead stripe sRGB (128,103,130), tail dark ring (133,114,131), tail tip (117,101,112); tail values = photo_markings.json TAIL_DARK_RGB / darkest decile 0.50/0.42/0.48 [photo]",
+   "confidence": "medium"
+  },
+  "awn_white": {
+   "kind": "awn",
+   "what": "lateral primaries of the follicle group ('beard' hairs, Ryder 1976): thinner and a little shorter than guard, part of the outer coat",
+   "base_diameter_um": {"typical": 30, "range": [22, 38], "source": "ESTIMATE between the down and guard values; Erat & Arikan 2012 (Turk J Vet Anim Sci 36:215) mean fibre over all types 23.5-25.6 um [A] bounds it from below", "confidence": "estimate"},
+   "taper": {"profile": "uniform to 0.6 L, linear to tip", "tip_to_base_ratio": 0.25, "source": "ESTIMATE"},
+   "length_mm": "0.85 x the region's guard length (range 0.75-0.95)",
+   "length_source": "Ryder 1976 Res Vet Sci 21:280: outer coat = leading (central primary) + beard (lateral primary) hairs, measured together 25-30 mm [A]; the 0.85 ratio is ESTIMATE",
+   "crimp": {"amplitude_mm": 0.05, "wavelength_mm": 3.0, "note": "slight wave proximally, ESTIMATE ('thinner awn hairs', Gandolfi 2012 [A] gives no shape)"},
+   "stiffness": "medium",
+   "colour_along_shaft": "as guard_white",
+   "pigmented_variant": "awn_lilac: colour stops of guard_lilac_ground, all colours 6 % lighter (ESTIMATE)"
+  },
+  "down_white": {
+   "kind": "down",
+   "what": "secondary (undercoat) hair: fine, undulating, uniform thickness, short; gives the volume that holds the guards off the skin",
+   "base_diameter_um": {"typical": 15, "range": [10, 20], "source": "ESTIMATE (no cited cat down diameter - cat-hair-streams.md gap 5); 'fine undulating down hair of uniform thickness' Gandolfi 2012/2013 [A]", "confidence": "estimate"},
+   "taper": {"profile": "uniform, short tip taper in the last 0.1 L", "tip_to_base_ratio": 0.5, "source": "'uniform thickness' [A]; tip ESTIMATE"},
+   "length_mm": "per region coat.json down_mm",
+   "length_source": "Ryder 1976 undercoat 12-15 mm mid-side [A]; regional values coat.json (estimated)",
+   "crimp": {"amplitude_mm": 0.15, "wavelength_mm": 1.5, "source": "'undulating' (Gandolfi [A]), 'thin, wavy, soft' (WikiVet [A]); numbers ESTIMATE"},
+   "stiffness": "low (erect at the root 35-55 deg, lies to 15-30 deg; groom.py undercoat defaults)",
+   "colour_along_shaft": [{"t": 0.0, "srgb": [0.93, 0.92, 0.92]}, {"t": 1.0, "srgb": [0.94, 0.93, 0.93]}],
+   "pigmented_variant": "down_lilac_pale (point areas): root [0.90,0.88,0.90] -> tip [0.82,0.77,0.83]; paler than the guards (CFA colourpoint/ticked standards: undercoat lighter/clear [A]; values ESTIMATE from the photo tail light band sRGB (208,197,204))"
+  },
+  "lid_margin": {
+   "kind": "guard (adapted)",
+   "what": "first row of skin hairs on the UPPER lid margin standing in for eyelashes; NONE on the lower lid",
+   "source": "Dechra, Anatomy of the Eye, Upper and Lower Lids: cats have no cilia; 'the first row of skin hairs are adapted'; 'neither the dog nor the cat have cilia on the bottom lid' [A]",
+   "base_diameter_um": {"typical": 40, "source": "ESTIMATE"},
+   "length_mm": {"typical": 3, "range": [2, 4], "source": "ESTIMATE (photo cannot resolve)"},
+   "direction": "outward and slightly up from the margin, nearly perpendicular to the lid (Kidd 1903: lash-like hairs 'set nearly at a right angle' [A], general mammal)",
+   "colour_along_shaft": "white (photo: white upper-lid surround medially; lilac laterally -> pigmented variant follows the map)"
+  },
+  "ear_furnishing": {
+   "kind": "furnishing",
+   "what": "long fine hairs inside the pinna, from the inner (medial) margin and the lower conch, fanned up and outward across the concave face",
+   "source_anatomy": "Mivart 1881 The Cat ch. II s.1: 'long hairs inside each ear and sometimes on its tip' [A]; CFA standards name 'ear tufts/furnishings' as a coat area [A]",
+   "photo": "SEEN: dense pale furnishings over the medial half of each inner pinna, swept up and laterally; pink skin shows through on the lateral half and the lower conch (ears crop of ref.jpg)",
+   "base_diameter_um": {"typical": 25, "range": [18, 32], "source": "ESTIMATE ('fine'; Erat & Arikan 2012 mean fibre 23.5-25.6 um [A] as the order)"},
+   "taper": {"profile": "linear from 0.3 L to the tip", "tip_to_base_ratio": 0.2, "source": "ESTIMATE"},
+   "length_mm": {"typical": 11, "range": [7, 16], "source": "photo: strands traced in the ears crop run 25-45 px (x 0.37 mm/px = 9-17 mm, foreshortened by the ~27 deg downward / 37-39 deg outward ear facing - Phase 1 ears, sound) [photo]; coat.json ear_inner guard 5-14 mm", "confidence": "medium"},
+   "crimp": {"amplitude_mm": 0.1, "wavelength_mm": 4.0, "note": "slight wave, ESTIMATE"},
+   "stiffness": "low-medium; lie: root lift 6-14 deg, tip at half (groom.py FURN_LIFT from the v37 ear lab)",
+   "clumping": "thin tufts of ~60 strands (groom.py FURN_DIV, v37 ear lab, person-reviewed)",
+   "colour_along_shaft": [{"t": 0.0, "srgb": [0.92, 0.90, 0.91]}, {"t": 1.0, "srgb": [0.95, 0.94, 0.95]}],
+   "colour_source": "photo: furnishing pixels sRGB ~(199,184,189) are a mix of white hair over pink skin (ear_pink sample (150,114,112)); hair itself white-pale, ESTIMATE"
+  },
+  "ear_tip_wisp": {
+   "kind": "furnishing (tip)",
+   "what": "a small wisp of fine hairs at each ear tip - NOT a lynx tuft",
+   "photo": "SEEN on both ears (8x crop at ear_tip.R 570,129 and ear_tip.L 843,134): about 5-8 fine pale hairs project 5-10 px (2-4 mm) beyond the tip outline, slightly up and medial. A lynx-type tuft (long dense pencil) is NOT present.",
+   "source_anatomy": "Mivart 1881 'and sometimes on its tip' [A]",
+   "count_per_ear": {"typical": 7, "range": [5, 10], "source": "photo (visible hairs; more may be hidden)", "confidence": "medium-low"},
+   "length_mm": {"typical": 5, "range": [3.5, 7], "note": "root 1-3 mm below the tip on the rim + 2-4 mm visible protrusion [photo]"},
+   "base_diameter_um": {"typical": 25, "source": "as ear_furnishing, ESTIMATE"},
+   "taper": {"profile": "linear", "tip_to_base_ratio": 0.2},
+   "colour_along_shaft": "as ear_furnishing"
+  },
+  "inner_pinna_sparse": {
+   "kind": "guard (fine, sparse)",
+   "what": "sparse short fine hairs on the pink inner-pinna skin (lateral half of the concave face, conch walls above the canal)",
+   "source_anatomy": "Veteriankey, 'Anatomy of the Ear in Health and Disease' (search summary): pinna skin lightly haired compared with the body, the concave surface less haired than the convex [B]; WikiVet: concave-side cover 'variable' [B]",
+   "base_diameter_um": {"typical": 20, "source": "ESTIMATE"},
+   "length_mm": {"typical": 2.0, "range": [1, 3], "source": "ESTIMATE (photo: pink skin reads bare at 0.37 mm/px, so hairs are short and sparse)"},
+   "colour_along_shaft": "white",
+   "note": "replaces coat.json's 'inner_ear_pink furless' treatment, per the person's C14: sparse hair on the inner pinna skin"
+  },
+  "ear_back": {
+   "kind": "guard + down (short, dense)",
+   "what": "short dense fur on the convex (back) side of the pinna and the outer rim",
+   "inherits": "guard_* / down_* with ear lengths",
+   "length_mm": {"guard": {"min": 3, "typical": 4, "max": 6}, "down": {"min": 1.5, "typical": 2, "max": 3}, "source": "coat.json ear_back (estimated; photo_fringe ears 0.68 mm = sharpest edge)"},
+   "source_anatomy": "WikiVet: convex-side cover 'usually similar to the rest of the body' [B]; Veteriankey: convex more haired than concave [B]",
+   "colour": "ear backs are NOT visible in the photo (ear fronts face the camera). Colourpoint rule (points = ears; CFA Himalayan [A], Carr MUN [A]) -> guard_lilac_ground + down_lilac_pale; FLAGGED unseen, filled by rule"
+  },
+  "tactile_mystacial": {
+   "kind": "tactile (vibrissa, sinus hair)",
+   "what": "whisker-pad vibrissae: thick, stiff, conical, rooted in a follicle-sinus complex below the skin",
+   "count_per_side": {"value": 12, "rows": 4, "per_row": 3, "source": "Mivart 1881 'about a dozen very long and strong hairs' each side [A]; '12 per side in 4 rows, the top two rows move separately from the bottom two' Cat Behavior Associates [C]; general mammal rows A (dorsal) .. E, usually 5 (Ahl 1986 Vet Res Commun 10:245, text layer read) [A]. 3 per row = ESTIMATE", "confidence": "medium (count), low (per-row split)"},
+   "photo_count": "about 8-10 distinct strands seen per side (white on white inside the head outline hides the rostral short ones) - consistent with 12",
+   "base_diameter_um": {"rule": "D_base_mm = 0.0023 x L_mm + 0.056 (Belli et al. 2017 J Neurophysiol 117:1807, pooled 519 rat whiskers, R2 0.69) applied to cat", "values_um": {"L30": 125, "L45": 160, "L60": 194, "L68": 212}, "allowed_range_um": [110, 320], "source": "rat relation [A] used cross-species = ESTIMATE; no cat base diameter found (Williams & Kramer 2010 and Luo & Hartmann 2023 report none for cats); photo upper bound: strands render 1-2 px at 0.37 mm/px, so < ~0.5 mm", "confidence": "low"},
+   "taper": {"profile": "linear in radius from base to tip (rat: 'tapers approximately linearly', NSF-PAR summary [B])", "base_to_tip_radius_ratio": {"typical": 10, "range": [7, 13], "source": "Williams & Kramer 2010 PLoS One 5:e8806 Table 1: Felis catus cheek vibrissae 7, 10, 13 [A]"}},
+   "curvature": {"model": "Cesaro: curvature k(s) = A s + B, B ~ 0 (flat at the base, curving toward the tip)", "source": "Luo & Hartmann 2023 PLoS One 18:e0269210 (228 cat whiskers): cat whiskers 'flat at the beginning and curved up towards the tip' [A]; A per whisker from total turn theta: A = 2 theta / L^2", "total_turn_deg": {"rows_A_B": 30, "rows_C_D": 40, "range": [20, 55], "source": "ESTIMATE matched to the photo's arcs (whiskers bow down-and-forward toward their tips)"}, "plane": "contains the emergence direction and the down-rostral direction (concave side ventral-rostral) [photo]"},
+   "stiffness": "very high (vibrissae 'much thicker and stiffer than other hairs', WikiVet [A]); rendered as rigid curves, no clumping, no crimp",
+   "follicle": {"root_depth_below_skin_mm": 3.0, "range": [2.0, 4.0], "source": "ESTIMATE (sinus-hair follicles are far larger than the 1.14 mm pelage follicles, LeRoy 2016 [A]; no cat F-SC depth found); must stay inside the pad soft tissue, never reach the mouth cavity"},
+   "colour_along_shaft": [{"t": 0.0, "srgb": [0.93, 0.92, 0.90]}, {"t": 1.0, "srgb": [0.97, 0.97, 0.96]}],
+   "colour_source": "photo: every whisker white; shader roughness 0.18 (accessories.py M_Whisker)"
+  },
+  "tactile_supraorbital": {
+   "kind": "tactile",
+   "what": "superciliary vibrissae over each eye",
+   "source_anatomy": "Mivart 1881 'a few long hairs over each eye' [A]; Reighard & Jennings 1901 vibrissae 'above the upper eyelid' [A]; Ahl 1986: superciliary 'tuft over each eye, usually above its medial part' [A, general mammal]",
+   "photo": "SEEN: 2-3 long white hairs per side rising from above the medial half of the upper lid, sweeping up and laterally toward the ear base; visible 50+ px (>= 18 mm projected)",
+   "count_per_side": {"typical": 4, "range": [2, 6], "source": "photo 2-3 visible + ESTIMATE for hidden ones", "confidence": "medium-low"},
+   "length_mm": {"typical": 25, "range": [18, 35], "source": "photo lower bound 18 mm projected; ESTIMATE upper"},
+   "base_diameter_um": {"rule": "Belli 2017 relation (as mystacial)", "typical": 115, "range": [90, 160], "confidence": "low"},
+   "taper": "linear, base:tip radius 10 (7-13, Williams & Kramer 2010 cat cheek values used for all cat vibrissae - ESTIMATE transfer)",
+   "curvature_total_turn_deg": 25,
+   "follicle_root_depth_mm": 2.0,
+   "colour_along_shaft": "white (photo)"
+  },
+  "tactile_genal": {
+   "kind": "tactile",
+   "what": "cheek vibrissae: upper genal caudal to the eye",
+   "source_anatomy": "Reighard & Jennings 1901: vibrissae on 'the cheek' [A]; Ahl 1986: genal 'one or two tufts ... upper genal are caudal to the eye, lower genal are caudal to the angle of the jaw' [A, general mammal]",
+   "photo": "1-2 long fine hairs leave the cat's LEFT cheek outline at photo y ~350-365 (above the mystacial level ~390) - consistent with upper genal vibrissae; count not resolvable; the cat's right is white on white",
+   "count_per_side": {"typical": 2, "range": [1, 3], "source": "ESTIMATE + photo hint", "confidence": "low"},
+   "position": "upper genal tuft on the cheek ~10-15 mm caudal and ~5-8 mm ventral to the lateral canthus (lateral canthus L 30.0,-32.1,7.4 / R -28.2,-32.2,7.4 head mm, eyes.json) - ESTIMATE",
+   "length_mm": {"typical": 28, "range": [20, 40], "source": "ESTIMATE (engine v37 accessories used 28 mm; photo: hairs extend >= 10 mm past the cheek outline)"},
+   "base_diameter_um": {"typical": 120, "range": [90, 170], "rule": "Belli 2017 relation", "confidence": "low"},
+   "direction": "caudal-lateral, slightly ventral",
+   "colour_along_shaft": "white"
+  },
+  "tactile_chin": {
+   "kind": "tactile",
+   "what": "interramal (behind the mandibular symphysis) and submental (lower lip/chin) vibrissae",
+   "source_anatomy": "Ahl 1986: submental 'lower lip and chin'; interramal 'one or more (may occur in a tuft) caudal to the mandibular symphysis; symmetry not generally apparent' [A, general mammal]; cat chin whiskers reported by VetStreet [C]",
+   "photo": "not resolvable (white hairs on the white chin)",
+   "count": {"typical": 3, "range": [2, 5], "note": "midline tuft, not paired", "source": "ESTIMATE", "confidence": "estimate"},
+   "length_mm": {"typical": 12, "range": [8, 18], "source": "ESTIMATE"},
+   "base_diameter_um": {"typical": 90, "range": [70, 120], "confidence": "estimate"},
+   "direction": "ventral-caudal",
+   "colour_along_shaft": "white"
+  },
+  "tactile_carpal": {
+   "kind": "tactile",
+   "what": "carpal tactile hair organ on the back (palmar/caudal) side of the distal forearm, just proximal to the carpal pad, fore legs only",
+   "source_anatomy": "IMAIOS vet-Anatomy, 'Carpal tactile hair organ' (citing Nilsson 1976): '4 to 6 vibrissae 20 to 30 mm long in cats' [A]; Ahl 1986 ulnar-carpal 'on the palmar surface of the forearm near the wrist' [A]; ulnar-nerve supply (Gottschaldt et al. 1973) [B]",
+   "photo": "not visible (fore legs seen from the front)",
+   "count_per_leg": {"typical": 5, "range": [4, 6], "source": "IMAIOS [A]", "confidence": "medium"},
+   "length_mm": {"typical": 25, "range": [20, 30], "source": "IMAIOS [A]", "confidence": "medium"},
+   "base_diameter_um": {"typical": 115, "range": [90, 150], "rule": "Belli 2017 relation", "confidence": "low"},
+   "position": "a small tuft (all roots within ~4 mm) on the caudo-medial distal forearm, ~8-15 mm proximal to the accessory carpal region - ESTIMATE (Phase 1 paws: 'wrist contour angle but no carpal pad' - the carpal pad itself is a Stage 3 structure)",
+   "direction": "caudal and distal (downward-back), fanned 20-30 deg",
+   "colour_along_shaft": "white (legs are white in the photo)"
+  }
+ },
+
+ "map": {
+  "how": "Per skin point: type weights, total density, length scale, growth direction. Density is split over the follicle GROUP: per group 1 guard + ~2 awn + ~16 down (~19 hairs/group, LeRoy 2016 median 18.8 [A]; 2-5 primaries per group, Moriello/dvm360 [B]; S:P 10-15 adult, Ryder 1976 [B]). Type fractions of all hairs: guard 0.05, awn 0.11, down 0.84 (ESTIMATE within those sources; Noel & Hu 2018 'down hairs can outnumber guard hairs 24 to 1' [A] -> guard >= ~0.04).",
+  "group_spacing_mm": {"value": 0.45, "derivation": "groups/mm2 = density / 19 -> 93/19 = 4.9 groups/mm2 on the back -> mean spacing 0.45 mm (Poisson-disk). The follicle group is the natural clump unit (cat-hair-streams.md (c), modelling suggestion)"},
+  "density_basis": {
+   "primary": "coat.json density_per_cm2 (hepper popular article, 60,000/in2 back ~ 9,300/cm2, 120,000/in2 belly ~ 18,600/cm2) [C] - no cited per-area cat density exists (cat-hair-streams.md gap 4; searched again 2026-10-18: Noel & Hu 2018 SI Table S4 holds fur density for 2 cat species but the SI PDF is 403-blocked)",
+   "independent_bracket": "ESTIMATE cross-check from growth mass: Hendriks et al. 1997 mid-side growth 289 ug/cm2/day summer [A] / (0.30 mm/day growth, Baker 1974 [B] x keratin 1.3 g/cm3 x mean cross-section of the 0.05/0.11/0.84 mix with 47/30/15 um = 3.1e-6 cm2 -> 0.122 ug/day per growing hair) = 2,370 growing hairs/cm2; with an anagen fraction of 0.25-0.5 (ESTIMATE, unsourced) -> 4,700-9,500 hairs/cm2. Same order as the [C] value; supports it, does not prove it.",
+   "confidence": "low"
+  },
+  "regions": {
+   "back":       {"density_per_mm2": {"min": 60, "typical": 93, "max": 140}, "types": {"guard": 0.05, "awn": 0.11, "down": 0.84}, "pigment": "white (photo)", "direction": "toward the tail (Mivart 1881 [A], Kidd 1903 [A]); photo flow where coherent (E3)", "lengths": "coat.json back"},
+   "flanks":     {"density_per_mm2": {"min": 60, "typical": 93, "max": 140}, "types": {"guard": 0.05, "awn": 0.11, "down": 0.84}, "pigment": "white (photo)", "direction": "back and down the flank (Mivart [A])", "lengths": "coat.json flanks"},
+   "chest":      {"density_per_mm2": {"min": 90, "typical": 140, "max": 200}, "types": {"guard": 0.05, "awn": 0.11, "down": 0.84}, "pigment": "white (photo)", "direction": "down toward the belly/legs; a pectoral whorl is possible (Kidd 1900, carnivores generally, cat not named [A]) - only if the photo flow shows one", "lengths": "coat.json chest"},
+   "belly":      {"density_per_mm2": {"min": 120, "typical": 186, "max": 220}, "types": {"guard": 0.04, "awn": 0.10, "down": 0.86}, "pigment": "white (unseen; by continuity with the white chest/flanks - flagged)", "direction": "caudal", "lengths": "coat.json belly"},
+   "neck_ruff":  {"density_per_mm2": {"min": 60, "typical": 93, "max": 140}, "types": {"guard": 0.05, "awn": 0.11, "down": 0.84}, "pigment": "white (photo)", "direction": "caudal; throat: caudal-ventral", "lengths": "coat.json neck_ruff (no ruff)"},
+   "head_crown": {"density_per_mm2": {"min": 60, "typical": 90, "max": 140}, "types": {"guard": 0.06, "awn": 0.12, "down": 0.82}, "pigment": "lilac lynx stripes + lilac ground between the ears; white elsewhere (photo)", "direction": "toward the neck (Mivart/Kidd [A])", "lengths": "coat.json head_crown"},
+   "forehead":   {"density_per_mm2": {"min": 60, "typical": 90, "max": 140}, "types": {"guard": 0.06, "awn": 0.12, "down": 0.82}, "pigment": "4-6 lilac stripes (guard_lilac_stripe) on lilac ground (guard_lilac_ground), white blaze on the midline down to the nose (photo)", "direction": "toward the crown; on the nasal bridge from eye level (or mid-nose) the slope REVERSES toward the nostrils, meeting in a crest/whorl on the midline (Kidd 1900/1903 names the domestic cat [A]; start point disputed)", "lengths": "coat.json forehead"},
+   "periocular": {"density_per_mm2": {"min": 60, "typical": 90, "max": 140}, "types": {"guard": 0.06, "awn": 0.12, "down": 0.82, "lid_margin": "upper lid margin row only"}, "pigment": "lilac surround lateral and ventral to each eye; white medially (photo)", "direction": "NO SOURCE (cat-hair-streams.md gap 1): radial away from the eye as the prior (hair_tracts.py), photo flow decides where coherent", "lengths": "coat.json forehead/cheeks"},
+   "cheeks":     {"density_per_mm2": {"min": 60, "typical": 90, "max": 140}, "types": {"guard": 0.06, "awn": 0.12, "down": 0.82}, "pigment": "lilac cheek bars below/behind the eyes; white toward the jaw (photo)", "direction": "NO SOURCE: down and back (prior), photo flow where coherent", "lengths": "coat.json cheeks", "tactile": "tactile_genal"},
+   "muzzle":     {"density_per_mm2": {"min": 60, "typical": 90, "max": 140}, "types": {"guard": 0.07, "awn": 0.12, "down": 0.81}, "pigment": "white (photo)", "direction": "NO SOURCE: rostral-to-caudal and outward from the nose (prior)", "lengths": "coat.json muzzle", "tactile": "tactile_mystacial (follicle rows on the pad)"},
+   "chin":       {"density_per_mm2": {"min": 60, "typical": 90, "max": 140}, "types": {"guard": 0.06, "awn": 0.12, "down": 0.82}, "pigment": "white (photo)", "direction": "caudal-ventral (prior)", "lengths": "coat.json chin", "tactile": "tactile_chin"},
+   "ear_back":   {"density_per_mm2": {"min": 30, "typical": 60, "max": 90}, "types": {"ear_back(guard)": 0.10, "ear_back(down)": 0.90}, "pigment": "lilac by the point rule (UNSEEN - flagged)", "direction": "toward the ear tip (hair_tracts prior; NO SOURCE - cat-hair-streams.md ear gap)", "lengths": "ear_back type", "source": "coat.json ear_back [estimated]"},
+   "ear_rim":    {"density_per_mm2": {"min": 30, "typical": 60, "max": 90}, "types": {"ear_back(guard)": 0.15, "ear_back(down)": 0.85}, "pigment": "lilac-grey (photo: rim reads grey-lilac at the lateral edge)", "direction": "toward the tip", "tip": "ear_tip_wisp at the apex (photo)"},
+   "ear_furnishing_band": {"density_per_mm2": {"min": 5, "typical": 20, "max": 50}, "where": "inner (medial) margin band 3-5 mm wide + the lower conch rim (crus of the helix area); fading to 0 across the middle of the concave face", "types": {"ear_furnishing": 1.0}, "pigment": "white/pale (photo)", "direction": "up and laterally across the concave face, ~45 deg between 'toward the tip' and 'outward' (photo; groom.py FURN_OUT 1.0 from the person-reviewed v37 ear lab)", "source": "coat.json ear_inner 500-5000/cm2 [estimated] + photo"},
+   "ear_inner_skin": {"density_per_mm2": {"min": 0.5, "typical": 2, "max": 5}, "where": "the pink concave skin (Phase 1 pink mask: 33/36 % of ear vertices; coat.json inner_ear_pink rule)", "types": {"inner_pinna_sparse": 1.0}, "direction": "toward the tip, lying flat", "source": "ESTIMATE: Veteriankey/WikiVet: concave surface lightly/variably haired [B]; photo: skin reads bare at 0.37 mm/px -> short and sparse"},
+   "ear_canal":  {"density_per_mm2": 0, "types": {}, "source": "Kumar & Roman-Auerhahn 2016 (Veteriankey): 'The external ear canal of the cat is devoid of hairs' [A]", "rule": "zero follicles inside the canal opening + 2 mm ramp"},
+   "henrys_pocket": {"density_per_mm2": {"outer_flap": 60, "slot_inside": 2}, "types": {"outer_flap": "ear_back", "slot_inside": "inner_pinna_sparse"}, "source": "ESTIMATE (no source on hair inside the cutaneous marginal pouch); the C6b fold is Stage 3 skin - roots follow it"},
+   "leg_upper":  {"density_per_mm2": {"min": 60, "typical": 93, "max": 140}, "types": {"guard": 0.05, "awn": 0.11, "down": 0.84}, "pigment": "white (photo) - EXCEPT a faint lilac wash on the caudal thigh beside the tail root (cat's left hind, photo x 1055-1075, y 790-860, sRGB ~(217,206,216)); may be tail-colour spill - flagged", "direction": "down the limb (Mivart [A]); dorsal forearm possibly reversed (Kidd 1900, carnivores generally [A]) - photo flow decides", "lengths": "coat.json leg_upper"},
+   "leg_lower":  {"density_per_mm2": {"min": 60, "typical": 93, "max": 140}, "types": {"guard": 0.05, "awn": 0.11, "down": 0.84}, "pigment": "white (photo)", "direction": "down toward the paw", "lengths": "coat.json leg_lower", "tactile": "tactile_carpal on the fore legs"},
+   "paw_top":    {"density_per_mm2": {"min": 60, "typical": 93, "max": 140}, "types": {"guard": 0.06, "awn": 0.12, "down": 0.82}, "pigment": "white (photo: all four paws white)", "direction": "distal, over the toes", "lengths": "coat.json paw_top"},
+   "tail":       {"density_per_mm2": {"min": 60, "typical": 93, "max": 140}, "types": {"guard": 0.05, "awn": 0.11, "down": 0.84}, "pigment": "WHOLE TAIL pigmented: guard_lilac_ground + down_lilac_pale on the light bands, guard_lilac_stripe (tail_override) on the dark rings (~5 rings) and the dark tip (photo)", "direction": "toward the tip, splaying 10-20 deg outward from the axis (photo: feathered outline)", "lengths": "coat.json tail"}
+  },
+  "furless": "nose leather, paw pads, eye opening (coat.json furless rules) - 0 follicles; the inner pinna is NOT furless any more (ear_inner_skin above)",
+  "pigment_note": "THE PHOTO DISAGREES WITH THE BRIEF'S 'points = mask, ears, legs/paws, tail': in ref.jpg all four legs and paws, the muzzle, chin, throat and chest are WHITE (lynx point with white - white spotting overrides the points there). Pigmented follicles grow on: forehead/crown stripes, temples, eye surround and cheek bars (mask), ears (backs by rule), tail (whole), and possibly a faint caudal-thigh patch. Assignment per follicle comes from the Stage 4 photo projection (photo_markings), moved UPSTREAM along hair_dir by the visible offset (~L cos(lie)) so the colour seen at the tip lands on the right roots (groom.py samples at the tip for the same reason)."
+ },
+
+ "whiskers_mystacial_layout": {
+  "what": "12 follicles per side: rows A (dorsal) .. D (ventral) x arcs 1 (caudal, longest) .. 3 (rostral, shortest). Head-frame mm; x is mirrored (+ = cat's left). Roots are SNAPPED to the Stage 3 skin along the pad normal, then sunk by the follicle depth.",
+  "pad_extent_head_mm": {"x_abs": [17, 23], "y": [-63, -55], "z": [-25, -13], "source": "Phase 1 whiskers.json roots (checked layer): L z -14.1..-23.7, R z -13.3..-22.5 (two R roots at z -27.4/-28.3 sit at the mouth-corner level, z -27.5 (mouth.json) -> treated as lip-merged Tripo artefacts, not used); nose leather lowest z -14 (nose.json)", "confidence": "medium (Tripo root positions are prism ends; 'lump' at R (-22.2,-56.8,-14.8) OPEN)"},
+  "rows_z_mm": {"A": -14.0, "B": -17.5, "C": -21.0, "D": -24.5},
+  "arcs_y_mm": {"1": -55.5, "2": -58.5, "3": -61.5},
+  "spacing_note": "3-3.5 mm grid, ESTIMATE fitted inside the Phase 1 root spread",
+  "length_mm": {
+   "A": {"1": 58, "2": 46, "3": 32},
+   "B": {"1": 66, "2": 52, "3": 36},
+   "C": {"1": 66, "2": 52, "3": 36},
+   "D": {"1": 56, "2": 44, "3": 30}
+  },
+  "length_tolerance_mm": 6,
+  "length_source": "PHOTO: longest visible whisker on the cat's right runs from the pad (~680,392) to a tip at (527,450) = 164 px = 61 mm PROJECTED (0.37 mm/px), a drooping one to (562,495) = 56 mm projected; cat's left longest tip (863,394) from ~(735,392) = 47 mm projected (more foreshortened: the head turns toward the image left). Projected = lower bound, so the longest are >= 61 mm; 66 mm assumes ~25 deg out of the image plane. Front-to-back increase: Brecht et al. 1997 via Wikipedia 'Whiskers' [B] (rows get longer rostral->caudal across species). Row factors (A 0.88, D 0.85) ESTIMATE. Phase 1 lengths 15.8-25.6 mm are Tripo's TRUNCATED baked prisms - NOT used (C6: Tripo artefact).",
+  "emergence_dir_head": {"A": [0.85, 0.45, 0.05], "B": [0.85, 0.40, -0.15], "C": [0.80, 0.35, -0.40], "D": [0.70, 0.30, -0.60], "note": "x sign = side; unit after normalising; jitter +-6 deg; ESTIMATE matched to the photo fan (upper rows near horizontal, lower rows droop); Phase 1 root_dir_head hints agree in sign (lateral, caudal, ventral)"},
+  "base_diameter_um_from_length": "Belli 2017 relation (see tactile_mystacial): e.g. 66 mm -> 208 um, 52 -> 176, 36 -> 139, 30 -> 125",
+  "movable_groups": "rows A-B and C-D can be posed as two groups (Cat Behavior Associates [C]) - rig hint only"
+ },
+
+ "sources": {
+  "williams_kramer2010": "Williams C.M., Kramer E.M. (2010) The advantages of a tapered whisker. PLoS One 5(1):e8806. https://pmc.ncbi.nlm.nih.gov/articles/PMC2808387/ - Table 1: Felis catus cheek vibrissae base/tip radius 7, 10, 13 (three longest whiskers, preserved pelts, calipers 10 um); no cat base diameter or length given",
+  "luo_hartmann2023": "Luo Y., Hartmann M.J.Z. (2023) On the intrinsic curvature of animal whiskers. PLoS One 18(1):e0269210. https://pmc.ncbi.nlm.nih.gov/articles/PMC9821693/ - 228 whiskers from 6 cats; curvature modelled k(s) = A s + B; cat whiskers 'flat at the beginning and curved up towards the tip'; no cat diameters in the text",
+  "belli2017": "Belli H.M., Yang A.E.T., Bresee C.S., Hartmann M.J.Z. (2017) Variations in vibrissal geometry across the rat mystacial pad: base diameter, medulla, and taper. J Neurophysiol 117(4):1807-1820. https://pmc.ncbi.nlm.nih.gov/articles/PMC5390285/ - pooled D_base = 0.0023 S + 0.056 mm (519 rat whiskers); dorsal rows thinner for a given length",
+  "ahl1986": "Ahl A.S. (1986) The role of vibrissae in behavior: a status review. Vet Res Commun 10:245-268. https://gwern.net/doc/cat/psychology/1986-ahl.pdf - text layer read: classification mystacial (rows A-E, usually 5), superciliary (over the medial part of the eye), genal (upper caudal to the eye, lower caudal to the jaw angle), submental, interramal, ulnar-carpal (palmar forearm near the wrist)",
+  "imaios_carpal": "IMAIOS vet-Anatomy, Carpal tactile hair organ (citing Nilsson 1976). https://www.imaios.cn/en/vet-anatomy/anatomical-structures/carpal-tactile-hair-organ-11111647564 - '4 to 6 vibrissae 20 to 30 mm long in cats' (via cat-hair-streams.md [A])",
+  "mivart1881": "Mivart St G. (1881) The Cat, ch. II s.1. https://archive.org/stream/catanintroducti00mivagoog/catanintroducti00mivagoog_djvu.txt - 'about a dozen very long and strong hairs' per upper lip; 'a few long hairs over each eye'; 'long hairs inside each ear and sometimes on its tip'; hairs backwards head to tail, down on the limbs",
+  "reighard_jennings1901": "Reighard J., Jennings H.S. (1901) Anatomy of the Cat, Integument. https://www.gutenberg.org/cache/epub/58394/pg58394.txt - vibrissae on the upper lip, the cheek and above the upper eyelid",
+  "kumar_roman2016": "Kumar A., Roman-Auerhahn M. (2016) Anatomy of the canine and feline ear (Veteriankey). https://veteriankey.com/anatomy-of-the-canine-and-feline-ear/ - 'The external ear canal of the cat is devoid of hairs'",
+  "veteriankey_ear": "Anatomy of the Ear in Health and Disease (Veteriankey) https://veteriankey.com/anatomy-of-the-ear-in-health-and-disease/ - search summary [B]: pinna skin lightly haired vs the body, concave surface less haired than convex",
+  "dechra_lids": "Dechra Veterinary Products, Anatomy of the Eye: Upper and Lower Lids. https://digital.dechra.com/Anatomy%20of%20the%20eye%20MASTER%20-%20FINAL/Anatomy%20of%20the%20eye%20V2/sections/Upper_Lower_Lids.html",
+  "leroy2016": "LeRoy et al. (2016) Jpn J Vet Dermatol 22:179 https://www.jstage.jst.go.jp/article/jjvd/22/3/22_16-012/_article - DSH primary shaft 47 um, follicle depth 1.14 +- 0.21 mm, 23.4 follicles / 18.8 hairs per group",
+  "gandolfi2013": "Gandolfi B. et al. (2013) Sci Rep 3:2000 https://pmc.ncbi.nlm.nih.gov/articles/PMC3683669 - three hair types: straight uniform guard, thinner awn, fine undulating down",
+  "ryder1976": "Ryder M.L. (1976) Res Vet Sci 21:280 - outer coat 25-30 mm, undercoat 12-15 mm mid-side; S:P 3:1 young to 10-15:1 adult",
+  "noelhu2018": "Noel A.C., Hu D.L. (2018) PNAS 115:12377 https://pmc.ncbi.nlm.nih.gov/articles/PMC6298077/ - down can outnumber guard 24:1; SI Table S4 (fur density, 2 cat species) not reachable (403)",
+  "hendriks1997": "Hendriks W.H., Tarttelin M.F., Moughan P.J. (1997) Comp Biochem Physiol 116:29 - mid-side hair growth 62 (winter) / 289 (summer) ug/cm2/day",
+  "kaelin2012": "Kaelin C.B. et al. (2012) Science 337:1536 https://pmc.ncbi.nlm.nih.gov/articles/PMC3709578 - light-background hairs extensively banded; dark-stripe hairs little or no banding",
+  "hepper": "Hepper, The Human's Guide to Cat Hair (popular, no primary source) - ~9,300/cm2 back, ~18,600/cm2 belly [C]",
+  "photo": "cases/cat1/ref.jpg read by the hair builder 2026-10-18 (crops in %TEMP%/p2prep_hair): head, ears, ear tips x8, brows, cheeks, whiskers + white top-hat outside ref_mask.png, tail; colour samples 7x7 medians"
+ },
+ "gaps": [
+  "no measured cat vibrissa base diameter (searched: Williams & Kramer 2010, Luo & Hartmann 2023, Dougill et al. 2023 J Morphol 284:e21628 - the last 403-blocked); rat relation used, low confidence",
+  "no cat per-area hair density from a primary source (Noel & Hu SI Table S4 blocked); [C] value + an estimated growth-mass bracket",
+  "no cat-specific counts for supraorbital, genal, chin vibrissae; photo hints only for supraorbital/genal",
+  "mystacial per-row split (3 x 4) and row length factors are estimates; Ahl's general mammal pattern is 5 rows",
+  "no source for hair direction on the face sides, eye surround, chin, throat or ear surfaces (cat-hair-streams.md gap 1) - photo flow decides where coherent, else the hair_tracts prior (flagged)",
+  "ear backs unseen in the photo - colour by the colourpoint rule",
+  "down/awn diameters and all colour band positions are estimates"
+ ]
+}

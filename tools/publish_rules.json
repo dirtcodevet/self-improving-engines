@@ -1,0 +1,78 @@
+{
+  "_what": "What this repo publishes from the project. Each copy maps a project folder onto a plugin's skill folder; 'exclude' lists the project files that stay in the project (case work, sample models, run logs, third-party bulk data), 'keep' re-admits files an exclude would catch. Patterns are fnmatch globs on paths relative to the project folder named in 'project'. Read by tools/refresh_copies.py and tools/verify_copies.py. Decided 2026-10-21: the repo holds the skills, the tools and the foundation (domain packs, references, checks), not the samples and work. 'rewrite' lists find -> replace pairs applied, in order, to every published text file (the extensions in 'text_files'): the project layout's skill paths and the engine's old name. The personal ones (the maintainer's folder paths, the name of their other project) are applied first, from tools/publish_rewrites.local.json, which git ignores so the strings it hides are never published; the copy tools stop without it. Decided 2026-10-21 for the public release.",
+  "skip_everywhere": [
+    "__pycache__",
+    "*.pyc",
+    "*.blend",
+    "*.blend1"
+  ],
+  "copies": [
+    {
+      "repo": "plugins/recursive-improvement/skills/recursive-improvement",
+      "project": "skills/recursive-improvement",
+      "exclude": [],
+      "keep": []
+    },
+    {
+      "repo": "plugins/engine-grounding/skills/engine-grounding",
+      "project": "skills/engine-grounding",
+      "exclude": [],
+      "keep": []
+    },
+    {
+      "repo": "plugins/asset-enhancement-engine/skills/asset-enhancement-engine",
+      "project": "engine",
+      "exclude": [
+        "vendor/*",
+        "packs/human/base_female_torso/*",
+        "packs/human/template/*",
+        "log/*"
+      ],
+      "keep": [
+        "log/METHOD.md",
+        "log/TOOLMAKING.md"
+      ],
+      "why": {
+        "vendor/*": "third-party tools under their own licences (GPL-3.0, Apache-2.0), 465 MB: listed in plugins/asset-enhancement-engine/VENDOR.md",
+        "packs/human/base_female_torso/*": "a sample model (the woman2 torso, versions v1-v12), not engine foundation",
+        "packs/human/template/*": "MakeHuman's body template data (99 MB); tools/class_template_fetch.py fetches it",
+        "log/*": "run logs, plans, proposals and the maintainer's notes; the skill reads only METHOD.md (its teaching log) and TOOLMAKING.md (the tool index)"
+      }
+    }
+  ],
+  "text_files": [
+    ".md",
+    ".py",
+    ".json",
+    ".txt",
+    ".html",
+    ".yml",
+    ".yaml",
+    ".js",
+    ".mjs",
+    ".csv",
+    ".toml",
+    ".sh",
+    ".ps1",
+    ".svg",
+    ".cfg",
+    ".ini"
+  ],
+  "rewrite": [
+    {
+      "find": "`../skills/recursive-improvement/`",
+      "replace": "the `recursive-improvement` plugin",
+      "why": "in a plugin install the companion skills are separate plugins, not sibling folders"
+    },
+    {
+      "find": "`../skills/engine-grounding/`",
+      "replace": "the `engine-grounding` plugin",
+      "why": "as above"
+    },
+    {
+      "find": "photo-to-blender-creature",
+      "replace": "asset-enhancement-engine",
+      "why": "the engine's public name (decided 2026-10-21); the project keeps its old skill name"
+    }
+  ]
+}

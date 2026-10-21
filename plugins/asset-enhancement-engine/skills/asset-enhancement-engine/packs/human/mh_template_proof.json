@@ -1,0 +1,47 @@
+{
+ "real": {
+  "closed": true,
+  "comps": 1,
+  "bnd": 0,
+  "nm": 0,
+  "loops": 0,
+  "chi": 2
+ },
+ "plant_hole_1face": {
+  "closed": false,
+  "comps": 1,
+  "bnd": 4,
+  "nm": 0,
+  "loops": 1,
+  "chi": 1
+ },
+ "plant_hole_2faces_apart": {
+  "closed": false,
+  "comps": 1,
+  "bnd": 8,
+  "nm": 0,
+  "loops": 2,
+  "chi": 0
+ },
+ "plant_detached_quad": {
+  "closed": false,
+  "comps": 2,
+  "bnd": 4,
+  "nm": 0,
+  "loops": 1,
+  "chi": 3
+ },
+ "plant_nonmanifold_edge": {
+  "closed": false,
+  "comps": 1,
+  "bnd": 3,
+  "nm": 1,
+  "loops": 1,
+  "chi": 2
+ },
+ "provenance_files": 711,
+ "provenance_mismatch": [],
+ "mutated_byte_detected": true,
+ "oor_index_refused": true,
+ "ALL_PASS": true
+}

@@ -1,0 +1,501 @@
+{
+ "_": "Human pack: the adult female nipple-areola complex (NAC) as a skin feature for engine/tools/skin_feature.py. Every quality is a named parameter with its source and confidence. Lengths are RATIOS to the areola diameter D (or to the nipple diameter d) unless a unit is given, so a case supplies only the centre, the axis, D and a seed. Design: cases/woman2/NAC_DESIGN.md (orchestrator, 2026-10-19). Written by the woman2 Stage 4 builder, 2026-10-19.",
+ "sources": {
+  "CLOSEUP": "the person's reference cases/woman2/blueprints/nipple_closeup_side.jpg (AI-made side close-up, given as 'not perfect, but it gives a good idea'); measured in cases/woman2/stage4/closeup_measure.py -> checks/closeup_measure.json and by picking on 4x zooms (work/nipple_zoom.png, work/farnipple_zoom.png)",
+  "SIDEBP": "the person's side blueprints side_left.jpg / side_right.jpg: the far nipple in profile (4x zoom, work/side_nipples_zoom.png)",
+  "APS1999": "Aesthetic Plast Surg 1999, doi 10.1007/s002669900146: nipple / areola diameter 0.28 (abstract and search summary only)",
+  "SANUKI2009": "Sanuki J et al. 2009, Aesthetic Plast Surg, doi 10.1007/s00266-008-9194-y: nipple / areola diameter 0.325 (abstract and search summary only)",
+  "DESIGN": "cases/woman2/NAC_DESIGN.md ranges (orchestrator's design from anatomy texts; not a measurement)",
+  "PERSON": "the person, FINISH_SPEC F2: 'The areola sits nearly flush with the breast, with only a slight rise'; 2026-10-19: 'Nipples are the right size'",
+  "EST": "builder's estimate (no measurement); a value to be checked by the person's look"
+ },
+ "states": {
+  "relaxed": {
+   "areola": {
+    "rise_mm": {
+     "value": 1.0,
+     "source": "PERSON (nearly flush, slight rise); DESIGN 1-3 mm",
+     "confidence": "estimate"
+    },
+    "margin_in": {
+     "value": 0.7,
+     "unit": "r/R where the mound starts to fall",
+     "source": "EST from CLOSEUP (soft margin, the half-level edge at R)",
+     "confidence": "estimate"
+    },
+    "margin_out": {
+     "value": 1.05,
+     "unit": "r/R where the mound and the zone end",
+     "source": "EST",
+     "confidence": "estimate"
+    },
+    "margin_irregularity": {
+     "value": 0.03,
+     "unit": "relative RMS of R(theta), harmonics 2-5",
+     "source": "DESIGN ('a few percent')",
+     "confidence": "estimate"
+    },
+    "edge_width_mm": {
+     "value": 1.5,
+     "source": "Stage 4b brief: a defined edge, a soft transition of about 1-2 mm (CLOSEUP shows a defined edge)",
+     "confidence": "estimate in the stated range"
+    }
+   },
+   "tubercles": {
+    "count": {
+     "value": 20,
+     "unit": "sampled; those not wholly inside the areola's own irregular edge are dropped (about 13 kept)",
+     "source": "DESIGN 10-20",
+     "confidence": "estimate"
+    },
+    "ring_r_over_R": {
+     "value": [
+      0.72,
+      0.92
+     ],
+     "source": "Stage 4b: inside the areola near its edge; DESIGN",
+     "confidence": "estimate"
+    },
+    "ring_weight": {
+     "value": 0.2,
+     "unit": "acceptance at the inner edge of the ring (1 = uniform)",
+     "source": "EST",
+     "confidence": "estimate"
+    },
+    "diameter_mm": {
+     "value": [
+      0.5,
+      0.9
+     ],
+     "source": "Stage 4b: small; DESIGN 0.6-1.2",
+     "confidence": "estimate"
+    },
+    "height_mm": {
+     "value": [
+      0.05,
+      0.1
+     ],
+     "source": "Stage 4b: small, subtle (relaxed)",
+     "confidence": "estimate"
+    },
+    "min_spacing_mm": {
+     "value": 1.6,
+     "source": "EST",
+     "confidence": "estimate"
+    },
+    "lighten": {
+     "value": 0.15,
+     "unit": "share of the areola pigment removed on a tubercle (toward the skin tone)",
+     "source": "Stage 4b: skin-toned",
+     "confidence": "estimate"
+    }
+   },
+   "micro": {
+    "zone_r_over_R": {
+     "value": [
+      0.3,
+      1.05
+     ],
+     "source": "EST",
+     "confidence": "estimate"
+    },
+    "ring_wavelength_mm": {
+     "value": 0.55,
+     "source": "CLOSEUP: concentric wrinkles 3-4 px apart at 6.1 px/mm",
+     "confidence": "measured approx"
+    },
+    "ring_amp_mm": {
+     "value": 0.015,
+     "source": "EST, tuned on the clay look against CLOSEUP (0.035 read as a fingerprint)",
+     "confidence": "estimate"
+    },
+    "ring_wander_mm": {
+     "value": 4.0,
+     "unit": "wavelength of the noise that bends and breaks the rings",
+     "source": "EST",
+     "confidence": "estimate"
+    },
+    "radial_wavelength_mm": {
+     "value": 0.9,
+     "source": "EST",
+     "confidence": "estimate"
+    },
+    "radial_amp_mm": {
+     "value": 0.006,
+     "source": "EST",
+     "confidence": "estimate"
+    },
+    "noise_wavelength_mm": {
+     "value": 0.25,
+     "unit": "sebaceous fine texture",
+     "source": "EST",
+     "confidence": "estimate"
+    },
+    "noise_amp_mm": {
+     "value": 0.01,
+     "source": "EST",
+     "confidence": "estimate"
+    }
+   },
+   "nipple": {
+    "diameter_over_areola": {
+     "value": 0.318,
+     "source": "CLOSEUP 58.5 px / 184 px (vertical, unforeshortened); APS1999 0.28, SANUKI2009 0.325",
+     "confidence": "measured (one image), inside the cited range"
+    },
+    "projection_over_diameter": {
+     "value": 0.355,
+     "source": "CLOSEUP far nipple profile silhouette, re-measured on a sub-pixel outline (Stage 4b): projection 18.1 px over its half-height width 51 px (checks/far_nipple_profile.json); SIDEBP ~0.31",
+     "confidence": "measured (one image, as seen; not corrected for its view angle)"
+    },
+    "cap_height_over_projection": {
+     "value": 0.6,
+     "source": "CLOSEUP: a short cylindrical body under a rounded cap (0.75 read as a smooth dome in the first look)",
+     "confidence": "estimate",
+     "note": "unused when profile is given"
+    },
+    "flare_width_mm": {
+     "value": 0.6,
+     "source": "DESIGN ('slightly wider base'); EST",
+     "confidence": "estimate"
+    },
+    "flare_height_mm": {
+     "value": 0.5,
+     "source": "EST",
+     "confidence": "estimate"
+    },
+    "corrugation_wavelength_mm": {
+     "value": 0.3,
+     "source": "CLOSEUP: fine fissures wrapping the nipple",
+     "confidence": "estimate"
+    },
+    "corrugation_depth_mm": {
+     "value": 0.006,
+     "source": "Stage 4b: an order of magnitude finer than 0.06 (read as a cobblestone top beside CLOSEUP)",
+     "confidence": "estimate"
+    },
+    "corrugation_wander_mm": {
+     "value": 3.0,
+     "source": "EST",
+     "confidence": "estimate"
+    },
+    "duct_openings": {
+     "value": 12,
+     "source": "DESIGN 10-20 (anatomy texts cite roughly 5-20 orifices)",
+     "confidence": "estimate"
+    },
+    "duct_cluster_r_over_radius": {
+     "value": 0.5,
+     "source": "DESIGN ('irregular cluster on the tip')",
+     "confidence": "estimate"
+    },
+    "duct_diameter_mm": {
+     "value": [
+      0.12,
+      0.2
+     ],
+     "source": "EST",
+     "confidence": "estimate"
+    },
+    "duct_depth_mm": {
+     "value": [
+      0.02,
+      0.04
+     ],
+     "source": "EST (Stage 4b: shallower)",
+     "confidence": "estimate"
+    },
+    "texture_wavelength_mm": {
+     "value": 0.3,
+     "source": "CLOSEUP: pebbly surface of the nipple",
+     "confidence": "estimate"
+    },
+    "texture_amp_mm": {
+     "value": 0.0025,
+     "source": "Stage 4b: an order of magnitude finer",
+     "confidence": "estimate"
+    },
+    "profile": {
+     "value": [
+      [
+       0,
+       1
+      ],
+      [
+       0.3,
+       0.98
+      ],
+      [
+       0.5,
+       0.93
+      ],
+      [
+       0.65,
+       0.86
+      ],
+      [
+       0.8,
+       0.76
+      ],
+      [
+       0.92,
+       0.62
+      ],
+      [
+       0.98,
+       0.48
+      ],
+      [
+       1.0,
+       0.4
+      ],
+      [
+       1.01,
+       0.25
+      ],
+      [
+       1.03,
+       0.14
+      ],
+      [
+       1.08,
+       0.07
+      ],
+      [
+       1.15,
+       0.025
+      ],
+      [
+       1.22,
+       0.0
+      ]
+     ],
+     "unit": "[rho / nipple radius, height / projection] from the tip to the foot",
+     "source": "CLOSEUP profile silhouette: the cap (rho <= 0.92) and the half-height width as measured; the body side made near-vertical and the base flare narrowed from the image blur (estimate): a rounded cap on a roughly cylindrical body",
+     "confidence": "measured cap, estimated body side"
+    },
+    "fine_noise_factor": {
+     "value": 0.2,
+     "unit": "the micro noise amplitude on the nipple, relative to the areola",
+     "source": "Stage 4b",
+     "confidence": "estimate"
+    }
+   },
+   "resolution_mm": {
+    "areola": 0.1,
+    "nipple": 0.06,
+    "rim": 1.2,
+    "note": "edge lengths: glands 0.6 mm across get 6+ vertices, ring wrinkles 5+ per wavelength; duct openings near 2-3 vertices across (half shading)"
+   }
+  },
+  "contracted": {
+   "_": "stored for the later response layer (cold, touch): the areolar smooth muscle contracts - a smaller, wrinkled, slightly raised areola and an erect nipple. Multipliers on the relaxed values unless a value is given. All estimates (physiology texts describe it; no measurement here).",
+   "areola_diameter_factor": {
+    "value": 0.8,
+    "confidence": "estimate"
+   },
+   "rise_factor": {
+    "value": 1.5,
+    "confidence": "estimate"
+   },
+   "ring_amp_factor": {
+    "value": 3.0,
+    "confidence": "estimate"
+   },
+   "ring_wavelength_factor": {
+    "value": 0.7,
+    "confidence": "estimate"
+   },
+   "tubercle_height_factor": {
+    "value": 1.6,
+    "confidence": "estimate"
+   },
+   "nipple_diameter_factor": {
+    "value": 0.92,
+    "confidence": "estimate"
+   },
+   "projection_over_diameter": {
+    "value": 0.6,
+    "confidence": "estimate"
+   },
+   "cap_height_over_projection": {
+    "value": 0.45,
+    "confidence": "estimate"
+   },
+   "corrugation_depth_factor": {
+    "value": 1.5,
+    "confidence": "estimate"
+   }
+  }
+ },
+ "pigment": {
+  "_": "The areola's radial pigment profile from CLOSEUP, de-lit: the redness (Lab a*) median along 16 rays in the areola's own frame (horizontal radius rescaled by the foreshortening), normalised between the areola body (r/R 0.35-0.55) and the skin just outside (1.2-1.4), 3-bin smoothed (a* is nearly free of the shading that scales lightness; the de-lit luminance ratios, kept in checks/closeup_measure.json, carried shading residue and put the edge at 0.8 R). strength 1 = the areola's own pigment, 0 = skin. The papilla takes the nipple pigment. The LEVELS (areola and nipple colour as ratios to the skin) are the case's own photo (case file), the SHAPE is this profile.",
+  "profile_r_over_R": [
+   0.0,
+   0.375,
+   0.425,
+   0.475,
+   0.525,
+   0.575,
+   0.625,
+   0.675,
+   0.725,
+   0.775,
+   0.825,
+   0.875,
+   0.925,
+   0.975,
+   1.025,
+   1.075,
+   1.125,
+   1.175,
+   1.225,
+   1.275,
+   1.325,
+   1.375
+  ],
+  "profile_strength": [
+   1.25,
+   1.25,
+   1.25,
+   1.25,
+   1.25,
+   1.25,
+   1.25,
+   1.25,
+   1.25,
+   1.25,
+   1.1189,
+   1.0,
+   1.0,
+   1.0,
+   1.0,
+   1.0,
+   1.0,
+   1.0,
+   1.0,
+   1.0,
+   1.0,
+   1.0
+  ],
+  "angular_variation_measured": [
+   1.3727,
+   1.2416,
+   0.9716,
+   0.7366,
+   0.6243,
+   0.7341,
+   0.8149,
+   0.9124,
+   1.049,
+   1.0063,
+   0.9681,
+   0.8861,
+   0.8877,
+   1.1075,
+   1.2768,
+   1.4104
+  ],
+  "angular_amp_applied": {
+   "value": 0.06,
+   "unit": "relative, seeded harmonics 1-3",
+   "source": "EST (natural irregularity; the measured ray-to-ray spread is mostly shading)",
+   "confidence": "estimate"
+  },
+  "nipple_redder": {
+   "value": "the case photo's nipple ratio (more red than the areola relative to G and B)",
+   "source": "the case photo; DESIGN ('a little redder: more blood supply')"
+  },
+  "edge": "Stage 4b: strength = the close-up redness gradient inside (normalised to 1 at 0.85 R, clipped 0.9-1.3) times a defined edge: 1 - smoothstep over edge_width_mm centred at R (the half-level radius); the redness profile alone faded over the outer 40 % (a wide halo)"
+ },
+ "material": {
+  "roughness": {
+   "skin": 0.45,
+   "areola": 0.45,
+   "nipple": 0.4,
+   "source": "Stage 4b: no glossier than the skin on the areola, so the small bumps do not sparkle; the nipple slightly glossier (sebum); EST",
+   "confidence": "estimate"
+  },
+  "subsurface_scale_factor": {
+   "breast": 1.4,
+   "areola": 1.1,
+   "nipple": 1.0,
+   "base_mm": 4.0,
+   "source": "DESIGN ('a fattier breast scatters more'); values EST",
+   "confidence": "estimate"
+  },
+  "pores": {
+   "breast_amp_factor": 0.6,
+   "breast_scale_factor": 0.8,
+   "source": "DESIGN ('sparser and smaller than on the back'); EST",
+   "confidence": "estimate"
+  }
+ },
+ "veins": {
+  "_": "superficial veins under the thin breast skin: branching paths from the breast's periphery toward the periareolar plexus (estimate of the usual pattern), shown as a subtle subsurface tint fading with depth",
+  "trunks": {
+   "value": 5,
+   "confidence": "estimate"
+  },
+  "start_r_mm": {
+   "value": [
+    55,
+    85
+   ],
+   "confidence": "estimate"
+  },
+  "end_r_over_R": {
+   "value": 1.25,
+   "confidence": "estimate"
+  },
+  "step_mm": {
+   "value": 2.0,
+   "confidence": "estimate"
+  },
+  "branch_prob": {
+   "value": 0.06,
+   "unit": "per step",
+   "confidence": "estimate"
+  },
+  "width_mm": {
+   "value": [
+    1.4,
+    0.6
+   ],
+   "unit": "trunk start -> branch tips",
+   "confidence": "estimate"
+  },
+  "depth_mm": {
+   "value": [
+    0.6,
+    1.8
+   ],
+   "confidence": "estimate"
+  },
+  "depth_fade_mm": {
+   "value": 1.2,
+   "confidence": "estimate"
+  },
+  "tint_rgb_factor": {
+   "value": [
+    0.93,
+    0.95,
+    1.0
+   ],
+   "unit": "multiplier at full strength (bluish under thin skin)",
+   "confidence": "estimate"
+  },
+  "strength": {
+   "value": 0.55,
+   "confidence": "estimate"
+  }
+ },
+ "regional_tone": {
+  "_": "the breast is often paler than the chest and arms (less sun). Measured per case from its photo, de-lit (case file); applied as a low-frequency factor over the breast zone.",
+  "default_factor": {
+   "value": 1.04,
+   "source": "EST",
+   "confidence": "estimate"
+  }
+ }
+}

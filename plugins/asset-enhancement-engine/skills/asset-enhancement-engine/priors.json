@@ -1,0 +1,19 @@
+{
+ "_note": "PROPORTION PRIORS for dimensions a single photo cannot measure (felid, domestic shorthair). Every unobserved dimension of a build must sit inside its range; observed dimensions follow the photo. Ratios are relative to quantities the photo CAN measure (head width at the cheeks with fur = W_head, eye spacing = E). Sources: engine/references/cat-anatomy.md. Ranges are deliberately wide (small samples, breed variation); the target is the default when nothing else is known. Measured by engine/checks/priors.py in the head frame (fur envelope).",
+ "head": {
+  "muzzle_projection_over_width": {"range": [0.20, 0.32], "target": 0.25,
+     "why": "nose tip ahead of the cornea plane: skull ~90 mm with the face ~20 % of it, nasal bone ~21 mm + nasal cartilage -> ~25 mm ahead of the orbit rim; furred head ~90-110 mm wide. v29 = 0.10 (flat 'baby face')."},
+  "forehead_slope_deg": {"range": [40, 56], "target": 48,
+     "why": "smooth moderately convex forehead with a gentle concave stop (CFA); 90 = vertical wall. v29 = 61."},
+  "temple_bulge_min_px": {"range": [-1.5, 99], "target": 0,
+     "why": "temporalis fills the temporal fossa: the cheek -> ear-base outline is straight or convex, never concave (measured from the photo camera: head_outline.py). v29 = -4.6 / -6.0."},
+  "chin_behind_nose_over_width": {"range": [0.04, 0.14], "target": 0.09,
+     "why": "upper lip larger than the lower and overhanging it; chin perpendicular under the upper lip in profile (CFA)."}
+ },
+ "body": {
+  "neck_min_width_over_head_width": {"range": [0.55, 0.9], "target": 0.7,
+     "why": "cervical spine near vertical, the visible neck is a continuous muscle mass throat->sternum, no waist."},
+  "trunk_section_depth_over_width": {"range": [1.1, 1.6], "target": 1.3,
+     "why": "thorax width/depth ~0.7-1.3 plus back muscles -> an upright oval."}
+ }
+}

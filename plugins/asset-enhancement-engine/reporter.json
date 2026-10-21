@@ -1,0 +1,28 @@
+{
+  "_what": "What the lesson-reporter may package for THIS engine. Maintainer-side policy, shipped with the engine. The user's own opt-in is NOT here: it lives in the reporter's data folder (settings.json), off unless the user turns it on from a terminal. Spec: docs/lesson-reporter/SPEC.md in the repo.",
+  "schema": "lesson-reporter-engine/0.1",
+  "accepts_reports": true,
+  "skill_dir": "skills/asset-enhancement-engine",
+  "diffable_dirs": ["tools", "checks", "review"],
+  "diffable_extensions": [".py", ".sh", ".md", ".json"],
+  "lesson_targets": ["asset-enhancement-engine", "recursive-improvement", "engine-grounding"],
+  "flag_files_in_repo": {
+    "asset-enhancement-engine": "plugins/asset-enhancement-engine/skills/asset-enhancement-engine/flags.json",
+    "recursive-improvement": "plugins/recursive-improvement/skills/recursive-improvement/flags.json",
+    "engine-grounding": "plugins/engine-grounding/skills/engine-grounding/flags.json"
+  },
+  "merge_targets": {
+    "judgment": "skills/asset-enhancement-engine/SKILL.md (Judgment lessons, as a new Jn item with its flag)",
+    "check": "skills/asset-enhancement-engine/checks/ + a row in log/TOOLMAKING.md",
+    "tool": "skills/asset-enhancement-engine/tools/ + a row in log/TOOLMAKING.md",
+    "method_note": "skills/asset-enhancement-engine/log/METHOD.md"
+  },
+  "limits": {
+    "max_lessons": 20,
+    "max_tool_changes": 10,
+    "max_notes": 5,
+    "max_diff_bytes": 60000,
+    "max_note_bytes": 20000,
+    "max_package_bytes": 250000
+  }
+}

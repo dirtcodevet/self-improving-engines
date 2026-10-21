@@ -1,0 +1,220 @@
+{
+ "_what": "Points PICKED by Claude on grid crops of reference skull 20 (tools/grid_crop.py; engine-grounding G4: code proposes, a picker picks, code checks). FULL-image pixel coordinates of cases/cat1/references/20_Hauskatze_Schaedel_PP_noBG.jpg. Confidence 'picked' (~ +-15 px = +-1 mm) unless noted.",
+ "lateral": {
+  "jaw_line": {
+   "xy": [
+    [
+     2685,
+     690
+    ],
+    [
+     2600,
+     672
+    ],
+    [
+     2500,
+     658
+    ],
+    [
+     2400,
+     665
+    ],
+    [
+     2300,
+     680
+    ],
+    [
+     2200,
+     690
+    ],
+    [
+     2130,
+     692
+    ]
+   ],
+   "note": "the OCCLUSAL line where the upper and lower teeth meet, incisors to the front of the ramus: the boundary of cranium and mandible (layered-build: where the mouth crease can be)"
+  },
+  "tmj": {
+   "xy": [
+    1900,
+    615
+   ],
+   "note": "mandibular condyle in its fossa, under the arch's posterior root"
+  },
+  "ramus_top": {
+   "xy": [
+    [
+     2130,
+     692
+    ],
+    [
+     2065,
+     520
+    ],
+    [
+     2030,
+     470
+    ],
+    [
+     1995,
+     520
+    ],
+    [
+     1955,
+     585
+    ],
+    [
+     1905,
+     600
+    ]
+   ],
+   "note": "front edge of the ramus, coronoid tip (HIDDEN behind the arch: inferred, flagged), mandibular notch, condyle"
+  },
+  "arch": {
+   "xy": [
+    [
+     1900,
+     560
+    ],
+    [
+     1960,
+     520
+    ],
+    [
+     2050,
+     482
+    ],
+    [
+     2150,
+     452
+    ],
+    [
+     2250,
+     442
+    ],
+    [
+     2350,
+     446
+    ],
+    [
+     2450,
+     446
+    ],
+    [
+     2540,
+     436
+    ]
+   ],
+   "half_height_px": 26,
+   "note": "zygomatic arch centreline from the squamosal root above the TMJ to the maxillary root"
+  },
+  "frontal_process_tip": {
+   "xy": [
+    2095,
+    280
+   ],
+   "note": "postorbital process of the frontal (points down/back from the brow)"
+  },
+  "jugal_process_tip": {
+   "xy": [
+    2150,
+    335
+   ],
+   "note": "frontal process of the jugal (points up from the arch); the gap to the frontal's process = the incomplete postorbital bar"
+  },
+  "orbit_rim_box": {
+   "xyxy": [
+    2120,
+    190,
+    2480,
+    430
+   ],
+   "note": "rough bounds of the orbit opening (brow above, arch below, postorbital processes behind)"
+  },
+  "meatus": {
+   "xy": [
+    1750,
+    610
+   ],
+   "note": "external acoustic meatus (ear canal opening) on the bulla"
+  },
+  "mandible_angle": {
+   "xy": [
+    1890,
+    770
+   ],
+   "note": "angular process, ventral-posterior corner of the mandible"
+  }
+ },
+ "front": {
+  "midline_x": 600,
+  "frontal_process_tips": {
+   "xy": [
+    [
+     290,
+     285
+    ],
+    [
+     895,
+     290
+    ]
+   ]
+  },
+  "jugal_process_tips": {
+   "xy": [
+    [
+     235,
+     342
+    ],
+    [
+     970,
+     335
+    ]
+   ]
+  },
+  "orbit_rim_box_image_left": {
+   "xyxy": [
+    250,
+    230,
+    480,
+    470
+   ],
+   "note": "the skull's RIGHT orbit (front view: image right = the skull's left)"
+  },
+  "nasal_aperture_box": {
+   "xyxy": [
+    505,
+    325,
+    705,
+    505
+   ],
+   "note": "search box; the aperture itself = the dark region inside (auto, checked on the overlay)"
+  },
+  "coronoid_tips": {
+   "xy": [
+    [
+     305,
+     380
+    ],
+    [
+     865,
+     400
+    ]
+   ],
+   "note": "the mandible's coronoid processes seen through the orbit gaps"
+  },
+  "mandible_ventral_lobes": {
+   "xy": [
+    [
+     522,
+     816
+    ],
+    [
+     680,
+     816
+    ]
+   ],
+   "note": "the two bumps of the mandible's ventral border either side of the midline notch (front view): the halves stay close below the tooth row"
+  }
+ }
+}

@@ -1,0 +1,55 @@
+{
+  "name": "self-improving-engines",
+  "description": "Skills for building agent engines that get measurably better every run (recursive-improvement + engine-grounding), a Blender engine built with them that refines 3-D assets by measurement, and an opt-in lesson reporter.",
+  "owner": {
+    "name": "dirtcodevet"
+  },
+  "plugins": [
+    {
+      "name": "recursive-improvement",
+      "source": "./plugins/recursive-improvement",
+      "description": "Engine creation: lessons-kept improvement rounds for any repeatable agent pipeline - blind runs, outside scoring, every defect becomes a check, the ratchet.",
+      "category": "methodology",
+      "tags": [
+        "evals",
+        "self-improvement",
+        "method"
+      ]
+    },
+    {
+      "name": "engine-grounding",
+      "source": "./plugins/engine-grounding",
+      "description": "Companion to recursive-improvement: provenance and confidence for every value, references as evidence, baselines before changes, every human note accounted for.",
+      "category": "methodology",
+      "tags": [
+        "evals",
+        "provenance",
+        "method"
+      ]
+    },
+    {
+      "name": "asset-enhancement-engine",
+      "source": "./plugins/asset-enhancement-engine",
+      "description": "3-D asset enhancement in Blender: improves an existing 3-D asset (a generator's model, a scan, an earlier approved model) by systematic, recursive, measured optimization, with cited anatomy as evidence. Includes the Translator: click the spots you mean, and it gives your AI exact addresses on the model.",
+      "category": "3d",
+      "tags": [
+        "blender",
+        "3d",
+        "asset-enhancement",
+        "measurement"
+      ]
+    },
+    {
+      "name": "lesson-reporter",
+      "source": "./plugins/lesson-reporter",
+      "description": "OPT-IN, off by default. Packages engine-improvement lessons (structured lessons, tool diffs, method notes) into a redacted local outbox for the user to inspect and approve. Prototype: no network.",
+      "category": "methodology",
+      "tags": [
+        "feedback",
+        "privacy",
+        "opt-in"
+      ],
+      "defaultEnabled": false
+    }
+  ]
+}

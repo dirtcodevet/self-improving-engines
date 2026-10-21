@@ -1,0 +1,21 @@
+# Python
+__pycache__/
+*.pyc
+
+# Reporter output never belongs in the repo (it lives in the plugin's data folder)
+outbox/
+reporter-outbox/
+
+# Binary pack data: copied into the working tree so the engine package is complete locally, but NOT committed
+# until the maintainer decides how to ship it (Git LFS, release assets, or regenerate). List + hashes: plugins/<engine>/BINARIES.md
+plugins/*/skills/*/packs/**/*.npz
+plugins/*/skills/*/packs/**/*.npy
+plugins/*/skills/*/packs/**/*.ply
+
+# OS / editors
+Thumbs.db
+desktop.ini
+.DS_Store
+
+# Personal publish rewrites (the strings they hide must never be committed): tools/refresh_copies.py
+tools/publish_rewrites.local.json

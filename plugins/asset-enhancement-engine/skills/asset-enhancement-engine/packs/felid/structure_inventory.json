@@ -1,0 +1,41 @@
+{
+ "_what": "FELID STRUCTURE INVENTORY (domain pack data): the parts that must exist AS STRUCTURE for a region to pass its layer - accuracy has two parts, numeric tolerances AND structural completeness (person, 2026-10-17: the ears lacked the outer-edge flap 'shown in every reference', the paws read as hooves, the nose and mouth were painted). A part passes only when it is VISIBLE IN A COLOURLESS CLAY render (skill E5) at close-up from front, three-quarter and side, and sits where the photo / references put it. 'refs' = files in cases/<case>/references (real photos) or engine/references/illustrations (AI cards, layout only).",
+ "head": {
+  "L1_frame": [
+   {"part": "cranium with brow (supraorbital) ridge", "check": "dome + ridge above the orbits in clay"},
+   {"part": "orbits", "check": "26.5 mm sockets (x size), eyes seated ~90 % inside (Sieslack 2021)"},
+   {"part": "zygomatic arches (cheekbones)", "check": "width ~64 mm (x size) incl. arches"},
+   {"part": "nasal bridge and NASAL APERTURE", "check": "the bony opening the nose sits on; the nose position is fixed by it, not painted (person 2026-10-17)"},
+   {"part": "maxilla / mandible with the JAW LINE", "check": "where upper and lower jaws meet = where the mouth crease can be (person 2026-10-17)"},
+   {"part": "jaw angle and chin (mandibular symphysis)", "check": "short face: face ~35 mm of a ~90 mm skull (derived, cat-skeleton-muscle.md)"}
+  ],
+  "L2_muscle": [
+   {"part": "temporalis", "check": "fills the temple: cheek -> ear-base outline straight or convex"},
+   {"part": "masseter", "check": "'the projecting mass behind and below the eye' (Reighard & Jennings 1901)"}
+  ],
+  "L3_features": [
+   {"part": "nose leather (planum nasale)", "check": "small rounded inverted triangle at the end of the bridge; matches the photo trace", "refs": ["12_Detail_of_the_nose_of_a_cat", "13_Animal-pet-close-up", "01-04 Charlize Crystal"]},
+   {"part": "NOSTRILS opening into a NASAL CAVITY (vestibule) with depth", "check": "they read dark in clay because light falls in - never paint (person 2026-10-17)"},
+   {"part": "nostril wings (alar folds)", "check": "the curved rims beside the nostrils"},
+   {"part": "crease between the leather and the furred bridge", "check": "visible edge in clay"},
+   {"part": "philtrum groove", "check": "from the leather's lower point down through the upper lip"},
+   {"part": "upper lip lobes overhanging the lower lip", "check": "in side view the upper lip covers the lower", "refs": ["14_Fuzz_face", "04_Charlize Crystal from below"]},
+   {"part": "MOUTH CREASE (closed)", "check": "a crease where the upper lips overlap the lower lip - not a cut slit, not a painted line (person 2026-10-17)"},
+   {"part": "mouth-corner (commissure) creases", "check": "short creases at the corners, set back under the whisker pads"},
+   {"part": "lower lip and chin", "check": "small chin under the overhang"},
+   {"part": "whisker pads with follicle rows", "check": "puffy pads; rows of whisker follicles"},
+   {"part": "eyelids wrapping the globe, third eyelid at the inner corner", "check": "lids on the globe, no painted rings", "refs": ["10_BLUE_CAT_EYE_CLOSE_UP"]},
+   {"part": "ear: cupped shell, curled rim (helix), HENRY'S POCKET as a FOLD (skin flap doubled over at the lower outer edge), conch at the base, furnishings", "check": "the pocket reads as a cup/flap, not a notch (person 2026-10-17)", "refs": ["15_Felis_catus_male_Henry's_pocket", "17_Naro_03", "16_EarsOfCat"]}
+  ]
+ },
+ "limbs": {
+  "L1_frame": [
+   {"part": "digitigrade foot: slim metacarpus / metatarsus, toes forward on the ground", "check": "no tube legs ending in knobs (person: 'hooves')"},
+   {"part": "hock = calcaneus point (sharp heel)", "check": "a point, not a bulge (person: 'a horse's hock')"}
+  ],
+  "L3_features": [
+   {"part": "front paw: 4 toes + dewclaw, digital pads, main (metacarpal) pad, carpal pad", "check": "toes separated in clay; pads under them", "refs": ["engine/references/illustrations/L3_paws_from_five_panel.jpg (layout only)"]},
+   {"part": "hind paw: 4 toes, digital pads, main (metatarsal) pad", "check": "as above"}
+  ]
+ }
+}

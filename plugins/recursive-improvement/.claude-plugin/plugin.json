@@ -1,0 +1,16 @@
+{
+  "name": "recursive-improvement",
+  "displayName": "Recursive improvement",
+  "version": "0.2.0",
+  "description": "Engine creation for long-horizon optimization: builds and matures a repeatable agent pipeline across many runs - blind runs, outside scoring against a hidden answer key, every defect turned into a permanent check, lessons kept with evidence, regression on frozen references. Additions A1-A29 are each switchable in flags.json.",
+  "author": {
+    "name": "dirtcodevet"
+  },
+  "keywords": [
+    "evals",
+    "self-improvement",
+    "method",
+    "ratchet"
+  ],
+  "license": "Apache-2.0"
+}

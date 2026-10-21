@@ -1,0 +1,43 @@
+{
+  "lessons": [
+    {
+      "id": "METHOD-92",
+      "kind": "judgment",
+      "target": "asset-enhancement-engine",
+      "title": "Build a rounded part from measured pieces, not from a three-view hull",
+      "statement": "A visual hull made from three silhouettes cannot carry rounded cross-sections: it comes out boxy, and a loft through the silhouette extents bulges between the views. Build the part from pieces measured on each view, and keep the hull only as a measuring instrument (silhouette overlap).",
+      "evidence": [
+        {
+          "log_ref": "METHOD.md#92",
+          "summary": "Clay renders of the hull were boxy; the rounded view-loft read as a beehive with curtains.",
+          "measured": { "metric": "silhouette IoU of the part-built version", "before": null, "after": null, "unit": "" }
+        }
+      ],
+      "toggle": { "flag": "J14_parts_not_hulls", "default": false },
+      "ratchet": { "loosens": false },
+      "toolmaking": {
+        "trigger": "the hull looked wrong in clay renders",
+        "caught": "three silhouettes cannot define rounded sections",
+        "verdict": "good",
+        "why": "the hull stayed useful as a measure once it stopped being the shape"
+      }
+    },
+    {
+      "id": "TM-two-sided",
+      "kind": "check",
+      "target": "asset-enhancement-engine",
+      "title": "Distance checks must be two-sided",
+      "statement": "A one-sided distance (build to reference only) passes a build that is missing whole regions. Measure both directions and report the worst of the two, per region.",
+      "evidence": [
+        { "log_ref": "tripo_rebuild LOG.md#38", "summary": "The one-sided check passed while the two-sided one found large voids at the ear bases." }
+      ],
+      "toggle": { "flag": "C_two_sided_distance", "default": false },
+      "ratchet": { "loosens": false },
+      "proof": {
+        "planted_defect": "a deleted patch of the surface (a void the one-sided measure cannot see)",
+        "command": "python checks/checks.py <fixture> --prove",
+        "expect": "fails_on_planted"
+      }
+    }
+  ]
+}

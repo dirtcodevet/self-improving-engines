@@ -1,0 +1,33 @@
+Self-improving engines
+Copyright 2026 dirtcodevet and contributors
+
+Licensed under the Apache License, Version 2.0 (see LICENSE), except for the material listed below, which keeps
+its own terms.
+
+Third-party material and its terms
+----------------------------------
+
+plugins/asset-enhancement-engine/skills/asset-enhancement-engine/packs/felid/skull/
+  Data derived from the photo "Hauskatze Schaedel" (Hauskatze_Schaedel_PP_noBG.jpg) by Auge=mit, Wikimedia
+  Commons, CC BY-SA 4.0 (https://creativecommons.org/licenses/by-sa/4.0/). This folder is shared under the same
+  licence.
+
+docs/images/translator-any-object.jpg
+  Contains, besides the project's own work:
+  - renders of the Stanford Dragon, Stanford Computer Graphics Laboratory, The Stanford 3D Scanning Repository
+    (free for research use with credit; not for commercial use);
+  - a coloured derivative of "Dragon silhouette 2" by Angelus, Wikimedia Commons, CC BY-SA 3.0
+    (https://creativecommons.org/licenses/by-sa/3.0/);
+  - renders of the "Lantern" glTF sample model, Khronos Group, CC0.
+  This image is not licensed under Apache-2.0 as a whole; each part keeps the terms above.
+
+docs/images/ (the human body images)
+  The body is built on Blender Studio's Human Base Meshes (CC0, https://studio.blender.org/).
+
+AI-made images
+  The cat reference image and the illustration cards in references/illustrations/ were made by the maintainer
+  with xAI's Grok and are shared here under Apache-2.0.
+
+Not in this repository
+  The third-party tools the engine can load (plugins/asset-enhancement-engine/VENDOR.md) and the binary pack data
+  (plugins/asset-enhancement-engine/BINARIES.md) are not committed and come under their own licences.

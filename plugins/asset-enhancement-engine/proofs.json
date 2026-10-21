@@ -1,0 +1,50 @@
+{
+  "_what": "DRAFT registry of this engine's planted-defect proofs, for the CI design in docs/lesson-reporter/SPEC.md ('CI'). Each entry = one check's own proof: it must PASS on a reference and FAIL (catch) each planted defect. Found by reading the tools' argument handling on 2026-10-18; NOT yet run from this repo. 'fixture' says what input the proof needs and whether a publishable one exists.",
+  "schema": "engine-proofs/0.1",
+  "status": "draft - no proof is runnable in public CI yet: every one needs a build or reference made from a private case",
+  "skill_dir": "skills/asset-enhancement-engine",
+  "proofs": [
+    {
+      "check": "checks/checks.py",
+      "command": "python checks/checks.py <build_prefix> --prove",
+      "plants": ["bubble", "paw_lift", "eye_bug", "eye_buried", "torso_stretch", "lump", "lip_cusp"],
+      "passes_when": "stdout has 'PROOF: OK' (reference passes, every planted defect caught)",
+      "needs": ["numpy", "scipy"],
+      "fixture": { "kind": "build mesh prefix (<p>.ply, <p>_landmarks.json, optional <p>_hr.ply)", "public": false,
+                   "gap": "builds come from the user's photo case; a synthetic generated case is needed" }
+    },
+    {
+      "check": "checks/lipline.py",
+      "command": "python checks/lipline.py <build_prefix> --plant cusp",
+      "plants": ["lip_cusp"],
+      "passes_when": "FAIL printed for the planted run and PASS for the plain run (also covered by checks.py --prove)",
+      "needs": ["numpy"],
+      "fixture": { "kind": "build mesh prefix", "public": false, "gap": "as checks.py" }
+    },
+    {
+      "check": "checks/multiview.py",
+      "command": "python checks/multiview.py <build_prefix> <reference_aligned.ply> --prove",
+      "plants": ["head_forward", "chest_ball", "hip_bulge", "torso_stretch"],
+      "passes_when": "every planted defect moves a metric past tolerance against the unplanted build",
+      "needs": ["numpy", "scipy", "opencv-python"],
+      "fixture": { "kind": "build prefix + an aligned 3-D reference", "public": false,
+                   "gap": "the 3-D references are AI-made from the user's photo (and one is an answer key): never publishable" }
+    },
+    {
+      "check": "checks/frame_checks.py",
+      "command": "python checks/frame_checks.py <case_dir> <mesh_ver> <frame.json>",
+      "plants": ["known-bad frame (trunk mid-body)"],
+      "passes_when": "exit 1 (FAIL) on the known-bad frame; exit 0 on a good one",
+      "needs": ["numpy", "review/project_mask.py and tools/frame.py on the import path"],
+      "fixture": { "kind": "case folder + a known-bad frame", "public": false, "gap": "the known-bad frame is from the private case" }
+    }
+  ],
+  "incoming_unreviewed": [
+    { "tool": "incoming/asset-enhancement-engine/tripo_rebuild/layers_check.py", "flag": "--prove",
+      "note": "reads tripo_welded.npz from its own folder (an AI-made mesh under the generator's terms): cannot run publicly" },
+    { "tool": "incoming/asset-enhancement-engine/tripo_rebuild/paws_pads.py", "flag": "--prove", "note": "same input" },
+    { "tool": "incoming/asset-enhancement-engine/tripo_rebuild/paws_toes.py", "flag": "--prove", "note": "same input" },
+    { "tool": "incoming/asset-enhancement-engine/tripo_rebuild/rb_measure3.py", "flag": "--prove", "note": "same input" }
+  ],
+  "blender_side": "Tools that import bpy or drive Blender through the MCP socket (tools/bmcp.py) are not in this registry; their checks need a headless Blender job (SPEC: CI, job 'blender-proofs', not designed in detail)."
+}

@@ -1,0 +1,55 @@
+{
+ "_what": "cross-section shape of the skull loft, FITTED to the reference views (tools/skull_fit_sections.py); no silhouette clip",
+ "params": {
+  "q_up": 3.0,
+  "q_dn": 2.6,
+  "mid_b": 0.4,
+  "mid_f": 0.5,
+  "clip": 0
+ },
+ "mean_iou": 0.8752,
+ "iou": {
+  "lateral": 0.9693,
+  "lateral_excess": 0.0201,
+  "lateral_missed": 0.0112,
+  "dorsal": 0.8675,
+  "dorsal_excess": 0.0556,
+  "dorsal_missed": 0.0842,
+  "front": 0.7888,
+  "front_excess": 0.2081,
+  "front_missed": 0.047
+ },
+ "vox_mm": 0.8,
+ "history": [
+  [
+   {
+    "q_up": 2.0,
+    "q_dn": 2.3,
+    "mid_b": 0.5,
+    "mid_f": 0.5,
+    "clip": 0
+   },
+   0.8707333333333334
+  ],
+  [
+   {
+    "q_up": 3.0,
+    "q_dn": 2.6,
+    "mid_b": 0.4,
+    "mid_f": 0.5,
+    "clip": 0
+   },
+   0.8752
+  ],
+  [
+   {
+    "q_up": 3.0,
+    "q_dn": 2.6,
+    "mid_b": 0.4,
+    "mid_f": 0.5,
+    "clip": 0
+   },
+   0.8752
+  ]
+ ]
+}

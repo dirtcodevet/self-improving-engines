@@ -1,0 +1,2 @@
+# Keep the copies byte-identical to the originals on every platform (tools/verify_copies.py checks sha256).
+* -text

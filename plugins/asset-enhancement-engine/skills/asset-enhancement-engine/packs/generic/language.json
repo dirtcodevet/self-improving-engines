@@ -1,0 +1,178 @@
+{
+ "what": "GENERIC LANGUAGE PACK (build L1, 2026-10-21): what engine/tools/language.py uses for any object when no domain pack says otherwise, and under every domain pack (a domain's segmentation and template blocks replace these key by key; its rules come before these). Data only: the tool's code knows no object kind.",
+ "segmentation": {
+  "methods": [
+   "components",
+   "branches"
+  ],
+  "use_file_labels": null,
+  "min_shell": 0.0005,
+  "split_min_share": 0.05,
+  "carry_tol": 0.01,
+  "new_part_min": 0.002,
+  "why": "components: separate shells (eyes, teeth, loose pieces) are parts of their own; branches: protrusions of each large shell (limbs, horns, claws, tails, points); shells under min_shell of the surface join what they touch; a shell under split_min_share is not split further. carry_tol: when the model changes, a new face farther than this x the object's size from the old surface counts as new material.",
+  "branches": {
+   "core_seed": 0.5,
+   "tip_persistence": 0.15,
+   "bin": 0.06,
+   "flare_deg": 35,
+   "min_part_length": 0.25,
+   "min_part_area": 0.0005,
+   "why": "all lengths in units of the core radius (the 98th percentile of the inner radius: half the body's thickness in 3-D, the distance to the outline in 2-D). A tip must outlive its merge by tip_persistence; a protrusion is cut where its ring radius grows faster than tan(flare_deg) after at least min_part_length of shaft (engine/tools/language.py branch_segments). function agd: the protrusion function is the average geodesic distance to 32 points spread over the surface (extremities high, the centre low); the geodesic distance from the thickest place (function core) gave the Stanford dragon's claws under 2 mm of persistence because its thickest place sits beside its feet. A protrusion with less area of its own than junction_share x its largest child is a junction piece: it joins what it grows from, and its children grow from that.; a drawing (2-D) keeps function core (function_2d: the average geodesic distance merged the heraldic dragon's hind leg into its body). Any key may be given as key_2d / key_3d for one kind of object only.",
+   "junction_share": 0.6,
+   "function": "agd",
+   "agd_samples": 32,
+   "function_2d": "core"
+  },
+  "facets": {
+   "facet_deg": 20,
+   "min_facet": 0.004,
+   "edge_reach": 0.05,
+   "corner_ratio": 1.6,
+   "min_strip": 0.0003,
+   "why": "a facet keeps its faces within facet_deg of its mean normal and covers at least min_facet of the surface and is at least min_facet_width x the object's size wide (a fillet's strip is no facet); the faces between facets go to the two nearest (an edge) or three (a corner: the third within corner_ratio of the second), by walking distance up to edge_reach x the object's size; corners are kept down to min_corner of the surface, other strips down to min_strip; a facet has a planar core: at least facet_core_share of its area within facet_core_deg of its mean normal (a 3 mm fillet's 40 deg band made 4 'facets' at 45 deg on a 12 cm box, prove; an rms-spread limit of 6 deg also refused the brick's frog walls, whose 6 mm flat carries a fillet band)",
+   "min_facet_width": 0.02,
+   "min_corner": 2e-05,
+   "facet_core_deg": 8.0,
+   "facet_core_share": 0.5
+  }
+ },
+ "templates": {
+  "turn_deg": 30,
+  "disc_cells": 10,
+  "tube_cells": 10,
+  "tube_slender": 1.0,
+  "sheet_flatness": 0.12,
+  "body_elong": 1.3,
+  "why": "grid step = a readable step near a tenth of the part's size (tubes: its length; discs: the square root of its area); a protrusion at least tube_slender x as long as it is wide at its base gets a tube chart, a part thinner than sheet_flatness of its width two discs (upper, under), a core longer than body_elong x its width a tube along its longest axis, anything else a disc on its mean normal; a facet whose mean normal holds plane_flat of its area (|sum n a| / sum a) is PLANAR: origin at its area centroid, addresses = its frame's x, y by a ray along its normal (h+), as for every part of a 2-D object",
+  "plane_flat": 0.995
+ },
+ "rules": [
+  {
+   "kind": "body",
+   "when": {
+    "part_kind": [
+     "core"
+    ]
+   },
+   "name": "body"
+  },
+  {
+   "kind": "face",
+   "when": {
+    "part_kind": [
+     "facet"
+    ],
+    "normal_up_abs_min": 0.85
+   },
+   "name": "face_{updown}{_n}"
+  },
+  {
+   "kind": "face",
+   "when": {
+    "part_kind": [
+     "facet"
+    ],
+    "normal_front_abs_min": 0.85
+   },
+   "name": "face_{frontback}{_n}"
+  },
+  {
+   "kind": "face",
+   "when": {
+    "part_kind": [
+     "facet"
+    ],
+    "normal_left_abs_min": 0.85
+   },
+   "name": "face_{leftright}{_n}"
+  },
+  {
+   "kind": "face",
+   "when": {
+    "part_kind": [
+     "facet"
+    ]
+   },
+   "name": "face{_n}"
+  },
+  {
+   "kind": "edge",
+   "when": {
+    "part_kind": [
+     "edge"
+    ]
+   },
+   "name": "edge_{between}{_n}"
+  },
+  {
+   "kind": "corner",
+   "when": {
+    "part_kind": [
+     "corner"
+    ]
+   },
+   "name": "corner_{between}{_n}"
+  },
+  {
+   "kind": "protrusion",
+   "when": {
+    "part_kind": [
+     "protrusion"
+    ]
+   },
+   "name": "protrusion{_side}{_n}"
+  },
+  {
+   "kind": "piece",
+   "when": {
+    "part_kind": [
+     "shell",
+     "labelled"
+    ]
+   },
+   "name": "piece{_side}{_n}"
+  }
+ ],
+ "findings": {
+  "_": "measured findings (build L1, 2026-10-21): what was done, what resulted, where; evidence, not rules",
+  "items": [
+   {
+    "what": "The protrusion function for a 3-D shape is the average geodesic distance, not the distance from the thickest place",
+    "result": "On the Stanford dragon the thickest place sits beside its feet: distance from it gave no claw over 2 mm of persistence (14 tips over 2 mm on the whole scan); the average geodesic distance to 32 spread points found 22 tips and the horns, spikes, tail fin, feet. On the heraldic 2-D dragon the reverse held: the distance from the thickest place separated all four legs, the average geodesic distance merged one into the body.",
+    "where": "cases/dragon3d, cases/dragon2d (build L1)",
+    "status": "checked (object.png; tip counts)"
+   },
+   {
+    "what": "A facet must have a planar core",
+    "result": "Grown within 20 deg of a seed, the middle of a 3 mm fillet on a 12 cm box made 4 facets at 45 deg (at 2 voxels across, marching cubes made the fillet a chamfer). Required: 50 % of a facet's area within 8 deg of its mean normal (an rms-spread limit of 6 deg also refused the brick's frog walls, whose 6 mm flat carries a fillet band). With it: 11 of 11 planted facets, normals within 0.68 deg, outer face areas = flat face + the fillet band within 20 deg (r sin 20 deg per side) within 1.10 %.",
+    "where": "language.py prove; cases/brick1",
+    "status": "checked (prove)"
+   },
+   {
+    "what": "Carry a part's frame on a model change by the rigid fit of its surviving surface",
+    "result": "Re-measured landmarks (area centroids) moved every address of an arris 8.5 mm when a chipped corner took 20 of its 211 mm; carried by the fit (old face centroid to nearest new face centroid, area-weighted) they moved 0.000-0.004 mm (p50). The same carry on a remesh (brick 1.0 -> 0.7 mm voxels): worst part p99 0.27 mm (0.47 mm with re-measured frames).",
+    "where": "cases/brick1/proof/change_chipped_corner.json, change_remesh_0p7mm.json",
+    "status": "checked (change-test)"
+   },
+   {
+    "what": "Keep a part's template (its kind of address) across model changes",
+    "result": "A part that changed template between builds (disc chart to plane ray address) made every one of its addresses unreadable (no address kind skin); a part whose template has to fall back on the new mesh does the same (cases/dragon3d to res3: foot_L_2, 1,831 addresses). Templates are now kept from the previous build.",
+    "where": "cases/dragon2d first change test; cases/dragon3d/proof/change_remesh_res3.json",
+    "status": "checked; the fall-back case is OPEN"
+   },
+   {
+    "what": "A part that appears on a changed model must be new material",
+    "result": "Re-segmenting a re-rasterised drawing (1920 -> 1280 px) found a new horn although every new face lay on the old surface (another cut of the same shape); requiring half its area farther than 1 % of the object's size from the old surface removed it, and an erased horn was reported gone with nothing added.",
+    "where": "cases/dragon2d/proof",
+    "status": "checked"
+   },
+   {
+    "what": "Grid steps scale with the part",
+    "result": "A fixed 5 cm step cap on a 26 m glTF lantern made 14.6 M grid points (a 1.1 GB page); steps are now 1, 2, 2.5 or 5 x a power of ten near a tenth of the part, never finer than 1/150 of its largest extent: 16,911 grid points, 9 MB.",
+    "where": "cases/lantern",
+    "status": "checked"
+   }
+  ]
+ }
+}
