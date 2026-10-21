@@ -17,8 +17,12 @@ you want done, and the AI works on exactly those spots.
 
 ## Open it
 
-**The easy way:** ask your AI, for example *"Open the Translator on C:\models\brick.glb"*. It can run the command
-below for you and open the page.
+**The quickest:** type `/translator` in Claude Code. It opens the model you mapped most recently, and
+`/translator brick` opens one by name. Give it a file, as in `/translator C:\models\brick.glb`, and it maps that
+model first.
+
+**Or just ask your AI**, for example *"Open the Translator on C:\models\brick.glb"*. It can run the command below
+for you and open the page.
 
 **Or run it yourself** from the engine's skill folder (`skills/asset-enhancement-engine/` in this plugin):
 
