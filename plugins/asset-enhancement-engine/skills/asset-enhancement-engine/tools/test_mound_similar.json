@@ -1,0 +1,101 @@
+{
+ "1_dome": {
+  "s": 0.9,
+  "form_error_mm_p50_p99_max": [
+   0.013161323573730559,
+   0.08740702758705658,
+   0.09137327981561703
+  ],
+  "form_error_core_mm_p99_max": [
+   0.056148563838722375,
+   0.06756673130137625
+  ],
+  "form_error_filled_mm_p99_max": [
+   0.08940534868205509,
+   0.09137327981561703
+  ],
+  "form_error_on_cap_mm_max": 0.012881569809108928,
+  "volume_ml_before_after": [
+   201.20391015601209,
+   146.98175420702833
+  ],
+  "volume_ratio": 0.7305114204443628,
+  "s_cubed": 0.7290000000000001,
+  "apex_over_radius_before": 0.7038859341419913,
+  "after_threshold_scaled": 0.7091335918116587,
+  "after_threshold_fixed_3mm": 0.7192156539758624,
+  "cap_extent_mm_before_after": [
+   7.826237921249314,
+   7.820536574952757
+  ],
+  "cap_relief_change_mm_max": 0.012881569809108928,
+  "max_move_past_band_mm": 0.0,
+  "far_side_sheet_max_move_mm": 0.0,
+  "faces_turned_over": 0,
+  "report": {
+   "core_cells": 13946,
+   "held_cells": 264,
+   "held_value_mm": [
+    -0.01279069767442833,
+    -0.012790697674428699
+   ],
+   "field_mm_max": 6.450132361944221,
+   "jacobian_det_min": 0.7528568222422968,
+   "vertices_slid": 19079,
+   "off_similarity_mm_on_core_p50_p95_max": [
+    0.02971690669253108,
+    0.6582935968912111,
+    1.0308573182031442
+   ]
+  },
+  "seat": {
+   "vertices": 3346,
+   "outside_data": 0,
+   "dh_mm_p1_p99": [
+    -0.43441349280701896,
+    0.0124096462279615
+   ],
+   "dh_mm_min_max": [
+    -0.47013137263001575,
+    0.018143760725211434
+   ]
+  },
+  "pass": true
+ },
+ "2_lip": {
+  "column_pairs_checked": 249,
+  "order_changed": 0,
+  "faces_turned_over": 0,
+  "fold_moved_up_mm": 2.996555636118568,
+  "expected_mm": 2.999999999999999,
+  "jacobian_det_min": 0.7974128315873288,
+  "pass": true
+ },
+ "3_held_strip": {
+  "strip_max_move_mm": 0.0,
+  "form_error_away_from_strip_mm_p99_max": [
+   0.0851161110047758,
+   0.10560316259463406
+  ],
+  "form_error_towards_strip_mm_p50_p99": [
+   0.1020188761469353,
+   2.4961718402128867
+  ],
+  "faces_turned_over": 0,
+  "jacobian_det_min": 0.7528462807766311,
+  "seat": {
+   "vertices": 3346,
+   "outside_data": 0,
+   "dh_mm_p1_p99": [
+    -0.43485383336259176,
+    0.09344384926280024
+   ],
+   "dh_mm_min_max": [
+    -0.4701386032469612,
+    0.1042107641233278
+   ]
+  },
+  "pass": true
+ },
+ "pass": true
+}

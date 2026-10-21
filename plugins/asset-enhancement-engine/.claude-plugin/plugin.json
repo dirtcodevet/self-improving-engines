@@ -1,7 +1,7 @@
 {
   "name": "asset-enhancement-engine",
   "displayName": "Asset enhancement engine (Blender)",
-  "version": "0.3.0",
+  "version": "0.3.1",
   "description": "3-D asset enhancement in Blender: improves an existing 3-D asset (a generator's model, a scan, an earlier approved model) by systematic, recursive, measured optimization, with cited anatomy as evidence. Includes the Translator: click the spots you mean, and it gives your AI exact addresses on the model. Trial items are switchable in flags.json.",
   "author": {
     "name": "dirtcodevet"

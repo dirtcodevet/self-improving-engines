@@ -322,8 +322,11 @@ def _views_script(N):
 
 # ----------------------------------------------------------------------------------------------- viewer pages
 def template():
-    t = open(TEMPLATE, encoding="utf-8").read()                       # the stamp: the template and the links' script
-    return t, hashlib.sha1((t + NAV_JS).encode("utf-8")).hexdigest()[:12]
+    t = open(TEMPLATE, encoding="utf-8").read()
+    a = t.find("<!-- FUNCTION INDEX (")                               # build A2: the template's function index (func_index.py)
+    if a >= 0:                                                        # is for builders; no page carries it, no stamp changes
+        t = t[:a] + t[t.index("END FUNCTION INDEX -->", a) + len("END FUNCTION INDEX -->"):].lstrip("\n")
+    return t, hashlib.sha1((t + NAV_JS).encode("utf-8")).hexdigest()[:12]   # the stamp: the template and the links' script
 
 
 def fill_viewer(title, data_text, page, home=None):

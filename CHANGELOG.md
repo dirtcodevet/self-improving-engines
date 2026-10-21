@@ -2,6 +2,14 @@
 
 Versions are per plugin (`plugins/*/.claude-plugin/plugin.json`). Lessons on trial are listed with their flag.
 
+## 0.3.1 (2026-10-21): asset enhancement engine
+
+- **A leaner start for each build.** A build-log search prints a short ranked list with only the best one to three
+  entries whole (about half the reading); `--id`, `--whole N` and `--full` give more. The builder primer is back to a
+  short map, with the tool list moved to `references/tool-map.md`. The Translator's viewer starts with a function index.
+- **Resizing a mound keeps its proportions.** `tools/mound_resize.py` can scale a breast or any mound as a similar copy
+  of itself (`resize_similar`), so a smaller one keeps its shape instead of flattening.
+
 ## 0.3.0 (2026-10-21): asset enhancement engine
 
 - **The Translator.**

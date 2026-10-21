@@ -268,6 +268,19 @@ grown over 4x in area. Linear skinning unless named. Figures: cases/woman2/build
   308 mL. Projection 49 -> 37.5 mm (-24 %), upper : lower share unchanged (0.53 / 0.58). The tape difference 17.0 ->
   14.3 cm: EN 75C -> 75B, US/UK traditional 34B -> 34A - one letter for ~117 mL (cited ~110 mL per letter, B2);
   underbust unchanged (74.55 / 75.03 cm on the wall). (woman2 build 13a4.)
+- **What a breast's proportions do when its volume changes (measured on the same carry wall and footprint grid).** Kept
+  footprint, height scaled (13a4): 472 / 476 -> 355 mL left the area standing 3 mm off the wall at 162 / 159 cm2 and took
+  the apex 47.6 -> 36.0 mm, so apex over that area's radius fell 0.66 -> 0.50: a quarter flatter for its size, which
+  the person saw as "squished". Kept proportions (13a5, mound_resize.resize_similar): at 355 mL with apex over radius
+  held at the approved 0.665, the area fell to 144 / 140 cm2 (x 0.88 / 0.87) and the apex only to 45.1 / 44.4 mm (x
+  0.95 / 0.93); the outline moved in 6-12 mm (fold up 6-8 mm, upper border down 11-12 mm, the outer side in 10-12 mm).
+  A plain similarity of the approved form (s = 0.909 on width and height) read 375 / 373 mL and 0.63 / 0.65 on the same
+  instruments: the skin round the breast that stands off this wall inside the footprint (the left's outer edge up to
+  9 mm, p95; the right's 2 mm) counts as breast in volume and area but does not shrink with the breast. To read the approved proportions on this instrument the breast proper came out narrower than a
+  similarity (width x 0.851 / 0.867) and taller (height x 0.944 / 0.926 of the approved form). Where the breast meets
+  the held midline strip (the approved form's breasts already meet it, the valley 2 mm under the wall) it cannot narrow:
+  there its inner wall keeps its place and is lowered by the height factor (24 -> 18 mm at 60 mm from the nipple).
+  (woman2 build 13a5.)
 
 ## The Translator on human bodies (build L2: the human word list)
 
@@ -528,3 +541,13 @@ Measured in woman2 build 13c (`cases/woman2/build13c`, pack `pack_b13c`) on 13b'
 - **Skin slip over the scapula with the correctives** (T1b, 165 deg HT): spine root 36, inferior angle 63 mm (13b 32 / 80;
   B11 D6, 146 deg, 10 men: 53 / 70). The nipple moves up 9-10 mm, out 8 mm and back 3-6 mm overhead; notch to nipple
   -8 mm (B11 D9's tables say +20 mm standing, its text "shortens").
+- **A breast made taller moves more when posed, and meets the arm sooner** (woman2 13a5: 355 mL, apex 36 -> 45 mm, the
+  correctives recomputed by 13c's own stages): the breast's posed change RMS x 1.21 p50 (max 1.62) over the 33 test
+  poses; with the arm across the chest the crossings rose 24.0 -> 28.0 cm2 (T5) and 25.3 -> 28.0 (TM5) and the armpit
+  creases 38.8 -> 49.2 cm (T5 L); without contact only T1b's left armpit crease rose past 13c's L-R spread (3.6 ->
+  4.8 cm).
+- **A chest wall re-read on a resized breast is a new mesh, and its own weights must be made again.** On 13a5 the wall
+  read on the smaller footprints has 31.6k vertices against 13b's 40.6k; with 13b's cw_idx / cw_w the posed wall came
+  through the skin (depth p5 -16 mm) and the breast envelope pushed the breast up to 41 mm out (pressure +100 Pa
+  against 13c's -10). Remade by 13b's own rule (nearest skin vertex's weights, 20 smoothing passes): u -5 to +6 mm, as
+  13c. Blender's check of the keys (posed = computed) cannot see this: the wall is not part of the skin. (woman2 13a5.)

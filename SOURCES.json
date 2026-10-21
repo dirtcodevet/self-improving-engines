@@ -263,8 +263,8 @@
   },
   "plugins/asset-enhancement-engine/skills/asset-enhancement-engine/log/TOOLMAKING.md": {
    "source": "engine/log/TOOLMAKING.md",
-   "sha256": "adf4ced21ac8ea83968eeb1b1ecad296ab9a147651a2cf7ee00c719e3b445c87",
-   "source_sha256": "adf4ced21ac8ea83968eeb1b1ecad296ab9a147651a2cf7ee00c719e3b445c87"
+   "sha256": "d4efc368801d0586ae4f50132acdab11853c7895c8c17f73fca3636ab0f382ad",
+   "source_sha256": "d4efc368801d0586ae4f50132acdab11853c7895c8c17f73fca3636ab0f382ad"
   },
   "plugins/asset-enhancement-engine/skills/asset-enhancement-engine/loop/__init__.py": {
    "source": "engine/loop/__init__.py",
@@ -723,8 +723,8 @@
   },
   "plugins/asset-enhancement-engine/skills/asset-enhancement-engine/packs/human/findings.md": {
    "source": "engine/packs/human/findings.md",
-   "sha256": "14c2df953ad922c54e483f3b4c7f7d8316dd15c8b525319c58c56fe8560755ec",
-   "source_sha256": "14c2df953ad922c54e483f3b4c7f7d8316dd15c8b525319c58c56fe8560755ec"
+   "sha256": "0f0b9ca50b753175a2d53f03abe150d085be901c21ec0adbef3b6b7472705594",
+   "source_sha256": "0f0b9ca50b753175a2d53f03abe150d085be901c21ec0adbef3b6b7472705594"
   },
   "plugins/asset-enhancement-engine/skills/asset-enhancement-engine/packs/human/language.json": {
    "source": "engine/packs/human/language.json",
@@ -883,8 +883,8 @@
   },
   "plugins/asset-enhancement-engine/skills/asset-enhancement-engine/references/builder-primer.md": {
    "source": "engine/references/builder-primer.md",
-   "sha256": "08f78fe403853c54e3246aa2f9ce363cad55dd35e3b0348384b73733dff849cc",
-   "source_sha256": "6226511873bb1d11541ac9b8b2489b095300366cc24e10c7ee2292c5b2d997d6"
+   "sha256": "b7dba18c98bfe8ad9cd677ecaabf3e2e71ebad222b7a4b583f04e6ee04246b5e",
+   "source_sha256": "118f70c17ad948c56eeeadbdc9e9ea4cc5bdffd0e55ce3d4f887e9fceee4f5f8"
   },
   "plugins/asset-enhancement-engine/skills/asset-enhancement-engine/references/cat-anatomy.md": {
    "source": "engine/references/cat-anatomy.md",
@@ -965,6 +965,11 @@
    "source": "engine/references/target-loop.md",
    "sha256": "ea6516c002c61dca5505f76e334cb792d5a51b8099a6064b9619ac3840536a3b",
    "source_sha256": "ea6516c002c61dca5505f76e334cb792d5a51b8099a6064b9619ac3840536a3b"
+  },
+  "plugins/asset-enhancement-engine/skills/asset-enhancement-engine/references/tool-map.md": {
+   "source": "engine/references/tool-map.md",
+   "sha256": "e370f60c15a0215741e54dc2a3826b54551ca1f30ccf4663db2f2bc0f205d642",
+   "source_sha256": "a2fe216abcd238c51b740a92f995a29aaebf3049939e8cd8d94bf61ea4682314"
   },
   "plugins/asset-enhancement-engine/skills/asset-enhancement-engine/review/clay_pairs.py": {
    "source": "engine/review/clay_pairs.py",
@@ -1203,8 +1208,8 @@
   },
   "plugins/asset-enhancement-engine/skills/asset-enhancement-engine/tools/build_log.py": {
    "source": "engine/tools/build_log.py",
-   "sha256": "0e49e8de10063b373dc957a55a5e83c02ae248f8b0595c7ea1b9eb3fcba07a1d",
-   "source_sha256": "0e49e8de10063b373dc957a55a5e83c02ae248f8b0595c7ea1b9eb3fcba07a1d"
+   "sha256": "4a34a71df4f14919975c18a410faf55e07af589460ed3a30adc20a4d071ee412",
+   "source_sha256": "4a34a71df4f14919975c18a410faf55e07af589460ed3a30adc20a4d071ee412"
   },
   "plugins/asset-enhancement-engine/skills/asset-enhancement-engine/tools/bvh.py": {
    "source": "engine/tools/bvh.py",
@@ -1323,8 +1328,8 @@
   },
   "plugins/asset-enhancement-engine/skills/asset-enhancement-engine/tools/func_index.py": {
    "source": "engine/tools/func_index.py",
-   "sha256": "a083ea6da7383dd309cb3e8e1fdd226c6760f51f186e6cd501d8bad85134f45e",
-   "source_sha256": "a083ea6da7383dd309cb3e8e1fdd226c6760f51f186e6cd501d8bad85134f45e"
+   "sha256": "2fbd9b5590d57e3d8fa903d3666f60c9b8c8095d11fa2b5c5962a2048fab903b",
+   "source_sha256": "2fbd9b5590d57e3d8fa903d3666f60c9b8c8095d11fa2b5c5962a2048fab903b"
   },
   "plugins/asset-enhancement-engine/skills/asset-enhancement-engine/tools/grid_crop.py": {
    "source": "engine/tools/grid_crop.py",
@@ -1413,8 +1418,8 @@
   },
   "plugins/asset-enhancement-engine/skills/asset-enhancement-engine/tools/mound_resize.py": {
    "source": "engine/tools/mound_resize.py",
-   "sha256": "d95151c2c62584746545c2ded1114dfc732ed8b2cc3e41984a359a0d704dc850",
-   "source_sha256": "d95151c2c62584746545c2ded1114dfc732ed8b2cc3e41984a359a0d704dc850"
+   "sha256": "317ba26c6894c43218b4c5d1a1624e3c5a4de582d439990e4668d835192f4b59",
+   "source_sha256": "317ba26c6894c43218b4c5d1a1624e3c5a4de582d439990e4668d835192f4b59"
   },
   "plugins/asset-enhancement-engine/skills/asset-enhancement-engine/tools/mouth_geom.py": {
    "source": "engine/tools/mouth_geom.py",
@@ -1448,8 +1453,8 @@
   },
   "plugins/asset-enhancement-engine/skills/asset-enhancement-engine/tools/part_frame_view.html": {
    "source": "engine/tools/part_frame_view.html",
-   "sha256": "55ceaab867693c69f9bc65d5af66a86743c17ba35121e7967ce1a5da159dc132",
-   "source_sha256": "55ceaab867693c69f9bc65d5af66a86743c17ba35121e7967ce1a5da159dc132"
+   "sha256": "b67add25cd5e72a85d1617d1c608b640b046a58cf1cac10e114f52c27731d148",
+   "source_sha256": "b67add25cd5e72a85d1617d1c608b640b046a58cf1cac10e114f52c27731d148"
   },
   "plugins/asset-enhancement-engine/skills/asset-enhancement-engine/tools/part_lab.py": {
    "source": "engine/tools/part_lab.py",
@@ -1661,6 +1666,11 @@
    "sha256": "1f4213dd19b3b5586a57670c2a95d48c8577cc2c2fdf5788d487c66506e14bda",
    "source_sha256": "1f4213dd19b3b5586a57670c2a95d48c8577cc2c2fdf5788d487c66506e14bda"
   },
+  "plugins/asset-enhancement-engine/skills/asset-enhancement-engine/tools/test_build_log.py": {
+   "source": "engine/tools/test_build_log.py",
+   "sha256": "c92b008f8b9d40c35b616379737778b7f5a1d8d7fcfb2ceccbc21365e66c2101",
+   "source_sha256": "c92b008f8b9d40c35b616379737778b7f5a1d8d7fcfb2ceccbc21365e66c2101"
+  },
   "plugins/asset-enhancement-engine/skills/asset-enhancement-engine/tools/test_fill_detail.json": {
    "source": "engine/tools/test_fill_detail.json",
    "sha256": "4e6f15602a570aab74b2a34d1070104518e34a5ae7670bf26c92a142f0b1483d",
@@ -1710,6 +1720,16 @@
    "source": "engine/tools/test_mound_resize.py",
    "sha256": "99eba0f87b142970fcba8f6530b2e9c29244df514b442671f9280ea5593127c1",
    "source_sha256": "99eba0f87b142970fcba8f6530b2e9c29244df514b442671f9280ea5593127c1"
+  },
+  "plugins/asset-enhancement-engine/skills/asset-enhancement-engine/tools/test_mound_similar.json": {
+   "source": "engine/tools/test_mound_similar.json",
+   "sha256": "f97a6e700ca9fc54d88a043c83be7b1649c45c438b6fe3befa24304a46bc5739",
+   "source_sha256": "f97a6e700ca9fc54d88a043c83be7b1649c45c438b6fe3befa24304a46bc5739"
+  },
+  "plugins/asset-enhancement-engine/skills/asset-enhancement-engine/tools/test_mound_similar.py": {
+   "source": "engine/tools/test_mound_similar.py",
+   "sha256": "a382e36e7034918a8f902d29867ab7168f99f9efbb43fbc09b5c81360a59c326",
+   "source_sha256": "a382e36e7034918a8f902d29867ab7168f99f9efbb43fbc09b5c81360a59c326"
   },
   "plugins/asset-enhancement-engine/skills/asset-enhancement-engine/tools/test_part_features.json": {
    "source": "engine/tools/test_part_features.json",
@@ -1773,8 +1793,8 @@
   },
   "plugins/asset-enhancement-engine/skills/asset-enhancement-engine/tools/translator_pages.py": {
    "source": "engine/tools/translator_pages.py",
-   "sha256": "0f35672dd292581337e6bda6cb60a5a4962b786b3665f75273fbb357baf8354d",
-   "source_sha256": "0f35672dd292581337e6bda6cb60a5a4962b786b3665f75273fbb357baf8354d"
+   "sha256": "2b0d92167238231f1d8e692acdb226a9f160c772e1a8dcd2d1f273f47e56bc17",
+   "source_sha256": "2b0d92167238231f1d8e692acdb226a9f160c772e1a8dcd2d1f273f47e56bc17"
   },
   "plugins/asset-enhancement-engine/skills/asset-enhancement-engine/tools/trellis_space.py": {
    "source": "engine/tools/trellis_space.py",

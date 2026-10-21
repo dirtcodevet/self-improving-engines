@@ -10,6 +10,24 @@
      dots, copy picks as addresses that survive a remesh. Build L3 (2026-10-21): links to the Translator's home and to
      the model's other views; a left-handed frame (the object page's, a right-side part's) is drawn as the model is,
      not as its mirror image. -->
+<!-- FUNCTION INDEX (engine/tools/func_index.py; grep the name to jump; line numbers are of this file; the page builders cut this block out)
+layout: style 31-73, markup 76-112, data script blocks 113-114 (filled by the page generator), script 115-809
+script, by section: [first line] title: its top-level functions (a name alone: arguments too long to list)
+  [115] start: dec(s, T), axLabel(a)
+  [142] address text: addrText(p0, p1, side), xyzText(x,y,z), f2(v), fieldText(vi), itemInfo(it)
+  [168] GL setup: sh(type, src), prog(vs, fs), buf(data, target), vao(prg, attrs, ebo), idCols(n, off), fill(n, rgb)
+  [233] colour modes: cmap(t), setColour(mode)
+  [253] variance block (to line 533; the proofs cut it out): frameSign(info),
+                                                             varianceEngine(V, F, prm) {inside: grid, gather, groups, back, fit, gr, grow, median, run, noise}
+  [534] camera: fitD(), sub(a,b), nrm(a), mul(a,b), eye(), viewM(), projM(), toScreen(p)
+  [549] state & drawing: dpr(), ensureFbo(), pass(pick), hex(s), frame(), renderPick(), readIds(x0, y0, x1, y1),
+                         idToItem(id), posOf(it), pickAt(x, y), labels()
+  [606] selection: same(a, b), setSel(s), listSel(), copyText(), run(), copy()
+  [632] input: panBy(dx, dy)
+  [658] panel: mrow(k, m), vEl(id), mmText(v), sizeText(s), vsMin(), vSizeFromSlider(), vSliderFromSize(s),
+               vThrSlider(t_mm), varLabels(), varToggle(on), vLater(f), varCompute(), varReady(f, s, sec), varPaint(),
+               navReady()
+END FUNCTION INDEX -->
 <style>
 :root{--bg:#f4f2ee;--panel:#ffffff;--ink:#1d1d1f;--mute:#6b6b70;--line:#e2dfd8;--accent:#c75b12;--sel:#ff7a1a;--btn:#efece6;--btnh:#e3dfd6}
 @media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#18181b;--panel:#222226;--ink:#ececef;--mute:#9a9aa2;--line:#34343a;--accent:#ff9a4d;--sel:#ffb15c;--btn:#2d2d33;--btnh:#3a3a42}}
