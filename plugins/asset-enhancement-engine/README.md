@@ -31,7 +31,7 @@ cited anatomy and measured findings as evidence. Reference images are optional, 
 | Test | What it exercised |
 |---|---|
 | **A cat** | A generator's model measured surface by surface and rebuilt as parts: eyes with lids lying on the globe, ears seated on the head, a mouth that closes at rest, toes, then a zoned, layered coat |
-| **A human torso** | An adult torso refined over twelve measured versions: breast form and nipple-areola from cited clinical measures, skin micro-relief, a chest wall, corrective shapes, then rig and pose tests of the shoulder rhythm and the scapula seen from the back |
+| **A human test body** | Blender Studio's free base model, used to prove the engine on a person: proportions from cited clinical measures, skin micro-relief, mesh faults fixed, corrective shapes, then rig and pose tests of the shoulder rhythm and the scapula seen from the back |
 
 <details open>
 <summary><b>The cat, by the numbers</b> <i>(unfinished)</i></summary>

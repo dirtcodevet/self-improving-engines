@@ -207,14 +207,8 @@ $ python tools/part_frame.py resolve hand_L.npz "hand_L back x=0.00 y=0.50"
   right are mirrored, so "outward" means the same on both sides.
 - **A grid that hugs the skin.** The addresses stay evenly spaced over slopes and around curves: the back and palm
   of the hand, each finger, the arm all the way round. They're a centimetre apart on most of the body and much
-  closer where the detail is small: 2.5 mm over the areola and 1 mm over the nipple on the torso.
+  closer where the detail is small, down to a millimetre.
 - **Its numbers come with it.** Each part carries its own measurements, so you can check a change against them.
-
-<p align="center">
-  <img src="images/translator-breast-viewer.png" width="500" alt="The browser view of one breast, coloured by height above the chest wall, with the address grid closing in over the areola and nipple">
-  <img src="images/translator-measured-frame.png" width="360" alt="A wireframe of the same breast's height above the chest wall">
-  <br><sub>One breast from the torso test, measured on its own. Left: the browser view, coloured by height above the chest wall, with the grid closing in over the areola and nipple. Right: the same height as a wireframe: 17.0 × 14.5 cm across, 4.9 cm deep, 470 mL.</sub>
-</p>
 
 ## Commands
 
@@ -292,16 +286,14 @@ shows red and a dent blue.
 
 ## Blender human model, auto-mapped and labelled
 
-We gave the Translator a whole human body, built on Blender Studio's free base model (CC0) as the new base for our
-torso test. With its word list for people it maps the whole body on its own: 37 named parts over 686,418 vertices,
+We tested the Translator on a whole human body: Blender Studio's free base model (CC0). With its word list for people it maps the whole body on its own: 37 named parts over 686,418 vertices,
 each with its own ruler and address grid. The head comes apart into each ear, each eye, the nose, the lips and the
-mouth; below it come the neck, the torso, both breasts, the arms, hands and every finger, the legs, feet and toes.
+mouth; below it come the neck, the torso, the breasts where a body has them, the arms, hands and every finger, the legs, feet and toes.
 The same list was tried on three other bodies, one of them held back until the end, and found the same parts on
 each. Type a part's name in **Go to a part**, or `/translator left ear`, and it opens on its own.
 
 ## What's next
 
-- **Soft creases in the variance view.** A dent stands out clearly; a soft crease where a breast meets the chest
-  still reads no louder than the skin right next to it.
+- **Soft creases in the variance view.** A dent stands out clearly; a soft, shallow crease still reads no louder than the skin right next to it.
 - **Smarter splitting on scanned creatures,** so a head, legs and a coiled tail come out as their own parts.
 - **More word lists** for more kinds of objects, each learned the same way.

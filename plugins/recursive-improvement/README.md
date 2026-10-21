@@ -53,7 +53,7 @@ and rare-but-severe errors never graduate.
 ## Where it came from
 
 It grew from rules that worked on a park-map engine across many review rounds, and was then exercised on the
-[asset enhancement engine](../asset-enhancement-engine/): a cat, then a human torso. Its companion,
+[asset enhancement engine](../asset-enhancement-engine/): a cat, then a human test body. Its companion,
 [engine grounding](../engine-grounding/), covers provenance and proof.
 
 ## Files

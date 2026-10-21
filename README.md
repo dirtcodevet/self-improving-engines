@@ -44,7 +44,8 @@ remeshed. It works on any object too: tested on a whole body, a dragon, a brick 
 - **A cat** *(unfinished)*. A generator's 3-D model was measured surface by surface and rebuilt as anatomical parts,
   then given a groomed coat: a 23-million-triangle skin and about 632,000 strands of fur on the body alone. Still to
   come: the eyes, the nose, refining and colouring the fur, and a few other touch-ups.
-- **A human torso.** An anatomical adult torso refined over twelve measured versions, then rig and pose tests (shoulder rhythm and the scapula seen from the back), now moving to a full base body.
+- **A human test body.** Blender Studio's free base model, used to prove the engine on a person: measured, its mesh
+  faults fixed, then rigged and posed by the numbers (the shoulder and the scapula, seen from the back too).
 
 **Next on the ladder:** a head with real eyes and skin, then a full body, then clothes that move with the body, have
 real fabric texture and react to what's around them.
