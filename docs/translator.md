@@ -284,11 +284,6 @@ from** sets how high or deep a feature must be before it's coloured, and **Auto*
 noise. Tick **Finer** to go down to pore level. Curved skin on its own stays plain, so what lights up is a real change
 in the surface.
 
-<p align="center">
-  <img src="images/translator-variance.jpg" width="900" alt="The variance view on the chest: the nipples show red, where the skin rises, and the fold beneath each breast shows blue, where it sinks; the smooth curve of the breasts stays plain">
-  <br><sub>The chest at a 1.2 cm size, with Show from on Auto: the nipples rise and the folds beneath the breasts sink against the shape around them, while the curve of the breasts themselves stays plain.</sub>
-</p>
-
 It was checked on made-up surfaces first: bumps, dents, ridges and grooves of known sizes show at the size that should
 catch them and stay plain at one that shouldn't, and a clean surface stays plain. At the finest sizes it picks up
 features about a tenth of a millimetre high. We also checked that it reads the same way round on every page: on
@@ -302,12 +297,7 @@ torso test. With its word list for people it maps the whole body on its own: 37 
 each with its own ruler and address grid. The head comes apart into each ear, each eye, the nose, the lips and the
 mouth; below it come the neck, the torso, both breasts, the arms, hands and every finger, the legs, feet and toes.
 The same list was tried on three other bodies, one of them held back until the end, and found the same parts on
-each. Type a part's name in **Go to a part**, or `/translator left ear`, and it opens on its own. The body is
-unclothed for the same reason an anatomy reference is: the Translator maps the skin itself.
-
-<p align="center">
-  <img src="images/translator-whole-body.jpg" width="900" alt="A whole female body in the Translator, coloured by part from the front and the back; the face with each ear, eye, the nose and the lips as parts of their own; an address shown on hover over her right ear; and the variance view on the chest, red where the skin rises and blue where it sinks">
-</p>
+each. Type a part's name in **Go to a part**, or `/translator left ear`, and it opens on its own.
 
 ## What's next
 

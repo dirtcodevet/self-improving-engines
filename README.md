@@ -35,11 +35,6 @@ own ruler and lays a grid of addresses over the skin. Click the spots you mean, 
 request, and a line like `hand_L back x=0.00 y=0.50` points at the same spot every time, even after the model is
 remeshed. It works on any object too: tested on a whole body, a dragon, a brick and a street lantern.
 
-<p align="center">
-  <img src="docs/images/translator-whole-body.jpg" width="900" alt="A whole female body in the Translator, coloured by part from the front and the back; the face with each ear, eye, the nose and the lips as parts of their own; an address shown on hover over her right ear; and the variance view on the chest, red where the skin rises and blue where it sinks">
-  <br><sub>The body is unclothed for the same reason an anatomy reference is: the Translator maps the skin itself.</sub>
-</p>
-
 **[How to open and use it →](docs/translator.md#open-it)** · [More on the Translator](docs/translator.md)
 
 ## Proven so far
